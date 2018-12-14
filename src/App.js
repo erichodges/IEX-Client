@@ -15,19 +15,18 @@ class App extends Component {
   getQuote(ticker) {
     // this.setState({ loading: true });
     let query = this.newTicker.value;
-    axios
-      .get(`https://api.iextrading.com/1.0/stock/${query}/quote`)
-      .then(res => {
-        const data = res.data;
-        this.setState({ data, loading: false });
-        console.log(data);
-      });
+    let endpoint = `https://api.iextrading.com/1.0/stock/${query}/quote`;
+    axios.get(endpoint).then(res => {
+      const data = res.data;
+      console.log(data);
+      data.latestPrice = data.latestPrice.toFixed(2);
+      this.setState({ data: [...this.state.data, data] });
+    });
     this.addForm.reset();
   }
 
   addTicker(e) {
     e.preventDefault();
-    // const { tickers } = this.state.tickers;
     const newTicker = this.newTicker.value;
 
     this.setState({
@@ -37,6 +36,7 @@ class App extends Component {
 
   render() {
     if (!this.state.loading) {
+      // const { tickers } = this.state;
       return (
         <div>
           <form
@@ -64,10 +64,24 @@ class App extends Component {
               </button>
             </div>
           </form>
-
-          <p>
-            {this.state.data.symbol} {this.state.data.latestPrice}
-          </p>
+          <table>
+            <thead />
+            <tbody>
+              {this.state.data.map(item => {
+                return (
+                  <tr key={item}>
+                    <th scope="row" />
+                    <td>
+                      {item.symbol} {item.latestPrice}
+                    </td>
+                    <td>
+                      <button>Remove</button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
       );
     } else {
