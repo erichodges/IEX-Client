@@ -34,8 +34,19 @@ class Quote extends Component {
     const newData = this.state.data.filter(data => {
       return data !== item;
     });
+
     this.setState({
       data: [...newData]
+    });
+  }
+
+  removeTicker(item) {
+    const newTickers = this.state.tickers.filter(tickers => {
+      return tickers !== item;
+    });
+    console.log(item);
+    this.setState({
+      tickers: [...newTickers]
     });
   }
 
@@ -48,13 +59,10 @@ class Quote extends Component {
 
   addTicker(e) {
     e.preventDefault();
-    // const { tickers } = this.state;
-    const newTicker = this.newTicker.value;
-    // const isOnTheList = this.state.tickers.includes(newTicker);
-
+    const newTicker = this.newTicker.value.toUpperCase();
     if (this.state.tickers.includes(newTicker)) {
       this.setState({
-        message: "This Ticker has already been added."
+        message: "add Ticker message."
       });
     } else {
       this.setState({
@@ -107,7 +115,10 @@ class Quote extends Component {
                     </td>
                     <td>
                       <button
-                        onClick={e => this.removeItem(item)}
+                        onClick={e => {
+                          this.removeItem(item);
+                          this.removeTicker(item.symbol);
+                        }}
                         type="button"
                         className="remove-btn"
                       >
@@ -139,3 +150,5 @@ class Quote extends Component {
 }
 
 export default Quote;
+
+// linkinmedo
