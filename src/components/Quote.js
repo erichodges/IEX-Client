@@ -150,5 +150,3 @@ class Quote extends Component {
 }
 
 export default Quote;
-
-// linkinmedo
