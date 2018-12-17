@@ -12,6 +12,20 @@ class Quote extends Component {
     };
   }
 
+  componentDidMount() {
+    // Import socket.io with a connection to a channel (i.e. tops)
+    const url = "https://ws-api.iextrading.com/1.0/last";
+    const socket = require("socket.io-client")(url);
+
+    socket.on("connect", () => {
+      socket.emit("subscribe", "IBM");
+      socket.emit("subscribe", "AAPL");
+      socket.emit("subscribe", "SPY");
+    });
+    // Listen to the channel's messages
+    socket.on("message", message => console.log(message));
+  }
+
   getQuote(ticker) {
     // this.setState({ loading: true });
     if (this.state.tickers.includes(this.newTicker.value)) {
