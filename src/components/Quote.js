@@ -12,6 +12,12 @@ class Quote extends Component {
     };
   }
 
+  cdmTickerInput(ticker) {
+    const tickerForCDM = this.newTicker.value.toUpperCase();
+    console.log(tickerForCDM);
+    return tickerForCDM;
+  }
+
   componentDidMount() {
     // Import socket.io with a connection to a channel (i.e. tops)
     const url = "https://ws-api.iextrading.com/1.0/last";
@@ -40,35 +46,8 @@ class Quote extends Component {
         data.latestPrice = data.latestPrice.toFixed(2);
         this.setState({ data: [...this.state.data, data], message: "" });
       });
-      this.addForm.reset();
+      this.tickerForm.reset();
     }
-  }
-
-  removeItem(item) {
-    const newData = this.state.data.filter(data => {
-      return data !== item;
-    });
-
-    this.setState({
-      data: [...newData]
-    });
-  }
-
-  removeTicker(item) {
-    const newTickers = this.state.tickers.filter(tickers => {
-      return tickers !== item;
-    });
-    console.log(item);
-    this.setState({
-      tickers: [...newTickers]
-    });
-  }
-
-  deleteAll(data) {
-    this.setState({
-      data: [],
-      tickers: []
-    });
   }
 
   addTicker(e) {
@@ -86,6 +65,32 @@ class Quote extends Component {
     }
   }
 
+  removeItem(item) {
+    const newData = this.state.data.filter(data => {
+      return data !== item;
+    });
+
+    this.setState({
+      data: [...newData]
+    });
+  }
+
+  removeTicker(item) {
+    const newTickers = this.state.tickers.filter(tickers => {
+      return tickers !== item;
+    });
+    this.setState({
+      tickers: [...newTickers]
+    });
+  }
+
+  deleteAll(data) {
+    this.setState({
+      data: [],
+      tickers: []
+    });
+  }
+
   render() {
     if (!this.state.loading) {
       const { data, message } = this.state;
@@ -96,8 +101,9 @@ class Quote extends Component {
             onSubmit={e => {
               this.addTicker(e);
               this.getQuote(this.newTicker);
+              this.cdmTickerInput(this.newTicker.value);
             }}
-            ref={input => (this.addForm = input)}
+            ref={input => (this.tickerForm = input)}
           >
             <div className="form-group">
               <label className="inputLabel" htmlFor="newTickerInput">
