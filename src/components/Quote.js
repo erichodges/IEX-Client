@@ -170,3 +170,27 @@ class Quote extends Component {
 }
 
 export default Quote;
+
+// constructor() {
+//   super();
+//   this.state = {
+//     loading: false,
+//     tickers: [],
+//     data: [],
+//     message: ""
+//   };
+//   const url = "https://ws-api.iextrading.com/1.0/last";
+//   this.socket = require("socket.io-client")(url);
+// }
+
+// and
+// getQuote(ticker) {
+//   // somestuff
+//   this.socket.emit("subscribe", ticker);
+// }
+
+// and
+// removeTicker(ticker) {
+//   // somestuff
+//   this.socket.emit("unsubscribe", ticker);
+// }
