@@ -14,13 +14,13 @@ class Quote extends Component {
     const url = "https://ws-api.iextrading.com/1.0/last";
     this.socket = require("socket.io-client")(url);
 
-    socket.on("connect", () => {
-      socket.emit("subscribe", "IBM");
-      socket.emit("subscribe", "AAPL");
-      socket.emit("subscribe", "SPY");
+    this.socket.on("connect", () => {
+      this.socket.emit("subscribe", "IBM");
+      this.socket.emit("subscribe", "AAPL");
+      this.socket.emit("subscribe", "SPY");
     });
     // Listen to the channel's messages
-    socket.on("message", message => console.log(message));
+    this.socket.on("message", message => console.log(message));
   }
 
   cdmTickerInput(ticker) {
