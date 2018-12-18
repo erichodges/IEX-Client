@@ -12,7 +12,7 @@ class Quote extends Component {
       message: ""
     };
     const url = "https://ws-api.iextrading.com/1.0/last";
-    this.socket = require("socket.io-client")(url);
+    this.socket = socket(url);
 
     this.socket.on("connect", () => {
       this.socket.emit("subscribe", "IBM");
@@ -48,13 +48,6 @@ class Quote extends Component {
         const data = res.data;
         data.latestPrice = data.latestPrice.toFixed(2);
         this.setState({ data: [...this.state.data, data], message: "" });
-        this.socket.emit("subscribe", ticker);
-
-        socket.on("connect", () => {
-          socket.emit("subscribe", "IBM");
-          socket.emit("subscribe", "AAPL");
-          socket.emit("subscribe", "SPY");
-        });
       });
       this.tickerForm.reset();
     }
@@ -139,7 +132,7 @@ class Quote extends Component {
             <tbody>
               {data.map(item => {
                 return (
-                  <tr key={item}>
+                  <tr key={item.symbol}>
                     <th scope="row" />
                     <td>
                       {item.symbol} {item.latestPrice}
