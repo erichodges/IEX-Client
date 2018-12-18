@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import socket from "socket.io-client";
 
 class Quote extends Component {
   constructor() {
@@ -10,6 +11,16 @@ class Quote extends Component {
       data: [],
       message: ""
     };
+    const url = "https://ws-api.iextrading.com/1.0/last";
+    this.socket = require("socket.io-client")(url);
+
+    socket.on("connect", () => {
+      socket.emit("subscribe", "IBM");
+      socket.emit("subscribe", "AAPL");
+      socket.emit("subscribe", "SPY");
+    });
+    // Listen to the channel's messages
+    socket.on("message", message => console.log(message));
   }
 
   cdmTickerInput(ticker) {
@@ -20,16 +31,8 @@ class Quote extends Component {
 
   componentDidMount() {
     // Import socket.io with a connection to a channel (i.e. tops)
-    const url = "https://ws-api.iextrading.com/1.0/last";
-    const socket = require("socket.io-client")(url);
-
-    socket.on("connect", () => {
-      socket.emit("subscribe", "IBM");
-      socket.emit("subscribe", "AAPL");
-      socket.emit("subscribe", "SPY");
-    });
-    // Listen to the channel's messages
-    socket.on("message", message => console.log(message));
+    // const url = "https://ws-api.iextrading.com/1.0/last";
+    // const socket = require("socket.io-client")(url);
   }
 
   getQuote(ticker) {
@@ -45,6 +48,13 @@ class Quote extends Component {
         const data = res.data;
         data.latestPrice = data.latestPrice.toFixed(2);
         this.setState({ data: [...this.state.data, data], message: "" });
+        this.socket.emit("subscribe", ticker);
+
+        socket.on("connect", () => {
+          socket.emit("subscribe", "IBM");
+          socket.emit("subscribe", "AAPL");
+          socket.emit("subscribe", "SPY");
+        });
       });
       this.tickerForm.reset();
     }
@@ -82,6 +92,7 @@ class Quote extends Component {
     this.setState({
       tickers: [...newTickers]
     });
+    this.socket.emit("unsubscribe", item);
   }
 
   deleteAll(data) {
