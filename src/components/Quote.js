@@ -9,31 +9,23 @@ class Quote extends Component {
       loading: false,
       tickers: [],
       data: [],
-      message: ""
+      message: "",
+      newTicker: ""
     };
     const url = "https://ws-api.iextrading.com/1.0/last";
     this.socket = socket(url);
 
     this.socket.on("connect", () => {
       this.socket.emit("subscribe", "IBM");
-      this.socket.emit("subscribe", "AAPL");
-      this.socket.emit("subscribe", "SPY");
+      // this.socket.emit("subscribe", "AAPL");
+      // this.socket.emit("subscribe", "SPY");
     });
     // Listen to the channel's messages
     this.socket.on("message", message => console.log(message));
+    console.log(this.state.newTicker);
   }
 
-  cdmTickerInput(ticker) {
-    const tickerForCDM = this.newTicker.value.toUpperCase();
-    console.log(tickerForCDM);
-    return tickerForCDM;
-  }
-
-  componentDidMount() {
-    // Import socket.io with a connection to a channel (i.e. tops)
-    // const url = "https://ws-api.iextrading.com/1.0/last";
-    // const socket = require("socket.io-client")(url);
-  }
+  componentDidMount() {}
 
   getQuote(ticker) {
     // this.setState({ loading: true });
@@ -42,12 +34,17 @@ class Quote extends Component {
         message: "This Ticker has already been added."
       });
     } else {
-      let query = this.newTicker.value;
+      let query = ticker.toUpperCase();
       let endpoint = `https://api.iextrading.com/1.0/stock/${query}/quote`;
       axios.get(endpoint).then(res => {
         const data = res.data;
         data.latestPrice = data.latestPrice.toFixed(2);
-        this.setState({ data: [...this.state.data, data], message: "" });
+        this.setState({
+          data: [...this.state.data, data],
+          message: "",
+          newTicker: query
+        });
+        // console.log(this.state.newTicker);
       });
       this.tickerForm.reset();
     }
@@ -104,8 +101,7 @@ class Quote extends Component {
             className="ticker-form"
             onSubmit={e => {
               this.addTicker(e);
-              this.getQuote(this.newTicker);
-              this.cdmTickerInput(this.newTicker.value);
+              this.getQuote(this.newTicker.value);
             }}
             ref={input => (this.tickerForm = input)}
           >
