@@ -68,103 +68,74 @@ class Quote extends Component {
   }
 
   render() {
-    console.log(this.state.data);
-    if (!this.state.loading) {
-      const { data, message } = this.state;
-      return (
-        <div>
-          <form
-            className="ticker-form"
-            onSubmit={e => {
-              this.getStockData(e);
-            }}
-            ref={input => (this.tickerForm = input)}
-          >
-            <div className="form-group">
-              <label className="inputLabel" htmlFor="newTickerInput">
-                Quote
-              </label>
-              &nbsp;
-              <input
-                ref={input => (this.newTicker = input)}
-                type="text"
-                placeholder="Add a Ticker"
-                className="tickerInput"
-              />
-              &nbsp;
-              <button type="submit" className="tickerSubmit">
-                Add
-              </button>
-            </div>
-          </form>
-          {message !== "" && <p className="message-text">{message}</p>}
-          <table>
-            <thead />
-            <tbody>
-              {data.map(item => {
-                return (
-                  <tr key={item.symbol}>
-                    <th scope="row" />
-                    <td>
-                      {item.symbol} {item.latestPrice}
-                    </td>
-                    <td>
-                      <button
-                        onClick={e => {
-                          this.removeItem(item);
-                        }}
-                        type="button"
-                        className="remove-btn"
-                      >
-                        Remove
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
-              <tr>
-                <td>
-                  <button
-                    onClick={e => this.deleteAll(data)}
-                    type="button"
-                    className="delete-btn"
-                  >
-                    Remove All
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      );
-    } else {
-      return "Loading...";
-    }
+    const { data, message } = this.state;
+    return (
+      <div>
+        <form
+          className="ticker-form"
+          onSubmit={e => {
+            this.getStockData(e);
+          }}
+          ref={input => (this.tickerForm = input)}
+        >
+          <div className="form-group">
+            <label className="inputLabel" htmlFor="newTickerInput">
+              Quote
+            </label>
+            &nbsp;
+            <input
+              ref={input => (this.newTicker = input)}
+              type="text"
+              placeholder="Add a Ticker"
+              className="tickerInput"
+            />
+            &nbsp;
+            <button type="submit" className="tickerSubmit">
+              Add
+            </button>
+          </div>
+        </form>
+        {message !== "" && <p className="message-text">{message}</p>}
+        <table>
+          <thead />
+          <tbody>
+            {data.map(item => {
+              return (
+                <tr key={item.symbol}>
+                  <th scope="row" />
+                  <td>
+                    {item.symbol} {item.latestPrice}
+                  </td>
+                  <td>
+                    <button
+                      onClick={e => {
+                        this.removeItem(item);
+                      }}
+                      type="button"
+                      className="remove-btn"
+                    >
+                      x
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+            <tr>
+              <td>
+                <button
+                  onClick={e => this.deleteAll(data)}
+                  type="button"
+                  className="delete-btn"
+                >
+                  Remove All
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    );
   }
 }
 
 export default Quote;
-
-// constructor() {
-//   super();
-//   this.state = {
-//     loading: false,
-//     tickers: [],
-//     data: [],
-//     message: ""
-//   };
-//   const url = "https://ws-api.iextrading.com/1.0/last";
-//   this.socket = require("socket.io-client")(url);
-// }
-
-// and
-// getQuote(ticker) {
-//   // somestuff
-//   this.socket.emit("subscribe", ticker);
-// }
-
-// and
-// removeTicker(ticker) {
-//   // somestuff
-//   this.socket.emit("unsubscribe", ticker);
-// }
