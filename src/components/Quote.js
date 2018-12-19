@@ -9,6 +9,9 @@ class Quote extends Component {
       loading: false,
       tickers: [],
       data: [],
+      livePrice: [],
+      getQuoteMessage: "",
+      addTickerMessage: "",
       message: "",
       newTicker: ""
     };
@@ -16,22 +19,30 @@ class Quote extends Component {
     this.socket = socket(url);
 
     this.socket.on("connect", () => {
-      this.socket.emit("subscribe", "IBM");
+      // this.socket.emit("subscribe", "IBM");
       // this.socket.emit("subscribe", "AAPL");
       // this.socket.emit("subscribe", "SPY");
     });
     // Listen to the channel's messages
-    this.socket.on("message", message => console.log(message));
-    console.log(this.state.newTicker);
+    // this.socket.on("message", message => console.log(message));
   }
 
   componentDidMount() {}
 
   getQuote(ticker) {
     // this.setState({ loading: true });
-    if (this.state.tickers.includes(this.newTicker.value)) {
+    this.socket.emit("subscribe", ticker);
+    this.socket.on("message", message =>
       this.setState({
-        message: "This Ticker has already been added."
+        livePrice: message
+      })
+    );
+    console.log(this.state.livePrice);
+    let newQuote = this.state.data.length - 1;
+    if (newQuote.symbol === this.newTicker.value) {
+      this.setState({
+        // data: [...this.state.data],
+        getQuoteMessage: "get Quote Message"
       });
     } else {
       let query = ticker.toUpperCase();
@@ -41,10 +52,10 @@ class Quote extends Component {
         data.latestPrice = data.latestPrice.toFixed(2);
         this.setState({
           data: [...this.state.data, data],
-          message: "",
+          getQuoteMessage: "",
           newTicker: query
         });
-        // console.log(this.state.newTicker);
+        // this.socket.emit("subscribe", query);
       });
       this.tickerForm.reset();
     }
@@ -55,7 +66,7 @@ class Quote extends Component {
     const newTicker = this.newTicker.value.toUpperCase();
     if (this.state.tickers.includes(newTicker)) {
       this.setState({
-        message: "add Ticker message."
+        addTickerMessage: "This ticker symbol has already been added."
       });
     } else {
       this.setState({
@@ -94,7 +105,7 @@ class Quote extends Component {
 
   render() {
     if (!this.state.loading) {
-      const { data, message } = this.state;
+      const { data, addTickerMessage } = this.state;
       return (
         <div>
           <form
@@ -122,7 +133,9 @@ class Quote extends Component {
               </button>
             </div>
           </form>
-          {message !== "" && <p className="message-text">{message}</p>}
+          {addTickerMessage !== "" && (
+            <p className="message-text">{addTickerMessage}</p>
+          )}
           <table>
             <thead />
             <tbody>
