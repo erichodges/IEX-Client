@@ -7,13 +7,9 @@ class Quote extends Component {
     super();
     this.state = {
       loading: false,
-      tickers: [],
+      // tickers: [],
       data: [],
-      livePrice: [],
-      getQuoteMessage: "",
-      addTickerMessage: "",
-      message: "",
-      newTicker: ""
+      message: ""
     };
     const url = "https://ws-api.iextrading.com/1.0/last";
     this.socket = socket(url);
@@ -24,22 +20,40 @@ class Quote extends Component {
       // this.socket.emit("subscribe", "SPY");
     });
     // Listen to the channel's messages
-    // this.socket.on("message", message => console.log(message));
+    this.socket.on("message", message => console.log(message));
   }
 
   getStockData(e) {
     e.preventDefault();
     const ticker = this.newTicker.value.toUpperCase();
-    let endpoint = `https://api.iextrading.com/1.0/stock/${ticker}/quote`;
-    axios.get(endpoint).then(res => {
-      const data = res.data;
-      data.latestPrice = data.latestPrice.toFixed(2);
+    if (
+      this.state.data.filter(item => {
+        return item.symbol === ticker;
+      }).length > 0
+    ) {
       this.setState({
-        data: [...this.state.data, data]
+        message: "This ticker has already been entered"
       });
-      this.socket.emit("subscribe", ticker);
-      this.socket.on("message", message => console.log(message));
-    });
+    } else {
+      // const item = this.state.data;
+      // if (item.filter(item.symbol) === ticker) {
+      //   this.setState({
+      //     message: "This ticker has already been entered"
+      //   });
+      // } else {}
+      let endpoint = `https://api.iextrading.com/1.0/stock/${ticker}/quote`;
+      axios.get(endpoint).then(res => {
+        const data = res.data;
+        data.latestPrice = data.latestPrice.toFixed(2);
+        data !== {} && // this does not work yet
+          this.setState({
+            data: [...this.state.data, data]
+          });
+        this.socket.emit("subscribe", ticker);
+      });
+    }
+
+    this.tickerForm.reset();
   }
 
   getQuote(ticker) {
@@ -112,8 +126,9 @@ class Quote extends Component {
   }
 
   render() {
+    console.log(this.state.data);
     if (!this.state.loading) {
-      const { data, addTickerMessage } = this.state;
+      const { data, message } = this.state;
       return (
         <div>
           <form
@@ -140,9 +155,7 @@ class Quote extends Component {
               </button>
             </div>
           </form>
-          {addTickerMessage !== "" && (
-            <p className="message-text">{addTickerMessage}</p>
-          )}
+          {message !== "" && <p className="message-text">{message}</p>}
           <table>
             <thead />
             <tbody>
