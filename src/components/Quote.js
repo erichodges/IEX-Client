@@ -7,7 +7,6 @@ class Quote extends Component {
     super();
     this.state = {
       loading: false,
-      // tickers: [],
       data: [],
       message: ""
     };
@@ -16,8 +15,6 @@ class Quote extends Component {
 
     this.socket.on("connect", () => {
       // this.socket.emit("subscribe", "IBM");
-      // this.socket.emit("subscribe", "AAPL");
-      // this.socket.emit("subscribe", "SPY");
     });
     // Listen to the channel's messages
     this.socket.on("message", message => console.log(message));
@@ -32,22 +29,18 @@ class Quote extends Component {
       }).length > 0
     ) {
       this.setState({
-        message: "This ticker has already been entered"
+        message:
+          "This ticker has already been entered, please choose another symbol"
       });
     } else {
-      // const item = this.state.data;
-      // if (item.filter(item.symbol) === ticker) {
-      //   this.setState({
-      //     message: "This ticker has already been entered"
-      //   });
-      // } else {}
       let endpoint = `https://api.iextrading.com/1.0/stock/${ticker}/quote`;
       axios.get(endpoint).then(res => {
         const data = res.data;
         data.latestPrice = data.latestPrice.toFixed(2);
         data !== {} && // this does not work yet
           this.setState({
-            data: [...this.state.data, data]
+            data: [...this.state.data, data],
+            message: ""
           });
         this.socket.emit("subscribe", ticker);
       });
@@ -56,72 +49,21 @@ class Quote extends Component {
     this.tickerForm.reset();
   }
 
-  getQuote(ticker) {
-    // this.setState({ loading: true });
-    this.socket.emit("subscribe", ticker);
-
-    let newQuote = this.state.data.length - 1;
-    if (newQuote.symbol === this.newTicker.value) {
-      this.setState({
-        // data: [...this.state.data],
-        getQuoteMessage: "get Quote Message"
-      });
-    } else {
-      let query = ticker.toUpperCase();
-      let endpoint = `https://api.iextrading.com/1.0/stock/${query}/quote`;
-      axios.get(endpoint).then(res => {
-        const data = res.data;
-        data.latestPrice = data.latestPrice.toFixed(2);
-        this.setState({
-          data: [...this.state.data, data],
-          getQuoteMessage: "",
-          newTicker: query
-        });
-        // this.socket.emit("subscribe", query);
-      });
-      this.tickerForm.reset();
-    }
-  }
-
-  addTicker(e) {
-    e.preventDefault();
-    const newTicker = this.newTicker.value.toUpperCase();
-    if (this.state.tickers.includes(newTicker)) {
-      this.setState({
-        addTickerMessage: "This ticker symbol has already been added."
-      });
-    } else {
-      this.setState({
-        tickers: [...this.state.tickers, newTicker],
-        message: ""
-      });
-    }
-  }
-
   removeItem(item) {
     const newData = this.state.data.filter(data => {
       return data !== item;
     });
 
     this.setState({
-      data: [...newData]
+      data: [...newData],
+      message: ""
     });
-  }
-
-  removeTicker(item) {
-    const newTickers = this.state.tickers.filter(tickers => {
-      return tickers !== item;
-    });
-    this.setState({
-      tickers: [...newTickers]
-    });
-    this.socket.emit("unsubscribe", item);
   }
 
   deleteAll(data) {
     this.setState({
       data: [],
-      tickers: []
+      message: ""
     });
   }
 
@@ -170,7 +112,6 @@ class Quote extends Component {
                       <button
                         onClick={e => {
                           this.removeItem(item);
-                          this.removeTicker(item.symbol);
                         }}
                         type="button"
                         className="remove-btn"
