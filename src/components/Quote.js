@@ -27,17 +27,25 @@ class Quote extends Component {
     // this.socket.on("message", message => console.log(message));
   }
 
-  componentDidMount() {}
+  getStockData(e) {
+    e.preventDefault();
+    const ticker = this.newTicker.value.toUpperCase();
+    let endpoint = `https://api.iextrading.com/1.0/stock/${ticker}/quote`;
+    axios.get(endpoint).then(res => {
+      const data = res.data;
+      data.latestPrice = data.latestPrice.toFixed(2);
+      this.setState({
+        data: [...this.state.data, data]
+      });
+      this.socket.emit("subscribe", ticker);
+      this.socket.on("message", message => console.log(message));
+    });
+  }
 
   getQuote(ticker) {
     // this.setState({ loading: true });
     this.socket.emit("subscribe", ticker);
-    this.socket.on("message", message =>
-      this.setState({
-        livePrice: message
-      })
-    );
-    console.log(this.state.livePrice);
+
     let newQuote = this.state.data.length - 1;
     if (newQuote.symbol === this.newTicker.value) {
       this.setState({
@@ -111,8 +119,7 @@ class Quote extends Component {
           <form
             className="ticker-form"
             onSubmit={e => {
-              this.addTicker(e);
-              this.getQuote(this.newTicker.value);
+              this.getStockData(e);
             }}
             ref={input => (this.tickerForm = input)}
           >
