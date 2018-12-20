@@ -17,9 +17,20 @@ class Quote extends Component {
       // this.socket.emit("subscribe", "IBM");
     });
     // Listen to the channel's messages
-    this.socket.on("message", message => console.log(message));
+    this.socket.on("message", message => {
+      this.setState(state => {
+        return {
+          data: state.data.map(item => {
+            if (item.symbol === message.symbol) {
+              item.latestPrice = message.price;
+              return item;
+            }
+            return item;
+          })
+        };
+      });
+    });
   }
-
   getStockData(e) {
     e.preventDefault();
     const ticker = this.newTicker.value.toUpperCase();
@@ -45,7 +56,6 @@ class Quote extends Component {
         this.socket.emit("subscribe", ticker);
       });
     }
-
     this.tickerForm.reset();
   }
 
@@ -53,7 +63,6 @@ class Quote extends Component {
     const newData = this.state.data.filter(data => {
       return data !== item;
     });
-
     this.setState({
       data: [...newData],
       message: ""
@@ -68,6 +77,7 @@ class Quote extends Component {
   }
 
   render() {
+    console.log(this.state.data);
     const { data, message } = this.state;
     return (
       <div>
@@ -102,7 +112,6 @@ class Quote extends Component {
             {data.map(item => {
               return (
                 <tr key={item.symbol}>
-                  <th scope="row" />
                   <td>
                     {item.symbol} {item.latestPrice}
                   </td>
@@ -121,18 +130,19 @@ class Quote extends Component {
               );
             })}
             <tr>
-              <td>
-                <button
-                  onClick={e => this.deleteAll(data)}
-                  type="button"
-                  className="delete-btn"
-                >
-                  Remove All
-                </button>
-              </td>
+              <td />
             </tr>
           </tbody>
         </table>
+        <div>
+          <button
+            onClick={e => this.deleteAll(data)}
+            type="button"
+            className="delete-btn"
+          >
+            Remove All
+          </button>
+        </div>
       </div>
     );
   }
