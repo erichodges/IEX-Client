@@ -18,11 +18,12 @@ class Quote extends Component {
     });
     // Listen to the channel's messages
     this.socket.on("message", message => {
+      const msg = JSON.parse(message);
       this.setState(state => {
         return {
           data: state.data.map(item => {
-            if (item.symbol === message.symbol) {
-              item.latestPrice = message.price;
+            if (item.symbol === msg.symbol) {
+              item.latestPrice = msg.price;
               return item;
             }
             return item;
