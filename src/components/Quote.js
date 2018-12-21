@@ -23,7 +23,7 @@ class Quote extends Component {
         return {
           data: state.data.map(item => {
             if (item.symbol === msg.symbol) {
-              item.latestPrice = msg.price;
+              item.latestPrice = msg.price.toFixed(2);
               return item;
             }
             return item;
@@ -45,7 +45,7 @@ class Quote extends Component {
           "This ticker has already been entered, please choose another symbol"
       });
     } else {
-      let endpoint = `https://api.iextrading.com/1.0/stock/${ticker}/quote`;
+      let endpoint = `https://api.iextrading.com/1.0/stock/${ticker}/quote?displayPercent=true`;
       axios.get(endpoint).then(res => {
         const data = res.data;
         data.latestPrice = data.latestPrice.toFixed(2);
@@ -78,7 +78,6 @@ class Quote extends Component {
   }
 
   render() {
-    console.log(this.state.data);
     const { data, message } = this.state;
     return (
       <div>
@@ -91,7 +90,7 @@ class Quote extends Component {
         >
           <div className="form-group">
             <label className="inputLabel" htmlFor="newTickerInput">
-              Quote
+              Quote List &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </label>
             &nbsp;
             <input
@@ -114,7 +113,12 @@ class Quote extends Component {
               return (
                 <tr key={item.symbol}>
                   <td>
-                    {item.symbol} {item.latestPrice}
+                    {item.symbol}&nbsp;&nbsp; {item.latestPrice}
+                    &nbsp;&nbsp;&nbsp;
+                    {item.change}
+                    &nbsp;&nbsp;&nbsp;
+                    {item.changePercent.toFixed(2)}% &nbsp;&nbsp;&nbsp;
+                    {item.companyName}
                   </td>
                   <td>
                     <button
