@@ -11,7 +11,7 @@ class Quote extends Component {
       message: ""
     };
     const url = "https://ws-api.iextrading.com/1.0/last";
-    this.socket = socket(url);
+    this.socket = socket(url, { forceNew: true });
 
     this.socket.on("connect", () => {
       // this.socket.emit("subscribe", "IBM");
