@@ -8,15 +8,13 @@ import { TypeChooser } from "react-stockcharts/lib/helper";
 class ChartComponent extends React.Component {
   constructor() {
     super();
-    this.state = {
-      data: []
-    };
+    this.state = {};
   }
   componentDidMount() {
     getData().then(data => {
       this.setState({ data });
     });
-    // console.log(this.state.data);
+    console.log(this.state.data);
   }
 
   render() {

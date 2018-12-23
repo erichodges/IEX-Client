@@ -3,9 +3,9 @@ import axios from "axios";
 // import { tsvParse, csvParse } from "d3-dsv";
 // import { timeParse } from "d3-time-format";
 
-export function getData() {
+export async function getData() {
   let endpoint = `https://api.iextrading.com/1.0/stock/aapl/chart/1y`;
-  axios.get(endpoint).then(res => {
+  return await axios.get(endpoint).then(res => {
     const d = JSON.stringify(res.data);
     console.log(d);
     return d;
