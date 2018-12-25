@@ -12,7 +12,7 @@ class ChartComponent extends React.Component {
   }
   componentDidMount() {
     getData().then(data => {
-      this.setState({ data });
+      this.setState({ data: JSON.parse(data) });
     });
     console.log(this.state.data);
   }

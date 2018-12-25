@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Quote from "./components/Quote";
-import Chart from "./components/Chart";
 import ChartComponent from "./components/index";
 
 class App extends Component {
@@ -8,7 +7,6 @@ class App extends Component {
     return (
       <div>
         <ChartComponent />
-        <Chart />
         <Quote />
         <Quote />
       </div>
