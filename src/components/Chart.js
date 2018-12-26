@@ -79,8 +79,8 @@ class CandleStickChartWithMA extends React.Component {
         d.smaVolume50 = c;
       })
       .accessor(d => d.smaVolume50)
-      .stroke("#4682B4")
-      .fill("#4682B4");
+      .stroke("#b7bfdc")
+      .fill("#b7bfdc");
 
     const { type, data: initialData, width, ratio } = this.props;
 
@@ -100,7 +100,7 @@ class CandleStickChartWithMA extends React.Component {
 
     return (
       <ChartCanvas
-        height={400}
+        height={600}
         width={width}
         ratio={ratio}
         margin={{ left: 70, right: 70, top: 10, bottom: 30 }}
@@ -229,7 +229,7 @@ class CandleStickChartWithMA extends React.Component {
 
           <BarSeries
             yAccessor={d => d.volume}
-            fill={d => (d.close > d.open ? "#6BA583" : "red")}
+            fill={d => (d.close > d.open ? "#b7bfdc" : "#b7bfdc")}
           />
           <AreaSeries
             yAccessor={smaVolume50.accessor()}
