@@ -133,7 +133,11 @@ class CandleStickChartWithMA extends React.Component {
             displayFormat={format(".2f")}
           />
 
-          <CandlestickSeries />
+          <CandlestickSeries // added Techan colors
+            stroke={d => (d.close > d.open ? "#18A81B" : "#FC0D1B")}
+            wickStroke={d => (d.close > d.open ? "#18A81B" : "#FC0D1B")}
+            fill={d => (d.close > d.open ? "#18A81B" : "#FC0D1B")}
+          />
           <LineSeries yAccessor={sma20.accessor()} stroke={sma20.stroke()} />
           <LineSeries yAccessor={wma20.accessor()} stroke={wma20.stroke()} />
           <LineSeries yAccessor={tma20.accessor()} stroke={tma20.stroke()} />
