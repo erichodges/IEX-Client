@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import ChartTicker from "./components/ChartTicker";
+import ChartLayout from "./components/ChartLayout";
 import Quote from "./components/Quote";
 class App extends Component {
   render() {
     return (
       <div>
-        <ChartTicker />
+        <ChartLayout />
         <Quote />
         <Quote />
       </div>

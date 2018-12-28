@@ -1,7 +1,5 @@
 import axios from "axios";
 import { timeParse } from "d3-time-format";
-// import React, { Component } from "react";
-// import { tsvParse, csvParse } from "d3-dsv";
 
 const parseDate = timeParse("%Y-%m-%d");
 
