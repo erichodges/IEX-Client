@@ -6,7 +6,6 @@ import { timeFormat } from "d3-time-format";
 import { ChartCanvas, Chart } from "react-stockcharts";
 import {
   BarSeries,
-  AreaSeries,
   CandlestickSeries,
   LineSeries
 } from "react-stockcharts/lib/series";
@@ -84,6 +83,20 @@ class CandleStickChartWithMA extends React.Component {
 
     const { type, data: initialData, width, ratio } = this.props;
 
+    const candlesAppearance = {
+      wickStroke: "#000000",
+      fill: function fill(d) {
+        return d.close > d.open ? "#18A81B" : "#FC0D1B";
+      },
+      stroke: "#000000",
+      candleStrokeWidth: 1,
+      widthRatio: 0.8,
+      opacity: 1
+    };
+    // stroke={d => (d.close > d.open ? "#18A81B" : "")}
+    // wickStroke={d => (d.close > d.open ? "#18A81B" : "#FC0D1B")}
+    // fill={d => (d.close > d.open ? "#18A81B" : "#FC0D1B")}
+
     const calculatedData = ema20(
       sma20(wma20(tma20(ema50(smaVolume50(initialData)))))
     );
@@ -113,6 +126,41 @@ class CandleStickChartWithMA extends React.Component {
         xExtents={xExtents}
       >
         <Chart
+          id={2}
+          yExtents={[d => d.volume, smaVolume50.accessor()]}
+          height={150}
+          origin={(w, h) => [0, h - 150]}
+        >
+          <YAxis
+            axisAt="left"
+            orient="left"
+            ticks={5}
+            tickFormat={format(".2s")}
+          />
+
+          <MouseCoordinateX
+            at="bottom"
+            orient="bottom"
+            displayFormat={timeFormat("%Y-%m-%d")}
+          />
+          <MouseCoordinateY
+            at="left"
+            orient="left"
+            displayFormat={format(".4s")}
+          />
+
+          <BarSeries
+            yAccessor={d => d.volume}
+            fill={d => (d.close > d.open ? "#b7bfdc" : "#b7bfdc")}
+          />
+
+          <CurrentCoordinate
+            yAccessor={smaVolume50.accessor()}
+            fill={smaVolume50.stroke()}
+          />
+          <CurrentCoordinate yAccessor={d => d.volume} fill="#9B0A47" />
+        </Chart>
+        <Chart
           id={1}
           yExtents={[
             d => [d.high, d.low],
@@ -133,11 +181,7 @@ class CandleStickChartWithMA extends React.Component {
             displayFormat={format(".2f")}
           />
 
-          <CandlestickSeries // added Techan colors
-            stroke={d => (d.close > d.open ? "#18A81B" : "#FC0D1B")}
-            wickStroke={d => (d.close > d.open ? "#18A81B" : "#FC0D1B")}
-            fill={d => (d.close > d.open ? "#18A81B" : "#FC0D1B")}
-          />
+          <CandlestickSeries {...candlesAppearance} />
           <LineSeries yAccessor={sma20.accessor()} stroke={sma20.stroke()} />
           <LineSeries yAccessor={wma20.accessor()} stroke={wma20.stroke()} />
           <LineSeries yAccessor={tma20.accessor()} stroke={tma20.stroke()} />
@@ -207,45 +251,7 @@ class CandleStickChartWithMA extends React.Component {
             ]}
           />
         </Chart>
-        <Chart
-          id={2}
-          yExtents={[d => d.volume, smaVolume50.accessor()]}
-          height={150}
-          origin={(w, h) => [0, h - 150]}
-        >
-          <YAxis
-            axisAt="left"
-            orient="left"
-            ticks={5}
-            tickFormat={format(".2s")}
-          />
 
-          <MouseCoordinateX
-            at="bottom"
-            orient="bottom"
-            displayFormat={timeFormat("%Y-%m-%d")}
-          />
-          <MouseCoordinateY
-            at="left"
-            orient="left"
-            displayFormat={format(".4s")}
-          />
-
-          <BarSeries
-            yAccessor={d => d.volume}
-            fill={d => (d.close > d.open ? "#b7bfdc" : "#b7bfdc")}
-          />
-          <AreaSeries
-            yAccessor={smaVolume50.accessor()}
-            stroke={smaVolume50.stroke()}
-            fill={smaVolume50.fill()}
-          />
-          <CurrentCoordinate
-            yAccessor={smaVolume50.accessor()}
-            fill={smaVolume50.stroke()}
-          />
-          <CurrentCoordinate yAccessor={d => d.volume} fill="#9B0A47" />
-        </Chart>
         <CrossHairCursor />
       </ChartCanvas>
     );
