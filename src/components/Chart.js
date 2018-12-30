@@ -152,7 +152,7 @@ class CandleStickChartWithMA extends React.Component {
 
           <BarSeries
             yAccessor={d => d.volume}
-            fill={d => (d.close > d.open ? "#b7bfdc" : "#b7bfdc")}
+            fill={d => (d.close > d.open ? "#555555" : "#555555")}
           />
 
           <CurrentCoordinate
