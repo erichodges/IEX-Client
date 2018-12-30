@@ -84,18 +84,19 @@ class CandleStickChartWithMA extends React.Component {
     const { type, data: initialData, width, ratio } = this.props;
 
     const candlesAppearance = {
-      wickStroke: "#000000",
+      wickStroke: function stroke(d) {
+        return d.close > d.open ? "#18A81B" : "#FC0D1B";
+      },
       fill: function fill(d) {
         return d.close > d.open ? "#18A81B" : "#FC0D1B";
       },
-      stroke: "#000000",
+      stroke: function stroke(d) {
+        return d.close > d.open ? "#18A81B" : "#FC0D1B";
+      },
       candleStrokeWidth: 1,
       widthRatio: 0.8,
       opacity: 1
     };
-    // stroke={d => (d.close > d.open ? "#18A81B" : "")}
-    // wickStroke={d => (d.close > d.open ? "#18A81B" : "#FC0D1B")}
-    // fill={d => (d.close > d.open ? "#18A81B" : "#FC0D1B")}
 
     const calculatedData = ema20(
       sma20(wma20(tma20(ema50(smaVolume50(initialData)))))
