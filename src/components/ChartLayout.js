@@ -5,7 +5,7 @@ import ChartTicker from "./ChartTicker";
 class ChartLayout extends Component {
   render() {
     return (
-      <div>
+      <div onSubmit={this.handleChartSubmit}>
         <ChartTicker />
         <ChartComponent />
       </div>
