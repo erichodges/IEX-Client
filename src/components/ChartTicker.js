@@ -6,7 +6,7 @@ class ChartTicker extends Component {
   constructor(props) {
     super();
     this.state = {
-      chartTicker: "SPY"
+      chartTicker: ""
     };
   }
   onHandleChange(event) {
@@ -14,9 +14,7 @@ class ChartTicker extends Component {
       chartTicker: event.target.value.toUpperCase()
     });
   }
-  handleChartSubmit = e => {
-    e.preventDefault();
-  };
+
   render() {
     return (
       <form
@@ -34,7 +32,7 @@ class ChartTicker extends Component {
           <input
             ref={input => (this.newTicker = input)}
             type="text"
-            value={this.state.chartTicker}
+            // value={this.state.chartTicker}
             onChange={event => this.onHandleChange(event)}
             placeholder="Add a Ticker"
             className="chartTickerInput"
