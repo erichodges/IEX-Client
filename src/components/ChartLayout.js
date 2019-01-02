@@ -19,10 +19,10 @@ class ChartLayout extends Component {
   }
   handleChartSubmit(e) {
     e.preventDefault();
+    console.log(e.target.value);
     getData(e.target.value).then(data => {
       // should have logic to handle if ticker is not valid
       this.setState({ data });
-      console.log(data);
     });
   }
 

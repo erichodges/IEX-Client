@@ -20,7 +20,7 @@ class ChartTicker extends Component {
       <form
         className="ChartTicker-form"
         onSubmit={e => {
-          this.handleChartSubmit(e);
+          this.props.onSubmit(e, this.state.chartTicker);
         }}
         // ref={input => (this.tickerForm = input)}
       >
@@ -32,7 +32,7 @@ class ChartTicker extends Component {
           <input
             ref={input => (this.newTicker = input)}
             type="text"
-            // value={this.state.chartTicker}
+            value={this.state.chartTicker}
             onChange={event => this.onHandleChange(event)}
             placeholder="Add a Ticker"
             className="chartTickerInput"
