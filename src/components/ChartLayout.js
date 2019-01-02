@@ -13,16 +13,18 @@ class ChartLayout extends Component {
     this.handleChartSubmit = this.handleChartSubmit.bind(this);
   }
   componentDidMount() {
-    getData("SPY").then(data => {
+    getData("SPY", "1y").then(data => {
       this.setState({ data });
     });
   }
-  handleChartSubmit(e) {
+  handleChartSubmit(e, ticker, time) {
     e.preventDefault();
-    console.log(e.target.value);
-    getData(e.target.value).then(data => {
+    getData(ticker, time).then(data => {
       // should have logic to handle if ticker is not valid
-      this.setState({ data });
+      this.setState({
+        data,
+        chartTicker: "" // this didn't work to clear the form
+      });
     });
   }
 
