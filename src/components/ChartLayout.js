@@ -28,7 +28,7 @@ class ChartLayout extends Component {
 
   render() {
     return (
-      <div onSubmit={this.handleChartSubmit}>
+      <div>
         <ChartTicker onSubmit={this.handleChartSubmit} />
         {this.state.data.length === 0 ? (
           <div>Loading...</div>
