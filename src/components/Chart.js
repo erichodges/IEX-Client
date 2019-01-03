@@ -26,10 +26,11 @@ import {
   MovingAverageTooltip
 } from "react-stockcharts/lib/tooltip";
 
-import { ema, wma, sma, tma } from "react-stockcharts/lib/indicator";
+import { ema, wma, sma } from "react-stockcharts/lib/indicator";
 import { fitWidth } from "react-stockcharts/lib/helper";
 import { last } from "react-stockcharts/lib/utils";
 
+// want to have sma 5, 50, 200 and ema 13, 21
 class CandleStickChartWithMA extends React.Component {
   render() {
     const ema20 = ema()
@@ -58,12 +59,12 @@ class CandleStickChartWithMA extends React.Component {
       })
       .accessor(d => d.wma20);
 
-    const tma20 = tma()
-      .options({ windowSize: 20 })
-      .merge((d, c) => {
-        d.tma20 = c;
-      })
-      .accessor(d => d.tma20);
+    // const tma20 = tma()
+    //   .options({ windowSize: 20 })
+    //   .merge((d, c) => {
+    //     d.tma20 = c;
+    //   })
+    //   .accessor(d => d.tma20);
 
     const ema50 = ema()
       .options({ windowSize: 50 })
@@ -71,16 +72,6 @@ class CandleStickChartWithMA extends React.Component {
         d.ema50 = c;
       })
       .accessor(d => d.ema50);
-
-    // const smaVolume50 = sma()
-    //   .options({ windowSize: 20, sourcePath: "volume" })
-    //   .merge((d, c) => {
-    //     d.smaVolume50 = c;
-    //   })
-    //   .accessor(d => d.smaVolume50)
-    //   .stroke("#b7bfdc")
-    //   .fill("#b7bfdc");
-
     const { type, data: initialData, width, ratio } = this.props;
 
     const candlesAppearance = {
@@ -98,7 +89,7 @@ class CandleStickChartWithMA extends React.Component {
       opacity: 1
     };
 
-    const calculatedData = ema20(sma20(wma20(tma20(ema50(initialData)))));
+    const calculatedData = ema20(sma20(wma20(ema50(initialData))));
     const xScaleProvider = discontinuousTimeScaleProvider.inputDateAccessor(
       d => d.date
     );
@@ -158,7 +149,6 @@ class CandleStickChartWithMA extends React.Component {
             d => [d.high, d.low],
             sma20.accessor(),
             wma20.accessor(),
-            tma20.accessor(),
             ema20.accessor(),
             ema50.accessor()
           ]}
@@ -176,7 +166,6 @@ class CandleStickChartWithMA extends React.Component {
           <CandlestickSeries {...candlesAppearance} clip={false} />
           <LineSeries yAccessor={sma20.accessor()} stroke={sma20.stroke()} />
           <LineSeries yAccessor={wma20.accessor()} stroke={wma20.stroke()} />
-          <LineSeries yAccessor={tma20.accessor()} stroke={tma20.stroke()} />
           <LineSeries yAccessor={ema20.accessor()} stroke={ema20.stroke()} />
           <LineSeries yAccessor={ema50.accessor()} stroke={ema50.stroke()} />
           <CurrentCoordinate
@@ -186,10 +175,6 @@ class CandleStickChartWithMA extends React.Component {
           <CurrentCoordinate
             yAccessor={wma20.accessor()}
             fill={wma20.stroke()}
-          />
-          <CurrentCoordinate
-            yAccessor={tma20.accessor()}
-            fill={tma20.stroke()}
           />
           <CurrentCoordinate
             yAccessor={ema20.accessor()}
@@ -217,13 +202,6 @@ class CandleStickChartWithMA extends React.Component {
                 type: "WMA",
                 stroke: wma20.stroke(),
                 windowSize: wma20.options().windowSize,
-                echo: "some echo here"
-              },
-              {
-                yAccessor: tma20.accessor(),
-                type: "TMA",
-                stroke: tma20.stroke(),
-                windowSize: tma20.options().windowSize,
                 echo: "some echo here"
               },
               {
