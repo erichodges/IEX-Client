@@ -57,7 +57,7 @@ class ChartTicker extends Component {
           >
             <option value="">Duration</option>
             <option value="1m">1 month</option>
-            <option value="3m">2 month</option>
+            <option value="3m">3 month</option>
             <option value="6m">6 month</option>
             <option value="1y">1 year</option>
             <option value="ytd">YTD</option>
