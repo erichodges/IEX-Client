@@ -182,7 +182,7 @@ class CandleStickChartWithMA extends React.Component {
             displayFormat={format(".2f")}
           />
 
-          <CandlestickSeries {...candlesAppearance} />
+          <CandlestickSeries {...candlesAppearance} clip={false} />
           <LineSeries yAccessor={sma20.accessor()} stroke={sma20.stroke()} />
           <LineSeries yAccessor={wma20.accessor()} stroke={wma20.stroke()} />
           <LineSeries yAccessor={tma20.accessor()} stroke={tma20.stroke()} />

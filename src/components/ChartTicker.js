@@ -56,10 +56,11 @@ class ChartTicker extends Component {
             className="chartTimeFrameInput"
           >
             <option value="">Duration</option>
+            <option value="1y">1 year</option>
             <option value="1m">1 month</option>
             <option value="3m">3 month</option>
             <option value="6m">6 month</option>
-            <option value="1y">1 year</option>
+
             <option value="ytd">YTD</option>
             <option value="2y">2 year</option>
           </select>
