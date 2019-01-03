@@ -72,14 +72,14 @@ class CandleStickChartWithMA extends React.Component {
       })
       .accessor(d => d.ema50);
 
-    const smaVolume50 = sma()
-      .options({ windowSize: 20, sourcePath: "volume" })
-      .merge((d, c) => {
-        d.smaVolume50 = c;
-      })
-      .accessor(d => d.smaVolume50)
-      .stroke("#b7bfdc")
-      .fill("#b7bfdc");
+    // const smaVolume50 = sma()
+    //   .options({ windowSize: 20, sourcePath: "volume" })
+    //   .merge((d, c) => {
+    //     d.smaVolume50 = c;
+    //   })
+    //   .accessor(d => d.smaVolume50)
+    //   .stroke("#b7bfdc")
+    //   .fill("#b7bfdc");
 
     const { type, data: initialData, width, ratio } = this.props;
 
@@ -98,9 +98,7 @@ class CandleStickChartWithMA extends React.Component {
       opacity: 1
     };
 
-    const calculatedData = ema20(
-      sma20(wma20(tma20(ema50(smaVolume50(initialData)))))
-    );
+    const calculatedData = ema20(sma20(wma20(tma20(ema50(initialData)))));
     const xScaleProvider = discontinuousTimeScaleProvider.inputDateAccessor(
       d => d.date
     );
@@ -128,7 +126,7 @@ class CandleStickChartWithMA extends React.Component {
       >
         <Chart
           id={2}
-          yExtents={[d => d.volume, smaVolume50.accessor()]}
+          yExtents={[d => d.volume]}
           height={150}
           origin={(w, h) => [0, h - 150]}
         >
@@ -138,7 +136,6 @@ class CandleStickChartWithMA extends React.Component {
             ticks={5}
             tickFormat={format(".2s")}
           />
-
           <MouseCoordinateX
             at="bottom"
             orient="bottom"
@@ -149,15 +146,9 @@ class CandleStickChartWithMA extends React.Component {
             orient="left"
             displayFormat={format(".4s")}
           />
-
           <BarSeries
             yAccessor={d => d.volume}
             fill={d => (d.close > d.open ? "#555555" : "#555555")}
-          />
-
-          <CurrentCoordinate
-            yAccessor={smaVolume50.accessor()}
-            fill={smaVolume50.stroke()}
           />
           <CurrentCoordinate yAccessor={d => d.volume} fill="#9B0A47" />
         </Chart>
