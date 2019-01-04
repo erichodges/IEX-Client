@@ -7,12 +7,14 @@ class ChartTicker extends Component {
     super();
     this.state = {
       chartTicker: "",
+      displayTicker: "",
       chartTimeFrame: ""
     };
   }
   onHandleChange(event) {
     this.setState({
-      chartTicker: event.target.value.toUpperCase()
+      chartTicker: event.target.value.toUpperCase(),
+      displayTicker: event.target.value.toUpperCase()
     });
   }
   onHandleChangeTimeFrame(event) {
@@ -69,7 +71,7 @@ class ChartTicker extends Component {
             Add
           </button>{" "}
           &nbsp;&nbsp;&nbsp;
-          <b>{this.state.chartTicker}</b>
+          <b>{this.state.displayTicker}</b>
         </div>
       </form>
     );
