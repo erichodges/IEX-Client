@@ -43,28 +43,31 @@ class CandleStickChartWithMA extends React.Component {
         d.ema13 = c;
       }) // Required, if not provided, log a error
       .accessor(d => d.ema13) // Required, if not provided, log an error during calculation
-      .stroke("blue"); // Optional
+      .stroke("blue"); // Optional. This sets the moving avg color!!
 
     const sma5 = sma()
       .options({ windowSize: 5 })
       .merge((d, c) => {
         d.sma5 = c;
       })
-      .accessor(d => d.sma5);
+      .accessor(d => d.sma5)
+      .stroke("green");
 
     const sma50 = sma()
       .options({ windowSize: 50 })
       .merge((d, c) => {
         d.sma50 = c;
       })
-      .accessor(d => d.sma50);
+      .accessor(d => d.sma50)
+      .stroke("black");
 
     const ema21 = ema()
       .options({ windowSize: 21 })
       .merge((d, c) => {
         d.ema21 = c;
       })
-      .accessor(d => d.ema21);
+      .accessor(d => d.ema21)
+      .stroke("red");
     const { type, data: initialData, width, ratio } = this.props;
 
     const candlesAppearance = {
@@ -158,7 +161,7 @@ class CandleStickChartWithMA extends React.Component {
           />
 
           <CandlestickSeries {...candlesAppearance} clip={false} />
-          <LineSeries yAccessor={sma5.accessor()} stroke="#2ACC31" />
+          <LineSeries yAccessor={sma5.accessor()} stroke={sma5.stroke()} />
           <LineSeries yAccessor={sma50.accessor()} stroke={sma50.stroke()} />
           <LineSeries yAccessor={ema13.accessor()} stroke={ema13.stroke()} />
           <LineSeries yAccessor={ema21.accessor()} stroke={ema21.stroke()} />
