@@ -8,7 +8,8 @@ class ChartLayout extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: []
+      data: [],
+      companyName: ""
     };
     this.handleChartSubmit = this.handleChartSubmit.bind(this);
   }
@@ -19,11 +20,13 @@ class ChartLayout extends Component {
   }
   handleChartSubmit(e, ticker, time) {
     e.preventDefault();
+    if (time === "") {
+      time = "1y";
+    }
     getData(ticker, time).then(data => {
       // should have logic to handle if ticker is not valid
       this.setState({
-        data,
-        chartTicker: "" // this didn't work to clear the form
+        data
       });
     });
   }

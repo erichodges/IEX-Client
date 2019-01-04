@@ -52,6 +52,13 @@ class CandleStickChartWithMA extends React.Component {
       })
       .accessor(d => d.sma5);
 
+    const sma50 = sma()
+      .options({ windowSize: 50 })
+      .merge((d, c) => {
+        d.sma50 = c;
+      })
+      .accessor(d => d.sma50);
+
     const ema21 = ema()
       .options({ windowSize: 21 })
       .merge((d, c) => {
@@ -75,7 +82,7 @@ class CandleStickChartWithMA extends React.Component {
       opacity: 1
     };
 
-    const calculatedData = ema13(sma5(ema21(initialData)));
+    const calculatedData = ema13(sma5(ema21(sma50(initialData))));
     const xScaleProvider = discontinuousTimeScaleProvider.inputDateAccessor(
       d => d.date
     );
@@ -134,6 +141,7 @@ class CandleStickChartWithMA extends React.Component {
           yExtents={[
             d => [d.high, d.low],
             sma5.accessor(),
+            sma50.accessor(),
             ema13.accessor(),
             ema21.accessor()
           ]}
@@ -150,9 +158,14 @@ class CandleStickChartWithMA extends React.Component {
 
           <CandlestickSeries {...candlesAppearance} clip={false} />
           <LineSeries yAccessor={sma5.accessor()} stroke={sma5.stroke()} />
+          <LineSeries yAccessor={sma50.accessor()} stroke={sma50.stroke()} />
           <LineSeries yAccessor={ema13.accessor()} stroke={ema13.stroke()} />
           <LineSeries yAccessor={ema21.accessor()} stroke={ema21.stroke()} />
           <CurrentCoordinate yAccessor={sma5.accessor()} fill={sma5.stroke()} />
+          <CurrentCoordinate
+            yAccessor={sma50.accessor()}
+            fill={sma50.stroke()}
+          />
           <CurrentCoordinate
             yAccessor={ema13.accessor()}
             fill={ema13.stroke()}
@@ -172,6 +185,13 @@ class CandleStickChartWithMA extends React.Component {
                 type: "SMA",
                 stroke: sma5.stroke(),
                 windowSize: sma5.options().windowSize,
+                echo: "some echo here"
+              },
+              {
+                yAccessor: sma50.accessor(),
+                type: "SMA",
+                stroke: sma50.stroke(),
+                windowSize: sma50.options().windowSize,
                 echo: "some echo here"
               },
               {

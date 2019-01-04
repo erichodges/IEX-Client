@@ -12,3 +12,11 @@ export async function getData(ticker, time) {
     });
   });
 }
+
+export async function getCompanyName(ticker) {
+  const endpoint = `https://api.iextrading.com/1.0/stock/${ticker}/company`;
+  return await axios.get(endpoint).then(res => {
+    console.log(res);
+    return res.data.item.companyName;
+  });
+}
