@@ -107,6 +107,7 @@ class CandleStickChartWithMA extends React.Component {
         xAccessor={xAccessor}
         displayXAccessor={displayXAccessor}
         xExtents={xExtents}
+        clamp={true}
       >
         <Chart
           id={2}
@@ -157,11 +158,11 @@ class CandleStickChartWithMA extends React.Component {
           />
 
           <CandlestickSeries {...candlesAppearance} clip={false} />
-          <LineSeries yAccessor={sma5.accessor()} stroke={sma5.stroke()} />
+          <LineSeries yAccessor={sma5.accessor()} stroke="#2ACC31" />
           <LineSeries yAccessor={sma50.accessor()} stroke={sma50.stroke()} />
           <LineSeries yAccessor={ema13.accessor()} stroke={ema13.stroke()} />
           <LineSeries yAccessor={ema21.accessor()} stroke={ema21.stroke()} />
-          <CurrentCoordinate yAccessor={sma5.accessor()} fill={sma5.stroke()} />
+          <CurrentCoordinate yAccessor={sma5.accessor()} fill={sma5.stroke} />
           <CurrentCoordinate
             yAccessor={sma50.accessor()}
             fill={sma50.stroke()}
