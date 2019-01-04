@@ -45,12 +45,12 @@ class CandleStickChartWithMA extends React.Component {
       .accessor(d => d.ema13) // Required, if not provided, log an error during calculation
       .stroke("blue"); // Optional
 
-    const sma20 = sma()
-      .options({ windowSize: 20 })
+    const sma5 = sma()
+      .options({ windowSize: 5 })
       .merge((d, c) => {
-        d.sma20 = c;
+        d.sma5 = c;
       })
-      .accessor(d => d.sma20);
+      .accessor(d => d.sma5);
 
     const ema21 = ema()
       .options({ windowSize: 21 })
@@ -75,7 +75,7 @@ class CandleStickChartWithMA extends React.Component {
       opacity: 1
     };
 
-    const calculatedData = ema13(sma20(ema21(initialData)));
+    const calculatedData = ema13(sma5(ema21(initialData)));
     const xScaleProvider = discontinuousTimeScaleProvider.inputDateAccessor(
       d => d.date
     );
@@ -133,7 +133,7 @@ class CandleStickChartWithMA extends React.Component {
           id={1}
           yExtents={[
             d => [d.high, d.low],
-            sma20.accessor(),
+            sma5.accessor(),
             ema13.accessor(),
             ema21.accessor()
           ]}
@@ -149,13 +149,10 @@ class CandleStickChartWithMA extends React.Component {
           />
 
           <CandlestickSeries {...candlesAppearance} clip={false} />
-          <LineSeries yAccessor={sma20.accessor()} stroke={sma20.stroke()} />
+          <LineSeries yAccessor={sma5.accessor()} stroke={sma5.stroke()} />
           <LineSeries yAccessor={ema13.accessor()} stroke={ema13.stroke()} />
           <LineSeries yAccessor={ema21.accessor()} stroke={ema21.stroke()} />
-          <CurrentCoordinate
-            yAccessor={sma20.accessor()}
-            fill={sma20.stroke()}
-          />
+          <CurrentCoordinate yAccessor={sma5.accessor()} fill={sma5.stroke()} />
           <CurrentCoordinate
             yAccessor={ema13.accessor()}
             fill={ema13.stroke()}
@@ -171,10 +168,10 @@ class CandleStickChartWithMA extends React.Component {
             origin={[-38, 15]}
             options={[
               {
-                yAccessor: sma20.accessor(),
+                yAccessor: sma5.accessor(),
                 type: "SMA",
-                stroke: sma20.stroke(),
-                windowSize: sma20.options().windowSize,
+                stroke: sma5.stroke(),
+                windowSize: sma5.options().windowSize,
                 echo: "some echo here"
               },
               {

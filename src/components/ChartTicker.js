@@ -30,6 +30,7 @@ class ChartTicker extends Component {
             this.state.chartTicker,
             this.state.chartTimeFrame
           );
+          this.setState({ chartTicker: "" });
         }}
         ref={input => (this.chartTickerForm = input)}
       >
