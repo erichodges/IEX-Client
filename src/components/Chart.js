@@ -138,7 +138,7 @@ class CandleStickChartWithMA extends React.Component {
             yAccessor={d => d.volume}
             fill={d => (d.close > d.open ? "#555555" : "#555555")}
           />
-          <CurrentCoordinate yAccessor={d => d.volume} fill="#9B0A47" />
+          <CurrentCoordinate yAccessor={d => d.volume} />
         </Chart>
         <Chart
           id={1}
@@ -165,7 +165,7 @@ class CandleStickChartWithMA extends React.Component {
           <LineSeries yAccessor={sma50.accessor()} stroke={sma50.stroke()} />
           <LineSeries yAccessor={ema13.accessor()} stroke={ema13.stroke()} />
           <LineSeries yAccessor={ema21.accessor()} stroke={ema21.stroke()} />
-          <CurrentCoordinate yAccessor={sma5.accessor()} fill={sma5.stroke} />
+          <CurrentCoordinate yAccessor={sma5.accessor()} fill={sma5.stroke()} />
           <CurrentCoordinate
             yAccessor={sma50.accessor()}
             fill={sma50.stroke()}

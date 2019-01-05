@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import ChartComponent from "./ChartComponent";
 import Chart from "./Chart";
 import ChartTicker from "./ChartTicker";
-import { getData } from "./Utils";
+import { getData, getCompanyName } from "./Utils";
 
 class ChartLayout extends Component {
   constructor(props) {
@@ -23,18 +23,20 @@ class ChartLayout extends Component {
     if (time === "") {
       time = "1y";
     }
-    getData(ticker, time).then(data => {
-      // should have logic to handle if ticker is not valid
-      this.setState({
-        data
-      });
-    });
+    Promise.all([getData(ticker, time), getCompanyName(ticker)]).then(
+      values => {
+        this.setState({ data: values[0], companyName: values[1] });
+      }
+    );
   }
 
   render() {
     return (
       <div>
-        <ChartTicker onSubmit={this.handleChartSubmit} />
+        <ChartTicker
+          onSubmit={this.handleChartSubmit}
+          companyName={this.state.companyName}
+        />
         {this.state.data.length === 0 ? (
           <div>Loading...</div>
         ) : (

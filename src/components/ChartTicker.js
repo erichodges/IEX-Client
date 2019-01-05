@@ -72,6 +72,7 @@ class ChartTicker extends Component {
           </button>{" "}
           &nbsp;&nbsp;&nbsp;
           <b>{this.state.displayTicker}</b>
+          &nbsp;&nbsp;&nbsp; {this.props.companyName}
         </div>
       </form>
     );
