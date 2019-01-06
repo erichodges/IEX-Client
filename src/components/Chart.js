@@ -111,6 +111,7 @@ class CandleStickChartWithMA extends React.Component {
         displayXAccessor={displayXAccessor}
         xExtents={xExtents}
         clamp={true}
+        pointsPerPxThreshold={10000}
       >
         <Chart
           id={2}

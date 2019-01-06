@@ -49,7 +49,7 @@ class Quote extends Component {
       axios.get(endpoint).then(res => {
         const data = res.data;
         data.latestPrice = data.latestPrice.toFixed(2);
-        data !== {} && // this does not work yet
+        data !== {} && // In case of no data returned. this does not work yet.
           this.setState({
             data: [...this.state.data, data],
             message: ""
