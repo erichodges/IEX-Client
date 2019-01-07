@@ -94,7 +94,7 @@ class CandleStickChartWithMA extends React.Component {
     );
 
     const start = xAccessor(last(data));
-    const end = xAccessor(data[Math.max(0, data.length - 150)]);
+    const end = xAccessor(data[0]);
     const xExtents = [start, end];
 
     return (
@@ -111,7 +111,8 @@ class CandleStickChartWithMA extends React.Component {
         displayXAccessor={displayXAccessor}
         xExtents={xExtents}
         clamp={true}
-        pointsPerPxThreshold={10000}
+        pointsPerPxThreshold={1}
+        // plotFull={true}
       >
         <Chart
           id={2}
@@ -231,7 +232,7 @@ CandleStickChartWithMA.propTypes = {
 };
 
 CandleStickChartWithMA.defaultProps = {
-  type: "svg"
+  type: "hybrid"
 };
 CandleStickChartWithMA = fitWidth(CandleStickChartWithMA);
 
