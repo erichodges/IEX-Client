@@ -11,9 +11,10 @@ class Quote extends Component {
       message: ""
     };
     const url = "https://ws-api.iextrading.com/1.0/last";
-    this.socket = socket(url, { forceNew: true });
+    this.socket = socket(url, { forceNew: true }); // forceNew does not seem to make a difference.
 
     this.socket.on("connect", () => {
+      // console.log(socket.connected);
       // this.socket.emit("subscribe", "IBM");
     });
     // Listen to the channel's messages
