@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import socket from "socket.io-client";
+import { getQuote } from "./Utils";
 
 class Quote extends Component {
   constructor() {
@@ -46,9 +47,7 @@ class Quote extends Component {
           "This ticker has already been entered, please choose another symbol"
       });
     } else {
-      let endpoint = `https://api.iextrading.com/1.0/stock/${ticker}/quote?displayPercent=true`;
-      axios.get(endpoint).then(res => {
-        const data = res.data;
+      getQuote(ticker).then(data => {
         data.latestPrice = data.latestPrice.toFixed(2);
         data !== {} && // In case of no data returned. this does not work yet.
           this.setState({

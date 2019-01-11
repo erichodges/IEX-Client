@@ -3,15 +3,35 @@ import React, { Component } from "react";
 import Chart from "./Chart";
 import ChartTicker from "./ChartTicker";
 import { getData, getCompanyName } from "./Utils";
+import socket from "socket.io-client";
 
 class ChartLayout extends Component {
   constructor(props) {
     super(props);
     this.state = {
       data: [],
-      companyName: ""
+      companyName: "",
+      open: 0,
+      high: 0,
+      low: 0,
+      close: 0,
+      volume: 0
     };
+    const url = "https://ws-api.iextrading.com/1.0/tops";
+    this.socket = socket(url, { forceNew: true });
     this.handleChartSubmit = this.handleChartSubmit.bind(this);
+
+    this.socket.on("connect", () => {});
+
+    this.socket.on("message", message => {
+      const msg = JSON.parse(message);
+      const newData = function(msg) {};
+      this.setState(state => {
+        return {
+          data: [...state.data, newData]
+        };
+      });
+    });
   }
   componentDidMount() {
     getData("SPY", "1y").then(data => {

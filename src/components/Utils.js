@@ -13,6 +13,13 @@ export async function getData(ticker, time) {
   });
 }
 
+export async function getQuote(ticker) {
+  const endpoint = `https://api.iextrading.com/1.0/stock/${ticker}/quote?displayPercent=true`;
+  return await axios.get(endpoint).then(res => {
+    return res.data;
+  });
+}
+
 export async function getCompanyName(ticker) {
   const endpoint = `https://api.iextrading.com/1.0/stock/${ticker}/company`;
   return await axios.get(endpoint).then(res => {
