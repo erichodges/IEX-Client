@@ -2,15 +2,18 @@ import React, { Component } from "react";
 // import ChartComponent from "./ChartComponent";
 import Chart from "./Chart";
 import ChartTicker from "./ChartTicker";
-import { getData, getCompanyName } from "./Utils";
+import { getData, getCompanyName, getQuote } from "./Utils";
 import socket from "socket.io-client";
 
+import { timeParse } from "d3-time-format";
+const parseDate = timeParse("%Q");
 class ChartLayout extends Component {
   constructor(props) {
     super(props);
     this.state = {
       data: [],
       companyName: "",
+      date: "",
       open: 0,
       high: 0,
       low: 0,
@@ -25,7 +28,18 @@ class ChartLayout extends Component {
 
     this.socket.on("message", message => {
       const msg = JSON.parse(message);
-      const newData = function(msg) {};
+      console.log(msg.lastSaleTime);
+      const insertDate = parseDate(msg.lastSaleTime);
+      // console.log("from socket.on", msg);
+      let newData = {
+        date: insertDate,
+        open: this.state.open,
+        high: this.state.high,
+        low: this.state.low,
+        close: msg.lastSalePrice,
+        volume: this.state.volume
+      };
+      console.log(newData);
       this.setState(state => {
         return {
           data: [...state.data, newData]
@@ -43,11 +57,22 @@ class ChartLayout extends Component {
     if (time === "") {
       time = "1y";
     }
-    Promise.all([getData(ticker, time), getCompanyName(ticker)]).then(
-      values => {
-        this.setState({ data: values[0], companyName: values[1] });
-      }
-    );
+    Promise.all([
+      getData(ticker, time),
+      getCompanyName(ticker),
+      getQuote(ticker)
+    ]).then(values => {
+      this.setState({
+        data: values[0],
+        companyName: values[1],
+        open: values[2].open,
+        high: values[2].high,
+        low: values[2].low,
+        volume: values[2].latestVolume
+      });
+      this.socket.emit("subscribe", ticker);
+      console.log(this.state);
+    });
   }
 
   render() {
