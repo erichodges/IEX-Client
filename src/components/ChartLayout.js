@@ -11,6 +11,7 @@ class ChartLayout extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      oldTicker: "SPY",
       data: [],
       companyName: "",
       date: "",
@@ -21,16 +22,18 @@ class ChartLayout extends Component {
       volume: 0
     };
     const url = "https://ws-api.iextrading.com/1.0/tops";
-    this.socket = socket(url, { forceNew: true });
+    this.socket = socket(url, { reconnection: true });
     this.handleChartSubmit = this.handleChartSubmit.bind(this);
 
-    this.socket.on("connect", () => {});
+    this.socket.on("connect", () => {
+      this.socket.emit("subscribe", "SPY");
+    });
 
     this.socket.on("message", message => {
       const msg = JSON.parse(message);
-      console.log(msg.lastSaleTime);
+      console.log(msg.symbol);
       const insertDate = parseDate(msg.lastSaleTime);
-      // console.log("from socket.on", msg);
+
       let newData = {
         date: insertDate,
         open: this.state.open,
@@ -62,13 +65,15 @@ class ChartLayout extends Component {
       getCompanyName(ticker),
       getQuote(ticker)
     ]).then(values => {
+      this.socket.emit("unsubscribe", this.state.oldTicker);
       this.setState({
         data: values[0],
         companyName: values[1],
         open: values[2].open,
         high: values[2].high,
         low: values[2].low,
-        volume: values[2].latestVolume
+        volume: values[2].latestVolume,
+        oldTicker: ticker
       });
       this.socket.emit("subscribe", ticker);
       console.log(this.state);
