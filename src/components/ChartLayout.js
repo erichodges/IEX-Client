@@ -75,7 +75,7 @@ class ChartLayout extends Component {
         volume: values[2].latestVolume,
         oldTicker: ticker
       });
-      this.socket.emit("subscribe", ticker);
+      // this.socket.emit("subscribe", ticker);
       console.log(this.state);
     });
   }
