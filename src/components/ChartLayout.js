@@ -26,7 +26,7 @@ class ChartLayout extends Component {
     this.handleChartSubmit = this.handleChartSubmit.bind(this);
 
     this.socket.on("connect", () => {
-      this.socket.emit("subscribe", "SPY");
+      // this.socket.emit("subscribe", "SPY");
     });
 
     this.socket.on("message", message => {
