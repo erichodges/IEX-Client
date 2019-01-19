@@ -26,14 +26,14 @@ class ChartLayout extends Component {
     this.handleChartSubmit = this.handleChartSubmit.bind(this);
 
     this.socket.on("connect", () => {
-      // this.socket.emit("subscribe", "SPY");
+      this.socket.emit("subscribe", "SPY");
     });
 
     this.socket.on("message", message => {
       const msg = JSON.parse(message);
       console.log(msg.symbol);
       const insertDate = parseDate(this.state.date);
-
+      this.state.data.pop();
       let newData = {
         date: insertDate,
         open: this.state.open,
@@ -48,12 +48,32 @@ class ChartLayout extends Component {
           data: [...state.data, newData]
         };
       });
-      console.log(this.state.data);
+      // console.log(this.state.data); // shows newData in Data
     });
   }
   componentDidMount() {
-    getData("SPY", "1y").then(data => {
-      this.setState({ data });
+    // getData("SPY", "1y").then(data => {
+    //   this.setState({ data });
+    // });
+    //
+    Promise.all([
+      getData("SPY", "1y"),
+      getCompanyName("SPY"),
+      getQuote("SPY")
+    ]).then(values => {
+      this.socket.emit("unsubscribe", this.state.oldTicker);
+      this.setState({
+        data: values[0],
+        companyName: values[1],
+        date: values[2].latestUpdate,
+        open: values[2].open,
+        high: values[2].high,
+        low: values[2].low,
+        close: values[2].close,
+        volume: values[2].latestVolume,
+        oldTicker: "SPY"
+      });
+      console.log(this.state);
     });
   }
   handleChartSubmit(e, ticker, time) {
@@ -89,6 +109,7 @@ class ChartLayout extends Component {
         <ChartTicker
           onSubmit={this.handleChartSubmit}
           companyName={this.state.companyName}
+          close={this.state.close}
         />
         {this.state.data.length === 0 ? (
           <div>Loading...</div>
