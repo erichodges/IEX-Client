@@ -39,7 +39,7 @@ class ChartLayout extends Component {
         open: this.state.open,
         high: this.state.high,
         low: this.state.low,
-        close: msg.lastSalePrice, // msg.lastSalePrice,
+        close: this.state.close, // msg.lastSalePrice,
         volume: this.state.volume
       };
       console.log(newData);
