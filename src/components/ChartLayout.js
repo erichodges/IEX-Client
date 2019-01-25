@@ -33,7 +33,7 @@ class ChartLayout extends Component {
       const msg = JSON.parse(message);
       console.log(msg.symbol);
       const insertDate = parseDate(this.state.date);
-      this.state.data.pop();
+
       let newData = {
         date: insertDate,
         open: this.state.open,
@@ -48,6 +48,7 @@ class ChartLayout extends Component {
           data: [...state.data, newData]
         };
       });
+      this.state.data.pop();
       // console.log(this.state.data); // shows newData in Data
     });
   }
