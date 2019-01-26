@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 
 class Details extends Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class Details extends Component {
     return (
       <div>
         <h3>Details Page</h3>
+        <NavLink to="/">Main Page</NavLink>
       </div>
     );
   }

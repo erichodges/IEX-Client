@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 // import axios from "axios";
 import socket from "socket.io-client";
 import { getQuote } from "./Utils";
@@ -119,6 +120,13 @@ class Quote extends Component {
                     &nbsp;&nbsp;&nbsp;
                     {item.changePercent.toFixed(2)}% &nbsp;&nbsp;&nbsp;
                     {item.companyName}
+                  </td>
+                  <td>
+                    <NavLink to="/details">
+                      <button type="button" className="toDetails-btn">
+                        Details
+                      </button>
+                    </NavLink>
                   </td>
                   <td>
                     <button
