@@ -10,7 +10,8 @@ class Quote extends Component {
     this.state = {
       loading: false,
       data: [],
-      message: ""
+      message: "",
+      ticker: ""
     };
     const url = "https://ws-api.iextrading.com/1.0/last";
     this.socket = socket(url, { forceNew: true }); // forceNew does not seem to make a difference.
@@ -123,7 +124,13 @@ class Quote extends Component {
                   </td>
                   <td>
                     <NavLink to="/details">
-                      <button type="button" className="toDetails-btn">
+                      <button
+                        onClick={e => {
+                          // item.symbol to props/state
+                        }}
+                        type="button"
+                        className="toDetails-btn"
+                      >
                         Details
                       </button>
                     </NavLink>
