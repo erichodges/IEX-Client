@@ -30,8 +30,8 @@ class ChartLayout extends Component {
     });
 
     this.socket.on("message", message => {
-      const msg = JSON.parse(message);
-      console.log(msg.symbol);
+      // const msg = JSON.parse(message);
+      // console.log(msg.symbol);
       const insertDate = parseDate(this.state.date);
 
       let newData = {
@@ -42,7 +42,7 @@ class ChartLayout extends Component {
         close: this.state.close, // msg.lastSalePrice,
         volume: this.state.volume
       };
-      console.log(newData);
+      // console.log(newData);
       this.setState(state => {
         return {
           data: [...state.data, newData]
@@ -74,7 +74,7 @@ class ChartLayout extends Component {
         volume: values[2].latestVolume,
         oldTicker: "SPY"
       });
-      console.log(this.state);
+      // console.log(this.state);
     });
   }
   handleChartSubmit(e, ticker, time) {
@@ -100,7 +100,7 @@ class ChartLayout extends Component {
         oldTicker: ticker
       });
       this.socket.emit("subscribe", ticker);
-      console.log(this.state);
+      // console.log(this.state);
     });
   }
 

@@ -11,7 +11,8 @@ class Quote extends Component {
       loading: false,
       data: [],
       message: "",
-      ticker: ""
+      currentTicker: "",
+      tickerList: []
     };
     const url = "https://ws-api.iextrading.com/1.0/last";
     this.socket = socket(url, { forceNew: true }); // forceNew does not seem to make a difference.
@@ -60,6 +61,14 @@ class Quote extends Component {
       });
     }
     this.tickerForm.reset();
+  }
+
+  addTicker(item) {
+    this.setState({
+      currentTicker: item,
+      tickerList: [...item]
+    });
+    // console.log(this.state.tickerList);
   }
 
   removeItem(item) {
@@ -126,6 +135,8 @@ class Quote extends Component {
                     <NavLink to="/details">
                       <button
                         onClick={e => {
+                          // console.log(item.symbol);
+                          this.addticker(item.symbol);
                           // item.symbol to props/state
                         }}
                         type="button"
