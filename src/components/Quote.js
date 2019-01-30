@@ -11,7 +11,6 @@ class Quote extends Component {
       loading: false,
       data: [],
       message: "",
-      currentTicker: "",
       tickerList: []
     };
     const url = "https://ws-api.iextrading.com/1.0/last";
@@ -61,14 +60,6 @@ class Quote extends Component {
       });
     }
     this.tickerForm.reset();
-  }
-
-  addTicker(item) {
-    this.setState({
-      currentTicker: item,
-      tickerList: [...item]
-    });
-    // console.log(this.state.tickerList);
   }
 
   removeItem(item) {

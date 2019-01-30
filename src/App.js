@@ -5,6 +5,22 @@ import Main from "./components/Main";
 import Details from "./components/Details";
 import Error from "./components/Error";
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentQuoteTicker: ""
+    };
+  }
+
+  addTicker(item) {
+    console.log(item.symbol);
+    this.setState({
+      currentQuoteTicker: item
+      // tickerList: [...item]
+    });
+    // console.log(this.state.tickerList);
+  }
+
   render() {
     return (
       <BrowserRouter>
