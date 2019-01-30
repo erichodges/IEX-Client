@@ -6,6 +6,13 @@ class Details extends Component {
     super();
   }
 
+  componentDidMout() {
+    const {
+      match: { params }
+    } = this.props;
+    console.log(`symbol: ${params.symbol}`);
+  }
+
   render() {
     return (
       <div>

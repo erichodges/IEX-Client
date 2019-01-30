@@ -123,11 +123,11 @@ class Quote extends Component {
                     {item.companyName}
                   </td>
                   <td>
-                    <NavLink to="/details">
+                    <NavLink to={`/details/${item.symbol}`}>
                       <button
                         onClick={e => {
                           // console.log(item.symbol);
-                          this.addticker(item.symbol);
+                          // this.addticker(item.symbol);
                           // item.symbol to props/state
                         }}
                         type="button"
