@@ -62,6 +62,14 @@ class Quote extends Component {
     this.tickerForm.reset();
   }
 
+  addTicker(item) {
+    console.log(item.symbol);
+    this.setState({
+      tickerList: [...item]
+    });
+    // console.log(this.state.tickerList);
+  }
+
   removeItem(item) {
     const newData = this.state.data.filter(data => {
       return data !== item;
@@ -126,9 +134,7 @@ class Quote extends Component {
                     <NavLink to={`/details/${item.symbol}`}>
                       <button
                         onClick={e => {
-                          // console.log(item.symbol);
                           // this.addticker(item.symbol);
-                          // item.symbol to props/state
                         }}
                         type="button"
                         className="toDetails-btn"

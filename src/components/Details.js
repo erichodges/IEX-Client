@@ -6,7 +6,7 @@ class Details extends Component {
     super();
   }
 
-  componentDidMout() {
+  componentDidMount() {
     const {
       match: { params }
     } = this.props;
