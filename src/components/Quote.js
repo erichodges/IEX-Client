@@ -4,16 +4,15 @@ import { NavLink } from "react-router-dom";
 import socket from "socket.io-client";
 import { getQuote } from "./Utils";
 
+const url = "https://ws-api.iextrading.com/1.0/last";
 class Quote extends Component {
-  constructor() {
-    super();
-    this.state = {
-      loading: false,
-      data: [],
-      message: "",
-      tickerList: []
-    };
-    const url = "https://ws-api.iextrading.com/1.0/last";
+  state = {
+    loading: false,
+    data: [],
+    message: "",
+    tickerList: []
+  };
+  componentDidMount() {
     this.socket = socket(url, { forceNew: true }); // forceNew does not seem to make a difference.
 
     this.socket.on("connect", () => {
@@ -36,6 +35,11 @@ class Quote extends Component {
       });
     });
   }
+  componentWillUnmount() {
+    this.socket.off();
+    this.socket = null;
+  }
+
   getStockData(e) {
     e.preventDefault();
     const ticker = this.newTicker.value.toUpperCase();
