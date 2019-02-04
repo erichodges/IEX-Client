@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 // import axios from "axios";
 import socket from "socket.io-client";
 import { getQuote } from "./Utils";
+import SimpleModalWrapped from "./Modal";
 
 const url = "https://ws-api.iextrading.com/1.0/last";
 class Quote extends Component {
@@ -95,6 +96,7 @@ class Quote extends Component {
     const { data, message } = this.state;
     return (
       <div>
+        <SimpleModalWrapped />
         <form
           className="ticker-form"
           onSubmit={e => {
