@@ -137,17 +137,13 @@ class Quote extends Component {
                     {item.companyName}
                   </td>
                   <td>
-                    <NavLink to={`/details/${item.symbol}`}>
-                      <button
-                        onClick={e => {
-                          // this.addticker(item.symbol);
-                        }}
-                        type="button"
-                        className="toDetails-btn"
-                      >
-                        Details
-                      </button>
-                    </NavLink>
+                    <button
+                      onClick={this.handleOpen}
+                      type="button"
+                      className="toDetails-btn"
+                    >
+                      Details
+                    </button>
                   </td>
                   <td>
                     <button
