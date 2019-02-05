@@ -1,8 +1,12 @@
-import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import React, {
+  Component
+} from "react";
+// import { NavLink } from "react-router-dom";
 // import axios from "axios";
 import socket from "socket.io-client";
-import { getQuote } from "./Utils";
+import {
+  getQuote
+} from "./Utils";
 import SimpleModalWrapped from "./Modal";
 
 const url = "https://ws-api.iextrading.com/1.0/last";
@@ -14,7 +18,9 @@ class Quote extends Component {
     tickerList: []
   };
   componentDidMount() {
-    this.socket = socket(url, { forceNew: true }); // forceNew does not seem to make a difference.
+    this.socket = socket(url, {
+      forceNew: true
+    }); // forceNew does not seem to make a difference.
 
     this.socket.on("connect", () => {
       // console.log(socket.connected);
@@ -50,8 +56,7 @@ class Quote extends Component {
       }).length > 0
     ) {
       this.setState({
-        message:
-          "This ticker has already been entered, please choose another symbol"
+        message: "This ticker has already been entered, please choose another symbol"
       });
     } else {
       getQuote(ticker).then(data => {
@@ -93,8 +98,11 @@ class Quote extends Component {
   }
 
   render() {
-    const { data, message } = this.state;
-    return (
+    const {
+      data,
+      message
+    } = this.state;
+    return ( 
       <div>
         <SimpleModalWrapped />
         <form
@@ -174,8 +182,8 @@ class Quote extends Component {
           </button>
         </div>
       </div>
-    );
+      );
+    }
   }
-}
 
-export default Quote;
+  export default Quote;
