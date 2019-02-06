@@ -5,7 +5,7 @@ import socket from "socket.io-client";
 import { getQuote } from "./Utils";
 import SimpleModalWrapped from "./Modal";
 import Modal from "@material-ui/core/Modal";
-import Typography from "@material-ui/core/Typography";
+// import Typography from "@material-ui/core/Typography";
 
 const url = "https://ws-api.iextrading.com/1.0/last";
 class Quote extends Component {
@@ -109,8 +109,6 @@ class Quote extends Component {
     const { data, message } = this.state;
     return (
       <div>
-        <SimpleModalWrapped />
-
         <form
           className="ticker-form"
           onSubmit={e => {
@@ -164,18 +162,6 @@ class Quote extends Component {
                       open={this.state.open}
                       onClose={this.handleClose}
                     />
-                    <div>
-                      <Typography variant="h6" id="modal-title">
-                        Text in a modal
-                      </Typography>
-                      <Typography
-                        variant="subtitle1"
-                        id="simple-modal-description"
-                      >
-                        Duis mollis, est non commodo luctus, nisi erat porttitor
-                        ligula.
-                      </Typography>
-                    </div>
                   </td>
                   <td>
                     <button
