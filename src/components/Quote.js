@@ -1,13 +1,11 @@
-import React, {
-  Component
-} from "react";
+import React, { Component } from "react";
 // import { NavLink } from "react-router-dom";
 // import axios from "axios";
 import socket from "socket.io-client";
-import {
-  getQuote
-} from "./Utils";
+import { getQuote } from "./Utils";
 import SimpleModalWrapped from "./Modal";
+import Modal from "@material-ui/core/Modal";
+import Typography from "@material-ui/core/Typography";
 
 const url = "https://ws-api.iextrading.com/1.0/last";
 class Quote extends Component {
@@ -15,7 +13,8 @@ class Quote extends Component {
     loading: false,
     data: [],
     message: "",
-    tickerList: []
+    tickerList: [],
+    open: false
   };
   componentDidMount() {
     this.socket = socket(url, {
@@ -47,6 +46,14 @@ class Quote extends Component {
     this.socket = null;
   }
 
+  handleOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
   getStockData(e) {
     e.preventDefault();
     const ticker = this.newTicker.value.toUpperCase();
@@ -56,7 +63,8 @@ class Quote extends Component {
       }).length > 0
     ) {
       this.setState({
-        message: "This ticker has already been entered, please choose another symbol"
+        message:
+          "This ticker has already been entered, please choose another symbol"
       });
     } else {
       getQuote(ticker).then(data => {
@@ -98,13 +106,11 @@ class Quote extends Component {
   }
 
   render() {
-    const {
-      data,
-      message
-    } = this.state;
-    return ( 
+    const { data, message } = this.state;
+    return (
       <div>
         <SimpleModalWrapped />
+
         <form
           className="ticker-form"
           onSubmit={e => {
@@ -152,6 +158,24 @@ class Quote extends Component {
                     >
                       Details
                     </button>
+                    <Modal
+                      aria-labelledby="simple-modal-title"
+                      aria-describedby="simple-modal-description"
+                      open={this.state.open}
+                      onClose={this.handleClose}
+                    />
+                    <div>
+                      <Typography variant="h6" id="modal-title">
+                        Text in a modal
+                      </Typography>
+                      <Typography
+                        variant="subtitle1"
+                        id="simple-modal-description"
+                      >
+                        Duis mollis, est non commodo luctus, nisi erat porttitor
+                        ligula.
+                      </Typography>
+                    </div>
                   </td>
                   <td>
                     <button
@@ -182,8 +206,8 @@ class Quote extends Component {
           </button>
         </div>
       </div>
-      );
-    }
+    );
   }
+}
 
-  export default Quote;
+export default Quote;
