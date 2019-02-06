@@ -3,7 +3,7 @@ import React, { Component } from "react";
 // import axios from "axios";
 import socket from "socket.io-client";
 import { getQuote } from "./Utils";
-import SimpleModalWrapped from "./Modal";
+// import SimpleModalWrapped from "./Modal";
 import Modal from "@material-ui/core/Modal";
 // import Typography from "@material-ui/core/Typography";
 
@@ -161,7 +161,11 @@ class Quote extends Component {
                       aria-describedby="simple-modal-description"
                       open={this.state.open}
                       onClose={this.handleClose}
-                    />
+                    >
+                      <div>
+                        <h3>Modal text...</h3>
+                      </div>
+                    </Modal>
                   </td>
                   <td>
                     <button
