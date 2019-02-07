@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import { NavLink } from "react-router-dom";
 // import axios from "axios";
 import socket from "socket.io-client";
-import { getQuote } from "./Utils";
+import { getQuote, getKeyStats } from "./Utils";
 // import SimpleModalWrapped from "./Modal";
 import Modal from "@material-ui/core/Modal";
 // import Typography from "@material-ui/core/Typography";
@@ -14,7 +14,8 @@ class Quote extends Component {
     data: [],
     message: "",
     tickerList: [],
-    open: false
+    open: false,
+    keyStats: {}
   };
   componentDidMount() {
     this.socket = socket(url, {
@@ -49,6 +50,15 @@ class Quote extends Component {
   handleOpen = () => {
     this.setState({ open: true });
   };
+
+  getStats(symbol) {
+    getKeyStats(symbol).then(data => {
+      this.setState({
+        keyStats: data
+      });
+      console.log(this.state.keyStats);
+    });
+  }
 
   handleClose = () => {
     this.setState({ open: false });
@@ -150,7 +160,10 @@ class Quote extends Component {
                   </td>
                   <td>
                     <button
-                      onClick={this.handleOpen}
+                      onClick={() => {
+                        this.handleOpen();
+                        this.getStats(item.symbol);
+                      }}
                       type="button"
                       className="toDetails-btn"
                     >
@@ -163,7 +176,8 @@ class Quote extends Component {
                       onClose={this.handleClose}
                     >
                       <div>
-                        <h3>Modal text...</h3>
+                        <h3>{item.marketCap / 1000000000} B</h3>
+                        <p>{this.state.keyStats.companyName}</p>
                       </div>
                     </Modal>
                   </td>

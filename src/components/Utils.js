@@ -28,3 +28,10 @@ export async function getCompanyName(ticker) {
     return res.data.companyName;
   });
 }
+
+export async function getKeyStats(ticker) {
+  const endpoint = `https://api.iextrading.com/1.0/stock/${ticker}/stats`;
+  return await axios.get(endpoint).then(res => {
+    return res.data;
+  });
+}
