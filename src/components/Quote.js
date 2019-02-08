@@ -177,7 +177,7 @@ class Quote extends Component {
                     >
                       <div>
                         <h3>{item.marketCap / 1000000000} B</h3>
-                        <p>{this.state.keyStats.companyName}</p>
+                        <p>{this.state.keyStats.latestEPS}</p>
                       </div>
                     </Modal>
                   </td>
