@@ -115,6 +115,10 @@ class Quote extends Component {
     });
   }
 
+  onTickerForChart(ticker) {
+    this.props.setTickerForChart(ticker);
+  }
+
   render() {
     const { data, message } = this.state;
     return (
@@ -180,6 +184,15 @@ class Quote extends Component {
                         <p>{this.state.keyStats.latestEPS}</p>
                       </div>
                     </Modal>
+                  </td>
+                  <td>
+                    <button
+                      onClick={this.onTickerForChart.bind(this)}
+                      type="button"
+                      className="Chart-btn"
+                    >
+                      Chart
+                    </button>
                   </td>
                   <td>
                     <button
