@@ -17,7 +17,7 @@ class Main extends React.Component {
     console.log(this.state.tickerFromQuote);
     return (
       <div>
-        <ChartLayout />
+        <ChartLayout symbol={this.state.tickerFromQuote} />
         <Quote setTickerForChart={this.onSendQuoteTicker.bind(this)} />
       </div>
     );

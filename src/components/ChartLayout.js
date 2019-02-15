@@ -108,6 +108,7 @@ class ChartLayout extends Component {
     return (
       <div>
         <ChartTicker
+          ticker={this.props.symbol}
           onSubmit={this.handleChartSubmit}
           companyName={this.state.companyName}
           close={this.state.close}
