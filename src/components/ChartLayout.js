@@ -105,6 +105,7 @@ class ChartLayout extends Component {
   }
 
   render() {
+    console.log(this.props.symbol); // Working!
     return (
       <div>
         <ChartTicker

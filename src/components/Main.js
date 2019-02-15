@@ -7,6 +7,8 @@ class Main extends React.Component {
     tickerFromQuote: ""
   };
 
+  onSendQuoteTicker = this.onSendQuoteTicker.bind(this);
+
   onSendQuoteTicker(ticker) {
     this.setState({
       tickerFromQuote: ticker
@@ -18,7 +20,7 @@ class Main extends React.Component {
     return (
       <div>
         <ChartLayout symbol={this.state.tickerFromQuote} />
-        <Quote setTickerForChart={this.onSendQuoteTicker.bind(this)} />
+        <Quote setTickerForChart={this.onSendQuoteTicker} />
       </div>
     );
   }
