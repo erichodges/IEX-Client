@@ -14,15 +14,19 @@ import Modal from "@material-ui/core/Modal";
 
 const url = "https://ws-api.iextrading.com/1.0/last";
 class Quote extends Component {
-  state = {
-    loading: false,
-    data: [],
-    message: "",
-    tickerList: [],
-    open: false,
-    keyStats: {}
-  };
-  const onTickerForChart = this.onTickerForChart.bind(this);
+  constructor(props) {
+    super(props);
+    state = {
+      loading: false,
+      data: [],
+      message: "",
+      tickerList: [],
+      open: false,
+      keyStats: {}
+    };
+
+    const onTickerForChart = this.onTickerForChart.bind(this);
+  }
 
   componentDidMount() {
     this.socket = socket(url, {
@@ -166,120 +170,119 @@ class Quote extends Component {
       button type = "submit"
       className = "tickerSubmit" >
       Add <
-      /button> <
-      /div> <
+      /button> < /
+      div > <
       /form> {
-        message !== "" && < p className = "message-text" > {
-            message
-          } < /p>} <
-          table >
-          <
-          thead / >
-          <
-          tbody > {
-            data.map(item => {
-              return ( <
-                tr key = {
-                  item.symbol
-                } >
-                <
-                td > {
-                  item.symbol
-                } & nbsp; & nbsp; {
-                  item.latestPrice
-                } &
-                nbsp; & nbsp; & nbsp; {
-                  item.change
-                } &
-                nbsp; & nbsp; & nbsp; {
-                  item.changePercent.toFixed(2)
-                } % & nbsp; & nbsp; & nbsp; {
-                  item.companyName
-                } <
-                /td> <
-                td >
-                <
-                button onClick = {
-                  () => {
-                    this.handleOpen();
-                    this.getStats(item.symbol);
-                  }
-                }
-                type = "button"
-                className = "toDetails-btn" >
-                Details <
-                /button> <
-                Modal aria - labelledby = "simple-modal-title"
-                aria - describedby = "simple-modal-description"
-                open = {
-                  this.state.open
-                }
-                onClose = {
-                  this.handleClose
-                } >
-                <
-                div >
-                <
-                h3 > {
-                  item.marketCap / 1000000000
-                }
-                B < /h3> <
-                p > {
-                  this.state.keyStats.latestEPS
-                } < /p> <
-                /div> <
-                /Modal> <
-                /td> <
-                td >
-                <
-                button onClick = {
-                  this.onTickerForChart
-                }
-                ticker = {
-                  item.symbol
-                }
-                type = "button"
-                className = "chart-btn" >
-                Chart <
-                /button> <
-                /td> <
-                td >
-                <
-                button onClick = {
-                  e => {
-                    this.removeItem(item);
-                  }
-                }
-                type = "button"
-                className = "remove-btn" >
-                x <
-                /button> <
-                /td> <
-                /tr>
-              );
-            })
-          } <
-          tr >
-          <
-          td / >
-          <
-          /tr> <
-          /tbody> <
-          /table> <
-          div >
-          <
-          button
-        onClick = {
-          e => this.deleteAll(data)
-        }
-        type = "button"
-        className = "delete-btn" >
-          Remove All <
-          /button> <
-          /div> <
-          /div>
-      );
-    }
+      message !== "" && < p className = "message-text" > {
+        message
+      } < /p>} <
+      table >
+      <
+      thead / >
+      <
+      tbody > {
+        data.map(item => {
+          return ( <
+            tr key = {
+              item.symbol
+            } >
+            <
+            td > {
+              item.symbol
+            } & nbsp; & nbsp; {
+              item.latestPrice
+            } &
+            nbsp; & nbsp; & nbsp; {
+              item.change
+            } &
+            nbsp; & nbsp; & nbsp; {
+              item.changePercent.toFixed(2)
+            } % & nbsp; & nbsp; & nbsp; {
+              item.companyName
+            } <
+            /td> <
+            td >
+            <
+            button onClick = {
+              () => {
+                this.handleOpen();
+                this.getStats(item.symbol);
+              }
+            }
+            type = "button"
+            className = "toDetails-btn" >
+            Details <
+            /button> <
+            Modal aria - labelledby = "simple-modal-title"
+            aria - describedby = "simple-modal-description"
+            open = {
+              this.state.open
+            }
+            onClose = {
+              this.handleClose
+            } >
+            <
+            div >
+            <
+            h3 > {
+              item.marketCap / 1000000000
+            }
+            B < /h3> <
+            p > {
+              this.state.keyStats.latestEPS
+            } < /p> < /
+            div > <
+            /Modal> < /
+            td > <
+            td >
+            <
+            button onClick = {
+              this.onTickerForChart
+            }
+            ticker = {
+              item.symbol
+            }
+            type = "button"
+            className = "chart-btn" >
+            Chart <
+            /button> < /
+            td > <
+            td >
+            <
+            button onClick = {
+              e => {
+                this.removeItem(item);
+              }
+            }
+            type = "button"
+            className = "remove-btn" >
+            x <
+            /button> < /
+            td > <
+            /tr>
+          );
+        })
+      } <
+      tr >
+      <
+      td / >
+      <
+      /tr> < /
+      tbody > <
+      /table> <
+      div >
+      <
+      button onClick = {
+        e => this.deleteAll(data)
+      }
+      type = "button"
+      className = "delete-btn" >
+      Remove All <
+      /button> < /
+      div > <
+      /div>
+    );
   }
+}
 
-  export default Quote;
+export default Quote;
