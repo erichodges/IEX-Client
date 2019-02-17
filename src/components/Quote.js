@@ -1,13 +1,8 @@
-import React, {
-  Component
-} from "react";
+import React, { Component } from "react";
 // import { NavLink } from "react-router-dom";
 // import axios from "axios";
 import socket from "socket.io-client";
-import {
-  getQuote,
-  getKeyStats
-} from "./Utils";
+import { getQuote, getKeyStats } from "./Utils";
 // import SimpleModalWrapped from "./Modal";
 import Modal from "@material-ui/core/Modal";
 // import Typography from "@material-ui/core/Typography";
@@ -88,7 +83,8 @@ class Quote extends Component {
       }).length > 0
     ) {
       this.setState({
-        message: "This ticker has already been entered, please choose another symbol"
+        message:
+          "This ticker has already been entered, please choose another symbol"
       });
     } else {
       getQuote(ticker).then(data => {
@@ -134,153 +130,110 @@ class Quote extends Component {
   }
 
   render() {
-    const {
-      data,
-      message
-    } = this.state;
-    return ( <
-      div >
-      <
-      form className = "ticker-form"
-      onSubmit = {
-        e => {
-          this.getStockData(e);
-        }
-      }
-      ref = {
-        input => (this.tickerForm = input)
-      } >
-      <
-      div className = "form-group" >
-      <
-      label className = "inputLabel"
-      htmlFor = "newTickerInput" >
-      Quote List & nbsp; & nbsp; & nbsp; & nbsp; & nbsp; <
-      /label> &
-      nbsp; <
-      input ref = {
-        input => (this.newTicker = input)
-      }
-      type = "text"
-      placeholder = "Add a Ticker"
-      className = "tickerInput" /
-      >
-      &
-      nbsp; <
-      button type = "submit"
-      className = "tickerSubmit" >
-      Add <
-      /button> < /
-      div > <
-      /form> {
-      message !== "" && < p className = "message-text" > {
-        message
-      } < /p>} <
-      table >
-      <
-      thead / >
-      <
-      tbody > {
-        data.map(item => {
-          return ( <
-            tr key = {
-              item.symbol
-            } >
-            <
-            td > {
-              item.symbol
-            } & nbsp; & nbsp; {
-              item.latestPrice
-            } &
-            nbsp; & nbsp; & nbsp; {
-              item.change
-            } &
-            nbsp; & nbsp; & nbsp; {
-              item.changePercent.toFixed(2)
-            } % & nbsp; & nbsp; & nbsp; {
-              item.companyName
-            } <
-            /td> <
-            td >
-            <
-            button onClick = {
-              () => {
-                this.handleOpen();
-                this.getStats(item.symbol);
-              }
-            }
-            type = "button"
-            className = "toDetails-btn" >
-            Details <
-            /button> <
-            Modal aria - labelledby = "simple-modal-title"
-            aria - describedby = "simple-modal-description"
-            open = {
-              this.state.open
-            }
-            onClose = {
-              this.handleClose
-            } >
-            <
-            div >
-            <
-            h3 > {
-              item.marketCap / 1000000000
-            }
-            B < /h3> <
-            p > {
-              this.state.keyStats.latestEPS
-            } < /p> < /
-            div > <
-            /Modal> < /
-            td > <
-            td >
-            <
-            button onClick = {
-              this.onTickerForChart
-            }
-            ticker = {
-              item.symbol
-            }
-            type = "button"
-            className = "chart-btn" >
-            Chart <
-            /button> < /
-            td > <
-            td >
-            <
-            button onClick = {
-              e => {
-                this.removeItem(item);
-              }
-            }
-            type = "button"
-            className = "remove-btn" >
-            x <
-            /button> < /
-            td > <
-            /tr>
-          );
-        })
-      } <
-      tr >
-      <
-      td / >
-      <
-      /tr> < /
-      tbody > <
-      /table> <
-      div >
-      <
-      button onClick = {
-        e => this.deleteAll(data)
-      }
-      type = "button"
-      className = "delete-btn" >
-      Remove All <
-      /button> < /
-      div > <
-      /div>
+    const { data, message } = this.state;
+    return (
+      <div>
+        <form
+          className="ticker-form"
+          onSubmit={e => {
+            this.getStockData(e);
+          }}
+          ref={input => (this.tickerForm = input)}
+        >
+          <div className="form-group">
+            <label className="inputLabel" htmlFor="newTickerInput">
+              Quote List & nbsp; & nbsp; & nbsp; & nbsp; & nbsp;
+            </label>
+            &nbsp;
+            <input
+              ref={input => (this.newTicker = input)}
+              type="text"
+              placeholder="Add a Ticker"
+              className="tickerInput"
+            />
+            &nbsp;
+            <button type="submit" className="tickerSubmit">
+              Add
+            </button>
+          </div>
+        </form>
+        {message !== "" && <p className="message-text"> {message}</p>}
+        <table>
+          <thead />
+          <tbody>
+            {" "}
+            {data.map(item => {
+              return (
+                <tr key={item.symbol}>
+                  <td>
+                    {item.symbol} & nbsp; & nbsp;
+                    {item.latestPrice} &nbsp; & nbsp; & nbsp;
+                    {item.change} &nbsp; & nbsp; & nbsp;
+                    {item.changePercent.toFixed(2)} % & nbsp; & nbsp; & nbsp;
+                    {item.companyName}
+                  </td>
+                  <td>
+                    <button
+                      onClick={() => {
+                        this.handleOpen();
+                        this.getStats(item.symbol);
+                      }}
+                      type="button"
+                      className="toDetails-btn"
+                    >
+                      Details
+                    </button>
+                    <Modal
+                      arialabelledby="simple-modal-title"
+                      ariadescribedby="simple-modal-description"
+                      open={this.state.open}
+                      onClose={this.handleClose}
+                    >
+                      <div>
+                        <h3>{item.marketCap / 1000000000}B</h3>
+                        <p>{this.state.keyStats.latestEPS}</p>
+                      </div>
+                    </Modal>
+                  </td>
+                  <td>
+                    <button
+                      onClick={this.onTickerForChart}
+                      ticker={item.symbol}
+                      type="button"
+                      className="chart-btn"
+                    >
+                      Chart
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      onClick={e => {
+                        this.removeItem(item);
+                      }}
+                      type="button"
+                      className="remove-btn"
+                    >
+                      x
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+            <tr>
+              <td />
+            </tr>
+          </tbody>
+        </table>
+        <div>
+          <button
+            onClick={e => this.deleteAll(data)}
+            type="button"
+            className="delete-btn"
+          >
+            Remove All
+          </button>
+        </div>
+      </div>
     );
   }
 }
