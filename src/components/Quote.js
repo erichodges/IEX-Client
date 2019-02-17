@@ -11,7 +11,7 @@ const url = "https://ws-api.iextrading.com/1.0/last";
 class Quote extends Component {
   constructor(props) {
     super(props);
-    state = {
+    this.state = {
       loading: false,
       data: [],
       message: "",
@@ -20,7 +20,7 @@ class Quote extends Component {
       keyStats: {}
     };
 
-    const onTickerForChart = this.onTickerForChart.bind(this);
+    this.onTickerForChart = this.onTickerForChart.bind(this);
   }
 
   componentDidMount() {
@@ -142,7 +142,7 @@ class Quote extends Component {
         >
           <div className="form-group">
             <label className="inputLabel" htmlFor="newTickerInput">
-              Quote List & nbsp; & nbsp; & nbsp; & nbsp; & nbsp;
+              Quote List &nbsp; &nbsp; &nbsp;
             </label>
             &nbsp;
             <input
@@ -161,15 +161,14 @@ class Quote extends Component {
         <table>
           <thead />
           <tbody>
-            {" "}
             {data.map(item => {
               return (
                 <tr key={item.symbol}>
                   <td>
-                    {item.symbol} & nbsp; & nbsp;
-                    {item.latestPrice} &nbsp; & nbsp; & nbsp;
-                    {item.change} &nbsp; & nbsp; & nbsp;
-                    {item.changePercent.toFixed(2)} % & nbsp; & nbsp; & nbsp;
+                    {item.symbol} &nbsp; &nbsp;
+                    {item.latestPrice} &nbsp; &nbsp; &nbsp;
+                    {item.change} &nbsp; &nbsp; &nbsp;
+                    {item.changePercent.toFixed(2)} % &nbsp; &nbsp; &nbsp;
                     {item.companyName}
                   </td>
                   <td>

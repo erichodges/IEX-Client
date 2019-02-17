@@ -3,12 +3,14 @@ import ChartLayout from "./ChartLayout";
 import Quote from "./Quote";
 
 class Main extends React.Component {
-  state = {
-    tickerFromQuote: ""
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      tickerFromQuote: ""
+    };
 
-  onSendQuoteTicker = this.onSendQuoteTicker.bind(this);
-
+    this.onSendQuoteTicker = this.onSendQuoteTicker.bind(this);
+  }
   onSendQuoteTicker(ticker) {
     this.setState({
       tickerFromQuote: ticker
