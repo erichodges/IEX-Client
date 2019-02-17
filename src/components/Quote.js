@@ -125,8 +125,8 @@ class Quote extends Component {
     });
   }
 
-  onTickerForChart(ticker) {
-    this.props.setTickerForChart(ticker);
+  onTickerForChart({ currentTarget }) {
+    this.props.setTickerForChart(currentTarget.value);
   }
 
   render() {
@@ -197,7 +197,7 @@ class Quote extends Component {
                   <td>
                     <button
                       onClick={this.onTickerForChart}
-                      ticker={item.symbol}
+                      value={item.symbol}
                       type="button"
                       className="chart-btn"
                     >
