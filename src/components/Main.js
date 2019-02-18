@@ -15,10 +15,8 @@ class Main extends React.Component {
     this.setState({
       tickerFromQuote: ticker
     });
-    console.log("onSendQuoteTicker triggered");
   }
   render() {
-    console.log(this.state.tickerFromQuote);
     return (
       <div>
         <ChartLayout symbol={this.state.tickerFromQuote} />

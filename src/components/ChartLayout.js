@@ -133,14 +133,14 @@ class ChartLayout extends Component {
   }
 
   render() {
-    console.log(this.props.symbol); // Working!
+    console.log(this.state);
     return (
       <div>
         <ChartTicker
-          ticker={this.props.symbol}
           onSubmit={this.handleChartSubmit}
           companyName={this.state.companyName}
           close={this.state.close}
+          ticker={this.state.oldTicker}
         />
         {this.state.data.length === 0 ? (
           <div>Loading...</div>

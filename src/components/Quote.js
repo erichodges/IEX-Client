@@ -101,7 +101,6 @@ class Quote extends Component {
   }
 
   addTicker(item) {
-    console.log(item.symbol);
     this.setState({
       tickerList: [...item]
     });
