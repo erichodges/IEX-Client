@@ -104,6 +104,12 @@ class ChartLayout extends Component {
     });
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.symbol !== prevProps.symbol) {
+      this.handleChartSubmit(this.props.symbol);
+    }
+  }
+
   render() {
     console.log(this.props.symbol); // Working!
     return (
