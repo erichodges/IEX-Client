@@ -106,7 +106,29 @@ class ChartLayout extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.symbol !== prevProps.symbol) {
-      this.handleChartSubmit(this.props.symbol);
+      const time = "1y";
+      const ticker = this.props.symbol;
+
+      Promise.all([
+        getData(ticker, time),
+        getCompanyName(ticker),
+        getQuote(ticker)
+      ]).then(values => {
+        this.socket.emit("unsubscribe", this.state.oldTicker);
+        this.setState({
+          data: values[0],
+          companyName: values[1],
+          date: values[2].latestUpdate,
+          open: values[2].open,
+          high: values[2].high,
+          low: values[2].low,
+          close: values[2].close,
+          volume: values[2].latestVolume,
+          oldTicker: ticker
+        });
+        this.socket.emit("subscribe", ticker);
+        // console.log(this.state);
+      });
     }
   }
 
