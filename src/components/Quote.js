@@ -147,7 +147,7 @@ class Quote extends Component {
             <input
               ref={input => (this.newTicker = input)}
               type="text"
-              placeholder="Add a Ticker"
+              placeholder="Enter Symbol"
               className="tickerInput"
             />
             &nbsp;
