@@ -38,7 +38,7 @@ class ChartTicker extends Component {
       >
         <div className="form-group">
           <label className="inputLabel" htmlFor="newTickerInput">
-            Get A Chart &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;
           </label>
           &nbsp;
           <input
@@ -46,7 +46,7 @@ class ChartTicker extends Component {
             type="text"
             value={this.state.chartTicker}
             onChange={event => this.onHandleChange(event)}
-            placeholder="Add a Ticker"
+            placeholder="Enter Symbol for Chart"
             className="chartTickerInput"
           />
           &nbsp;
@@ -73,7 +73,7 @@ class ChartTicker extends Component {
           &nbsp;&nbsp;&nbsp;
           <b>{this.props.ticker}</b>
           &nbsp;&nbsp;&nbsp; {this.props.companyName}
-          &nbsp;&nbsp;&nbsp; {this.props.close}
+          &nbsp;&nbsp;&nbsp; &nbsp; {this.props.close}
         </div>
       </form>
     );

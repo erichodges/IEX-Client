@@ -141,7 +141,7 @@ class Quote extends Component {
         >
           <div className="form-group">
             <label className="inputLabel" htmlFor="newTickerInput">
-              Quote List &nbsp; &nbsp; &nbsp;
+              &nbsp;&nbsp;&nbsp; Quote List &nbsp; &nbsp;
             </label>
             &nbsp;
             <input
@@ -223,6 +223,7 @@ class Quote extends Component {
           </tbody>
         </table>
         <div>
+          &nbsp;&nbsp;&nbsp;
           <button
             onClick={e => this.deleteAll(data)}
             type="button"
