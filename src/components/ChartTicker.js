@@ -74,7 +74,7 @@ class ChartTicker extends Component {
           &nbsp;&nbsp;&nbsp;
           <b>{this.props.ticker}</b>
           &nbsp;&nbsp;&nbsp; {this.props.companyName}
-          &nbsp;&nbsp; Latest Price: &nbsp;&nbsp; {this.props.close}
+          &nbsp;&nbsp; Latest Price: &nbsp;&nbsp; {this.props.close.toFixed(2)}
         </div>
       </form>
     );
