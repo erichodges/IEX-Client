@@ -23,6 +23,7 @@ class ChartTicker extends Component {
     });
   }
   render() {
+    console.log(this.props.close);
     return (
       <form
         className="ChartTicker-form"
