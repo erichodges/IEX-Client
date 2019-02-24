@@ -23,7 +23,6 @@ class ChartTicker extends Component {
     });
   }
   render() {
-    console.log(this.props.close);
     return (
       <form
         className="ChartTicker-form"
@@ -75,7 +74,8 @@ class ChartTicker extends Component {
           &nbsp;&nbsp;&nbsp;
           <b>{this.props.ticker}</b>
           &nbsp;&nbsp;&nbsp; {this.props.companyName}
-          &nbsp;&nbsp; Latest Price: &nbsp;&nbsp; {this.props.close}
+          &nbsp;&nbsp; <b>{this.props.close.toFixed(2)}</b>
+          &nbsp;&nbsp;&nbsp; <b>{this.props.change}%</b>
         </div>
       </form>
     );

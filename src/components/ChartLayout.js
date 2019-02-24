@@ -18,7 +18,8 @@ class ChartLayout extends Component {
       high: 0,
       low: 0,
       close: 0,
-      volume: 0
+      volume: 0,
+      change: 0
     };
     const url = "https://ws-api.iextrading.com/1.0/tops";
     this.socket = socket(url, { reconnection: true });
@@ -71,6 +72,7 @@ class ChartLayout extends Component {
         low: values[2].low,
         close: values[2].close, // iexRealtimePrice causes no data to load off hours
         volume: values[2].latestVolume,
+        change: values[2].changePercent,
         oldTicker: "SPY"
       });
       // console.log(this.state.data.close);
@@ -96,6 +98,7 @@ class ChartLayout extends Component {
         low: values[2].low,
         close: values[2].close,
         volume: values[2].latestVolume,
+        change: values[2].changePercent,
         oldTicker: ticker
       });
       this.socket.emit("subscribe", ticker);
@@ -123,6 +126,7 @@ class ChartLayout extends Component {
           low: values[2].low,
           close: values[2].close,
           volume: values[2].latestVolume,
+          change: values[2].changePercent,
           oldTicker: ticker
         });
         this.socket.emit("subscribe", ticker);
@@ -138,6 +142,7 @@ class ChartLayout extends Component {
           companyName={this.state.companyName}
           close={this.state.close}
           ticker={this.state.oldTicker}
+          change={this.state.change}
         />
         {this.state.data.length === 0 ? (
           <div>Loading...</div>
