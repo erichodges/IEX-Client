@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import ChartComponent from "./ChartComponent";
 import Chart from "./Chart";
 import ChartTicker from "./ChartTicker";
 import { getData, getCompanyName, getQuote } from "./Utils";
