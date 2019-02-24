@@ -69,11 +69,11 @@ class ChartLayout extends Component {
         open: values[2].open,
         high: values[2].high,
         low: values[2].low,
-        close: values[2].iexRealtimePrice, // This causes no data to load off hours
+        close: values[2].close, // iexRealtimePrice causes no data to load off hours
         volume: values[2].latestVolume,
         oldTicker: "SPY"
       });
-      console.log(this.state.data.close);
+      // console.log(this.state.data.close);
     });
   }
   handleChartSubmit(e, ticker, time) {
