@@ -52,7 +52,7 @@ class Main extends React.Component {
 
 const ParentComponent = props => (
   <div>
-    <button onClick={props.addChild}>Add Quote List</button>
+    <button onClick={props.addChild}>Add Live Quote List</button>
     <div id="children-pane">{props.children}</div>
   </div>
 );
