@@ -128,8 +128,7 @@ class Quote extends Component {
     this.props.setTickerForChart(currentTarget.value);
   }
 
-  render(props) {
-    console.log(props.item);
+  render() {
     const { data, message } = this.state;
     return (
       <div>
@@ -156,7 +155,9 @@ class Quote extends Component {
               Add
             </button>
             &nbsp;&nbsp;&nbsp;
-            <button onClick={() => props.remove(props.item)}>Close</button>
+            <button onClick={() => this.props.remove(this.props.item)}>
+              Close
+            </button>
           </div>
         </form>
         {message !== "" && <p className="message-text"> {message}</p>}
