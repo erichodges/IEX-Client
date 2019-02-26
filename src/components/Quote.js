@@ -104,7 +104,6 @@ class Quote extends Component {
     this.setState({
       tickerList: [...item]
     });
-    // console.log(this.state.tickerList);
   }
 
   removeItem(item) {
@@ -129,6 +128,7 @@ class Quote extends Component {
   }
 
   render() {
+    // console.log(this.state.data);
     const { data, message } = this.state;
     return (
       <div>
