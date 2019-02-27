@@ -1,5 +1,6 @@
 import React from "react";
 import ChartLayout from "./ChartLayout";
+import Header from "./Header";
 import Quote from "./Quote";
 import shortid from "shortid";
 
@@ -34,6 +35,7 @@ class Main extends React.Component {
   render() {
     return (
       <div>
+        <Header />
         <ChartLayout symbol={this.state.tickerFromQuote} />
         <ParentComponent addChild={this.onAddChild}>
           {this.state.items.map(item => (
