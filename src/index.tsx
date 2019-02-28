@@ -8,7 +8,7 @@ import Routes from "./Routes";
 // import App from "./App";
 
 const client = new ApolloClient({
-  uri: "http://lcalhost:4000/graphql",
+  uri: "http://localhost:4000/graphql",
   credentials: "include"
 });
 
