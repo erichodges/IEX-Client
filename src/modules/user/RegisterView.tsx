@@ -1,5 +1,12 @@
 import React, { PureComponent } from "react";
+import { Mutation } from "react-apollo";
+import { gql } from "apollo-boost";
 
+const registerMutation = gql`
+  mutation RegisterMutation($email: String!, $password: String!) {
+    register(email: $email, password: $password)
+  }
+`;
 class RegisterView extends PureComponent {
   state = {
     email: "",
@@ -16,25 +23,29 @@ class RegisterView extends PureComponent {
   render() {
     const { password, email } = this.state;
     return (
-      <form>
-        <input
-          type="text"
-          name="email"
-          placeholder="email"
-          value={email}
-          onChange={this.handleChange}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="password"
-          value={password}
-          onChange={this.handleChange}
-        />
-        <button onClick={() => console.log("clicked register")}>
-          register
-        </button>
-      </form>
+      <Mutation mutation={registerMutation}>
+        {() => (
+          <form>
+            <input
+              type="text"
+              name="email"
+              placeholder="email"
+              value={email}
+              onChange={this.handleChange}
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="password"
+              value={password}
+              onChange={this.handleChange}
+            />
+            <button onClick={() => console.log("clicked register")}>
+              register
+            </button>
+          </form>
+        )}
+      </Mutation>
     );
   }
 }
