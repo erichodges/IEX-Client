@@ -29,7 +29,7 @@ class RegisterView extends PureComponent<RouteComponentProps<{}>> {
         mutation={registerMutation}
       >
         {mutate => (
-          <form>
+          <div>
             <input
               type="text"
               name="email"
@@ -55,7 +55,7 @@ class RegisterView extends PureComponent<RouteComponentProps<{}>> {
             >
               register
             </button>
-          </form>
+          </div>
         )}
       </Mutation>
     );
