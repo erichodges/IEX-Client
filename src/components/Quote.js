@@ -127,6 +127,11 @@ class Quote extends Component {
     this.props.setTickerForChart(currentTarget.value);
   }
 
+  handleExtraZeros(item) {
+    const trim = item / 1000000000;
+    return trim.toFixed(2);
+  }
+
   render() {
     // console.log(this.state.data);
     const { data, message } = this.state;
@@ -192,7 +197,7 @@ class Quote extends Component {
                       onClose={this.handleClose}
                     >
                       <div>
-                        <h3>{item.marketCap / 1000000000}B</h3>
+                        <h3>{this.handleExtraZeros(item.marketCap)}B</h3>
                         <p>{this.state.keyStats.latestEPS}</p>
                       </div>
                     </Modal>
