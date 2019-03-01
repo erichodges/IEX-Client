@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
 import { MeQuery } from "../../schemaTypes";
+import { Link } from "react-router-dom";
 
 const meQuery = gql`
   query MeQuery {
@@ -25,7 +26,17 @@ class MeView extends PureComponent {
           if (!data.me) {
             return <div>No User Received</div>;
           }
-          return <div>&nbsp;&nbsp;&nbsp;Welcome {data.me.email}</div>;
+          return (
+            <div>
+              &nbsp;&nbsp;&nbsp; Welcome {data.me.email}
+              <br />
+              <br />
+              <div>
+                &nbsp;&nbsp;&nbsp;
+                <Link to="/">Main Page</Link>
+              </div>
+            </div>
+          );
         }}
       </Query>
     );

@@ -11,7 +11,6 @@ class App extends Component {
         <div>
           <Switch>
             <Route path="/" exact component={Main} />
-            <Route path="/details/:symbol" component={Details} />
             <Route component={Error} />
           </Switch>
         </div>
