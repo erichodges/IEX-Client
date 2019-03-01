@@ -53,7 +53,7 @@ class RegisterView extends PureComponent<RouteComponentProps<{}>> {
                 this.props.history.push("/login");
               }}
             >
-              register
+              Register
             </button>
           </div>
         )}
