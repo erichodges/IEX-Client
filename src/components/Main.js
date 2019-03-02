@@ -11,13 +11,19 @@ class Main extends React.Component {
       tickerFromQuote: "",
       items: []
     };
-
     this.onSendQuoteTicker = this.onSendQuoteTicker.bind(this);
   }
   onSendQuoteTicker(ticker) {
     this.setState({
       tickerFromQuote: ticker
     });
+  }
+
+  onAddTickerToItem(ticker) {
+    this.setState(prev => ({
+      items: [...prev.items]
+    }));
+    console.log(ticker);
   }
 
   onAddChild = () => {
@@ -33,6 +39,7 @@ class Main extends React.Component {
   };
 
   render() {
+    console.log(this.state.items);
     return (
       <div>
         <Header />
@@ -44,6 +51,7 @@ class Main extends React.Component {
               item={item}
               remove={this.onRemoveChild}
               setTickerForChart={this.onSendQuoteTicker}
+              tickerToList={this.onAddTickerToItem}
             />
           ))}
         </ParentComponent>

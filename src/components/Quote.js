@@ -91,20 +91,21 @@ class Quote extends Component {
         data !== {} && // In case of no data returned. this does not work yet.
           this.setState({
             data: [...this.state.data, data],
-            message: "",
-            tickerList: [...this.state.tickerList, data.symbol]
+            message: ""
+            // tickerList: [...this.state.tickerList, data.symbol]
           });
+        this.props.tickerToList(ticker);
         this.socket.emit("subscribe", ticker);
       });
     }
     this.tickerForm.reset();
   }
 
-  addTicker(item) {
-    this.setState({
-      tickerList: [...item.symbol]
-    });
-  }
+  // addTicker(item) {
+  //   this.setState({
+  //     tickerList: [...item.symbol]
+  //   });
+  // }
 
   removeItem(item) {
     const newData = this.state.data.filter(data => {
@@ -133,7 +134,7 @@ class Quote extends Component {
   }
 
   render() {
-    console.log(this.state.tickerList);
+    // console.log(this.state.tickerList);
     const { data, message } = this.state;
     return (
       <div>
