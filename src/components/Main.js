@@ -20,9 +20,9 @@ class Main extends React.Component {
   }
 
   onAddTickerToItem(ticker) {
-    this.setState(prev => ({
-      items: [...prev.items]
-    }));
+    // this.setState(prev => ({
+    //   items: [...prev.items]
+    // }));
     console.log(ticker);
   }
 
