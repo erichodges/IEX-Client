@@ -19,7 +19,6 @@ class Quote extends Component {
       open: false,
       keyStats: {}
     };
-
     this.onTickerForChart = this.onTickerForChart.bind(this);
   }
 
@@ -72,7 +71,6 @@ class Quote extends Component {
     this.setState({
       open: false
     });
-    console.log(this.state.keyStats);
   };
 
   getStockData(e) {
@@ -93,7 +91,8 @@ class Quote extends Component {
         data !== {} && // In case of no data returned. this does not work yet.
           this.setState({
             data: [...this.state.data, data],
-            message: ""
+            message: "",
+            tickerList: [...this.state.tickerList, data.symbol]
           });
         this.socket.emit("subscribe", ticker);
       });
@@ -103,7 +102,7 @@ class Quote extends Component {
 
   addTicker(item) {
     this.setState({
-      tickerList: [...item]
+      tickerList: [...item.symbol]
     });
   }
 
@@ -134,7 +133,7 @@ class Quote extends Component {
   }
 
   render() {
-    // console.log(this.state.data);
+    console.log(this.state.tickerList);
     const { data, message } = this.state;
     return (
       <div>
