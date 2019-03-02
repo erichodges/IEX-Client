@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 const ulStyle = {
   listStyle: "none",
   display: "flex",
-  alignItems: "center"
+  alignItems: "center",
+  paddingLeft: "0",
+  marginLeft: "1rem"
 };
 
 const logoStyle = {

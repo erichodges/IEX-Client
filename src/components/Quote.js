@@ -72,6 +72,7 @@ class Quote extends Component {
     this.setState({
       open: false
     });
+    console.log(this.state.keyStats);
   };
 
   getStockData(e) {
@@ -197,7 +198,10 @@ class Quote extends Component {
                       onClose={this.handleClose}
                     >
                       <div>
-                        <h3>{this.handleExtraZeros(item.marketCap)}B</h3>
+                        <h3>
+                          {this.handleExtraZeros(this.state.keyStats.marketcap)}{" "}
+                          B
+                        </h3>
                         <p>{this.state.keyStats.latestEPS}</p>
                       </div>
                     </Modal>
