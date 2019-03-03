@@ -19,11 +19,11 @@ class Main extends React.Component {
     });
   }
 
-  onAddTickerToItem(ticker) {
+  onAddTickerToItem(ticker, item) {
     // this.setState(prev => ({
-    //   items: [...prev.items]
+
     // }));
-    console.log(ticker);
+    console.log(item.id);
   }
 
   onAddChild = () => {
@@ -39,7 +39,7 @@ class Main extends React.Component {
   };
 
   render() {
-    console.log(this.state.items);
+    // console.log(this.state.items);
     return (
       <div>
         <Header />
