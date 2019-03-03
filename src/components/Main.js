@@ -1,7 +1,7 @@
 import React from "react";
 import ChartLayout from "./ChartLayout";
 import Header from "./Header";
-import Quote from "./Quote";
+import QuoteList from "./QuoteList";
 import shortid from "shortid";
 
 class Main extends React.Component {
@@ -46,7 +46,7 @@ class Main extends React.Component {
         <ChartLayout symbol={this.state.tickerFromQuote} />
         <ParentComponent addChild={this.onAddChild}>
           {this.state.items.map(item => (
-            <Quote
+            <QuoteList
               key={item.id}
               item={item}
               remove={this.onRemoveChild}
