@@ -19,11 +19,11 @@ class Main extends React.Component {
     });
   }
 
-  onAddTickerToItem(ticker, item) {
+  onAddTickerToItem(ticker) {
     // this.setState(prev => ({
 
     // }));
-    console.log(item.id);
+    console.log(ticker);
   }
 
   onAddChild = () => {
