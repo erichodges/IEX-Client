@@ -94,7 +94,7 @@ class Quote extends Component {
             message: ""
             // tickerList: [...this.state.tickerList, data.symbol]
           });
-        this.props.tickerToList(ticker, this.props.item);
+        this.props.tickerToList(ticker, this.props.item.id);
         this.socket.emit("subscribe", ticker);
       });
     }

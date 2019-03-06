@@ -31,13 +31,13 @@ class Main extends React.Component {
     }));
   };
 
-  onAddTickerToItem = (ticker, item) => {
+  onAddTickerToItem = (ticker, id) => {
     this.setState(prev => ({
       items: prev.items.map(prevItem => {
-        if (prevItem.id === item.id) {
+        if (prevItem.id === id) {
           return { ...prevItem, tickers: [...prevItem.tickers, ticker] };
         }
-        return item;
+        return prevItem;
       })
     }));
   };
