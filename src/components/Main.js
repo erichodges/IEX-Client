@@ -19,16 +19,9 @@ class Main extends React.Component {
     });
   }
 
-  onAddTickerToItem(ticker) {
-    // this.setState(prev => ({
-
-    // }));
-    console.log(ticker);
-  }
-
   onAddChild = () => {
     this.setState(prev => ({
-      items: [...prev.items, { id: shortid.generate() }]
+      items: [...prev.items, { id: shortid.generate(), tickers: [] }]
     }));
   };
 
@@ -38,8 +31,19 @@ class Main extends React.Component {
     }));
   };
 
+  onAddTickerToItem = (ticker, item) => {
+    this.setState(prev => ({
+      items: prev.items.map(prevItem => {
+        if (prevItem.id === item.id) {
+          return { ...prevItem, tickers: [...prevItem.tickers, ticker] };
+        }
+        return item;
+      })
+    }));
+  };
+
   render() {
-    // console.log(this.state.items);
+    console.log(this.state.items);
     return (
       <div>
         <Header />
