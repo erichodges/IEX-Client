@@ -7,6 +7,7 @@ import { RouteComponentProps } from "react-router-dom";
 const loginMutation = gql`
   mutation LoginMutation($email: String!, $password: String!) {
     login(email: $email, password: $password) {
+      userName
       id
       email
     }

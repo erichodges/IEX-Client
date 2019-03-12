@@ -7,8 +7,9 @@ import { Link } from "react-router-dom";
 const meQuery = gql`
   query MeQuery {
     me {
-      id
+      userName
       email
+      id
     }
   }
 `;
@@ -28,7 +29,7 @@ class MeView extends PureComponent {
           }
           return (
             <div>
-              &nbsp;&nbsp;&nbsp; Welcome {data.me.email}
+              &nbsp;&nbsp;&nbsp; Welcome {data.me.userName}
               <br />
               <br />
               <div>

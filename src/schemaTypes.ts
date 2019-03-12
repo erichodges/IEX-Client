@@ -31,8 +31,9 @@ export interface LoginMutationVariables {
 
 export interface MeQuery_me {
   __typename: "User";
-  id: string;
+  userName: string | null;
   email: string;
+  id: string;
 }
 
 export interface MeQuery {
@@ -52,6 +53,7 @@ export interface RegisterMutation {
 }
 
 export interface RegisterMutationVariables {
+  userName?: string | null;
   email: string;
   password: string;
 }

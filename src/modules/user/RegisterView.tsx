@@ -5,12 +5,17 @@ import { RegisterMutationVariables, RegisterMutation } from "../../schemaTypes";
 import { RouteComponentProps } from "react-router-dom";
 
 const registerMutation = gql`
-  mutation RegisterMutation($email: String!, $password: String!) {
-    register(email: $email, password: $password)
+  mutation RegisterMutation(
+    $userName: String
+    $email: String!
+    $password: String!
+  ) {
+    register(userName: $userName, email: $email, password: $password)
   }
 `;
 class RegisterView extends PureComponent<RouteComponentProps<{}>> {
   state = {
+    userName: "",
     email: "",
     password: ""
   };
@@ -23,13 +28,20 @@ class RegisterView extends PureComponent<RouteComponentProps<{}>> {
   };
 
   render() {
-    const { password, email } = this.state;
+    const { password, email, userName } = this.state;
     return (
       <Mutation<RegisterMutation, RegisterMutationVariables>
         mutation={registerMutation}
       >
         {mutate => (
           <div>
+            <input
+              type="text"
+              name="userName"
+              placeholder="Username"
+              value={userName}
+              onChange={this.handleChange}
+            />
             <input
               type="text"
               name="email"
