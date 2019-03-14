@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import Login from "./Login";
 
 const ulStyle = {
   listStyle: "none",
@@ -23,6 +24,9 @@ class Header extends Component {
         <ul style={ulStyle}>
           <li style={logoStyle}>
             <h3>IEX Data App</h3>
+          </li>
+          <li>
+            <Login />
           </li>
           <li>
             <Link to="/login" style={userItemsStyle}>
