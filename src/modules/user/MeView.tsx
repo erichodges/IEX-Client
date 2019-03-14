@@ -22,10 +22,10 @@ class MeView extends PureComponent {
             return null;
           }
           if (!data) {
-            return <div>data is undefined</div>;
+            return <div>Login Error</div>;
           }
           if (!data.me) {
-            return <div>No User Received</div>;
+            return <div>Login Error</div>;
           }
           return (
             <div>
