@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import Login from "./Login";
+// import { Link } from "react-router-dom";
 
 const ulStyle = {
   listStyle: "none",
@@ -14,9 +14,6 @@ const logoStyle = {
   marginRight: "auto"
 };
 
-const userItemsStyle = {
-  marginRight: "2rem"
-};
 class Header extends Component {
   render() {
     return (
@@ -27,16 +24,6 @@ class Header extends Component {
           </li>
           <li>
             <Login />
-          </li>
-          <li>
-            <Link to="/login" style={userItemsStyle}>
-              Login
-            </Link>
-          </li>
-          <li>
-            <Link to="/register" style={userItemsStyle}>
-              Register
-            </Link>
           </li>
         </ul>
       </div>

@@ -42,9 +42,8 @@ class Login extends PureComponent {
                 </li>
               </div>
             );
-          } else {
-            return <div>&nbsp;&nbsp;&nbsp; Welcome {data.me.userName}</div>;
           }
+          return <div style={userItemsStyle}>{data.me!.userName}</div>;
         }}
       </Query>
     );
