@@ -19,7 +19,7 @@ const userItemsStyle = {
   marginRight: "2rem"
 };
 
-class Login extends PureComponent {
+class LoginHeader extends PureComponent {
   render() {
     return (
       <Query<MeQuery> query={meQuery}>
@@ -50,4 +50,4 @@ class Login extends PureComponent {
   }
 }
 
-export default Login;
+export default LoginHeader;
