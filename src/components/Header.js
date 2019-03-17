@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Login from "./Login";
+import LoginHeader from "./LoginHeader";
 // import { Link } from "react-router-dom";
 
 const ulStyle = {
@@ -23,7 +23,7 @@ class Header extends Component {
             <h3>IEX Data App</h3>
           </li>
           <li>
-            <Login />
+            <LoginHeader />
           </li>
         </ul>
       </div>
