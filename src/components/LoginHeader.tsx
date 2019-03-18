@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
 import { MeQuery } from "../schemaTypes";
@@ -18,7 +18,7 @@ const userItemsStyle = {
   marginRight: "2rem"
 };
 
-class LoginHeader extends PureComponent {
+class LoginHeader extends Component {
   render() {
     return (
       <Query<MeQuery> query={meQuery}>
