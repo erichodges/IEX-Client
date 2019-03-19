@@ -13,6 +13,17 @@ const loginMutation = gql`
     }
   }
 `;
+
+const meQuery = gql`
+  query MeQuery {
+    me {
+      userName
+      email
+      id
+    }
+  }
+`;
+
 class LoginView extends PureComponent<RouteComponentProps<{}>> {
   state = {
     email: "",
@@ -29,8 +40,19 @@ class LoginView extends PureComponent<RouteComponentProps<{}>> {
   render() {
     const { password, email } = this.state;
     return (
-      <Mutation<LoginMutation, LoginMutationVariables> mutation={loginMutation}>
-        {mutate => (
+      <Mutation<LoginMutation, LoginMutationVariables>
+        update={(cache, { data }) => {
+          if (!data || !data.login) {
+            return;
+          }
+          cache.writeQuery({
+            query: meQuery,
+            data: { me: data.login }
+          });
+        }}
+        mutation={loginMutation}
+      >
+        {(mutate, { client }) => (
           <div>
             <input
               type="text"
