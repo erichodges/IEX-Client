@@ -14,8 +14,8 @@ const meQuery = gql`
   }
 `;
 
-const logout = gql`
-  mutation {
+const logoutMutation = gql`
+  mutation logout {
     logout
   }
 `;
@@ -34,7 +34,12 @@ class LoginHeader extends Component {
           }
           if (data) {
             if (data.me) {
-              return <div style={userItemsStyle}>{data.me!.userName}</div>;
+              return (
+                <div style={userItemsStyle}>
+                  {data.me!.userName}
+                  <button onClick={logoutMutation}>Logout</button>
+                </div>
+              );
             } else {
               return (
                 <div>
