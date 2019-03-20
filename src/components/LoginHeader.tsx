@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
-import { MeQuery } from "../schemaTypes";
+import { MeQuery, logout } from "../schemaTypes";
 import { Link } from "react-router-dom";
 
 const meQuery = gql`
@@ -11,6 +11,12 @@ const meQuery = gql`
       email
       id
     }
+  }
+`;
+
+const logout = gql`
+  mutation {
+    logout
   }
 `;
 
