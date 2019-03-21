@@ -22,10 +22,10 @@ export interface MeQuery {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: logout
+// GraphQL mutation operation: LogoutMutation
 // ====================================================
 
-export interface logout {
+export interface LogoutMutation {
   logout: boolean;
 }
 

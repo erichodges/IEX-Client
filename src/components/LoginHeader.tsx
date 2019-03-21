@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
-import { MeQuery, logout } from "../schemaTypes";
+import { MeQuery } from "../schemaTypes";
 import { Link } from "react-router-dom";
 
 const meQuery = gql`
@@ -14,12 +14,15 @@ const meQuery = gql`
   }
 `;
 
-const logoutMutation = gql`
-  mutation logout {
-    logout
-  }
-`;
+// const logoutMutation = gql`
+//   mutation LogoutMutation {
+//     logout
+//   }
+// `;
 
+// const handleLogout = () => {
+//   return logoutMutation;
+// };
 const userItemsStyle = {
   marginRight: "2rem"
 };
@@ -37,7 +40,7 @@ class LoginHeader extends Component {
               return (
                 <div style={userItemsStyle}>
                   {data.me!.userName}
-                  <button onClick={logoutMutation}>Logout</button>
+                  &nbsp;&nbsp;&nbsp;<Link to="/logout">Logout</Link>
                 </div>
               );
             } else {
