@@ -4,19 +4,20 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Main from "./components/Main";
 import Details from "./components/Details";
 import Error from "./components/Error";
+import Routes from "./Routes";
 class App extends Component {
   render() {
-    return (
-      <BrowserRouter>
-        <div>
-          <Switch>
-            <Route path="/" exact component={Main} />
-            <Route component={Error} />
-          </Switch>
-        </div>
-      </BrowserRouter>
-    );
+    return <Routes />;
   }
 }
 
 export default App;
+
+// <BrowserRouter>
+//         <div>
+//           <Switch>
+//             <Route path="/" exact component={Main} />
+//             <Route component={Error} />
+//           </Switch>
+//         </div>
+//       </BrowserRouter>

@@ -51,11 +51,6 @@ class LoginHeader extends Component {
                       Login
                     </Link>
                   </li>
-                  <li>
-                    <Link to="/register" style={userItemsStyle}>
-                      Register
-                    </Link>
-                  </li>
                 </div>
               );
             }

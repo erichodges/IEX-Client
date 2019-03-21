@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import { Link } from "react-router-dom";
 import { Mutation } from "react-apollo";
 import { gql } from "apollo-boost";
 import { LoginMutationVariables, LoginMutation } from "../../schemaTypes";
@@ -23,6 +24,10 @@ const meQuery = gql`
     }
   }
 `;
+
+const userItemsStyle = {
+  marginRight: "2rem"
+};
 
 class LoginView extends PureComponent<RouteComponentProps<{}>> {
   state = {
@@ -79,6 +84,14 @@ class LoginView extends PureComponent<RouteComponentProps<{}>> {
             >
               Login
             </button>
+            <div>
+              <br />
+              <br />
+              If you don't have a login, please &nbsp;
+              <Link to="/register" style={userItemsStyle}>
+                Register
+              </Link>
+            </div>
           </div>
         )}
       </Mutation>

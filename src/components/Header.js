@@ -22,9 +22,7 @@ class Header extends Component {
           <li style={logoStyle}>
             <h3>IEX Data App</h3>
           </li>
-          <li>
-            <LoginHeader />
-          </li>
+          <LoginHeader />
         </ul>
       </div>
     );
