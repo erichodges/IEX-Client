@@ -31,7 +31,6 @@ class LoginHeader extends Component {
               return (
                 <div style={userItemsStyle}>
                   {data.me!.userName}
-                  <button>Logout</button>
                   &nbsp;&nbsp;&nbsp;<Link to="/logout">Logout</Link>
                 </div>
               );
