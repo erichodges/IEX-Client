@@ -103,6 +103,7 @@ class CandleStickChartWithMA extends React.Component {
         width={width}
         ratio={ratio}
         margin={{ left: 70, right: 70, top: 10, bottom: 30 }}
+        padding={{ left: 0, right: 15 }}
         type={type}
         seriesName=""
         data={data}
