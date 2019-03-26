@@ -151,13 +151,6 @@ class Quote extends Component {
               className="tickerInput"
             />
             &nbsp;
-            <input
-              // ref={input => (this.newTicker = input)}
-              type="text"
-              placeholder="Quote List Name"
-              className="quoteListName"
-            />
-            &nbsp;
             <button type="submit" className="tickerSubmit">
               Add
             </button>
