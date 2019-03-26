@@ -101,12 +101,6 @@ class Quote extends Component {
     this.tickerForm.reset();
   }
 
-  // addTicker(item) {
-  //   this.setState({
-  //     tickerList: [...item.symbol]
-  //   });
-  // }
-
   removeItem(item) {
     const newData = this.state.data.filter(data => {
       return data !== item;
@@ -157,12 +151,19 @@ class Quote extends Component {
               className="tickerInput"
             />
             &nbsp;
+            <input
+              // ref={input => (this.newTicker = input)}
+              type="text"
+              placeholder="Quote List Name"
+              className="quoteListName"
+            />
+            &nbsp;
             <button type="submit" className="tickerSubmit">
               Add
             </button>
             &nbsp;&nbsp;&nbsp;
             <button onClick={() => this.props.remove(this.props.item)}>
-              Close
+              Close Quote List
             </button>
           </div>
         </form>
