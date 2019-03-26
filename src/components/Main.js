@@ -48,7 +48,7 @@ class Main extends React.Component {
       <div>
         <Header />
         <ChartLayout symbol={this.state.tickerFromQuote} />
-        <ListContainer addChild={this.onAddChild}>
+        <QuoteListContainer addChild={this.onAddChild}>
           {this.state.items.map(item => (
             <QuoteList
               key={item.id}
@@ -58,13 +58,13 @@ class Main extends React.Component {
               tickerToList={this.onAddTickerToItem}
             />
           ))}
-        </ListContainer>
+        </QuoteListContainer>
       </div>
     );
   }
 }
 
-const ListContainer = props => (
+const QuoteListContainer = props => (
   <div>
     <button onClick={props.addChild}>Add Live Quote List</button>
     <div id="children-pane">{props.children}</div>
