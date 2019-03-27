@@ -149,6 +149,7 @@ class Quote extends Component {
               type="text"
               placeholder="Enter Symbol"
               className="tickerInput"
+              autoFocus
             />
             &nbsp;
             <button type="submit" className="tickerSubmit">

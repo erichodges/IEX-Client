@@ -48,6 +48,7 @@ class ChartTicker extends Component {
             onChange={event => this.onHandleChange(event)}
             placeholder="Enter Symbol for Chart"
             className="chartTickerInput"
+            autoFocus
           />
           &nbsp;
           <select
