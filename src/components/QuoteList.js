@@ -161,6 +161,7 @@ class Quote extends Component {
             </button>
           </div>
         </form>
+        &nbsp;&nbsp;
         {message !== "" && <p className="message-text"> {message}</p>}
         <table>
           <thead />
@@ -169,11 +170,11 @@ class Quote extends Component {
               return (
                 <tr key={item.symbol}>
                   <td>
-                    {item.symbol} &nbsp; &nbsp;
-                    {item.latestPrice} &nbsp; &nbsp; &nbsp;
-                    {item.change} &nbsp; &nbsp; &nbsp;
+                    &nbsp;&nbsp;{item.symbol} &nbsp; &nbsp; &nbsp;&nbsp;
+                    {item.latestPrice} &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+                    {item.change} &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
                     {item.changePercent.toFixed(2)} % &nbsp; &nbsp; &nbsp;
-                    {item.companyName}
+                    &nbsp;&nbsp;{item.companyName}
                   </td>
                   <td>
                     <button
