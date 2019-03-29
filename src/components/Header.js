@@ -21,7 +21,7 @@ class Header extends Component {
       <div>
         <ul style={ulStyle}>
           <li style={logoStyle}>
-            <h3>IEX Data App</h3>
+            <h3>Quick Chart</h3>
           </li>
           <LoginHeader />
         </ul>
