@@ -12,12 +12,3 @@ class App extends Component {
 }
 
 export default App;
-
-// <BrowserRouter>
-//         <div>
-//           <Switch>
-//             <Route path="/" exact component={Main} />
-//             <Route component={Error} />
-//           </Switch>
-//         </div>
-//       </BrowserRouter>
