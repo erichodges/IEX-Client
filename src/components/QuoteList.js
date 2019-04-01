@@ -31,7 +31,6 @@ class Quote extends Component {
       // console.log(socket.connected);
       // this.socket.emit("subscribe", "IBM");
     });
-    // Listen to the channel's messages
     this.socket.on("message", message => {
       const msg = JSON.parse(message);
       this.setState(state => {
