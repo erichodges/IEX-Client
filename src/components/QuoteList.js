@@ -1,11 +1,7 @@
 import React, { Component } from "react";
-// import { NavLink } from "react-router-dom";
-// import axios from "axios";
 import socket from "socket.io-client";
 import { getQuote, getKeyStats } from "./Utils";
-// import SimpleModalWrapped from "./Modal";
 import Modal from "@material-ui/core/Modal";
-// import Typography from "@material-ui/core/Typography";
 
 const url = "https://ws-api.iextrading.com/1.0/last";
 class Quote extends Component {
