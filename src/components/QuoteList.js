@@ -83,12 +83,12 @@ class Quote extends Component {
     } else {
       getQuote(ticker).then(data => {
         data.latestPrice = data.latestPrice.toFixed(2);
-        data !== {} && // In case of no data returned. this does not work yet.
-          this.setState({
-            data: [...this.state.data, data],
-            message: ""
-            // tickerList: [...this.state.tickerList, data.symbol]
-          });
+        // data !== {} && // In case of no data returned. this does not work yet.
+        this.setState({
+          data: [...this.state.data, data],
+          message: ""
+          // tickerList: [...this.state.tickerList, data.symbol]
+        });
         this.props.tickerToList(ticker, this.props.item.id);
         this.socket.emit("subscribe", ticker);
       });
