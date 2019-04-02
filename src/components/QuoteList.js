@@ -54,11 +54,11 @@ class Quote extends Component {
   };
 
   getStats(symbol) {
-    getKeyStats(symbol).then(data => {
+    getKeyStats(symbol).then(KeyStats => {
       this.setState({
-        keyStats: data
+        keyStats: KeyStats
       });
-      // console.log(this.state.keyStats);
+      console.log(this.state.keyStats);
     });
   }
 
