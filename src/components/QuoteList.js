@@ -16,6 +16,7 @@ class Quote extends Component {
       keyStats: {}
     };
     this.onTickerForChart = this.onTickerForChart.bind(this);
+    this.quoteListName = React.createRef();
   }
 
   componentDidMount() {
@@ -114,8 +115,8 @@ class Quote extends Component {
 
   onAddQuoteListName(e, quoteListName) {
     e.preventDefault();
-    console.log(quoteListName);
-    this.props.addQuoteListName(quoteListName);
+    console.log(this.quoteListName);
+    this.props.addQuoteListName(this.quoteListName);
   }
 
   onTickerForChart({ currentTarget }) {
@@ -134,7 +135,7 @@ class Quote extends Component {
       <div>
         <div>
           <input
-            ref={input => (this.quoteListName = input)}
+            ref={this.quoteListName}
             type="text"
             placeholder="Name of Quote List"
             className="quoteListNameInput"
