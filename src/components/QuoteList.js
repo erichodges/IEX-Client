@@ -7,6 +7,8 @@ const url = "https://ws-api.iextrading.com/1.0/last";
 class Quote extends Component {
   constructor(props) {
     super(props);
+    this.quoteListName = React.createRef();
+
     this.state = {
       loading: false,
       data: [],
@@ -16,7 +18,7 @@ class Quote extends Component {
       keyStats: {}
     };
     this.onTickerForChart = this.onTickerForChart.bind(this);
-    this.quoteListName = React.createRef();
+    // this.onAddQuoteListName = this.onAddQuoteListName.bind(this);
   }
 
   componentDidMount() {
@@ -113,8 +115,7 @@ class Quote extends Component {
     });
   }
 
-  onAddQuoteListName(e, quoteListName) {
-    e.preventDefault();
+  onAddQuoteListName(e) {
     console.log(this.quoteListName);
     this.props.addQuoteListName(this.quoteListName);
   }
@@ -143,7 +144,7 @@ class Quote extends Component {
           &nbsp;
           <button
             onClick={e => {
-              this.onAddQuoteListName(e, this.quoteListName);
+              this.onAddQuoteListName(e);
             }}
           >
             Add
