@@ -116,8 +116,8 @@ class Quote extends Component {
   }
 
   onAddQuoteListName(e) {
-    console.log(this.quoteListName);
-    this.props.addQuoteListName(this.quoteListName);
+    console.log(this.quoteListName.current.value);
+    this.props.addQuoteListName(this.quoteListName.current.value);
   }
 
   onTickerForChart({ currentTarget }) {
