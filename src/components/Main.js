@@ -31,14 +31,27 @@ class Main extends React.Component {
     }));
   };
 
-  onAddTickerToItem = (ticker, name, id) => {
+  onAddTickerToItem = (ticker, id) => {
     this.setState(prev => ({
       items: prev.items.map(prevItem => {
         if (prevItem.id === id) {
           return {
             ...prevItem,
-            tickers: [...prevItem.tickers, ticker],
-            listName: name
+            tickers: [...prevItem.tickers, ticker]
+          };
+        }
+        return prevItem;
+      })
+    }));
+  };
+
+  onAddQuoteListNameToItem = (quoteListName, id) => {
+    this.setState(prev => ({
+      items: prev.item.map(prevItem => {
+        if (prevItem.id === id) {
+          return {
+            ...prevItem,
+            QuoteListName: quoteListName
           };
         }
         return prevItem;
@@ -60,6 +73,7 @@ class Main extends React.Component {
               remove={this.onRemoveChild}
               setTickerForChart={this.onSendQuoteTicker}
               tickerToList={this.onAddTickerToItem}
+              addQuoteListName={this.onAddQuoteListNameToItem}
             />
           ))}
         </QuoteListContainer>

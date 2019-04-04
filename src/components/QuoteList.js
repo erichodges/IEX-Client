@@ -87,7 +87,6 @@ class Quote extends Component {
         this.setState({
           data: [...this.state.data, data],
           message: ""
-          // tickerList: [...this.state.tickerList, data.symbol]
         });
         this.props.tickerToList(ticker, this.props.item.id);
         this.socket.emit("subscribe", ticker);
@@ -113,6 +112,12 @@ class Quote extends Component {
     });
   }
 
+  onAddQuoteListName(e, quoteListName) {
+    e.preventDefault();
+    console.log(quoteListName);
+    this.props.addQuoteListName(quoteListName);
+  }
+
   onTickerForChart({ currentTarget }) {
     this.props.setTickerForChart(currentTarget.value);
   }
@@ -127,6 +132,22 @@ class Quote extends Component {
     const { data, message } = this.state;
     return (
       <div>
+        <div>
+          <input
+            ref={input => (this.quoteListName = input)}
+            type="text"
+            placeholder="Name of Quote List"
+            className="quoteListNameInput"
+          />
+          &nbsp;
+          <button
+            onClick={e => {
+              this.onAddQuoteListName(e, this.quoteListName);
+            }}
+          >
+            Add
+          </button>
+        </div>
         <form
           className="ticker-form"
           onSubmit={e => {
