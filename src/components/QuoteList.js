@@ -15,7 +15,8 @@ class Quote extends Component {
       message: "",
       tickerList: [],
       open: false,
-      keyStats: {}
+      keyStats: {},
+      quoteListName: "Quote List"
     };
     this.onTickerForChart = this.onTickerForChart.bind(this);
     // this.onAddQuoteListName = this.onAddQuoteListName.bind(this);
@@ -116,11 +117,15 @@ class Quote extends Component {
   }
 
   onAddQuoteListName(e) {
-    console.log(this.quoteListName.current.value);
+    // console.log(this.quoteListName.current.value);
     this.props.addQuoteListName(
       this.quoteListName.current.value,
       this.props.item.id
     );
+    this.setState({
+      quoteListName: this.quoteListName.current.value
+    });
+    this.quoteListName.current.value = "";
   }
 
   onTickerForChart({ currentTarget }) {
@@ -134,7 +139,8 @@ class Quote extends Component {
 
   render() {
     // console.log(this.state.tickerList);
-    const { data, message } = this.state;
+    const { data, message, quoteListName } = this.state;
+    // const { QuoteList = "Quote List" } = this.quoteListName.current.value;
     return (
       <div>
         <div>
@@ -162,7 +168,7 @@ class Quote extends Component {
         >
           <div className="form-group">
             <label className="inputLabel" htmlFor="newTickerInput">
-              &nbsp;&nbsp;&nbsp; Quote List &nbsp; &nbsp;
+              &nbsp;&nbsp;&nbsp; {quoteListName} &nbsp; &nbsp;
             </label>
             &nbsp;
             <input
