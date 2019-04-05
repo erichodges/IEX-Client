@@ -117,7 +117,6 @@ class Quote extends Component {
   }
 
   onAddQuoteListName(e) {
-    // console.log(this.quoteListName.current.value);
     this.props.addQuoteListName(
       this.quoteListName.current.value,
       this.props.item.id
@@ -140,7 +139,6 @@ class Quote extends Component {
   render() {
     // console.log(this.state.tickerList);
     const { data, message, quoteListName } = this.state;
-    // const { QuoteList = "Quote List" } = this.quoteListName.current.value;
     return (
       <div>
         <div>
