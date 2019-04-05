@@ -32,6 +32,7 @@ class Main extends React.Component {
   };
 
   onAddTickerToItem = (ticker, id) => {
+    console.log(id);
     this.setState(prev => ({
       items: prev.items.map(prevItem => {
         if (prevItem.id === id) {
@@ -46,8 +47,9 @@ class Main extends React.Component {
   };
 
   onAddQuoteListNameToItem = (quoteListName, id) => {
+    console.log();
     this.setState(prev => ({
-      items: prev.item.map(prevItem => {
+      items: prev.items.map(prevItem => {
         if (prevItem.id === id) {
           return {
             ...prevItem,

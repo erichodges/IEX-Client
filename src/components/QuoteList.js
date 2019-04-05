@@ -117,7 +117,10 @@ class Quote extends Component {
 
   onAddQuoteListName(e) {
     console.log(this.quoteListName.current.value);
-    this.props.addQuoteListName(this.quoteListName.current.value);
+    this.props.addQuoteListName(
+      this.quoteListName.current.value,
+      this.props.item.id
+    );
   }
 
   onTickerForChart({ currentTarget }) {
