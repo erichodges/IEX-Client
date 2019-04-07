@@ -19,6 +19,7 @@ class Quote extends Component {
       quoteListName: "Quote List"
     };
     this.onTickerForChart = this.onTickerForChart.bind(this);
+    this.onKeyPressed = this.onKeyPressed.bind(this);
     // this.onAddQuoteListName = this.onAddQuoteListName.bind(this);
   }
 
@@ -131,10 +132,19 @@ class Quote extends Component {
     this.props.setTickerForChart(currentTarget.value);
   }
 
+  onKeyPressed(e) {
+    if (e.key === "Enter") {
+      this.onAddQuoteListName(e);
+    }
+  }
+
   handleExtraZeros(item) {
     const trim = item / 1000000000;
     return trim.toFixed(2);
   }
+
+  // to search for the quoteList by user:
+  // QuoteList.find({ userId: xxx, name: "tech" })
 
   render() {
     // console.log(this.state.tickerList);
@@ -144,6 +154,7 @@ class Quote extends Component {
         <div>
           <input
             ref={this.quoteListName}
+            onKeyPress={this.onKeyPressed}
             type="text"
             placeholder="Name of Quote List"
             className="quoteListNameInput"
