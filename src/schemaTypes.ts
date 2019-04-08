@@ -22,18 +22,6 @@ export interface MeQuery {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: LogoutMutation
-// ====================================================
-
-export interface LogoutMutation {
-  logout: boolean;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// This file was automatically generated and should not be edited.
-
-// ====================================================
 // GraphQL mutation operation: LoginMutation
 // ====================================================
 
@@ -51,6 +39,18 @@ export interface LoginMutation {
 export interface LoginMutationVariables {
   email: string;
   password: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: LogoutMutation
+// ====================================================
+
+export interface LogoutMutation {
+  logout: boolean;
 }
 
 /* tslint:disable */
