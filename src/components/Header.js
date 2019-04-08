@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import LoginHeader from "./LoginHeader";
+import LoginHeader from "../modules/user/LoginHeader";
 
 const ulStyle = {
   listStyle: "none",
