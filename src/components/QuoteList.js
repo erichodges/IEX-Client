@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import socket from "socket.io-client";
 import { getQuote, getKeyStats } from "./Utils";
 import Modal from "@material-ui/core/Modal";
+import StoreQuoteList from "../modules/user/StoreQuoteList";
 
 const url = "https://ws-api.iextrading.com/1.0/last";
 class Quote extends Component {
@@ -128,14 +129,14 @@ class Quote extends Component {
     this.quoteListName.current.value = "";
   }
 
-  onTickerForChart({ currentTarget }) {
-    this.props.setTickerForChart(currentTarget.value);
-  }
-
   onKeyPressed(e) {
     if (e.key === "Enter") {
       this.onAddQuoteListName(e);
     }
+  }
+
+  onTickerForChart({ currentTarget }) {
+    this.props.setTickerForChart(currentTarget.value);
   }
 
   handleExtraZeros(item) {
@@ -151,6 +152,7 @@ class Quote extends Component {
     const { data, message, quoteListName } = this.state;
     return (
       <div>
+        <StoreQuoteList />
         <div>
           <input
             ref={this.quoteListName}
