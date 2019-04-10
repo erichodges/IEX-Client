@@ -13,7 +13,7 @@ import React, { Component } from "react";
 //   }
 // `;
 
-class StoreQuoteList extends Component {
+class StoreQuoteListName extends Component {
   // @ts-ignore
   constructor(props) {
     super(props);
@@ -77,4 +77,4 @@ class StoreQuoteList extends Component {
     );
   }
 }
-export default StoreQuoteList;
+export default StoreQuoteListName;
