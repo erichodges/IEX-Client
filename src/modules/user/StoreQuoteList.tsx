@@ -23,6 +23,8 @@ class StoreQuoteList extends Component {
     this.state = {
       quoteListName: "Quote List"
     };
+    // @ts-ignore
+    this.addQuoteListName = this.addQuoteListName.bind(this);
     this.onKeyPressed = this.onKeyPressed.bind(this);
   }
   // @ts-ignore
@@ -49,7 +51,7 @@ class StoreQuoteList extends Component {
   }
 
   render() {
-    console.log("storeQuoteList component mounted");
+    console.log(this.props);
     // @ts-ignore
     const { quoteListName } = this.state;
     return (
