@@ -51,7 +51,6 @@ class StoreQuoteListName extends Component {
   }
 
   render() {
-    console.log(this.props);
     // @ts-ignore
     const { quoteListName } = this.state;
     return (
