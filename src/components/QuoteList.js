@@ -20,7 +20,7 @@ class Quote extends Component {
       quoteListName: "Quote List"
     };
     this.onTickerForChart = this.onTickerForChart.bind(this);
-    // this.onKeyPressed = this.onKeyPressed.bind(this);
+    this.onKeyPressed = this.onKeyPressed.bind(this);
     // this.addQuoteListName = this.addQuoteListName.bind(this);
     // this.onAddQuoteListName = this.onAddQuoteListName.bind(this);
   }
@@ -119,22 +119,22 @@ class Quote extends Component {
     });
   }
 
-  // onAddQuoteListName(e) {
-  //   this.props.addQuoteListName(
-  //     this.quoteListName.current.value,
-  //     this.props.item.id
-  //   );
-  //   this.setState({
-  //     quoteListName: this.quoteListName.current.value
-  //   });
-  //   this.quoteListName.current.value = "";
-  // }
+  onAddQuoteListName(e) {
+    this.props.addQuoteListName(
+      this.quoteListName.current.value,
+      this.props.item.id
+    );
+    this.setState({
+      quoteListName: this.quoteListName.current.value
+    });
+    this.quoteListName.current.value = "";
+  }
 
-  // onKeyPressed(e) {
-  //   if (e.key === "Enter") {
-  //     this.onAddQuoteListName(e);
-  //   }
-  // }
+  onKeyPressed(e) {
+    if (e.key === "Enter") {
+      this.onAddQuoteListName(e);
+    }
+  }
 
   onTickerForChart({ currentTarget }) {
     this.props.setTickerForChart(currentTarget.value);
