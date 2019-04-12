@@ -21,6 +21,7 @@ class Quote extends Component {
     };
     this.onTickerForChart = this.onTickerForChart.bind(this);
     this.onKeyPressed = this.onKeyPressed.bind(this);
+    this.onSetQuoteListName = this.onSetQuoteListName.bind(this);
     // this.addQuoteListName = this.addQuoteListName.bind(this);
     // this.onAddQuoteListName = this.onAddQuoteListName.bind(this);
   }
@@ -145,6 +146,12 @@ class Quote extends Component {
     return trim.toFixed(2);
   }
 
+  onSetQuoteListName(quoteListName) {
+    this.setState({
+      quoteListName: quoteListName
+    });
+  }
+
   // to search for the quoteList by user:
   // QuoteList.find({ userId: xxx, name: "tech" })
 
@@ -155,7 +162,8 @@ class Quote extends Component {
       <div>
         <StoreQuoteListName
           item={this.props.item}
-          addQuoteListName={this.props.onAddQuoteListNameToItem}
+          addQuoteListName={this.props.addQuoteListName}
+          quoteListDisplayName={this.onSetQuoteListName}
         />
         <div>
           <input
