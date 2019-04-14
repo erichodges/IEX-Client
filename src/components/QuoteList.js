@@ -8,7 +8,7 @@ const url = "https://ws-api.iextrading.com/1.0/last";
 class Quote extends Component {
   constructor(props) {
     super(props);
-    this.quoteListName = React.createRef();
+    // this.quoteListName = React.createRef();
 
     this.state = {
       loading: false,
@@ -20,10 +20,10 @@ class Quote extends Component {
       quoteListName: "Quote List"
     };
     this.onTickerForChart = this.onTickerForChart.bind(this);
-    this.onKeyPressed = this.onKeyPressed.bind(this);
+    // this.onKeyPressed = this.onKeyPressed.bind(this);
     this.onSetQuoteListName = this.onSetQuoteListName.bind(this);
     // this.addQuoteListName = this.addQuoteListName.bind(this);
-    // this.onAddQuoteListName = this.onAddQuoteListName.bind(this);
+    this.onAddQuoteListName = this.onAddQuoteListName.bind(this);
   }
 
   componentDidMount() {
@@ -128,14 +128,15 @@ class Quote extends Component {
     this.setState({
       quoteListName: this.quoteListName.current.value
     });
+    console.log(this.state.quoteListName);
     this.quoteListName.current.value = "";
   }
 
-  onKeyPressed(e) {
-    if (e.key === "Enter") {
-      this.onAddQuoteListName(e);
-    }
-  }
+  // onKeyPressed(e) {
+  //   if (e.key === "Enter") {
+  //     this.onAddQuoteListName(e);
+  //   }
+  // }
 
   onTickerForChart({ currentTarget }) {
     this.props.setTickerForChart(currentTarget.value);
@@ -165,23 +166,6 @@ class Quote extends Component {
           addQuoteListName={this.props.addQuoteListName}
           quoteListDisplayName={this.onSetQuoteListName}
         />
-        <div>
-          <input
-            ref={this.quoteListName}
-            onKeyPress={this.onKeyPressed}
-            type="text"
-            placeholder="Name of Quote List"
-            className="quoteListNameInput"
-          />
-          &nbsp;
-          <button
-            onClick={e => {
-              this.onAddQuoteListName(e);
-            }}
-          >
-            Add
-          </button>
-        </div>
         <form
           className="ticker-form"
           onSubmit={e => {
