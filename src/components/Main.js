@@ -61,6 +61,10 @@ class Main extends React.Component {
     }));
   };
 
+  onSaveQuoteList = e => {
+    console.log("triggered save quotelist");
+  };
+
   render() {
     console.log(this.state.items);
     return (
@@ -76,6 +80,7 @@ class Main extends React.Component {
               setTickerForChart={this.onSendQuoteTicker}
               tickerToList={this.onAddTickerToItem}
               addQuoteListName={this.onAddQuoteListNameToItem}
+              saveQuoteList={this.onSaveQuoteList}
             />
           ))}
         </QuoteListContainer>

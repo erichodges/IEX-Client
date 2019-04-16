@@ -18,10 +18,10 @@ class StoreQuoteListName extends Component {
   constructor(props) {
     super(props);
     // @ts-ignore
-    this.quoteListName2 = React.createRef();
+    this.quoteListName = React.createRef();
 
     this.state = {
-      quoteListName2: "Quote List"
+      quoteListName: "Quote List"
     };
     // @ts-ignore
     this.onAddQuoteListName = this.onAddQuoteListName.bind(this);
@@ -33,23 +33,23 @@ class StoreQuoteListName extends Component {
     // @ts-ignore
     this.props.addQuoteListName(
       // @ts-ignore
-      this.quoteListName2.current.value,
+      this.quoteListName.current.value,
       // @ts-ignore
       this.props.item.id
     );
     // @ts-ignore
     this.props.quoteListDisplayName(
       // @ts-ignore
-      this.quoteListName2.current.value
+      this.quoteListName.current.value
     );
     this.setState({
       // @ts-ignore
-      quoteListName2: this.quoteListName2.current.value
+      quoteListName: this.quoteListName.current.value
     });
     // @ts-ignore
-    // console.log(this.state.quoteListName2);
+    // console.log(this.state.quoteListName);
     // @ts-ignore
-    this.quoteListName2.current.value = "";
+    this.quoteListName.current.value = "";
   }
   // @ts-ignore
   onKeyPressed(e) {
@@ -57,16 +57,21 @@ class StoreQuoteListName extends Component {
       this.onAddQuoteListName(e);
     }
   }
+  // @ts-ignore
+  onSaveQuoteList(e) {
+    // @ts-ignore
+    this.props.saveQuoteList(e);
+  }
 
   render() {
     // @ts-ignore
-    const { quoteListName2 } = this.state;
+    const { quoteListName } = this.state;
     return (
       <div>
-        <b>StoreQuoteList</b>
+        &nbsp;&nbsp;&nbsp;
         <input
           // @ts-ignore
-          ref={this.quoteListName2}
+          ref={this.quoteListName}
           onKeyPress={this.onKeyPressed}
           type="text"
           placeholder="Name of Quote List"
@@ -79,6 +84,14 @@ class StoreQuoteListName extends Component {
           }}
         >
           Add
+        </button>
+        &nbsp;
+        <button
+          onClick={e => {
+            this.onSaveQuoteList(e);
+          }}
+        >
+          Save Quote List
         </button>
       </div>
     );

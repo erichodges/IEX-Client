@@ -132,12 +132,6 @@ class Quote extends Component {
     this.quoteListName.current.value = "";
   }
 
-  // onKeyPressed(e) {
-  //   if (e.key === "Enter") {
-  //     this.onAddQuoteListName(e);
-  //   }
-  // }
-
   onTickerForChart({ currentTarget }) {
     this.props.setTickerForChart(currentTarget.value);
   }
@@ -165,6 +159,7 @@ class Quote extends Component {
           item={this.props.item}
           addQuoteListName={this.props.addQuoteListName}
           quoteListDisplayName={this.onSetQuoteListName}
+          saveQuoteList={this.props.saveQuoteList}
         />
         <form
           className="ticker-form"
