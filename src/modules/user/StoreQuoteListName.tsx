@@ -1,17 +1,17 @@
 import React, { Component } from "react";
-// import { Query } from "react-apollo";
-// import { gql } from "apollo-boost";
-// import { MeQuery } from "../../schemaTypes";
+import { Query } from "react-apollo";
+import { gql } from "apollo-boost";
+import { MeQuery } from "../../schemaTypes";
 
-// const meQuery = gql`
-//   query MeQuery {
-//     me {
-//       userName
-//       email
-//       id
-//     }
-//   }
-// `;
+const meQuery = gql`
+  query MeQuery {
+    me {
+      userName
+      email
+      id
+    }
+  }
+`;
 
 class StoreQuoteListName extends Component {
   // @ts-ignore
@@ -67,33 +67,47 @@ class StoreQuoteListName extends Component {
     // @ts-ignore
     const { quoteListName } = this.state;
     return (
-      <div>
-        &nbsp;&nbsp;&nbsp;
-        <input
-          // @ts-ignore
-          ref={this.quoteListName}
-          onKeyPress={this.onKeyPressed}
-          type="text"
-          placeholder="Name of Quote List"
-          className="quoteListNameInput"
-        />
-        &nbsp;
-        <button
-          onClick={e => {
-            this.onAddQuoteListName(e);
-          }}
-        >
-          Add
-        </button>
-        &nbsp;
-        <button
-          onClick={e => {
-            this.onSaveQuoteList(e);
-          }}
-        >
-          Save Quote List
-        </button>
-      </div>
+      <Query<MeQuery> query={meQuery}>
+        // @ts-ignore
+        {({ data, loading }) => {
+          if (loading) {
+            return null;
+          }
+          if (data) {
+            if (data.me) {
+              return (
+                <div>
+                  &nbsp;&nbsp;&nbsp;
+                  <input
+                    // @ts-ignore
+                    ref={this.quoteListName}
+                    onKeyPress={this.onKeyPressed}
+                    type="text"
+                    placeholder="Name of Quote List"
+                    className="quoteListNameInput"
+                  />
+                  &nbsp;
+                  <button
+                    onClick={e => {
+                      this.onAddQuoteListName(e);
+                    }}
+                  >
+                    Add
+                  </button>
+                  &nbsp;
+                  <button
+                    onClick={e => {
+                      this.onSaveQuoteList(e);
+                    }}
+                  >
+                    Save Quote List
+                  </button>
+                </div>
+              );
+            }
+          }
+        }}
+      </Query>
     );
   }
 }
