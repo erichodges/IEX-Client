@@ -64,53 +64,54 @@ class StoreQuoteListName extends Component {
   }
 
   render() {
-    // @ts-ignore
+    @ts-ignore
     const { quoteListName } = this.state;
     return (
-      // @ts-ignore
+      @ts-ignore
       <Query<MeQuery> query={meQuery}>
         // @ts-ignore
         {({ data, loading }) => {
-          // if (loading) {
-          //   return <div>Loading...</div>;
-          // }
-          // if (data) {
-          //   if (data.me!.userName) {
-          // return (
-          return <div>Hey</div>;
-          // <div>
-          //   &nbsp;&nbsp;&nbsp;
-          //   <input
-          //     // @ts-ignore
-          //     ref={this.quoteListName}
-          //     onKeyPress={this.onKeyPressed}
-          //     type="text"
-          //     placeholder="Name of Quote List"
-          //     className="quoteListNameInput"
-          //   />
-          //   &nbsp;
-          //   <button
-          //     onClick={e => {
-          //       this.onAddQuoteListName(e);
-          //     }}
-          //   >
-          //     Add
-          //   </button>
-          //   &nbsp;
-          //   <button
-          //     onClick={e => {
-          //       this.onSaveQuoteList(e);
-          //     }}
-          //   >
-          //     Save Quote List
-          //   </button>
-          // </div>
-          // );
-          //   }
-          // }
-          // return null;
+      if (loading) {
+        return <div>Loading...</div>;
+      }
+      if (data) {
+        if (data.me!.userName) {
+      return (
+      
+    );
+    <div>
+      &nbsp;&nbsp;&nbsp;
+      <input
+        // @ts-ignore
+        ref={this.quoteListName}
+        onKeyPress={this.onKeyPressed}
+        type="text"
+        placeholder="Name of Quote List"
+        className="quoteListNameInput"
+      />
+      &nbsp;
+      <button
+        onClick={e => {
+          this.onAddQuoteListName(e);
         }}
-      </Query>
+      >
+        Add
+      </button>
+      &nbsp;
+      <button
+        onClick={e => {
+          this.onSaveQuoteList(e);
+        }}
+      >
+        Save Quote List
+      </button>
+    </div>
+    );
+      }
+    }
+    return null;
+      }}
+    </Query>
     );
   }
 }
