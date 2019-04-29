@@ -64,12 +64,10 @@ class StoreQuoteListName extends Component {
   }
 
   render() {
-    //@ts-ignore
+    // @ts-ignore
     const { quoteListName } = this.state;
     return (
-      //@ts-ignore
       <Query<MeQuery> query={meQuery}>
-        // @ts-ignore
         {({ data, loading }) => {
           if (loading) {
             return <div>Loading...</div>;
