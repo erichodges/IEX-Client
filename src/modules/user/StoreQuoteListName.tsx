@@ -73,6 +73,11 @@ class StoreQuoteListName extends Component {
             return <div>Loading...</div>;
           }
           if (data) {
+            if (data.me! === null) {
+              return <div />;
+            }
+          }
+          if (data) {
             if (data.me!.userName) {
               return (
                 <div>
@@ -105,7 +110,7 @@ class StoreQuoteListName extends Component {
               );
             }
           }
-          return null;
+          return <div />;
         }}
       </Query>
     );
