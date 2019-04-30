@@ -47,7 +47,6 @@ class Main extends React.Component {
   };
 
   onAddQuoteListNameToItem = (quoteListName, id) => {
-    console.log();
     this.setState(prev => ({
       items: prev.items.map(prevItem => {
         if (prevItem.id === id) {
@@ -61,8 +60,8 @@ class Main extends React.Component {
     }));
   };
 
-  onSaveQuoteList = e => {
-    console.log("triggered save quotelist");
+  onSaveQuoteList = (e, id) => {
+    console.log(id);
   };
 
   render() {

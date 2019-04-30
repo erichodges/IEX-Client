@@ -8,7 +8,6 @@ const url = "https://ws-api.iextrading.com/1.0/last";
 class Quote extends Component {
   constructor(props) {
     super(props);
-    // this.quoteListName = React.createRef();
 
     this.state = {
       loading: false,
@@ -19,6 +18,7 @@ class Quote extends Component {
       keyStats: {},
       quoteListName: "Quote List"
     };
+
     this.onTickerForChart = this.onTickerForChart.bind(this);
     // this.onKeyPressed = this.onKeyPressed.bind(this);
     this.onSetQuoteListName = this.onSetQuoteListName.bind(this);
@@ -128,7 +128,6 @@ class Quote extends Component {
     this.setState({
       quoteListName: this.quoteListName.current.value
     });
-    console.log(this.state.quoteListName);
     this.quoteListName.current.value = "";
   }
 
@@ -152,7 +151,8 @@ class Quote extends Component {
 
   render() {
     // console.log(this.state.tickerList);
-    const { data, message, quoteListName } = this.state;
+    const { data, message, quoteListName, tickerList } = this.state;
+    console.log(this.state.tickerList);
     return (
       <div>
         <StoreQuoteListName
@@ -160,6 +160,7 @@ class Quote extends Component {
           addQuoteListName={this.props.addQuoteListName}
           quoteListDisplayName={this.onSetQuoteListName}
           saveQuoteList={this.props.saveQuoteList}
+          quoteList={tickerList}
         />
         <form
           className="ticker-form"

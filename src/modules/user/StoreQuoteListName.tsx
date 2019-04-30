@@ -60,7 +60,9 @@ class StoreQuoteListName extends Component {
   // @ts-ignore
   onSaveQuoteList(e) {
     // @ts-ignore
-    this.props.saveQuoteList(e);
+    // console.log(this.props.item.id);
+    // @ts-ignore
+    this.props.saveQuoteList(e, this.props.item.id);
   }
 
   render() {
