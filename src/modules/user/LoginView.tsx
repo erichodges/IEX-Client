@@ -87,7 +87,11 @@ class LoginView extends PureComponent<RouteComponentProps<{}>> {
             <div>
               <br />
               <br />
-              If you don't have a login, please &nbsp;
+              &nbsp;&nbsp;&nbsp;<Link to="/">Main Page</Link>
+              <br />
+              <br />
+              &nbsp;&nbsp;&nbsp;If you don't have a login, please &nbsp;
+              &nbsp;&nbsp;&nbsp;
               <Link to="/register" style={userItemsStyle}>
                 Register
               </Link>
