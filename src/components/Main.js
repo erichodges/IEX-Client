@@ -1,8 +1,16 @@
 import React from "react";
+import shortid from "shortid";
+import { gql } from "apollo-boost";
+import { Mutation } from "react-apollo";
 import ChartLayout from "./ChartLayout";
 import Header from "./Header";
 import QuoteList from "./QuoteList";
-import shortid from "shortid";
+
+const ADD_QUOTE_LIST = gql`
+  mutation addQuoteList($tickers: [String], $name: String) {
+    addQuoteList()
+  }
+`;
 
 class Main extends React.Component {
   constructor(props) {
