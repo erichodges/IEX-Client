@@ -60,12 +60,21 @@ class Main extends React.Component {
     }));
   };
 
-  onSaveQuoteList = (e, id) => {
-    console.log(id);
+  onSaveQuoteList = (e, id, quoteListName) => {
+    const { items } = this.state;
+    items.map(item => {
+      if (item.id === id) {
+        return console.log(item);
+      } else {
+        return null;
+      }
+    });
+
+    console.log(items);
   };
 
   render() {
-    console.log(this.state.items);
+    // console.log(this.state.items);
     return (
       <div>
         <Header />
