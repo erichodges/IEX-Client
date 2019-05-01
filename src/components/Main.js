@@ -68,7 +68,7 @@ class Main extends React.Component {
     }));
   };
 
-  onSaveQuoteList = (e, id, quoteListName) => {
+  onSaveQuoteList = (e, id) => {
     const { items } = this.state;
     items.map(item => {
       if (item.id === id) {
