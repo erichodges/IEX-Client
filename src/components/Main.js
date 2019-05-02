@@ -8,7 +8,10 @@ import QuoteList from "./QuoteList";
 
 const ADD_QUOTE_LIST = gql`
   mutation addQuoteList($tickers: [String], $name: String) {
-    addQuoteList()
+    addQuoteList(tickers: $tickers, name: $name) {
+      tickers
+      name
+    }
   }
 `;
 
