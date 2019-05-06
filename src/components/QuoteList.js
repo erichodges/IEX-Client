@@ -152,7 +152,8 @@ class Quote extends Component {
   render() {
     // console.log(this.state.tickerList);
     const { data, message, quoteListName, tickerList } = this.state;
-    console.log(this.state.tickerList);
+
+    console.log(this.props.quoteListArray);
     return (
       <div>
         <StoreQuoteListName
@@ -161,6 +162,7 @@ class Quote extends Component {
           quoteListDisplayName={this.onSetQuoteListName}
           saveQuoteList={this.props.saveQuoteList}
           quoteList={tickerList}
+          quoteListArray={this.props.quoteListArray}
         />
         <form
           className="ticker-form"

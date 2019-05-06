@@ -1,19 +1,10 @@
 import React from "react";
 import shortid from "shortid";
-import { gql } from "apollo-boost";
-import { Mutation } from "react-apollo";
+// import { gql } from "apollo-boost";
+// import { Mutation } from "react-apollo";
 import ChartLayout from "./ChartLayout";
 import Header from "./Header";
 import QuoteList from "./QuoteList";
-
-const ADD_QUOTE_LIST = gql`
-  mutation addQuoteList($tickers: [String], $name: String) {
-    addQuoteList(tickers: $tickers, name: $name) {
-      tickers
-      name
-    }
-  }
-`;
 
 class Main extends React.Component {
   constructor(props) {
@@ -86,6 +77,7 @@ class Main extends React.Component {
 
   render() {
     // console.log(this.state.items);
+    const { items } = this.state;
     return (
       <div>
         <Header />
@@ -100,6 +92,7 @@ class Main extends React.Component {
               tickerToList={this.onAddTickerToItem}
               addQuoteListName={this.onAddQuoteListNameToItem}
               saveQuoteList={this.onSaveQuoteList}
+              quoteListArray={items}
             />
           ))}
         </QuoteListContainer>

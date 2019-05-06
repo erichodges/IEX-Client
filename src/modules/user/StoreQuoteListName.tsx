@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
+// import { Mutation } from "react-apollo";
 import { MeQuery } from "../../schemaTypes";
 
 const meQuery = gql`
@@ -12,6 +13,15 @@ const meQuery = gql`
     }
   }
 `;
+
+// const ADD_QUOTE_LIST = gql`
+//   mutation addQuoteList($tickers: [String], $name: String) {
+//     addQuoteList(tickers: $tickers, name: $name) {
+//       tickers
+//       name
+//     }
+//   }
+// `;
 
 class StoreQuoteListName extends Component {
   // @ts-ignore
