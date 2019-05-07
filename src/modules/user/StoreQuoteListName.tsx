@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
-// import { Mutation } from "react-apollo";
-import { MeQuery } from "../../schemaTypes";
+import { Mutation } from "react-apollo";
+import {
+  MeQuery,
+  addQuoteList_addQuoteList,
+  addQuoteListVariables
+} from "../../schemaTypes";
 
 const meQuery = gql`
   query MeQuery {
@@ -14,14 +18,14 @@ const meQuery = gql`
   }
 `;
 
-// const ADD_QUOTE_LIST = gql`
-//   mutation addQuoteList($tickers: [String], $name: String) {
-//     addQuoteList(tickers: $tickers, name: $name) {
-//       tickers
-//       name
-//     }
-//   }
-// `;
+const ADD_QUOTE_LIST = gql`
+  mutation addQuoteList($tickers: [String]!, $name: String!) {
+    addQuoteList(tickers: $tickers, name: $name) {
+      tickers
+      name
+    }
+  }
+`;
 
 class StoreQuoteListName extends Component {
   // @ts-ignore
@@ -109,13 +113,11 @@ class StoreQuoteListName extends Component {
                   Add
                 </button>
                 &nbsp;
-                <button
-                  onClick={e => {
-                    this.onSaveQuoteList(e);
-                  }}
+                <Mutation<addQuoteList_addQuoteList, addQuoteListVariables>
+                  mutation={ADD_QUOTE_LIST}
                 >
-                  Save Quote List
-                </button>
+                  {mutate => <button onClick={e => {}}>Save Quote List</button>}
+                </Mutation>
               </div>
             );
           }
