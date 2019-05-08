@@ -82,6 +82,8 @@ class StoreQuoteListName extends Component {
   render() {
     // @ts-ignore
     const { quoteListName } = this.state;
+    // @ts-ignore
+    console.log(this.props.quoteListArray);
     return (
       <Query<MeQuery> query={meQuery}>
         {({ data, loading }) => {
