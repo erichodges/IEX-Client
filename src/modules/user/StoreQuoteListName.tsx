@@ -83,7 +83,10 @@ class StoreQuoteListName extends Component {
     // @ts-ignore
     const { quoteListName } = this.state;
     // @ts-ignore
-    console.log(this.props.quoteListArray);
+    const quoteListArray = this.props.quoteListArray;
+    // @ts-ignore
+    const quoteListId = this.props.item.id;
+    // console.log(quoteListArray);
     return (
       <Query<MeQuery> query={meQuery}>
         {({ data, loading }) => {
@@ -118,7 +121,24 @@ class StoreQuoteListName extends Component {
                 <Mutation<addQuoteList_addQuoteList, addQuoteListVariables>
                   mutation={ADD_QUOTE_LIST}
                 >
-                  {mutate => <button onClick={e => {}}>Save Quote List</button>}
+                  {mutate => (
+                    // @ts-ignore
+                    <button
+                      // @ts-ignore
+                      onClick={(e, quoteListId) => {
+                        // @ts-ignore
+                        quoteListArray.map(item => {
+                          if (item.id === quoteListId) {
+                            return console.log(item, "onClick");
+                          } else {
+                            return null;
+                          }
+                        });
+                      }}
+                    >
+                      Save Quote List
+                    </button>
+                  )}
                 </Mutation>
               </div>
             );

@@ -34,7 +34,6 @@ class Main extends React.Component {
   };
 
   onAddTickerToItem = (ticker, id) => {
-    console.log(id);
     this.setState(prev => ({
       items: prev.items.map(prevItem => {
         if (prevItem.id === id) {
@@ -66,13 +65,13 @@ class Main extends React.Component {
     const { items } = this.state;
     items.map(item => {
       if (item.id === id) {
-        return console.log(item);
+        return true;
       } else {
         return null;
       }
     });
 
-    console.log(items);
+    // console.log(items);
   };
 
   render() {
