@@ -125,7 +125,7 @@ class StoreQuoteListName extends Component {
                     // @ts-ignore
                     <button
                       // @ts-ignore
-                      onClick={(e, quoteListId) => {
+                      onClick={e => {
                         // @ts-ignore
                         quoteListArray.map(item => {
                           if (item.id === quoteListId) {
