@@ -127,12 +127,19 @@ class StoreQuoteListName extends Component {
                       // @ts-ignore
                       onClick={e => {
                         // @ts-ignore
-                        quoteListArray.map(item => {
+                        quoteListArray.map(async item => {
                           const tickers = item.tickers;
                           const name = item.QuoteListName;
 
                           if (item.id === quoteListId) {
-                            mutate({ variables: { tickers, name } });
+                            const response = await mutate({
+                              variables: { tickers, name }
+                            });
+                            console.log(response);
+                            // @ts-ignore
+                            if (response.data) {
+                              return <div>Stored</div>;
+                            }
                           } else {
                             return null;
                           }
