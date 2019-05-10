@@ -128,8 +128,11 @@ class StoreQuoteListName extends Component {
                       onClick={e => {
                         // @ts-ignore
                         quoteListArray.map(item => {
+                          const tickers = item.tickers;
+                          const name = item.QuoteListName;
+
                           if (item.id === quoteListId) {
-                            return console.log(item, "onClick");
+                            mutate({ variables: { tickers, name } });
                           } else {
                             return null;
                           }
