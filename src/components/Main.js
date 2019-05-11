@@ -1,7 +1,5 @@
 import React from "react";
 import shortid from "shortid";
-// import { gql } from "apollo-boost";
-// import { Mutation } from "react-apollo";
 import ChartLayout from "./ChartLayout";
 import Header from "./Header";
 import QuoteList from "./QuoteList";
@@ -61,19 +59,6 @@ class Main extends React.Component {
     }));
   };
 
-  onSaveQuoteList = (e, id) => {
-    const { items } = this.state;
-    items.map(item => {
-      if (item.id === id) {
-        return true;
-      } else {
-        return null;
-      }
-    });
-
-    // console.log(items);
-  };
-
   render() {
     // console.log(this.state.items);
     const { items } = this.state;
@@ -90,7 +75,6 @@ class Main extends React.Component {
               setTickerForChart={this.onSendQuoteTicker}
               tickerToList={this.onAddTickerToItem}
               addQuoteListName={this.onAddQuoteListNameToItem}
-              saveQuoteList={this.onSaveQuoteList}
               quoteListArray={items}
             />
           ))}

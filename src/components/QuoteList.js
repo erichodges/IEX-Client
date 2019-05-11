@@ -160,7 +160,6 @@ class Quote extends Component {
           item={this.props.item}
           addQuoteListName={this.props.addQuoteListName}
           quoteListDisplayName={this.onSetQuoteListName}
-          saveQuoteList={this.props.saveQuoteList}
           quoteList={tickerList}
           quoteListArray={this.props.quoteListArray}
         />
