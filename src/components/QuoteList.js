@@ -13,7 +13,6 @@ class Quote extends Component {
       loading: false,
       data: [],
       message: "",
-      tickerList: [],
       open: false,
       keyStats: {},
       quoteListName: "Quote List"
@@ -149,16 +148,15 @@ class Quote extends Component {
 
   render() {
     // console.log(this.state.tickerList);
-    const { data, message, quoteListName, tickerList } = this.state;
+    const { data, message, quoteListName } = this.state;
 
-    console.log(tickerList, "TL");
+    console.log(data, "data");
     return (
       <div>
         <StoreQuoteListName
           item={this.props.item}
           addQuoteListName={this.props.addQuoteListName}
           quoteListDisplayName={this.onSetQuoteListName}
-          quoteList={tickerList}
           quoteListArray={this.props.quoteListArray}
         />
         <form
