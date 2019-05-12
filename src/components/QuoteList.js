@@ -20,9 +20,7 @@ class Quote extends Component {
     };
 
     this.onTickerForChart = this.onTickerForChart.bind(this);
-    // this.onKeyPressed = this.onKeyPressed.bind(this);
     this.onSetQuoteListName = this.onSetQuoteListName.bind(this);
-    // this.addQuoteListName = this.addQuoteListName.bind(this);
     this.onAddQuoteListName = this.onAddQuoteListName.bind(this);
   }
 
@@ -153,7 +151,7 @@ class Quote extends Component {
     // console.log(this.state.tickerList);
     const { data, message, quoteListName, tickerList } = this.state;
 
-    console.log(this.props.quoteListArray);
+    console.log(tickerList, "TL");
     return (
       <div>
         <StoreQuoteListName

@@ -71,13 +71,6 @@ class StoreQuoteListName extends Component {
       this.onAddQuoteListName(e);
     }
   }
-  // @ts-ignore
-  onSaveQuoteList(e) {
-    // @ts-ignore
-    // console.log(this.props.item.id);
-    // @ts-ignore
-    this.props.saveQuoteList(e, this.props.item.id, this.state.quoteListName);
-  }
 
   render() {
     // @ts-ignore
