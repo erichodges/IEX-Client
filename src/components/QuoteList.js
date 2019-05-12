@@ -5,7 +5,7 @@ import Modal from "@material-ui/core/Modal";
 import StoreQuoteListName from "../modules/user/StoreQuoteListName";
 
 const url = "https://ws-api.iextrading.com/1.0/last";
-class Quote extends Component {
+class QuoteList extends Component {
   constructor(props) {
     super(props);
 
@@ -273,4 +273,4 @@ class Quote extends Component {
   }
 }
 
-export default Quote;
+export default QuoteList;
