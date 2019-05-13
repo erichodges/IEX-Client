@@ -87,7 +87,6 @@ class StoreQuoteListName extends Component {
     return (
       <Query<MeQuery> query={meQuery}>
         {({ data, loading }) => {
-          console.log(data);
           if (loading) {
             return <div>Loading...</div>;
           }
@@ -96,6 +95,7 @@ class StoreQuoteListName extends Component {
             return <div />;
           }
           if (data!.me!.userName) {
+            console.log(data!.me!);
             return (
               <div>
                 &nbsp;&nbsp;&nbsp;
