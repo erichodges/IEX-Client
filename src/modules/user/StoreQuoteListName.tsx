@@ -14,6 +14,10 @@ const meQuery = gql`
       userName
       email
       id
+      quoteList {
+        tickers
+        name
+      }
     }
   }
 `;
@@ -83,6 +87,7 @@ class StoreQuoteListName extends Component {
     return (
       <Query<MeQuery> query={meQuery}>
         {({ data, loading }) => {
+          console.log(data);
           if (loading) {
             return <div>Loading...</div>;
           }
@@ -99,7 +104,7 @@ class StoreQuoteListName extends Component {
                   ref={this.quoteListName}
                   onKeyPress={this.onKeyPressed}
                   type="text"
-                  placeholder="Name of Quote List"
+                  placeholder="Name the Quote List"
                   className="quoteListNameInput"
                 />
                 &nbsp;

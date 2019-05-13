@@ -6,11 +6,16 @@
 // GraphQL query operation: MeQuery
 // ====================================================
 
+export interface MeQuery_me_quoteList {
+  __typename: "QuoteList";
+  tickers: (string | null)[] | null;
+  name: string | null;
+}
+
 export interface MeQuery_me {
   __typename: "User";
   userName: string | null;
-  email: string;
-  id: string;
+  quoteList: (MeQuery_me_quoteList | null)[] | null;
 }
 
 export interface MeQuery {
