@@ -134,12 +134,6 @@ class StoreQuoteListName extends Component {
                               variables: { tickers, name }
                             });
                             console.log(response);
-                            // @ts-ignore
-                            if (response.data) {
-                              return <div>Stored</div>;
-                            }
-                          } else {
-                            return null;
                           }
                         });
                       }}
