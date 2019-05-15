@@ -150,7 +150,6 @@ class QuoteList extends Component {
     // console.log(this.state.tickerList);
     const { data, message, quoteListName } = this.state;
 
-    console.log(data, "data");
     return (
       <div>
         <StoreQuoteListName

@@ -92,7 +92,7 @@ class StoreQuoteListName extends Component {
           }
 
           if (data!.me! === null) {
-            return <div />;
+            return null;
           }
           if (data!.me!.userName) {
             console.log(data!.me!);
@@ -115,6 +115,7 @@ class StoreQuoteListName extends Component {
                 >
                   Add
                 </button>
+                {console.log(data!.me!.quoteList)}
                 &nbsp;
                 <Mutation<addQuoteList_addQuoteList, addQuoteListVariables>
                   mutation={ADD_QUOTE_LIST}
