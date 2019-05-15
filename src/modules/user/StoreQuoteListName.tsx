@@ -116,6 +116,16 @@ class StoreQuoteListName extends Component {
                   Add
                 </button>
                 {console.log(data!.me!.quoteList)}
+                <select>
+                  // @ts-ignore
+                  {data!.me!.quoteList
+                    ? // @ts-ignore
+                      data!.me!.quoteList.map(item => {
+                        // @ts-ignore
+                        return <option key={item.name}>{item.name}</option>;
+                      })
+                    : "Loading..."}
+                </select>
                 &nbsp;
                 <Mutation<addQuoteList_addQuoteList, addQuoteListVariables>
                   mutation={ADD_QUOTE_LIST}
