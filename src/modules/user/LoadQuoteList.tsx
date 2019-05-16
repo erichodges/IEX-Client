@@ -31,9 +31,9 @@ class LoadQuoteList extends Component<any, State> {
     loading: true
   };
 
-  handleChange(e: any) {
-    this.setState({ value: event!.target!.value });
-  }
+  handleChange = (e: React.FormEvent<HTMLSelectElement>) => {
+    this.setState({ value: e.target.value });
+  };
   // @ts-ignore
 
   // @ts-ignore
