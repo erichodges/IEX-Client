@@ -3,6 +3,7 @@ import socket from "socket.io-client";
 import { getQuote, getKeyStats } from "./Utils";
 import Modal from "@material-ui/core/Modal";
 import StoreQuoteListName from "../modules/user/StoreQuoteListName";
+import LoadQuoteList from "../modules/user/LoadQuoteList";
 
 const url = "https://ws-api.iextrading.com/1.0/last";
 class QuoteList extends Component {
@@ -158,6 +159,8 @@ class QuoteList extends Component {
           quoteListDisplayName={this.onSetQuoteListName}
           quoteListArray={this.props.quoteListArray}
         />
+        <br />
+        <LoadQuoteList />
         <form
           className="ticker-form"
           onSubmit={e => {
