@@ -24,12 +24,15 @@ interface State {
   loading: boolean;
 }
 
-class LoadQuoteList extends Component<State> {
+class LoadQuoteList extends Component<any, State> {
   // @ts-ignore
-  constructor(props) {
-    super(props);
+  state = {
+    value: "Select a Quote List",
+    loading: true
+  };
 
-    this.state = { value: "Select a Quote List" };
+  handleChange(e: any) {
+    this.setState({ value: event!.target!.value });
   }
   // @ts-ignore
 
@@ -49,12 +52,9 @@ class LoadQuoteList extends Component<State> {
           }
           if (data!.me!.quoteList) {
             return (
-              // prettier-ignore
               <div>
-               &nbsp;&nbsp;&nbsp; 
-                <select value={
-                  // @ts-ignore 
-                this.state.value}>
+                &nbsp;&nbsp;&nbsp;
+                <select value={this.state.value} onChange={handleChange}>
                   <option>Select a Quote List</option>
                   // @ts-ignore
                   {data!.me!.quoteList.map(item => {
