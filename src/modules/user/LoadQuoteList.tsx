@@ -31,7 +31,7 @@ class LoadQuoteList extends Component<any, State> {
     loading: true
   };
 
-  handleChange = (e: React.FormEvent<HTMLSelectElement>) => {
+  handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     this.setState({ value: e.target.value });
   };
   // @ts-ignore
@@ -54,7 +54,7 @@ class LoadQuoteList extends Component<any, State> {
             return (
               <div>
                 &nbsp;&nbsp;&nbsp;
-                <select value={this.state.value} onChange={handleChange}>
+                <select value={this.state.value} onChange={this.handleChange}>
                   <option>Select a Quote List</option>
                   // @ts-ignore
                   {data!.me!.quoteList.map(item => {
