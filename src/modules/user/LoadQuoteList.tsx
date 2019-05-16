@@ -19,11 +19,16 @@ const meQuery = gql`
   }
 `;
 
-class LoadQuoteList extends Component {
+interface State {
+  value: string;
+  loading: boolean;
+}
+
+class LoadQuoteList extends Component<State> {
   // @ts-ignore
   constructor(props) {
     super(props);
-    // @ts-ignore
+
     this.state = { value: "Select a Quote List" };
   }
   // @ts-ignore
@@ -44,11 +49,12 @@ class LoadQuoteList extends Component {
           }
           if (data!.me!.quoteList) {
             return (
+              // prettier-ignore
               <div>
-                &nbsp;&nbsp;&nbsp; /* eslint-disable no-alert, no-console */ //
-                @ts-ignore
-                <select value={this.state.value}>
-                  // @ts-ignore
+               &nbsp;&nbsp;&nbsp; 
+                <select value={
+                  // @ts-ignore 
+                this.state.value}>
                   <option>Select a Quote List</option>
                   // @ts-ignore
                   {data!.me!.quoteList.map(item => {
