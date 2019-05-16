@@ -34,9 +34,10 @@ class LoadQuoteList extends Component<any, State> {
   handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     this.setState({ value: e.target.value });
   };
-  // @ts-ignore
 
-  // @ts-ignore
+  handleSubmit = (e: React.FormEvent<HTMLSelectElement>) => {
+    e.preventDefault();
+  };
 
   render() {
     return (
@@ -54,15 +55,20 @@ class LoadQuoteList extends Component<any, State> {
             return (
               <div>
                 &nbsp;&nbsp;&nbsp;
-                <select value={this.state.value} onChange={this.handleChange}>
-                  <option>Select a Quote List</option>
-                  // @ts-ignore
-                  {data!.me!.quoteList.map(item => {
+                <form onSubmit={this.handleSubmit}>
+                  <select value={this.state.value} onChange={this.handleChange}>
+                    <option>Select a Quote List</option>
                     // @ts-ignore
-                    return <option key={item.name}>{item.name}</option>;
-                  })}
-                </select>
-                &nbsp;
+                    {data!.me!.quoteList.map(item => {
+                      // @ts-ignore
+                      return <option key={item.name}>{item.name}</option>;
+                    })}
+                  </select>
+                  &nbsp;
+                  <button type="submit" value="submit">
+                    Load Quote List{" "}
+                  </button>
+                </form>
               </div>
             );
           }
