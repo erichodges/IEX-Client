@@ -24,6 +24,7 @@ class LoadQuoteList extends Component {
   constructor(props) {
     super(props);
     // @ts-ignore
+    this.state = { value: "Select a Quote List" };
   }
   // @ts-ignore
 
@@ -44,9 +45,11 @@ class LoadQuoteList extends Component {
           if (data!.me!.quoteList) {
             return (
               <div>
-                &nbsp;&nbsp;&nbsp;
-                {console.log(data!.me!.quoteList)}
-                <select>
+                &nbsp;&nbsp;&nbsp; /* eslint-disable no-alert, no-console */ //
+                @ts-ignore
+                <select value={this.state.value}>
+                  // @ts-ignore
+                  <option>Select a Quote List</option>
                   // @ts-ignore
                   {data!.me!.quoteList.map(item => {
                     // @ts-ignore
