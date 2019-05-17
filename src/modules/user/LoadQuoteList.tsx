@@ -28,15 +28,17 @@ class LoadQuoteList extends Component<any, State> {
   // @ts-ignore
   state = {
     value: "Select a Quote List",
-    loading: true
+    loading: true,
+    selectedTickerList: []
   };
 
   handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     this.setState({ value: e.target.value });
   };
 
-  handleSubmit = (e: React.FormEvent<HTMLSelectElement>) => {
+  handleSubmit = (e: React.FormEvent<HTMLFormElement>, data: any) => {
     e.preventDefault();
+    console.log(data);
   };
 
   render() {
@@ -54,8 +56,9 @@ class LoadQuoteList extends Component<any, State> {
           if (data!.me!.quoteList) {
             return (
               <div>
-                &nbsp;&nbsp;&nbsp;
-                <form onSubmit={this.handleSubmit}>
+                // @ts-ignore
+                <form onSubmit={this.handleSubmit(data!.me!.quoteList)}>
+                  &nbsp;&nbsp;&nbsp;
                   <select value={this.state.value} onChange={this.handleChange}>
                     <option>Select a Quote List</option>
                     // @ts-ignore

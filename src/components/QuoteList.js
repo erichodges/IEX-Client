@@ -159,7 +159,6 @@ class QuoteList extends Component {
           quoteListDisplayName={this.onSetQuoteListName}
           quoteListArray={this.props.quoteListArray}
         />
-        <br />
         <LoadQuoteList />
         <form
           className="ticker-form"
