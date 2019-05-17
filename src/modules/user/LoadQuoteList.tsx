@@ -22,6 +22,7 @@ const meQuery = gql`
 interface State {
   value: string;
   loading: boolean;
+  quoteLists: [string];
 }
 
 class LoadQuoteList extends Component<any, State> {
@@ -29,16 +30,18 @@ class LoadQuoteList extends Component<any, State> {
   state = {
     value: "Select a Quote List",
     loading: true,
-    selectedTickerList: []
+    selectedTickerList: [],
+    quoteLists: []
   };
 
   handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     this.setState({ value: e.target.value });
   };
 
-  handleSubmit = (e: React.FormEvent<HTMLFormElement>, data: any) => {
+  handleSubmit = (e: React.FormEvent<HTMLFormElement>, quoteList: any) => {
     e.preventDefault();
-    console.log(data);
+    this.setState({ quoteLists: quoteList });
+    console.log(this.state.quoteLists);
   };
 
   render() {
@@ -56,8 +59,7 @@ class LoadQuoteList extends Component<any, State> {
           if (data!.me!.quoteList) {
             return (
               <div>
-                // @ts-ignore
-                <form onSubmit={this.handleSubmit(data!.me!.quoteList)}>
+                <form onSubmit={e => this.handleSubmit(e, data!.me!.quoteList)}>
                   &nbsp;&nbsp;&nbsp;
                   <select value={this.state.value} onChange={this.handleChange}>
                     <option>Select a Quote List</option>
