@@ -41,8 +41,19 @@ class LoadQuoteList extends Component<any, State> {
   handleSubmit = (e: React.FormEvent<HTMLFormElement>, quoteList: any) => {
     e.preventDefault();
     this.setState({ quoteLists: quoteList });
-    console.log(this.state.quoteLists);
   };
+
+  componentDidUpdate() {
+    const { quoteLists } = this.state;
+
+    quoteLists.map(quoteList => {
+      // @ts-ignore
+      if (quoteList.name === this.state.value) {
+        // @ts-ignore
+        console.log(quoteList.tickers, "yo - it worked");
+      }
+    });
+  }
 
   render() {
     return (
