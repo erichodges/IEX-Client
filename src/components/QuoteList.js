@@ -144,6 +144,9 @@ class QuoteList extends Component {
     });
   }
 
+  loadQuoteList(quoteList) {
+    console.log(quotelist);
+  }
   // to search for the quoteList by user:
   // QuoteList.find({ userId: xxx, name: "tech" })
 
@@ -159,7 +162,7 @@ class QuoteList extends Component {
           quoteListDisplayName={this.onSetQuoteListName}
           quoteListArray={this.props.quoteListArray}
         />
-        <LoadQuoteList />
+        <LoadQuoteList loadQuoteList={this.props.loadQuoteList(quoteList)} />
         <form
           className="ticker-form"
           onSubmit={e => {

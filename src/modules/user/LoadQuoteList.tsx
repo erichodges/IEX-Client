@@ -50,7 +50,9 @@ class LoadQuoteList extends Component<any, State> {
       // @ts-ignore
       if (quoteList.name === this.state.value) {
         // @ts-ignore
-        console.log(quoteList.tickers, "yo - it worked");
+        this.props.loadQuoteList(quoteList.tickers);
+        // @ts-ignore
+        console.log(quoteList.tickers, "from componentDidUpdate");
       }
     });
   }
