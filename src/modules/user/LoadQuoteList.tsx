@@ -41,9 +41,7 @@ class LoadQuoteList extends Component<any, State> {
   handleSubmit = (e: React.FormEvent<HTMLFormElement>, quoteList: any) => {
     e.preventDefault();
     this.setState({ quoteLists: quoteList });
-  };
 
-  componentDidUpdate() {
     const { quoteLists } = this.state;
 
     quoteLists.map(quoteList => {
@@ -51,11 +49,23 @@ class LoadQuoteList extends Component<any, State> {
       if (quoteList.name === this.state.value) {
         // @ts-ignore
         this.props.loadQuoteList(quoteList.tickers);
-        // @ts-ignore
-        console.log(quoteList.tickers, "from componentDidUpdate");
       }
     });
-  }
+  };
+
+  // componentDidUpdate() {
+  //   const { quoteLists } = this.state;
+
+  //   quoteLists.map(quoteList => {
+  //     // @ts-ignore
+  //     if (quoteList.name === this.state.value) {
+  //       // @ts-ignore
+  //       this.props.loadQuoteList(quoteList.tickers);
+  //       // @ts-ignore
+  //       console.log(quoteList.tickers, "from componentDidUpdate");
+  //     }
+  //   });
+  // }
 
   render() {
     return (
