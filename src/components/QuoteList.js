@@ -144,24 +144,24 @@ class QuoteList extends Component {
     });
   }
 
-  loadQuoteList(quoteList) {
+  loadQuoteList = quoteList => {
+    this.setState({ data: [] });
     quoteList.forEach(ticker => {
       getQuote(ticker).then(data => {
-        data.latestPrice = data.latestPrice.toFixed(2);
         this.setState({
-          data: [...this.state.data, data]
+          data: [...this.state.data, data],
+          message: ""
         });
-        // this.props.tickerToList(ticker, this.props.item.id);
-        // this.socket.emit("subscribe", ticker);
+        this.props.tickerToList(ticker, this.props.item.id);
+        this.socket.emit("subscribe", ticker);
       });
     });
-  }
+  };
 
   // to search for the quoteList by user:
   // QuoteList.find({ userId: xxx, name: "tech" })
 
   render() {
-    // console.log(this.state.data);
     // console.log(this.state.tickerList);
     const { data, message, quoteListName } = this.state;
 
