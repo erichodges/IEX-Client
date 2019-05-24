@@ -95,7 +95,6 @@ class StoreQuoteListName extends Component {
             return null;
           }
           if (data!.me!.userName) {
-            console.log(data!.me!);
             return (
               <div>
                 &nbsp;&nbsp;&nbsp;
@@ -131,7 +130,12 @@ class StoreQuoteListName extends Component {
 
                           if (item.id === quoteListId) {
                             const response = await mutate({
-                              variables: { tickers, name }
+                              variables: { tickers, name },
+                              refetchQueries: [
+                                {
+                                  query: meQuery
+                                }
+                              ]
                             });
                             console.log(response);
                           }

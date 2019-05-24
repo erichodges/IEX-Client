@@ -48,7 +48,7 @@ class LoadQuoteList extends Component<any, State> {
       // @ts-ignore
       if (quoteList.name === this.state.value) {
         // @ts-ignore
-        this.props.loadQuoteList(quoteList.tickers);
+        this.props.loadQuoteList(quoteList.tickers, quoteList.name);
       }
     });
   };

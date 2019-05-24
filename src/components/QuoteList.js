@@ -144,13 +144,14 @@ class QuoteList extends Component {
     });
   }
 
-  loadQuoteList = quoteList => {
+  loadQuoteList = (quoteList, name) => {
     this.setState({ data: [] });
     quoteList.forEach(ticker => {
       getQuote(ticker).then(data => {
         this.setState({
           data: [...this.state.data, data],
-          message: ""
+          message: "",
+          quoteListName: name
         });
         this.props.tickerToList(ticker, this.props.item.id);
         this.socket.emit("subscribe", ticker);
