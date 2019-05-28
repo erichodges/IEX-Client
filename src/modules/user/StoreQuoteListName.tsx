@@ -91,7 +91,7 @@ class StoreQuoteListName extends Component {
             return <div>Loading...</div>;
           }
 
-          if (data!.me! === null) {
+          if (!data! || !data!.me!) {
             return null;
           }
           if (data!.me!.userName) {
