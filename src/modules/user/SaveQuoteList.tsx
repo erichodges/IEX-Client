@@ -31,7 +31,7 @@ const ADD_QUOTE_LIST = gql`
   }
 `;
 
-class StoreQuoteListName extends Component {
+class SaveQuoteList extends Component {
   // @ts-ignore
   constructor(props) {
     super(props);
@@ -155,4 +155,4 @@ class StoreQuoteListName extends Component {
     );
   }
 }
-export default StoreQuoteListName;
+export default SaveQuoteList;

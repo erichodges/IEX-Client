@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import socket from "socket.io-client";
 import { getQuote, getKeyStats } from "./Utils";
 import Modal from "@material-ui/core/Modal";
-import StoreQuoteListName from "../modules/user/StoreQuoteListName";
+import SaveQuoteList from "../modules/user/SaveQuoteList";
 import LoadQuoteList from "../modules/user/LoadQuoteList";
 
 const url = "https://ws-api.iextrading.com/1.0/last";
@@ -168,7 +168,7 @@ class QuoteList extends Component {
 
     return (
       <div>
-        <StoreQuoteListName
+        <SaveQuoteList
           item={this.props.item}
           addQuoteListName={this.props.addQuoteListName}
           quoteListDisplayName={this.onSetQuoteListName}
