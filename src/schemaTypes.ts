@@ -8,13 +8,16 @@
 
 export interface MeQuery_me_quoteList {
   __typename: "QuoteList";
-  tickers: (string | null)[] | null;
+  id: string | null;
   name: string | null;
+  tickers: (string | null)[] | null;
 }
 
 export interface MeQuery_me {
   __typename: "User";
   userName: string | null;
+  email: string;
+  id: string;
   quoteList: (MeQuery_me_quoteList | null)[] | null;
 }
 
@@ -97,6 +100,31 @@ export interface addQuoteList {
 export interface addQuoteListVariables {
   tickers: (string | null)[];
   name: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: updateQuoteList
+// ====================================================
+
+export interface updateQuoteList_updateQuoteList {
+  __typename: "QuoteList";
+  id: string | null;
+  name: string | null;
+  tickers: (string | null)[] | null;
+}
+
+export interface updateQuoteList {
+  updateQuoteList: updateQuoteList_updateQuoteList;
+}
+
+export interface updateQuoteListVariables {
+  id: string;
+  name: string;
+  tickers: (string | null)[];
 }
 
 /* tslint:disable */

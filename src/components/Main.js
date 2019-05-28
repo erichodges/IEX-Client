@@ -87,6 +87,7 @@ class Main extends React.Component {
 const QuoteListContainer = props => (
   <div>
     &nbsp;&nbsp;<button onClick={props.addChild}>Add Live Quote List</button>
+    <br />
     &nbsp;&nbsp;<div id="children-pane">{props.children}</div>
   </div>
 );

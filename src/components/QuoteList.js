@@ -4,6 +4,7 @@ import { getQuote, getKeyStats } from "./Utils";
 import Modal from "@material-ui/core/Modal";
 import SaveQuoteList from "../modules/user/SaveQuoteList";
 import LoadQuoteList from "../modules/user/LoadQuoteList";
+import UpdateQuoteList from "../modules/user/UpdateQuoteList";
 
 const url = "https://ws-api.iextrading.com/1.0/last";
 class QuoteList extends Component {
@@ -159,9 +160,6 @@ class QuoteList extends Component {
     });
   };
 
-  // to search for the quoteList by user:
-  // QuoteList.find({ userId: xxx, name: "tech" })
-
   render() {
     // console.log(this.state.tickerList);
     const { data, message, quoteListName } = this.state;
@@ -175,6 +173,10 @@ class QuoteList extends Component {
           quoteListArray={this.props.quoteListArray}
         />
         <LoadQuoteList loadQuoteList={this.loadQuoteList} />
+        <UpdateQuoteList
+          item={this.props.item}
+          quoteListArray={this.props.quoteListArray}
+        />
         <form
           className="ticker-form"
           onSubmit={e => {
@@ -281,7 +283,7 @@ class QuoteList extends Component {
             type="button"
             className="delete-btn"
           >
-            Remove All
+            Remove all Tickers
           </button>
         </div>
       </div>
