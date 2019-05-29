@@ -15,8 +15,9 @@ const meQuery = gql`
       email
       id
       quoteList {
-        tickers
+        id
         name
+        tickers
       }
     }
   }

@@ -161,7 +161,7 @@ class QuoteList extends Component {
   };
 
   render() {
-    // console.log(this.state.tickerList);
+    // console.log(this.state.data);
     const { data, message, quoteListName } = this.state;
 
     return (

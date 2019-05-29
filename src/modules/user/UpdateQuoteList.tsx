@@ -24,7 +24,7 @@ const meQuery = gql`
 `;
 
 const UPDATE_QUOTE_LIST = gql`
-  mutation updateQuoteList($id: String!, $name: String!, $tickers: [String]!) {
+  mutation updateQuoteList($id: String!, $name: String, $tickers: [String]!) {
     updateQuoteList(tickers: $tickers, name: $name, id: $id) {
       id
       name
@@ -37,6 +37,7 @@ class UpdateQuoteList extends Component {
   render() {
     // @ts-ignore
     const quoteListArray = this.props.quoteListArray;
+    console.log(quoteListArray);
     // @ts-ignore
     const quoteListId = this.props.item.id;
     // console.log(quoteListArray);
@@ -66,12 +67,12 @@ class UpdateQuoteList extends Component {
                       // @ts-ignore
                       onClick={e => {
                         // @ts-ignore
-                        quoteListArray.map(async item => {
+                        data.me.map(async item => {
                           const tickers = item.tickers;
-                          const name = item.QuoteListName;
+                          const name = item.quoteList.name;
                           const id = item.quoteList.id;
 
-                          if (item.id === quoteListId) {
+                          if (item.id === id) {
                             const response = await mutate({
                               variables: { id, name, tickers },
                               refetchQueries: [

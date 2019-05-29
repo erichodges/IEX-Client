@@ -12,6 +12,7 @@ const meQuery = gql`
       email
       id
       quoteList {
+        id
         tickers
         name
       }
@@ -54,6 +55,7 @@ class LoadQuoteList extends Component<any, State> {
   };
 
   render() {
+    console.log(this.state.quoteLists);
     return (
       // @ts-ignore
       <Query<MeQuery> query={meQuery}>

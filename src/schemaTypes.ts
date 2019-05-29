@@ -123,7 +123,7 @@ export interface updateQuoteList {
 
 export interface updateQuoteListVariables {
   id: string;
-  name: string;
+  name?: string | null;
   tickers: (string | null)[];
 }
 
