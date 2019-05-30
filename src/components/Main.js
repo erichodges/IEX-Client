@@ -59,6 +59,20 @@ class Main extends React.Component {
     }));
   };
 
+  onAddQuoteListIdToItem = (quoteListId, itemId) => {
+    this.setState(prev => ({
+      items: prev.items.map(prevItem => {
+        if (prevItem.id === itemId) {
+          return {
+            ...prevItem,
+            quoteListId: quoteListId
+          };
+        }
+        return prevItem;
+      })
+    }));
+  };
+
   render() {
     // console.log(this.state.items);
     const { items } = this.state;
@@ -76,6 +90,7 @@ class Main extends React.Component {
               tickerToList={this.onAddTickerToItem}
               addQuoteListName={this.onAddQuoteListNameToItem}
               quoteListArray={items}
+              addQuoteListId={this.onAddQuoteListIdToItem}
             />
           ))}
         </QuoteListContainer>

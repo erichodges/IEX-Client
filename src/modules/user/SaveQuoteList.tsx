@@ -47,6 +47,8 @@ class SaveQuoteList extends Component {
     this.onAddQuoteListName = this.onAddQuoteListName.bind(this);
     // @ts-ignore
     this.onKeyPressed = this.onKeyPressed.bind(this);
+    // @ts-ignore
+    this.onAddQuoteListId = this.onAddQuoteListId.bind(this);
   }
   // @ts-ignore
   onAddQuoteListName(e) {
@@ -76,6 +78,12 @@ class SaveQuoteList extends Component {
     if (e.key === "Enter") {
       this.onAddQuoteListName(e);
     }
+  }
+  // @ts-ignore
+  onAddQuoteListId(responseWithQuoteList, itemId) {
+    const quoteListId = responseWithQuoteList.data.addQuoteList.id;
+    // @ts-ignore
+    this.props.addQuoteListId(quoteListId, itemId);
   }
 
   render() {
@@ -139,6 +147,8 @@ class SaveQuoteList extends Component {
                                 }
                               ]
                             });
+                            // @ts-ignore
+                            this.onAddQuoteListId(response, item.id);
                             console.log(item.id, response);
                           }
                         });

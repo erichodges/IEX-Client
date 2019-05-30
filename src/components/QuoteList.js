@@ -171,6 +171,7 @@ class QuoteList extends Component {
           addQuoteListName={this.props.addQuoteListName}
           quoteListDisplayName={this.onSetQuoteListName}
           quoteListArray={this.props.quoteListArray}
+          addQuoteListId={this.props.addQuoteListId}
         />
         <LoadQuoteList loadQuoteList={this.loadQuoteList} />
         <UpdateQuoteList
