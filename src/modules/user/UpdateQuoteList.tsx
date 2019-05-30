@@ -67,12 +67,12 @@ class UpdateQuoteList extends Component {
                       // @ts-ignore
                       onClick={e => {
                         // @ts-ignore
-                        data.me.map(async item => {
+                        quoteListArray.map(async item => {
                           const tickers = item.tickers;
                           const name = item.quoteList.name;
                           const id = item.quoteList.id;
 
-                          if (item.id === id) {
+                          if (item.id === quoteListId) {
                             const response = await mutate({
                               variables: { id, name, tickers },
                               refetchQueries: [
@@ -81,7 +81,7 @@ class UpdateQuoteList extends Component {
                                 }
                               ]
                             });
-                            console.log(response);
+                            console.log(response, item.quoteList.id);
                           }
                         });
                       }}

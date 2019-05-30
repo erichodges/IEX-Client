@@ -91,6 +91,7 @@ export interface addQuoteList_addQuoteList {
   __typename: "QuoteList";
   tickers: (string | null)[] | null;
   name: string | null;
+  id: string | null;
 }
 
 export interface addQuoteList {

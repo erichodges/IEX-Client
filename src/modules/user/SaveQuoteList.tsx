@@ -28,6 +28,7 @@ const ADD_QUOTE_LIST = gql`
     addQuoteList(tickers: $tickers, name: $name) {
       tickers
       name
+      id
     }
   }
 `;
@@ -138,7 +139,7 @@ class SaveQuoteList extends Component {
                                 }
                               ]
                             });
-                            console.log(response);
+                            console.log(item.id, response);
                           }
                         });
                       }}
