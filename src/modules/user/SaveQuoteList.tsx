@@ -149,7 +149,7 @@ class SaveQuoteList extends Component {
                             });
                             // @ts-ignore
                             this.onAddQuoteListId(response, item.id);
-                            console.log(item.id, response);
+                            // console.log(item.id, response);
                           }
                         });
                       }}

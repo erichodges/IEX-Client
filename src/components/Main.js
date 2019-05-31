@@ -21,7 +21,15 @@ class Main extends React.Component {
 
   onAddChild = () => {
     this.setState(prev => ({
-      items: [...prev.items, { id: shortid.generate(), tickers: [] }]
+      items: [
+        ...prev.items,
+        {
+          id: shortid.generate(),
+          tickers: [],
+          name: "",
+          quoteListId: ""
+        }
+      ]
     }));
   };
 
@@ -71,6 +79,7 @@ class Main extends React.Component {
         return prevItem;
       })
     }));
+    console.log("from onAddQuoteListIdToItem");
   };
 
   render() {

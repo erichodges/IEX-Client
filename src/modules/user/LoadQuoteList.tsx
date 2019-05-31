@@ -32,7 +32,8 @@ class LoadQuoteList extends Component<any, State> {
     value: "Select a Quote List",
     loading: true,
     selectedTickerList: [],
-    quoteLists: []
+    quoteLists: [],
+    selectedQuoteList: {}
   };
 
   handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -50,12 +51,29 @@ class LoadQuoteList extends Component<any, State> {
       if (quoteList.name === this.state.value) {
         // @ts-ignore
         this.props.loadQuoteList(quoteList.tickers, quoteList.name);
+        // @ts-ignore
+        this.setState({ selectedQuoteList: quoteList });
       }
     });
   };
-
+  // @ts-ignore
+  addQuoteListId = quoteListArray => {
+    const quoteListId = this.props.item.id;
+    // @ts-ignore
+    const selectedQuoteList = this.state.selectedQuoteList;
+    // @ts-ignore
+    quoteListArray.map(item => {
+      // @ts-ignore
+      if (quoteListId === selectedQuoteList.id) {
+        // @ts-ignore
+        this.props.addQuoteListId(selectedQuoteList.id, quoteListId);
+      }
+    });
+  };
+  //
   render() {
-    console.log(this.state.quoteLists);
+    const quoteListArray = this.props.quoteListArray;
+    console.log(this.state.selectedQuoteList);
     return (
       // @ts-ignore
       <Query<MeQuery> query={meQuery}>
@@ -70,7 +88,12 @@ class LoadQuoteList extends Component<any, State> {
           if (data!.me!.quoteList) {
             return (
               <div>
-                <form onSubmit={e => this.handleSubmit(e, data!.me!.quoteList)}>
+                <form
+                  onSubmit={e => {
+                    this.handleSubmit(e, data!.me!.quoteList);
+                    this.addQuoteListId(quoteListArray);
+                  }}
+                >
                   &nbsp;&nbsp;&nbsp;
                   <select value={this.state.value} onChange={this.handleChange}>
                     <option>Select a Quote List</option>

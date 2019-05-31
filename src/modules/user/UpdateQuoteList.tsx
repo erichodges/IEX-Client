@@ -69,8 +69,8 @@ class UpdateQuoteList extends Component {
                         // @ts-ignore
                         quoteListArray.map(async item => {
                           const tickers = item.tickers;
-                          const name = item.quoteList.name;
-                          const id = item.quoteList.id;
+                          const name = item.quoteListName;
+                          const id = item.quoteListId;
 
                           if (item.id === quoteListId) {
                             const response = await mutate({
