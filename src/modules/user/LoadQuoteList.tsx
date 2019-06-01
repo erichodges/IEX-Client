@@ -58,22 +58,25 @@ class LoadQuoteList extends Component<any, State> {
   };
   // @ts-ignore
   addQuoteListId = quoteListArray => {
-    const quoteListId = this.props.item.id;
+    const itemId = this.props.item.id;
     // @ts-ignore
-    const selectedQuoteList = this.state.selectedQuoteList;
+    const selectedQuoteListId = this.state.selectedQuoteList.id;
     // @ts-ignore
     quoteListArray.map(item => {
       // @ts-ignore
-      if (quoteListId === selectedQuoteList.id) {
+      if (item.id === itemId) {
         // @ts-ignore
-        this.props.addQuoteListId(selectedQuoteList.id, quoteListId);
+        this.props.addQuoteListId(selectedQuoteListId, item.id);
       }
     });
+    // @ts-ignore
+    console.log(quoteListId);
   };
   //
   render() {
     const quoteListArray = this.props.quoteListArray;
-    console.log(this.state.selectedQuoteList);
+    // @ts-ignore
+    console.log(this.state.selectedQuoteList.id);
     return (
       // @ts-ignore
       <Query<MeQuery> query={meQuery}>

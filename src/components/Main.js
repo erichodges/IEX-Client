@@ -67,19 +67,19 @@ class Main extends React.Component {
     }));
   };
 
-  onAddQuoteListIdToItem = (quoteListId, itemId) => {
+  onAddQuoteListIdToItem = (savedQuoteListId, itemId) => {
     this.setState(prev => ({
       items: prev.items.map(prevItem => {
         if (prevItem.id === itemId) {
           return {
             ...prevItem,
-            quoteListId: quoteListId
+            quoteListId: savedQuoteListId
           };
         }
         return prevItem;
       })
     }));
-    console.log("from onAddQuoteListIdToItem");
+    console.log("from onAddQuoteListIdToItem", savedQuoteListId);
   };
 
   render() {
