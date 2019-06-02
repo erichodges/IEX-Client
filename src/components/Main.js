@@ -79,7 +79,7 @@ class Main extends React.Component {
         return prevItem;
       })
     }));
-    console.log("from onAddQuoteListIdToItem", savedQuoteListId);
+    console.log("from onAddQuoteListIdToItem", savedQuoteListId, itemId);
   };
 
   render() {

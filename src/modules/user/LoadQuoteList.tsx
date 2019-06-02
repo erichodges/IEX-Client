@@ -47,12 +47,19 @@ class LoadQuoteList extends Component<any, State> {
     const { quoteLists } = this.state;
 
     quoteLists.map(quoteList => {
+      const itemId = this.props.item.id;
+      // @ts-ignore
+      const selectedQuoteListId = this.state.selectedQuoteList.id;
       // @ts-ignore
       if (quoteList.name === this.state.value) {
         // @ts-ignore
         this.props.loadQuoteList(quoteList.tickers, quoteList.name);
         // @ts-ignore
         this.setState({ selectedQuoteList: quoteList });
+        // @ts-ignore
+        this.props.addQuoteListId(quoteList.id, itemId);
+        // @ts-ignore
+        console.log(this.state.selectedQuoteList, itemId, "from handleSubmit");
       }
     });
   };
@@ -67,10 +74,11 @@ class LoadQuoteList extends Component<any, State> {
       if (item.id === itemId) {
         // @ts-ignore
         this.props.addQuoteListId(selectedQuoteListId, item.id);
+        console.log(selectedQuoteListId, "from addQuoteListId");
       }
     });
     // @ts-ignore
-    console.log(quoteListId);
+    console.log(selectedQuoteListId);
   };
   //
   render() {

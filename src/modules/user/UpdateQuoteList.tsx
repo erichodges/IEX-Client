@@ -81,7 +81,7 @@ class UpdateQuoteList extends Component {
                                 }
                               ]
                             });
-                            console.log(response, item.quoteList.id);
+                            console.log(response, data!.me!);
                           }
                         });
                       }}

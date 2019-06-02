@@ -157,6 +157,7 @@ class QuoteList extends Component {
         this.props.tickerToList(ticker, this.props.item.id);
         this.socket.emit("subscribe", ticker);
       });
+      console.log(quoteList, "from loadQuoteList in QuoteList");
     });
   };
 
