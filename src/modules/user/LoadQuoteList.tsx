@@ -32,7 +32,7 @@ class LoadQuoteList extends Component<any, State> {
     value: "Select a Quote List",
     loading: true,
     selectedTickerList: [],
-    quoteLists: [],
+    QuoteLists: [],
     selectedQuoteList: {}
   };
 
@@ -40,13 +40,14 @@ class LoadQuoteList extends Component<any, State> {
     this.setState({ value: e.target.value });
   };
 
-  handleSubmit = (e: React.FormEvent<HTMLFormElement>, quoteList: any) => {
+  handleSubmit = (e: React.FormEvent<HTMLFormElement>, quoteLists: any) => {
     e.preventDefault();
-    this.setState({ quoteLists: quoteList });
+    // @ts-ignore
+    this.setState({ QuoteLists: quoteLists });
 
-    const { quoteLists } = this.state;
+    const { QuoteLists } = this.state;
 
-    quoteLists.map(quoteList => {
+    QuoteLists.map(quoteList => {
       const itemId = this.props.item.id;
       // @ts-ignore
       const selectedQuoteListId = this.state.selectedQuoteList.id;
@@ -57,34 +58,35 @@ class LoadQuoteList extends Component<any, State> {
         // @ts-ignore
         this.setState({ selectedQuoteList: quoteList });
         // @ts-ignore
-        this.props.addQuoteListId(quoteList.id, itemId, quoteList.name);
+        // this.props.addQuoteListId(quoteList.id, itemId, quoteList.name);
         // @ts-ignore
         console.log(this.state.selectedQuoteList, itemId, "from handleSubmit");
       }
     });
   };
   // @ts-ignore
-  addQuoteListId = quoteListArray => {
-    const itemId = this.props.item.id;
-    // @ts-ignore
-    const selectedQuoteListId = this.state.selectedQuoteList.id;
-    // @ts-ignore
-    quoteListArray.map(item => {
-      // @ts-ignore
-      if (item.id === itemId) {
-        // @ts-ignore
-        this.props.addQuoteListId(selectedQuoteListId, item.id);
-        console.log(selectedQuoteListId, "from addQuoteListId");
-      }
-    });
-    // @ts-ignore
-    console.log(selectedQuoteListId);
-  };
+  // addQuoteListId = quoteListArray => {
+  //   const itemId = this.props.item.id;
+  //   // @ts-ignore
+  //   const selectedQuoteListId = this.state.selectedQuoteList.id;
+  //   // @ts-ignore
+  //   quoteListArray.map(item => {
+  //     // @ts-ignore
+  //     if (item.id === itemId) {
+  //       // @ts-ignore
+  //       this.props.addQuoteListId(selectedQuoteListId, item.id);
+  //       console.log(selectedQuoteListId, "from addQuoteListId");
+  //     }
+  //   });
+  //   // @ts-ignore
+  //   console.log(selectedQuoteListId);
+  // };
   //
   render() {
-    const quoteListArray = this.props.quoteListArray;
+    console.log("from LoadQuoteList", this.props.item);
+    // const quoteListArray = this.props.quoteListArray;
     // @ts-ignore
-    console.log(this.state.selectedQuoteList.id);
+    // console.log(this.state.selectedQuoteList.id);
     return (
       // @ts-ignore
       <Query<MeQuery> query={meQuery}>
@@ -102,7 +104,7 @@ class LoadQuoteList extends Component<any, State> {
                 <form
                   onSubmit={e => {
                     this.handleSubmit(e, data!.me!.quoteList);
-                    this.addQuoteListId(quoteListArray);
+                    // this.addQuoteListId(quoteListArray);
                   }}
                 >
                   &nbsp;&nbsp;&nbsp;

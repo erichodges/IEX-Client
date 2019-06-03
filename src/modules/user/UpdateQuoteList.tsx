@@ -37,7 +37,7 @@ class UpdateQuoteList extends Component {
   render() {
     // @ts-ignore
     const quoteListArray = this.props.quoteListArray;
-    console.log(quoteListArray);
+    // console.log(quoteListArray);
     // @ts-ignore
     const quoteListId = this.props.item.id;
     // console.log(quoteListArray);

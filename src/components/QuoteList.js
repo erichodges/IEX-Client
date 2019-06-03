@@ -162,7 +162,7 @@ class QuoteList extends Component {
   };
 
   render() {
-    // console.log("data", this.state.data);
+    // console.log("from QuoteList", this.props.quoteListArray);
     const { data, message, quoteListName } = this.state;
 
     return (
@@ -176,7 +176,6 @@ class QuoteList extends Component {
         />
         <LoadQuoteList
           item={this.props.item}
-          quoteListArray={this.props.quoteListArray}
           loadQuoteList={this.loadQuoteList}
           addQuoteListId={this.props.addQuoteListId}
         />

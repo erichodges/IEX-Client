@@ -59,7 +59,7 @@ class Main extends React.Component {
         if (prevItem.id === id) {
           return {
             ...prevItem,
-            QuoteListName: quoteListName
+            name: quoteListName
           };
         }
         return prevItem;
@@ -84,7 +84,7 @@ class Main extends React.Component {
   };
 
   render() {
-    // console.log(this.state.items, "from Main.js");
+    console.log(this.state.items, "from Main.js");
     const { items } = this.state;
     return (
       <div>
