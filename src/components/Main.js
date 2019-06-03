@@ -68,10 +68,6 @@ class Main extends React.Component {
   };
 
   onAddQuoteListIdToItem = (savedQuoteListId, itemId, name) => {
-    // A different pattern to try
-    // let items = this.state.items.map
-    // (item => item.id === itemId ? ({...item, quoteListId}) : i)
-    // this.setState({items})
     this.setState(prev => ({
       items: prev.items.map(prevItem => {
         if (prevItem.id === itemId) {
