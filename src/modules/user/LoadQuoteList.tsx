@@ -57,7 +57,7 @@ class LoadQuoteList extends Component<any, State> {
         // @ts-ignore
         this.setState({ selectedQuoteList: quoteList });
         // @ts-ignore
-        this.props.addQuoteListId(quoteList.id, itemId);
+        this.props.addQuoteListId(quoteList.id, itemId, quoteList.name);
         // @ts-ignore
         console.log(this.state.selectedQuoteList, itemId, "from handleSubmit");
       }
