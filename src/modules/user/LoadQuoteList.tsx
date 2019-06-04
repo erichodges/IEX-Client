@@ -49,7 +49,10 @@ class LoadQuoteList extends Component<any, State> {
       quoteList => quoteList.name === this.state.quoteListName
     );
     if (list) {
-      this.props.loadQuoteList(this.props.item.id, list.tickers, list.name);
+      this.props.loadQuoteList(list.tickers, list.name);
+      console.log(list);
+      //savedQuoteListId, itemId, name
+      this.props.addQuoteListId(list.id, this.props.item.id, list.name);
     }
   };
 
