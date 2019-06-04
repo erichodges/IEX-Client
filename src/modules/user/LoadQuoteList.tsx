@@ -29,7 +29,7 @@ interface State {
 class LoadQuoteList extends Component<any, State> {
   // @ts-ignore
   state = {
-    value: "Select a Quote List",
+    quoteListName: "Select a Quote List",
     loading: true,
     selectedTickerList: [],
     QuoteLists: [],
@@ -37,7 +37,8 @@ class LoadQuoteList extends Component<any, State> {
   };
 
   handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    this.setState({ value: e.target.value });
+    // @ts-ignore
+    this.setState({ quoteListName: e.target.value });
   };
 
   handleSubmit = (e: React.FormEvent<HTMLFormElement>, quoteLists: any) => {
@@ -47,43 +48,42 @@ class LoadQuoteList extends Component<any, State> {
 
     const { QuoteLists } = this.state;
 
-    QuoteLists.map(quoteList => {
-      const itemId = this.props.item.id;
+    QuoteLists.forEach(quoteList => {
+      // const itemId = this.props.item.id;
       // @ts-ignore
-      const selectedQuoteListId = this.state.selectedQuoteList.id;
-      // @ts-ignore
-      if (quoteList.name === this.state.value) {
+      if (quoteList.name === this.state.quoteListName) {
         // @ts-ignore
-        this.props.loadQuoteList(quoteList.tickers, quoteList.name);
+
         // @ts-ignore
         this.setState({ selectedQuoteList: quoteList });
         // @ts-ignore
+        this.props.loadQuoteList(quoteList.tickers, quoteList.name);
+        // @ts-ignore
+        //const selectedQuoteListId = this.state.selectedQuoteList.id;
         // this.props.addQuoteListId(quoteList.id, itemId, quoteList.name);
         // @ts-ignore
-        console.log(this.state.selectedQuoteList, itemId, "from handleSubmit");
       }
     });
   };
+
+  //////////////////
+  // this function needs to be worked on so that it's not using quoteListArray
+  // this.state.item.id is the correct quoteList to update in Main.js
+
   // @ts-ignore
-  // addQuoteListId = quoteListArray => {
-  //   const itemId = this.props.item.id;
-  //   // @ts-ignore
-  //   const selectedQuoteListId = this.state.selectedQuoteList.id;
-  //   // @ts-ignore
-  //   quoteListArray.map(item => {
-  //     // @ts-ignore
-  //     if (item.id === itemId) {
-  //       // @ts-ignore
-  //       this.props.addQuoteListId(selectedQuoteListId, item.id);
-  //       console.log(selectedQuoteListId, "from addQuoteListId");
-  //     }
-  //   });
-  //   // @ts-ignore
-  //   console.log(selectedQuoteListId);
-  // };
-  //
+  addQuoteListId = () => {
+    console.log("from addQuoteListId:", this.state.selectedQuoteList);
+    const itemId = this.props.item.id;
+    // @ts-ignore
+    const selectedQuoteListId = this.state.selectedQuoteList.id;
+
+    // @ts-ignore
+    this.props.addQuoteListId(selectedQuoteListId, itemId);
+    console.log(selectedQuoteListId, "from addQuoteListId");
+    console.log("from addQuoteListId function", this.state.QuoteLists);
+  };
+
   render() {
-    console.log("from LoadQuoteList", this.props.item);
     // const quoteListArray = this.props.quoteListArray;
     // @ts-ignore
     // console.log(this.state.selectedQuoteList.id);
@@ -104,11 +104,14 @@ class LoadQuoteList extends Component<any, State> {
                 <form
                   onSubmit={e => {
                     this.handleSubmit(e, data!.me!.quoteList);
-                    // this.addQuoteListId(quoteListArray);
+                    this.addQuoteListId();
                   }}
                 >
                   &nbsp;&nbsp;&nbsp;
-                  <select value={this.state.value} onChange={this.handleChange}>
+                  <select
+                    value={this.state.quoteListName}
+                    onChange={this.handleChange}
+                  >
                     <option>Select a Quote List</option>
                     // @ts-ignore
                     {data!.me!.quoteList.map(item => {
