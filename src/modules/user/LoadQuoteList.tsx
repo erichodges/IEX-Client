@@ -44,26 +44,13 @@ class LoadQuoteList extends Component<any, State> {
   handleSubmit = (e: React.FormEvent<HTMLFormElement>, quoteLists: any) => {
     e.preventDefault();
     // @ts-ignore
-    this.setState({ QuoteLists: quoteLists });
-
-    const { QuoteLists } = this.state;
-
-    QuoteLists.forEach(quoteList => {
-      // const itemId = this.props.item.id;
+    const list = quoteLists.find(
       // @ts-ignore
-      if (quoteList.name === this.state.quoteListName) {
-        // @ts-ignore
-
-        // @ts-ignore
-        this.setState({ selectedQuoteList: quoteList });
-        // @ts-ignore
-        this.props.loadQuoteList(quoteList.tickers, quoteList.name);
-        // @ts-ignore
-        //const selectedQuoteListId = this.state.selectedQuoteList.id;
-        // this.props.addQuoteListId(quoteList.id, itemId, quoteList.name);
-        // @ts-ignore
-      }
-    });
+      quoteList => quoteList.name === this.state.quoteListName
+    );
+    if (list) {
+      this.props.loadQuoteList(this.props.item.id, list.tickers, list.name);
+    }
   };
 
   //////////////////
@@ -71,17 +58,17 @@ class LoadQuoteList extends Component<any, State> {
   // this.state.item.id is the correct quoteList to update in Main.js
 
   // @ts-ignore
-  addQuoteListId = () => {
-    console.log("from addQuoteListId:", this.state.selectedQuoteList);
-    const itemId = this.props.item.id;
-    // @ts-ignore
-    const selectedQuoteListId = this.state.selectedQuoteList.id;
+  // addQuoteListId = () => {
+  //   console.log("from addQuoteListId:", this.state.selectedQuoteList);
+  //   const itemId = this.props.item.id;
+  //   // @ts-ignore
+  //   const selectedQuoteListId = this.state.selectedQuoteList.id;
 
-    // @ts-ignore
-    this.props.addQuoteListId(selectedQuoteListId, itemId);
-    console.log(selectedQuoteListId, "from addQuoteListId");
-    console.log("from addQuoteListId function", this.state.QuoteLists);
-  };
+  //   // @ts-ignore
+  //   this.props.addQuoteListId(selectedQuoteListId, itemId);
+  //   console.log(selectedQuoteListId, "from addQuoteListId");
+  //   console.log("from addQuoteListId function", this.state.QuoteLists);
+  // };
 
   render() {
     // const quoteListArray = this.props.quoteListArray;
@@ -104,7 +91,7 @@ class LoadQuoteList extends Component<any, State> {
                 <form
                   onSubmit={e => {
                     this.handleSubmit(e, data!.me!.quoteList);
-                    this.addQuoteListId();
+                    // this.addQuoteListId();
                   }}
                 >
                   &nbsp;&nbsp;&nbsp;
