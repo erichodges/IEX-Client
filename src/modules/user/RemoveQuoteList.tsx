@@ -4,8 +4,8 @@ import { gql } from "apollo-boost";
 import { Mutation } from "react-apollo";
 import {
   MeQuery,
-  updateQuoteList_updateQuoteList,
-  updateQuoteListVariables
+  removeQuoteList_removeQuoteList,
+  removeQuoteListVariables
 } from "../../schemaTypes";
 
 const meQuery = gql`
@@ -23,17 +23,14 @@ const meQuery = gql`
   }
 `;
 
-const UPDATE_QUOTE_LIST = gql`
-  mutation updateQuoteList($id: String!, $name: String, $tickers: [String]!) {
-    updateQuoteList(tickers: $tickers, name: $name, id: $id) {
-      id
-      name
-      tickers
+const REMOVE_QUOTE_LIST = gql`
+  mutation removeQuoteList($id: String!) {
+    removeQuoteList(id: $id) {
     }
   }
 `;
 
-class UpdateQuoteList extends Component {
+class RemoveQuoteList extends Component {
   render() {
     // @ts-ignore
     const quoteListArray = this.props.quoteListArray;
@@ -56,10 +53,10 @@ class UpdateQuoteList extends Component {
               <div>
                 &nbsp;&nbsp;&nbsp;
                 <Mutation<
-                  updateQuoteList_updateQuoteList,
-                  updateQuoteListVariables
+                  removeQuoteList_removeQuoteList,
+                  removeQuoteListVariables
                 >
-                  mutation={UPDATE_QUOTE_LIST}
+                  mutation={REMOVE_QUOTE_LIST}
                 >
                   {mutate => (
                     // @ts-ignore
@@ -68,20 +65,18 @@ class UpdateQuoteList extends Component {
                       onClick={e => {
                         // @ts-ignore
                         quoteListArray.map(async item => {
-                          const tickers = item.tickers;
-                          const name = item.name;
                           const id = item.quoteListId;
 
                           if (item.id === quoteListId) {
                             const response = await mutate({
-                              variables: { id, name, tickers }
+                              variables: { id }
                             });
                             console.log(response, data!.me!);
                           }
                         });
                       }}
                     >
-                      Update Quote List
+                      Delete Quote List
                     </button>
                   )}
                 </Mutation>
@@ -94,4 +89,4 @@ class UpdateQuoteList extends Component {
     );
   }
 }
-export default UpdateQuoteList;
+export default RemoveQuoteList;

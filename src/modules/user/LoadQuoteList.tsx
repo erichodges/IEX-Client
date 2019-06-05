@@ -51,27 +51,9 @@ class LoadQuoteList extends Component<any, State> {
     if (list) {
       this.props.loadQuoteList(list.tickers, list.name);
       console.log(list);
-      //savedQuoteListId, itemId, name
       this.props.addQuoteListId(list.id, this.props.item.id, list.name);
     }
   };
-
-  //////////////////
-  // this function needs to be worked on so that it's not using quoteListArray
-  // this.state.item.id is the correct quoteList to update in Main.js
-
-  // @ts-ignore
-  // addQuoteListId = () => {
-  //   console.log("from addQuoteListId:", this.state.selectedQuoteList);
-  //   const itemId = this.props.item.id;
-  //   // @ts-ignore
-  //   const selectedQuoteListId = this.state.selectedQuoteList.id;
-
-  //   // @ts-ignore
-  //   this.props.addQuoteListId(selectedQuoteListId, itemId);
-  //   console.log(selectedQuoteListId, "from addQuoteListId");
-  //   console.log("from addQuoteListId function", this.state.QuoteLists);
-  // };
 
   render() {
     // const quoteListArray = this.props.quoteListArray;

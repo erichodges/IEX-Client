@@ -45,7 +45,7 @@ class Main extends React.Component {
         if (prevItem.id === id) {
           return {
             ...prevItem,
-            tickers: [...prevItem.tickers, ticker]
+            tickers: Array.from(new Set([...prevItem.tickers, ticker]))
           };
         }
         return prevItem;

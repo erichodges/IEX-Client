@@ -5,6 +5,7 @@ import Modal from "@material-ui/core/Modal";
 import SaveQuoteList from "../modules/user/SaveQuoteList";
 import LoadQuoteList from "../modules/user/LoadQuoteList";
 import UpdateQuoteList from "../modules/user/UpdateQuoteList";
+import RemoveQuoteList from "../modules/user/RemoveQuoteList";
 
 const url = "https://ws-api.iextrading.com/1.0/last";
 class QuoteList extends Component {
@@ -180,6 +181,10 @@ class QuoteList extends Component {
           addQuoteListId={this.props.addQuoteListId}
         />
         <UpdateQuoteList
+          item={this.props.item}
+          quoteListArray={this.props.quoteListArray}
+        />
+        <RemoveQuoteList
           item={this.props.item}
           quoteListArray={this.props.quoteListArray}
         />
