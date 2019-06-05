@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
 import { Mutation } from "react-apollo";
-import {
-  MeQuery,
-  removeQuoteList_removeQuoteList,
-  removeQuoteListVariables
-} from "../../schemaTypes";
+// import {
+//   MeQuery,
+//   removeQuoteList_removeQuoteList,
+//   removeQuoteListVariables
+// } from "../../schemaTypes";
 
 const meQuery = gql`
   query MeQuery {
@@ -52,12 +52,7 @@ class RemoveQuoteList extends Component {
             return (
               <div>
                 &nbsp;&nbsp;&nbsp;
-                <Mutation<
-                  removeQuoteList_removeQuoteList,
-                  removeQuoteListVariables
-                >
-                  mutation={REMOVE_QUOTE_LIST}
-                >
+                <Mutation<> mutation={REMOVE_QUOTE_LIST}>
                   {mutate => (
                     // @ts-ignore
                     <button
