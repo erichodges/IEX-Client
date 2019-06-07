@@ -2,11 +2,7 @@ import React, { Component } from "react";
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
 import { Mutation } from "react-apollo";
-import {
-  MeQuery,
-  removeQuoteList_removeQuoteList,
-  QuoteListVariables
-} from "../../schemaTypes";
+// import { MeQuery } from "../../schemaTypes";
 
 const meQuery = gql`
   query MeQuery {
@@ -25,8 +21,7 @@ const meQuery = gql`
 
 const REMOVE_QUOTE_LIST = gql`
   mutation removeQuoteList($id: String!) {
-    removeQuoteList(id: $id) {
-    }
+    removeQuoteList(id: $id)
   }
 `;
 
@@ -39,25 +34,20 @@ class RemoveQuoteList extends Component {
     const quoteListId = this.props.item.id;
     // console.log(quoteListArray);
     return (
-      <Query<MeQuery> query={meQuery}>
+      <Query query={meQuery}>
         {({ data, loading }) => {
           if (loading) {
             return <div>Loading...</div>;
           }
 
-          if (!data! || !data!.me!) {
+          if (!data || !data.me) {
             return null;
           }
-          if (data!.me!.userName) {
+          if (data.me.userName) {
             return (
               <div>
                 &nbsp;&nbsp;&nbsp;
-                <Mutation<
-                  removeQuoteList_removeQuoteList,
-                  removeQuoteListVariables
-                >
-                  mutation={REMOVE_QUOTE_LIST}
-                >
+                <Mutation mutation={REMOVE_QUOTE_LIST}>
                   {mutate => (
                     // @ts-ignore
                     <button
@@ -69,9 +59,14 @@ class RemoveQuoteList extends Component {
 
                           if (item.id === quoteListId) {
                             const response = await mutate({
-                              variables: { id }
+                              variables: { id },
+                              refetchQueries: [
+                                {
+                                  query: meQuery
+                                }
+                              ]
                             });
-                            console.log(response, data!.me!);
+                            console.log(response, data.me);
                           }
                         });
                       }}
