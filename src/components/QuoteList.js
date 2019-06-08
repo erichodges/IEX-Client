@@ -113,12 +113,12 @@ class QuoteList extends Component {
     });
   }
 
-  deleteAll(data) {
+  deleteAll = data => {
     this.setState({
       data: [],
       message: ""
     });
-  }
+  };
 
   onAddQuoteListName(e) {
     this.props.addQuoteListName(
@@ -187,6 +187,7 @@ class QuoteList extends Component {
         <RemoveQuoteList
           item={this.props.item}
           quoteListArray={this.props.quoteListArray}
+          deleteTickers={this.deleteAll(data)}
         />
         <form
           className="ticker-form"

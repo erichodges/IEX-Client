@@ -66,6 +66,7 @@ class RemoveQuoteList extends Component {
                                 }
                               ]
                             });
+                            this.props.deleteTickers();
                             console.log(response, data.me);
                           }
                         });
