@@ -80,10 +80,10 @@ class SaveQuoteList extends Component {
     }
   }
   // @ts-ignore
-  onAddQuoteListId(responseWithQuoteList, itemId) {
+  onAddQuoteListId(responseWithQuoteList, itemId, name) {
     const quoteListId = responseWithQuoteList.data.addQuoteList.id;
     // @ts-ignore
-    this.props.addQuoteListId(quoteListId, itemId);
+    this.props.addQuoteListId(quoteListId, itemId, name);
   }
 
   render() {
@@ -136,7 +136,7 @@ class SaveQuoteList extends Component {
                         // @ts-ignore
                         quoteListArray.map(async item => {
                           const tickers = item.tickers;
-                          const name = item.QuoteListName;
+                          const name = item.name;
 
                           if (item.id === quoteListId) {
                             const response = await mutate({
@@ -148,8 +148,8 @@ class SaveQuoteList extends Component {
                               ]
                             });
                             // @ts-ignore
-                            this.onAddQuoteListId(response, item.id);
-                            // console.log(item.id, response);
+                            this.onAddQuoteListId(response, item.id, name);
+                            console.log("From: SaveQuoteList", response);
                           }
                         });
                       }}

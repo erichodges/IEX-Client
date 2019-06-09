@@ -169,6 +169,7 @@ class QuoteList extends Component {
 
     return (
       <div>
+        &nbsp;&nbsp;&nbsp; {quoteListName} &nbsp; &nbsp;
         <SaveQuoteList
           item={this.props.item}
           addQuoteListName={this.props.addQuoteListName}
@@ -198,10 +199,8 @@ class QuoteList extends Component {
           ref={input => (this.tickerForm = input)}
         >
           <div className="form-group">
-            <label className="inputLabel" htmlFor="newTickerInput">
-              &nbsp;&nbsp;&nbsp; {quoteListName} &nbsp; &nbsp;
-            </label>
-            &nbsp;
+            <label className="inputLabel" htmlFor="newTickerInput" />
+            &nbsp;&nbsp;&nbsp;&nbsp;
             <input
               ref={input => (this.newTicker = input)}
               type="text"
@@ -221,6 +220,7 @@ class QuoteList extends Component {
         </form>
         &nbsp;&nbsp;
         {message !== "" && <p className="message-text"> {message}</p>}
+        &nbsp;&nbsp;&nbsp;
         <table>
           <thead />
           <tbody>
