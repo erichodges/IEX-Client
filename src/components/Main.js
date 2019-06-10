@@ -53,6 +53,20 @@ class Main extends React.Component {
     }));
   };
 
+  onRemoveTickerFromQuoteList = (ticker, id) => {
+    this.setState(prev => ({
+      items: prev.items.map(prevItem => {
+        if (prevItem.id === id) {
+          return {
+            ...prevItem,
+            tickers: prevItem.filter(prevItem => prevItem.tickers !== ticker)
+          };
+        }
+        return prevItem;
+      })
+    }));
+  };
+
   onAddQuoteListNameToItem = (quoteListName, id) => {
     this.setState(prev => ({
       items: prev.items.map(prevItem => {
@@ -101,6 +115,7 @@ class Main extends React.Component {
               addQuoteListName={this.onAddQuoteListNameToItem}
               quoteListArray={items}
               addQuoteListId={this.onAddQuoteListIdToItem}
+              removeTicker={this.onRemoveTickerFromQuoteList}
             />
           ))}
         </QuoteListContainer>

@@ -111,6 +111,7 @@ class QuoteList extends Component {
       data: [...newData],
       message: ""
     });
+    this.props.removeTicker(item.symbol, this.props.item.id);
   }
 
   deleteAll = data => {
@@ -164,7 +165,7 @@ class QuoteList extends Component {
   };
 
   render() {
-    // console.log("from QuoteList", this.props.quoteListArray);
+    console.log("from QuoteList", this.state.data);
     const { data, message, quoteListName } = this.state;
 
     return (
