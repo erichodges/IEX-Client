@@ -59,7 +59,7 @@ class Main extends React.Component {
         if (prevItem.id === id) {
           return {
             ...prevItem,
-            tickers: prevItem.filter(prevItem => prevItem.tickers !== ticker)
+            tickers: prevItem.tickers.filter(tickers => tickers !== ticker)
           };
         }
         return prevItem;
