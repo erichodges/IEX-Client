@@ -156,13 +156,11 @@ class CandleStickChartWithMA extends React.Component {
         >
           <XAxis axisAt="bottom" orient="bottom" />
           <YAxis axisAt="right" orient="right" ticks={5} />
-
           <MouseCoordinateY
             at="right"
             orient="right"
             displayFormat={format(".2f")}
           />
-
           <CandlestickSeries {...candlesAppearance} clip={false} />
           <LineSeries yAccessor={sma5.accessor()} stroke={sma5.stroke()} />
           <LineSeries yAccessor={sma50.accessor()} stroke={sma50.stroke()} />
@@ -181,9 +179,11 @@ class CandleStickChartWithMA extends React.Component {
             yAccessor={ema21.accessor()}
             fill={ema21.stroke()}
           />
-
-          <OHLCTooltip origin={[-40, 0]} />
+          // textFill and labelFill control the colors!!
+          <OHLCTooltip origin={[-40, 0]} textFill="#fff" labelFill="#fff" />
           <MovingAverageTooltip
+            textFill="#fff"
+            labelFill="#fff"
             onClick={e => console.log(e)}
             origin={[-38, 15]}
             options={[
