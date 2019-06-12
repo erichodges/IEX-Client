@@ -88,7 +88,7 @@ class SaveQuoteList extends Component {
 
   render() {
     // @ts-ignore
-    const { quoteListName } = this.state;
+    // const { quoteListName } = this.state;
     // @ts-ignore
     const quoteListArray = this.props.quoteListArray;
     // @ts-ignore

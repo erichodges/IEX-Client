@@ -179,7 +179,7 @@ class CandleStickChartWithMA extends React.Component {
             yAccessor={ema21.accessor()}
             fill={ema21.stroke()}
           />
-          // textFill and labelFill control the colors!!
+          {/*/ textFill and labelFill control the colors!! */}
           <OHLCTooltip origin={[-40, 0]} textFill="#fff" labelFill="#fff" />
           <MovingAverageTooltip
             textFill="#fff"
