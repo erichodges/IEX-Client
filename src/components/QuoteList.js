@@ -6,6 +6,7 @@ import SaveQuoteList from "../modules/user/SaveQuoteList";
 import LoadQuoteList from "../modules/user/LoadQuoteList";
 import UpdateQuoteList from "../modules/user/UpdateQuoteList";
 import RemoveQuoteList from "../modules/user/RemoveQuoteList";
+import ModalDetails from "./ModalDetails";
 
 const url = "https://ws-api.iextrading.com/1.0/last";
 class QuoteList extends Component {
@@ -58,6 +59,12 @@ class QuoteList extends Component {
   handleOpen = () => {
     this.setState({
       open: true
+    });
+  };
+
+  handleClose = () => {
+    this.setState({
+      open: false
     });
   };
 
@@ -137,9 +144,9 @@ class QuoteList extends Component {
     this.props.setTickerForChart(currentTarget.value);
   }
 
-  handleExtraZeros(item) {
-    const trim = item / 1000000000;
-    return trim.toFixed(2);
+  handleExtraZeros(marketcap) {
+    const trimDigits = marketcap / 1000000000;
+    return trimDigits.toFixed(2);
   }
 
   onSetQuoteListName(quoteListName) {
@@ -260,6 +267,11 @@ class QuoteList extends Component {
                         <p>{this.state.keyStats.latestEPS}</p>
                       </div>
                     </Modal>
+                    <ModalDetails
+                      symbol={item.symbol}
+                      keyStats={this.state.keyStats}
+                      marketcap={this.state.keyStats.marketcap}
+                    />
                   </td>
                   <td>
                     <button
