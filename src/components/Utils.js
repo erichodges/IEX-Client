@@ -25,7 +25,7 @@ export async function getQuote(ticker) {
 }
 
 export async function getCompanyName(ticker) {
-  const endpoint = `https://cloud.iexapis.com/1.0/stock/${ticker}/company?token=process.env.REACT_APP_IEX_API`;
+  const endpoint = `https://cloud.iexapis.com/v1/stock/${ticker}/company?token=process.env.REACT_APP_IEX_API`;
   return await axios.get(endpoint).then(res => {
     return res.data.companyName;
   });

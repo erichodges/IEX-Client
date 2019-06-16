@@ -4,7 +4,7 @@ import ApolloClient, { InMemoryCache } from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 import "./index.css";
 import Routes from "./Routes";
-require("dotenv").config();
+// require("dotenv").config();
 // import registerServiceWorker from "./registerServiceWorker";
 // import App from "./App";
 

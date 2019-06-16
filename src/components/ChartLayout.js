@@ -135,6 +135,7 @@ class ChartLayout extends Component {
   }
 
   render() {
+    console.log(process.env.REACT_APP_IEX_API);
     return (
       <div>
         <ChartTicker
