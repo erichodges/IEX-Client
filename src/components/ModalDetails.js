@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Modal from "@material-ui/core/Modal";
@@ -24,16 +24,11 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const handleExtraZeros = item => {
-  const trim = item / 1000000000;
-  return trim.toFixed(2);
-};
-
-function DetailsModal() {
+function DetailsModal(props) {
   const [open, setOpen] = React.useState(false);
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
-  const [keyStats] = React.useState({});
+  const [keyStats, setKeyStats] = React.useState({});
 
   const handleOpen = () => {
     setOpen(true);
@@ -42,14 +37,25 @@ function DetailsModal() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleExtraZeros = item => {
+    const trim = item / 1000000000;
+    return trim.toFixed(2);
+  };
+
+  const getStats = symbol => {
+    getKeyStats(symbol).then(data => {
+      setKeyStats(data);
+      handleOpen();
+      console.log(keyStats);
+    });
+  };
+
   const classes = useStyles();
-  console.log(this.props.symbol);
 
   return (
     <div>
-      <Button onClick={(handleOpen, this.getKeyStats(() => this.props.symbol))}>
-        Details
-      </Button>
+      <Button onClick={(handleOpen, getStats(props.symbol))}>Details</Button>
       <Modal
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
@@ -59,7 +65,7 @@ function DetailsModal() {
         <div style={modalStyle} className={classes.paper}>
           <Typography>
             <div>
-              <h3>{handleExtraZeros(() => this.props.keyStats.marketcap)} B</h3>
+              <h3>{handleExtraZeros(() => keyStats.marketcap)} B</h3>
             </div>
           </Typography>
         </div>
