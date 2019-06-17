@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Modal from "@material-ui/core/Modal";
@@ -25,10 +25,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function DetailsModal(props) {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   // getModalStyle is not a pure function, we roll the style only on the first render
-  const [modalStyle] = React.useState(getModalStyle);
-  const [keyStats, setKeyStats] = React.useState({});
+  const [modalStyle] = useState(getModalStyle);
+  const [keyStats, setKeyStats] = useState({});
 
   const handleOpen = () => {
     setOpen(true);
@@ -52,7 +52,7 @@ function DetailsModal(props) {
   };
 
   const classes = useStyles();
-
+  // (handleOpen, getStats(props.symbol))
   return (
     <div>
       <Button onClick={(handleOpen, getStats(props.symbol))}>Details</Button>
