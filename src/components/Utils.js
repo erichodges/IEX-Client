@@ -33,7 +33,7 @@ export async function getCompanyName(ticker) {
 }
 
 export async function getKeyStats(ticker) {
-  const endpoint = `https://sandbox.iexapis.com/stable/stock/${ticker}/stats`;
+  const endpoint = `https://sandbox.iexapis.com/stable/stock/${ticker}/stats?token=${API_Token}`;
   return await axios.get(endpoint).then(res => {
     return res.data;
   });

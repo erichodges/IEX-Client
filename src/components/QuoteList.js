@@ -260,11 +260,9 @@ class QuoteList extends Component {
                       onClose={this.handleClose}
                     >
                       <div>
-                        <h3>
-                          {this.handleExtraZeros(this.state.keyStats.marketcap)}{" "}
-                          B
-                        </h3>
-                        <p>{this.state.keyStats.latestEPS}</p>
+                        {this.handleExtraZeros(this.state.keyStats.marketcap)} B
+                        &nbsp;
+                        {this.state.keyStats.latestEPS}
                       </div>
                     </Modal>
                     <ModalDetails

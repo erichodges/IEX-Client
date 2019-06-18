@@ -47,7 +47,7 @@ function DetailsModal(props) {
     getKeyStats(symbol).then(data => {
       setKeyStats(data);
       handleOpen();
-      console.log(keyStats);
+      console.log("Key Stats:", keyStats, data);
     });
   };
 
@@ -55,7 +55,7 @@ function DetailsModal(props) {
   // (handleOpen, getStats(props.symbol))
   return (
     <div>
-      <Button onClick={(handleOpen, getStats(props.symbol))}>Details</Button>
+      <Button onClick={() => getStats(props.symbol)}>Details</Button>
       <Modal
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
@@ -64,9 +64,7 @@ function DetailsModal(props) {
       >
         <div style={modalStyle} className={classes.paper}>
           <Typography>
-            <div>
-              <h3>{handleExtraZeros(() => keyStats.marketcap)} B</h3>
-            </div>
+            {handleExtraZeros(() => keyStats.marketcap)} &nbsp; B
           </Typography>
         </div>
       </Modal>
