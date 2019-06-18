@@ -38,8 +38,8 @@ function DetailsModal(props) {
     setOpen(false);
   };
 
-  const handleExtraZeros = item => {
-    const trim = item / 1000000000;
+  const handleExtraZeros = num => {
+    const trim = num / 1000000000;
     return trim.toFixed(2);
   };
 
@@ -47,10 +47,9 @@ function DetailsModal(props) {
     getKeyStats(symbol).then(data => {
       setKeyStats(data);
       handleOpen();
-      console.log("Key Stats:", keyStats, data);
     });
   };
-
+  console.log("Key Stats:", keyStats);
   const classes = useStyles();
   // (handleOpen, getStats(props.symbol))
   return (
@@ -64,7 +63,7 @@ function DetailsModal(props) {
       >
         <div style={modalStyle} className={classes.paper}>
           <Typography>
-            {handleExtraZeros(() => keyStats.marketcap)} &nbsp; B
+            {handleExtraZeros(keyStats.marketcap)} &nbsp; B
           </Typography>
         </div>
       </Modal>
