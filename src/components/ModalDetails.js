@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function DetailsModal(props) {
+const DetailsModal = props => {
   const [open, setOpen] = useState(false);
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = useState(getModalStyle);
@@ -164,6 +164,6 @@ function DetailsModal(props) {
       </Modal>
     </div>
   );
-}
+};
 
 export default DetailsModal;
