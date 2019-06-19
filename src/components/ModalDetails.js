@@ -138,7 +138,7 @@ const DetailsModal = props => {
                 <TableCell>
                   <b>TTM Dividend</b>
                 </TableCell>
-                <TableCell align="right">{keyStats.ttmDividendRate}</TableCell>
+                <TableCell align="right">{keyStats.ttmDividendRate}%</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>

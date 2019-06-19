@@ -6,6 +6,28 @@ import LoadQuoteList from "../modules/user/LoadQuoteList";
 import UpdateQuoteList from "../modules/user/UpdateQuoteList";
 import RemoveQuoteList from "../modules/user/RemoveQuoteList";
 import ModalDetails from "./ModalDetails";
+import { makeStyles } from "@material-ui/core/styles";
+import Table from "@material-ui/core/Table";
+import TableHead from "@material-ui/core/TableHead";
+import TableBody from "@material-ui/core/TableBody";
+import TableRow from "@material-ui/core/TableRow";
+import TableCell from "@material-ui/core/TableCell";
+import Paper from "@material-ui/core/Paper";
+
+const classes = makeStyles(theme => ({
+  root: {
+    width: 500
+  },
+  paper: {
+    marginTop: theme.spacing(3),
+    width: 500,
+    overflowX: "auto",
+    marginBottom: theme.spacing(4)
+  },
+  table: {
+    width: 500
+  }
+}));
 
 const url = "https://ws-api.iextrading.com/1.0/last";
 class QuoteList extends Component {
@@ -210,55 +232,59 @@ class QuoteList extends Component {
         &nbsp;&nbsp;
         {message !== "" && <p className="message-text"> {message}</p>}
         &nbsp;&nbsp;&nbsp;
-        <table>
-          <thead />
-          <tbody>
-            {data.map(item => {
-              return (
-                <tr key={item.symbol}>
-                  <td>
-                    &nbsp;&nbsp;{item.symbol} &nbsp; &nbsp; &nbsp;&nbsp;
-                    {item.latestPrice} &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
-                    {item.change} &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
-                    {item.changePercent.toFixed(2)} % &nbsp; &nbsp; &nbsp;
-                    &nbsp;&nbsp;{item.companyName}
-                  </td>
-                  <td>
-                    <ModalDetails
-                      symbol={item.symbol}
-                      keyStats={this.state.keyStats}
-                      marketcap={this.state.keyStats.marketcap}
-                    />
-                  </td>
-                  <td>
-                    <button
-                      onClick={this.onTickerForChart}
-                      value={item.symbol}
-                      type="button"
-                      className="chart-btn"
-                    >
-                      Chart
-                    </button>
-                  </td>
-                  <td>
-                    <button
-                      onClick={e => {
-                        this.removeItem(item);
-                      }}
-                      type="button"
-                      className="remove-btn"
-                    >
-                      x
-                    </button>
-                  </td>
+        <div className={classes.root}>
+          <Paper className={classes.paper}>
+            <Table className={classes.table} size="small">
+              <TableHead />
+              <TableBody>
+                {data.map(item => {
+                  return (
+                    <TableRow key={item.symbol}>
+                      <TableCell align="left">{item.symbol}</TableCell>
+                      <TableCell align="right">{item.latestPrice}</TableCell>
+                      <TableCell align="right">{item.change}</TableCell>
+                      <TableCell align="right">
+                        {item.changePercent.toFixed(2)} %{" "}
+                      </TableCell>
+                      <TableCell align="right">{item.companyName}</TableCell>
+                      <TableCell>
+                        <ModalDetails
+                          symbol={item.symbol}
+                          keyStats={this.state.keyStats}
+                          marketcap={this.state.keyStats.marketcap}
+                        />
+                      </TableCell>
+                      <TableCell>
+                        <button
+                          onClick={this.onTickerForChart}
+                          value={item.symbol}
+                          type="button"
+                          className="chart-btn"
+                        >
+                          Chart
+                        </button>
+                      </TableCell>
+                      <TableCell>
+                        <button
+                          onClick={e => {
+                            this.removeItem(item);
+                          }}
+                          type="button"
+                          className="remove-btn"
+                        >
+                          x
+                        </button>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+                <tr>
+                  <td />
                 </tr>
-              );
-            })}
-            <tr>
-              <td />
-            </tr>
-          </tbody>
-        </table>
+              </TableBody>
+            </Table>
+          </Paper>
+        </div>
         <div>
           &nbsp;&nbsp;&nbsp;
           <button
