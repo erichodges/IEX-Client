@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
+// import Typography from "@material-ui/core/Typography";
 import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
 import Table from "@material-ui/core/Table";
@@ -70,96 +70,90 @@ const DetailsModal = props => {
         onClose={handleClose}
       >
         <div style={modalStyle} className={classes.paper}>
-          <Typography>
-            <Table className={classes.table}>
-              <TableBody>
-                <TableRow>
-                  <TableCell>
-                    <b>Company</b>
-                  </TableCell>
-                  <TableCell align="right">{keyStats.companyName}</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <b>Market Cap</b>
-                  </TableCell>
-                  <TableCell align="right">
-                    {handleExtraZeros(keyStats.marketcap)} B
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <b>EPS</b>
-                  </TableCell>
-                  <TableCell align="right">{keyStats.ttmEPS}</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <b>PE</b>
-                  </TableCell>
-                  <TableCell align="right">{keyStats.peRatio}</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <b>Float</b>
-                  </TableCell>
-                  <TableCell align="right">
-                    <NumberFormat
-                      value={keyStats.float}
-                      displayType={"text"}
-                      thousandSeparator={true}
-                    />
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <b>Shares Outstanding</b>
-                  </TableCell>
-                  <TableCell align="right">
-                    <NumberFormat
-                      value={keyStats.sharesOutstanding}
-                      displayType={"text"}
-                      thousandSeparator={true}
-                    />
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <b>Employees</b>
-                  </TableCell>
-                  <TableCell align="right">
-                    <NumberFormat
-                      value={keyStats.employees}
-                      displayType={"text"}
-                      thousandSeparator={true}
-                    />
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <b>TTM Dividend</b>
-                  </TableCell>
-                  <TableCell align="right">
-                    {keyStats.ttmDividendRate}
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <b>Next Dividend</b>
-                  </TableCell>
-                  <TableCell align="right">
-                    {keyStats.nextDividendDate}
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <b>Ex Dividend</b>
-                  </TableCell>
-                  <TableCell align="right">{keyStats.exDividendDate}</TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </Typography>
+          <Table className={classes.table}>
+            <TableBody>
+              <TableRow>
+                <TableCell>
+                  <b>Company</b>
+                </TableCell>
+                <TableCell align="right">{keyStats.companyName}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>
+                  <b>Market Cap</b>
+                </TableCell>
+                <TableCell align="right">
+                  {handleExtraZeros(keyStats.marketcap)} B
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>
+                  <b>EPS</b>
+                </TableCell>
+                <TableCell align="right">{keyStats.ttmEPS}%</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>
+                  <b>PE</b>
+                </TableCell>
+                <TableCell align="right">{keyStats.peRatio}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>
+                  <b>Float</b>
+                </TableCell>
+                <TableCell align="right">
+                  <NumberFormat
+                    value={keyStats.float}
+                    displayType={"text"}
+                    thousandSeparator={true}
+                  />
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>
+                  <b>Shares Outstanding</b>
+                </TableCell>
+                <TableCell align="right">
+                  <NumberFormat
+                    value={keyStats.sharesOutstanding}
+                    displayType={"text"}
+                    thousandSeparator={true}
+                  />
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>
+                  <b>Employees</b>
+                </TableCell>
+                <TableCell align="right">
+                  <NumberFormat
+                    value={keyStats.employees}
+                    displayType={"text"}
+                    thousandSeparator={true}
+                  />
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>
+                  <b>TTM Dividend</b>
+                </TableCell>
+                <TableCell align="right">{keyStats.ttmDividendRate}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>
+                  <b>Next Dividend</b>
+                </TableCell>
+                <TableCell align="right">{keyStats.nextDividendDate}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>
+                  <b>Ex Dividend</b>
+                </TableCell>
+                <TableCell align="right">{keyStats.exDividendDate}</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
         </div>
       </Modal>
     </div>
