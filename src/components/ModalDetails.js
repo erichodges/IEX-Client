@@ -3,6 +3,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
+import Table from "@material-ui/core/Table";
+import TableRow from "@material-ui/core/TableRow";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import NumberFormat from "react-number-format";
 import { getKeyStats } from "./Utils";
 
 function getModalStyle() {
@@ -21,6 +26,9 @@ const useStyles = makeStyles(theme => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(4),
     outline: "none"
+  },
+  table: {
+    width: 350
   }
 }));
 
@@ -63,7 +71,94 @@ function DetailsModal(props) {
       >
         <div style={modalStyle} className={classes.paper}>
           <Typography>
-            {handleExtraZeros(keyStats.marketcap)} &nbsp; B
+            <Table className={classes.table}>
+              <TableBody>
+                <TableRow>
+                  <TableCell>
+                    <b>Company</b>
+                  </TableCell>
+                  <TableCell align="right">{keyStats.companyName}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>
+                    <b>Market Cap</b>
+                  </TableCell>
+                  <TableCell align="right">
+                    {handleExtraZeros(keyStats.marketcap)} B
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>
+                    <b>EPS</b>
+                  </TableCell>
+                  <TableCell align="right">{keyStats.ttmEPS}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>
+                    <b>PE</b>
+                  </TableCell>
+                  <TableCell align="right">{keyStats.peRatio}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>
+                    <b>Float</b>
+                  </TableCell>
+                  <TableCell align="right">
+                    <NumberFormat
+                      value={keyStats.float}
+                      displayType={"text"}
+                      thousandSeparator={true}
+                    />
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>
+                    <b>Shares Outstanding</b>
+                  </TableCell>
+                  <TableCell align="right">
+                    <NumberFormat
+                      value={keyStats.sharesOutstanding}
+                      displayType={"text"}
+                      thousandSeparator={true}
+                    />
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>
+                    <b>Employees</b>
+                  </TableCell>
+                  <TableCell align="right">
+                    <NumberFormat
+                      value={keyStats.employees}
+                      displayType={"text"}
+                      thousandSeparator={true}
+                    />
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>
+                    <b>TTM Dividend</b>
+                  </TableCell>
+                  <TableCell align="right">
+                    {keyStats.ttmDividendRate}
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>
+                    <b>Next Dividend</b>
+                  </TableCell>
+                  <TableCell align="right">
+                    {keyStats.nextDividendDate}
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>
+                    <b>Ex Dividend</b>
+                  </TableCell>
+                  <TableCell align="right">{keyStats.exDividendDate}</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
           </Typography>
         </div>
       </Modal>

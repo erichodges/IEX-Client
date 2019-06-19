@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import socket from "socket.io-client";
 import { getQuote, getKeyStats } from "./Utils";
-import Modal from "@material-ui/core/Modal";
 import SaveQuoteList from "../modules/user/SaveQuoteList";
 import LoadQuoteList from "../modules/user/LoadQuoteList";
 import UpdateQuoteList from "../modules/user/UpdateQuoteList";
@@ -56,18 +55,6 @@ class QuoteList extends Component {
     this.socket = null;
   }
 
-  handleOpen = () => {
-    this.setState({
-      open: true
-    });
-  };
-
-  handleClose = () => {
-    this.setState({
-      open: false
-    });
-  };
-
   getStats(symbol) {
     getKeyStats(symbol).then(data => {
       this.setState({
@@ -76,12 +63,6 @@ class QuoteList extends Component {
       // console.log(this.state.keyStats);
     });
   }
-
-  handleClose = () => {
-    this.setState({
-      open: false
-    });
-  };
 
   getStockData(e) {
     e.preventDefault();
@@ -243,28 +224,6 @@ class QuoteList extends Component {
                     &nbsp;&nbsp;{item.companyName}
                   </td>
                   <td>
-                    <button
-                      onClick={() => {
-                        this.handleOpen();
-                        this.getStats(item.symbol);
-                      }}
-                      type="button"
-                      className="toDetails-btn"
-                    >
-                      Details
-                    </button>
-                    <Modal
-                      arialabelledby="simple-modal-title"
-                      ariadescribedby="simple-modal-description"
-                      open={this.state.open}
-                      onClose={this.handleClose}
-                    >
-                      <div>
-                        {this.handleExtraZeros(this.state.keyStats.marketcap)} B
-                        &nbsp;
-                        {this.state.keyStats.latestEPS}
-                      </div>
-                    </Modal>
                     <ModalDetails
                       symbol={item.symbol}
                       keyStats={this.state.keyStats}
