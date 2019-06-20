@@ -7,7 +7,7 @@ import UpdateQuoteList from "../modules/user/UpdateQuoteList";
 import RemoveQuoteList from "../modules/user/RemoveQuoteList";
 import ModalDetails from "./ModalDetails";
 import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/styles";
+import { styled } from "@material-ui/styles";
 import Table from "@material-ui/core/Table";
 import TableHead from "@material-ui/core/TableHead";
 import TableBody from "@material-ui/core/TableBody";
@@ -16,26 +16,26 @@ import TableCell from "@material-ui/core/TableCell";
 import Paper from "@material-ui/core/Paper";
 import DeleteIcon from "@material-ui/icons/Delete";
 
-const classes = makeStyles(theme => ({
+const classes = styled(Table)({
   root: {
     width: 500,
-    color: theme.palette.text.primary
+    color: "blue"
   },
   paper: {
-    marginTop: theme.spacing(3),
+    marginTop: 3,
     width: 500,
     overflowX: "auto",
-    marginBottom: theme.spacing(4)
+    marginBottom: 4
   },
   table: {
     width: 500
   },
   icon: {
-    margin: theme.spacing(0),
+    margin: 0,
     fontSize: 24,
     borderColor: "#fff"
   }
-}));
+});
 
 const url = "https://ws-api.iextrading.com/1.0/last";
 class QuoteList extends Component {
