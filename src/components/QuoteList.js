@@ -7,7 +7,7 @@ import UpdateQuoteList from "../modules/user/UpdateQuoteList";
 import RemoveQuoteList from "../modules/user/RemoveQuoteList";
 import ModalDetails from "./ModalDetails";
 import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/styles";
 import Table from "@material-ui/core/Table";
 import TableHead from "@material-ui/core/TableHead";
 import TableBody from "@material-ui/core/TableBody";
@@ -243,7 +243,15 @@ class QuoteList extends Component {
         <div className={classes.root}>
           <Paper className={classes.paper}>
             <Table className={classes.table} size="small">
-              <TableHead />
+              <TableHead>
+                <TableRow>
+                  <TableCell align="left">Ticker</TableCell>
+                  <TableCell align="right">Price</TableCell>
+                  <TableCell align="right">Change</TableCell>
+                  <TableCell align="right">% Change</TableCell>
+                  <TableCell align="right">Name</TableCell>
+                </TableRow>
+              </TableHead>
               <TableBody>
                 {data.map(item => {
                   return (
@@ -255,7 +263,7 @@ class QuoteList extends Component {
                         {item.changePercent.toFixed(2)} %{" "}
                       </TableCell>
                       <TableCell align="right">{item.companyName}</TableCell>
-                      <TableCell>
+                      <TableCell align="right">
                         <ModalDetails
                           symbol={item.symbol}
                           keyStats={this.state.keyStats}
