@@ -6,6 +6,7 @@ import LoadQuoteList from "../modules/user/LoadQuoteList";
 import UpdateQuoteList from "../modules/user/UpdateQuoteList";
 import RemoveQuoteList from "../modules/user/RemoveQuoteList";
 import ModalDetails from "./ModalDetails";
+import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableHead from "@material-ui/core/TableHead";
@@ -13,10 +14,12 @@ import TableBody from "@material-ui/core/TableBody";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import Paper from "@material-ui/core/Paper";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 const classes = makeStyles(theme => ({
   root: {
-    width: 500
+    width: 500,
+    color: theme.palette.text.primary
   },
   paper: {
     marginTop: theme.spacing(3),
@@ -26,6 +29,11 @@ const classes = makeStyles(theme => ({
   },
   table: {
     width: 500
+  },
+  icon: {
+    margin: theme.spacing(0),
+    fontSize: 24,
+    borderColor: "#fff"
   }
 }));
 
@@ -255,14 +263,15 @@ class QuoteList extends Component {
                         />
                       </TableCell>
                       <TableCell>
-                        <button
+                        <Button
+                          align="right"
                           onClick={this.onTickerForChart}
                           value={item.symbol}
                           type="button"
                           className="chart-btn"
                         >
                           Chart
-                        </button>
+                        </Button>
                       </TableCell>
                       <TableCell>
                         <button
@@ -272,7 +281,7 @@ class QuoteList extends Component {
                           type="button"
                           className="remove-btn"
                         >
-                          x
+                          <DeleteIcon className={classes.icon} />
                         </button>
                       </TableCell>
                     </TableRow>

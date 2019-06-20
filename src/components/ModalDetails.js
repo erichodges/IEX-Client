@@ -20,8 +20,8 @@ function getModalStyle() {
 const useStyles = makeStyles(theme => ({
   paper: {
     position: "absolute",
-    width: "80vw",
-    height: "80vh",
+    width: "35vw",
+    height: "55vh",
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing(4),
@@ -64,6 +64,7 @@ const DetailsModal = props => {
     <div>
       <Button onClick={() => getStats(props.symbol)}>Details</Button>
       <Modal
+        align="right"
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
         open={open}
