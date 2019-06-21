@@ -20,7 +20,7 @@ function getModalStyle() {
 const useStyles = makeStyles(theme => ({
   paper: {
     position: "absolute",
-    width: "35vw",
+    width: "40vw",
     height: "55vh",
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
     outline: "none"
   },
   table: {
-    width: 350
+    width: 400
   }
 }));
 
@@ -57,7 +57,6 @@ const DetailsModal = props => {
       handleOpen();
     });
   };
-  console.log("Key Stats:", keyStats);
   const classes = useStyles();
   // (handleOpen, getStats(props.symbol))
   return (
