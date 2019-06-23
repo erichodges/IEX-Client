@@ -8,6 +8,7 @@ import RemoveQuoteList from "../modules/user/RemoveQuoteList";
 import ModalDetails from "./ModalDetails";
 import Button from "@material-ui/core/Button";
 import { styled } from "@material-ui/styles";
+import Container from "@material-ui/core/Container";
 import Table from "@material-ui/core/Table";
 import TableHead from "@material-ui/core/TableHead";
 import TableBody from "@material-ui/core/TableBody";
@@ -16,24 +17,26 @@ import TableCell from "@material-ui/core/TableCell";
 import Paper from "@material-ui/core/Paper";
 import DeleteIcon from "@material-ui/icons/Delete";
 
-const classes = styled(Table)({
+const CustomTable = styled(Table)({
   root: {
-    width: 500,
+    width: 400,
     color: "blue"
   },
   paper: {
-    marginTop: 3,
-    width: 500,
+    marginTop: 0,
+    width: 400,
     overflowX: "auto",
-    marginBottom: 4
+    marginBottom: 0
   },
   table: {
-    width: 500
+    width: 400,
+    background: "#000"
   },
   icon: {
     margin: 0,
     fontSize: 24,
-    borderColor: "#fff"
+    color: "green",
+    borderColor: "#000"
   }
 });
 
@@ -63,7 +66,6 @@ class QuoteList extends Component {
 
     this.socket.on("connect", () => {
       // console.log(socket.connected);
-      // this.socket.emit("subscribe", "IBM");
     });
     this.socket.on("message", message => {
       const msg = JSON.parse(message);
@@ -240,68 +242,70 @@ class QuoteList extends Component {
         &nbsp;&nbsp;
         {message !== "" && <p className="message-text"> {message}</p>}
         &nbsp;&nbsp;&nbsp;
-        <div className={classes.root}>
-          <Paper className={classes.paper}>
-            <Table className={classes.table} size="small">
-              <TableHead>
-                <TableRow>
-                  <TableCell align="left">Ticker</TableCell>
-                  <TableCell align="right">Price</TableCell>
-                  <TableCell align="right">Change</TableCell>
-                  <TableCell align="right">% Change</TableCell>
-                  <TableCell align="right">Name</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {data.map(item => {
-                  return (
-                    <TableRow key={item.symbol}>
-                      <TableCell align="left">{item.symbol}</TableCell>
-                      <TableCell align="right">{item.latestPrice}</TableCell>
-                      <TableCell align="right">{item.change}</TableCell>
-                      <TableCell align="right">
-                        {item.changePercent.toFixed(2)} %{" "}
-                      </TableCell>
-                      <TableCell align="right">{item.companyName}</TableCell>
-                      <TableCell align="right">
-                        <ModalDetails
-                          symbol={item.symbol}
-                          keyStats={this.state.keyStats}
-                          marketcap={this.state.keyStats.marketcap}
-                        />
-                      </TableCell>
-                      <TableCell>
-                        <Button
-                          align="right"
-                          onClick={this.onTickerForChart}
-                          value={item.symbol}
-                          type="button"
-                          className="chart-btn"
-                        >
-                          Chart
-                        </Button>
-                      </TableCell>
-                      <TableCell>
-                        <button
-                          onClick={e => {
-                            this.removeItem(item);
-                          }}
-                          type="button"
-                          className="remove-btn"
-                        >
-                          <DeleteIcon className={classes.icon} />
-                        </button>
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
-                <tr>
-                  <td />
-                </tr>
-              </TableBody>
-            </Table>
-          </Paper>
-        </div>
+        <Container maxWidth="md">
+          <div className={CustomTable.root}>
+            <Paper className={CustomTable.paper}>
+              <CustomTable className={CustomTable.table} size="small">
+                <TableHead>
+                  <TableRow>
+                    <TableCell align="left">Ticker</TableCell>
+                    <TableCell align="right">Price</TableCell>
+                    <TableCell align="right">Change</TableCell>
+                    <TableCell align="right">% Change</TableCell>
+                    <TableCell align="right">Name</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {data.map(item => {
+                    return (
+                      <TableRow key={item.symbol}>
+                        <TableCell align="left">{item.symbol}</TableCell>
+                        <TableCell align="right">{item.latestPrice}</TableCell>
+                        <TableCell align="right">{item.change}</TableCell>
+                        <TableCell align="right">
+                          {item.changePercent.toFixed(2)} %{" "}
+                        </TableCell>
+                        <TableCell align="right">{item.companyName}</TableCell>
+                        <TableCell align="right">
+                          <ModalDetails
+                            symbol={item.symbol}
+                            keyStats={this.state.keyStats}
+                            marketcap={this.state.keyStats.marketcap}
+                          />
+                        </TableCell>
+                        <TableCell>
+                          <Button
+                            align="right"
+                            onClick={this.onTickerForChart}
+                            value={item.symbol}
+                            type="button"
+                            className="chart-btn"
+                          >
+                            Chart
+                          </Button>
+                        </TableCell>
+                        <TableCell>
+                          <button
+                            onClick={e => {
+                              this.removeItem(item);
+                            }}
+                            type="button"
+                            className="remove-btn"
+                          >
+                            <DeleteIcon className={CustomTable.icon} />
+                          </button>
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
+                  <tr>
+                    <td />
+                  </tr>
+                </TableBody>
+              </CustomTable>
+            </Paper>
+          </div>
+        </Container>
         <div>
           &nbsp;&nbsp;&nbsp;
           <button
