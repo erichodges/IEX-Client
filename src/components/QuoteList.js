@@ -1,11 +1,5 @@
 import React, { Component } from "react";
 import socket from "socket.io-client";
-import { getQuote, getKeyStats } from "./Utils";
-import SaveQuoteList from "../modules/user/SaveQuoteList";
-import LoadQuoteList from "../modules/user/LoadQuoteList";
-import UpdateQuoteList from "../modules/user/UpdateQuoteList";
-import RemoveQuoteList from "../modules/user/RemoveQuoteList";
-import ModalKeyStats from "./ModalKeyStats";
 import Button from "@material-ui/core/Button";
 import { styled } from "@material-ui/styles";
 import Container from "@material-ui/core/Container";
@@ -16,6 +10,14 @@ import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import Paper from "@material-ui/core/Paper";
 import DeleteIcon from "@material-ui/icons/Delete";
+
+import { getQuote, getKeyStats } from "./Utils";
+import SaveQuoteList from "../modules/user/SaveQuoteList";
+import LoadQuoteList from "../modules/user/LoadQuoteList";
+import UpdateQuoteList from "../modules/user/UpdateQuoteList";
+import RemoveQuoteList from "../modules/user/RemoveQuoteList";
+import ModalKeyStats from "./ModalKeyStats";
+import QuoteListTable from "./QuoteListTable";
 
 const Delete = styled(DeleteIcon)({
   fill: "blue !important",
@@ -248,6 +250,8 @@ class QuoteList extends Component {
         </form>
         &nbsp;&nbsp;
         {message !== "" && <p className="message-text"> {message}</p>}
+        &nbsp;&nbsp;&nbsp;
+        <QuoteListTable data={data} />
         &nbsp;&nbsp;&nbsp;
         <Container maxWidth="md">
           <div className={CustomTable.root}>
