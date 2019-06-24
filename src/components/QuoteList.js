@@ -5,7 +5,7 @@ import SaveQuoteList from "../modules/user/SaveQuoteList";
 import LoadQuoteList from "../modules/user/LoadQuoteList";
 import UpdateQuoteList from "../modules/user/UpdateQuoteList";
 import RemoveQuoteList from "../modules/user/RemoveQuoteList";
-import ModalDetails from "./ModalDetails";
+import ModalKeyStats from "./ModalKeyStats";
 import Button from "@material-ui/core/Button";
 import { styled } from "@material-ui/styles";
 import Container from "@material-ui/core/Container";
@@ -17,6 +17,12 @@ import TableCell from "@material-ui/core/TableCell";
 import Paper from "@material-ui/core/Paper";
 import DeleteIcon from "@material-ui/icons/Delete";
 
+const Delete = styled(DeleteIcon)({
+  fill: "blue !important",
+  background: "#fff !important",
+  cursor: "pointer",
+  padding: "none !important"
+});
 const CustomTable = styled(Table)({
   root: {
     width: 400,
@@ -33,6 +39,7 @@ const CustomTable = styled(Table)({
     background: "#000"
   },
   icon: {
+    fill: "blue !important",
     margin: 0,
     fontSize: 24,
     color: "green",
@@ -253,6 +260,9 @@ class QuoteList extends Component {
                     <TableCell align="right">Change</TableCell>
                     <TableCell align="right">% Change</TableCell>
                     <TableCell align="right">Name</TableCell>
+                    <TableCell align="right">Detials</TableCell>
+                    <TableCell align="right">Chart</TableCell>
+                    <TableCell align="right">Delete</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -267,7 +277,7 @@ class QuoteList extends Component {
                         </TableCell>
                         <TableCell align="right">{item.companyName}</TableCell>
                         <TableCell align="right">
-                          <ModalDetails
+                          <ModalKeyStats
                             symbol={item.symbol}
                             keyStats={this.state.keyStats}
                             marketcap={this.state.keyStats.marketcap}
@@ -285,15 +295,12 @@ class QuoteList extends Component {
                           </Button>
                         </TableCell>
                         <TableCell>
-                          <button
+                          <Delete
+                            align="right"
                             onClick={e => {
                               this.removeItem(item);
                             }}
-                            type="button"
-                            className="remove-btn"
-                          >
-                            <DeleteIcon className={CustomTable.icon} />
-                          </button>
+                          />
                         </TableCell>
                       </TableRow>
                     );
@@ -306,16 +313,10 @@ class QuoteList extends Component {
             </Paper>
           </div>
         </Container>
-        <div>
-          &nbsp;&nbsp;&nbsp;
-          <button
-            onClick={e => this.deleteAll(data)}
-            type="button"
-            className="delete-btn"
-          >
-            Remove all Tickers
-          </button>
-        </div>
+        <br />
+        <br />
+        <br />
+        <br />
       </div>
     );
   }

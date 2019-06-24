@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const DetailsModal = props => {
+const ModalKeyStats = props => {
   const [open, setOpen] = useState(false);
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = useState(getModalStyle);
@@ -65,7 +65,9 @@ const DetailsModal = props => {
   // (handleOpen, getStats(props.symbol))
   return (
     <div>
-      <Button onClick={() => getStats(props.symbol)}>Details</Button>
+      <Button onClick={() => getStats(props.symbol)} align="right">
+        Details
+      </Button>
       <Modal
         align="right"
         aria-labelledby="simple-modal-title"
@@ -170,4 +172,4 @@ const DetailsModal = props => {
   );
 };
 
-export default DetailsModal;
+export default ModalKeyStats;
