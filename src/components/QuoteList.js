@@ -129,7 +129,7 @@ class QuoteList extends Component {
     this.tickerForm.reset();
   }
 
-  removeItem(item) {
+  removeItem = item => {
     const newData = this.state.data.filter(data => {
       return data !== item;
     });
@@ -138,7 +138,7 @@ class QuoteList extends Component {
       message: ""
     });
     this.props.removeTicker(item.symbol, this.props.item.id);
-  }
+  };
 
   deleteAll = data => {
     this.setState({
