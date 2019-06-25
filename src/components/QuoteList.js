@@ -27,8 +27,7 @@ const Delete = styled(DeleteIcon)({
 });
 const CustomTable = styled(Table)({
   root: {
-    width: 400,
-    color: "blue"
+    width: 400
   },
   paper: {
     marginTop: 0,
@@ -41,10 +40,8 @@ const CustomTable = styled(Table)({
     background: "#000"
   },
   icon: {
-    fill: "blue !important",
     margin: 0,
     fontSize: 24,
-    color: "green",
     borderColor: "#000"
   }
 });
@@ -255,66 +252,64 @@ class QuoteList extends Component {
         &nbsp;&nbsp;&nbsp;
         <Container maxWidth="md">
           <div className={CustomTable.root}>
-            <Paper className={CustomTable.paper}>
-              <CustomTable className={CustomTable.table} size="small">
-                <TableHead>
-                  <TableRow>
-                    <TableCell align="left">Ticker</TableCell>
-                    <TableCell align="right">Price</TableCell>
-                    <TableCell align="right">Change</TableCell>
-                    <TableCell align="right">% Change</TableCell>
-                    <TableCell align="right">Name</TableCell>
-                    <TableCell align="right">Detials</TableCell>
-                    <TableCell align="right">Chart</TableCell>
-                    <TableCell align="right">Delete</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {data.map(item => {
-                    return (
-                      <TableRow key={item.symbol}>
-                        <TableCell align="left">{item.symbol}</TableCell>
-                        <TableCell align="right">{item.latestPrice}</TableCell>
-                        <TableCell align="right">{item.change}</TableCell>
-                        <TableCell align="right">
-                          {item.changePercent.toFixed(2)} %{" "}
-                        </TableCell>
-                        <TableCell align="right">{item.companyName}</TableCell>
-                        <TableCell align="right">
-                          <ModalKeyStats
-                            symbol={item.symbol}
-                            keyStats={this.state.keyStats}
-                            marketcap={this.state.keyStats.marketcap}
-                          />
-                        </TableCell>
-                        <TableCell>
-                          <Button
-                            align="right"
-                            onClick={this.onTickerForChart}
-                            value={item.symbol}
-                            type="button"
-                            className="chart-btn"
-                          >
-                            Chart
-                          </Button>
-                        </TableCell>
-                        <TableCell>
-                          <Delete
-                            align="right"
-                            onClick={e => {
-                              this.removeItem(item);
-                            }}
-                          />
-                        </TableCell>
-                      </TableRow>
-                    );
-                  })}
-                  <tr>
-                    <td />
-                  </tr>
-                </TableBody>
-              </CustomTable>
-            </Paper>
+            <CustomTable className={CustomTable.table} size="small">
+              <TableHead>
+                <TableRow>
+                  <TableCell align="left">Ticker</TableCell>
+                  <TableCell align="right">Price</TableCell>
+                  <TableCell align="right">Change</TableCell>
+                  <TableCell align="right">% Change</TableCell>
+                  <TableCell align="right">Name</TableCell>
+                  <TableCell align="right">Detials</TableCell>
+                  <TableCell align="right">Chart</TableCell>
+                  <TableCell align="right">Delete</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {data.map(item => {
+                  return (
+                    <TableRow key={item.symbol}>
+                      <TableCell align="left">{item.symbol}</TableCell>
+                      <TableCell align="right">{item.latestPrice}</TableCell>
+                      <TableCell align="right">{item.change}</TableCell>
+                      <TableCell align="right">
+                        {item.changePercent.toFixed(2)} %{" "}
+                      </TableCell>
+                      <TableCell align="right">{item.companyName}</TableCell>
+                      <TableCell align="right">
+                        <ModalKeyStats
+                          symbol={item.symbol}
+                          keyStats={this.state.keyStats}
+                          marketcap={this.state.keyStats.marketcap}
+                        />
+                      </TableCell>
+                      <TableCell>
+                        <Button
+                          align="right"
+                          onClick={this.onTickerForChart}
+                          value={item.symbol}
+                          type="button"
+                          className="chart-btn"
+                        >
+                          Chart
+                        </Button>
+                      </TableCell>
+                      <TableCell>
+                        <Delete
+                          align="right"
+                          onClick={e => {
+                            this.removeItem(item);
+                          }}
+                        />
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+                <tr>
+                  <td />
+                </tr>
+              </TableBody>
+            </CustomTable>
           </div>
         </Container>
         <br />
