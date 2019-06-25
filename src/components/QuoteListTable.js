@@ -23,6 +23,7 @@ const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(2),
     width: "100%",
+    minWidth: 700,
     overflowX: "auto",
     marginBottom: theme.spacing(2)
   },
@@ -91,7 +92,7 @@ const QuoteListTable = props => {
                     <Delete
                       align="right"
                       onClick={e => {
-                        this.removeItem(item);
+                        this.props.removeItem(item);
                       }}
                     />
                   </TableCell>

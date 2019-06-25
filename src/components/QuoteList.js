@@ -248,7 +248,7 @@ class QuoteList extends Component {
         &nbsp;&nbsp;
         {message !== "" && <p className="message-text"> {message}</p>}
         &nbsp;&nbsp;&nbsp;
-        <QuoteListTable data={data} />
+        <QuoteListTable data={data} removeItem={this.removeItem} />
         &nbsp;&nbsp;&nbsp;
         <Container maxWidth="md">
           <div className={CustomTable.root}>
