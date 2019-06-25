@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { styled } from "@material-ui/styles";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -32,20 +32,20 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+const Delete = styled(DeleteIcon)({
+  fill: "blue !important",
+  background: "#fff !important",
+  cursor: "pointer",
+  padding: "none !important"
+});
+
+// const handleExtraZeros = num => {
+//   const trim = num / 1000000000;
+//   return trim.toFixed(2);
+// };
+
 const QuoteListTable = props => {
   const classes = useStyles();
-
-  const handleExtraZeros = num => {
-    const trim = num / 1000000000;
-    return trim.toFixed(2);
-  };
-
-  const Delete = styled(DeleteIcon)({
-    fill: "blue !important",
-    background: "#fff !important",
-    cursor: "pointer",
-    padding: "none !important"
-  });
 
   return (
     <Container maxWidth="md">
@@ -92,7 +92,7 @@ const QuoteListTable = props => {
                     <Delete
                       align="right"
                       onClick={e => {
-                        this.props.removeItem(item);
+                        props.removeItem(item);
                       }}
                     />
                   </TableCell>
