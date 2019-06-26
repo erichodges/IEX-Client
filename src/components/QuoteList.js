@@ -1,50 +1,12 @@
 import React, { Component } from "react";
 import socket from "socket.io-client";
-import Button from "@material-ui/core/Button";
-import { styled } from "@material-ui/styles";
-import Container from "@material-ui/core/Container";
-import Table from "@material-ui/core/Table";
-import TableHead from "@material-ui/core/TableHead";
-import TableBody from "@material-ui/core/TableBody";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
-// import Paper from "@material-ui/core/Paper";
-import DeleteIcon from "@material-ui/icons/Delete";
 
 import { getQuote, getKeyStats } from "./Utils";
 import SaveQuoteList from "../modules/user/SaveQuoteList";
 import LoadQuoteList from "../modules/user/LoadQuoteList";
 import UpdateQuoteList from "../modules/user/UpdateQuoteList";
 import RemoveQuoteList from "../modules/user/RemoveQuoteList";
-import ModalKeyStats from "./ModalKeyStats";
 import QuoteListTable from "./QuoteListTable";
-
-const Delete = styled(DeleteIcon)({
-  fill: "blue !important",
-  background: "#fff !important",
-  cursor: "pointer",
-  padding: "none !important"
-});
-const CustomTable = styled(Table)({
-  root: {
-    width: 400
-  },
-  paper: {
-    marginTop: 0,
-    width: 400,
-    overflowX: "auto",
-    marginBottom: 0
-  },
-  table: {
-    width: 400,
-    background: "#000"
-  },
-  icon: {
-    margin: 0,
-    fontSize: 24,
-    borderColor: "#000"
-  }
-});
 
 const url = "https://ws-api.iextrading.com/1.0/last";
 class QuoteList extends Component {

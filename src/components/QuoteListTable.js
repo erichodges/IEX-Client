@@ -12,10 +12,6 @@ import TableCell from "@material-ui/core/TableCell";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ModalKeyStats from "./ModalKeyStats";
 
-const onTickerForChart = ({ currentTarget }) => {
-  this.props.setTickerForChart(currentTarget.value);
-};
-
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%"
@@ -23,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(2),
     width: "100%",
-    minWidth: 700,
+    minWidth: 720,
     overflowX: "auto",
     marginBottom: theme.spacing(2)
   },
@@ -56,7 +52,7 @@ const QuoteListTable = props => {
               <TableCell align="left">Ticker</TableCell>
               <TableCell align="right">Price</TableCell>
               <TableCell align="right">Change</TableCell>
-              <TableCell align="right">% Change</TableCell>
+              <TableCell align="right">%&nbsp;Change</TableCell>
               <TableCell align="right">Name</TableCell>
               <TableCell align="right">Detials</TableCell>
               <TableCell align="right">Chart</TableCell>
