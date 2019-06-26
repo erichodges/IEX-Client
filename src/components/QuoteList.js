@@ -159,9 +159,9 @@ class QuoteList extends Component {
     this.quoteListName.current.value = "";
   }
 
-  onTickerForChart({ currentTarget }) {
-    this.props.setTickerForChart(currentTarget.value);
-  }
+  onTickerForChart = item => {
+    this.props.setTickerForChart(item.symbol);
+  };
 
   handleExtraZeros(marketcap) {
     const trimDigits = marketcap / 1000000000;
@@ -248,74 +248,11 @@ class QuoteList extends Component {
         &nbsp;&nbsp;
         {message !== "" && <p className="message-text"> {message}</p>}
         &nbsp;&nbsp;&nbsp;
-        <QuoteListTable data={data} removeItem={this.removeItem} />
-        &nbsp;&nbsp;&nbsp;
-        <Container maxWidth="md">
-          <div className={CustomTable.root}>
-            <CustomTable className={CustomTable.table} size="small">
-              <TableHead>
-                <TableRow>
-                  <TableCell align="left">Ticker</TableCell>
-                  <TableCell align="right">Price</TableCell>
-                  <TableCell align="right">Change</TableCell>
-                  <TableCell align="right">% Change</TableCell>
-                  <TableCell align="right">Name</TableCell>
-                  <TableCell align="right">Detials</TableCell>
-                  <TableCell align="right">Chart</TableCell>
-                  <TableCell align="right">Delete</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {data.map(item => {
-                  return (
-                    <TableRow key={item.symbol}>
-                      <TableCell align="left">{item.symbol}</TableCell>
-                      <TableCell align="right">{item.latestPrice}</TableCell>
-                      <TableCell align="right">{item.change}</TableCell>
-                      <TableCell align="right">
-                        {item.changePercent.toFixed(2)} %{" "}
-                      </TableCell>
-                      <TableCell align="right">{item.companyName}</TableCell>
-                      <TableCell align="right">
-                        <ModalKeyStats
-                          symbol={item.symbol}
-                          keyStats={this.state.keyStats}
-                          marketcap={this.state.keyStats.marketcap}
-                        />
-                      </TableCell>
-                      <TableCell>
-                        <Button
-                          align="right"
-                          onClick={this.onTickerForChart}
-                          value={item.symbol}
-                          type="button"
-                          className="chart-btn"
-                        >
-                          Chart
-                        </Button>
-                      </TableCell>
-                      <TableCell>
-                        <Delete
-                          align="right"
-                          onClick={e => {
-                            this.removeItem(item);
-                          }}
-                        />
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
-                <tr>
-                  <td />
-                </tr>
-              </TableBody>
-            </CustomTable>
-          </div>
-        </Container>
-        <br />
-        <br />
-        <br />
-        <br />
+        <QuoteListTable
+          data={data}
+          removeItem={this.removeItem}
+          onTickerForChart={this.onTickerForChart}
+        />
       </div>
     );
   }

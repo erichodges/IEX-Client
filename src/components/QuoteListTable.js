@@ -80,7 +80,9 @@ const QuoteListTable = props => {
                   <TableCell>
                     <Button
                       align="right"
-                      onClick={() => onTickerForChart}
+                      onClick={e => {
+                        props.onTickerForChart(item);
+                      }}
                       value={item.symbol}
                       type="button"
                       className="chart-btn"
