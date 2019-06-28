@@ -77,16 +77,21 @@ class QuoteList extends Component {
           "This ticker has already been entered, please choose another symbol"
       });
     } else {
-      getQuote(ticker).then(data => {
-        data.latestPrice = data.latestPrice.toFixed(2);
-        // data !== {} && // In case of no data returned. this does not work yet.
-        this.setState({
-          data: [...this.state.data, data],
-          message: ""
+      try {
+        getQuote(ticker).then(data => {
+          data.latestPrice = data.latestPrice.toFixed(2);
+          this.setState({
+            data: [...this.state.data, data],
+            message: ""
+          });
+          this.props.tickerToList(ticker, this.props.item.id);
+          this.socket.emit("subscribe", ticker);
         });
-        this.props.tickerToList(ticker, this.props.item.id);
-        this.socket.emit("subscribe", ticker);
-      });
+      } catch (error) {
+        this.setState({
+          message: "error.message"
+        });
+      }
     }
     this.tickerForm.reset();
   }
