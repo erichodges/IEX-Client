@@ -7,7 +7,7 @@ const API_Token = process.env.REACT_APP_IEX_API;
 // https://api.iextrading.com/1.0/stock/${ticker}/chart/${time}
 //
 export async function getData(ticker, time) {
-  const endpoint = `https://cloud.iexapis.com/stable/stock/${ticker}/chart/${time}?token=${API_Token}`;
+  const endpoint = `https://sandbox.iexapis.com/stable/stock/${ticker}/chart/${time}?token=${API_Token}`;
   return await axios.get(endpoint).then(res => {
     return res.data.map(item => {
       item.date = parseDate(item.date);
@@ -19,7 +19,7 @@ export async function getData(ticker, time) {
 // "ddd MMM D  YYYY hh:mm:ss"
 // &displayPercent=true
 export async function getQuote(ticker) {
-  const endpoint = `https://cloud.iexapis.com/stable/stock/${ticker}/quote?token=${API_Token}`;
+  const endpoint = `https://sandbox.iexapis.com/stable/stock/${ticker}/quote?token=${API_Token}`;
   return await axios.get(endpoint).then(res => {
     // console.log(res.data);
     return res.data;
@@ -27,7 +27,7 @@ export async function getQuote(ticker) {
 }
 
 export async function getCompanyName(ticker) {
-  const endpoint = `https://cloud.iexapis.com/stable/stock/${ticker}/company?token=${API_Token}`;
+  const endpoint = `https://sandbox.iexapis.com/stable/stock/${ticker}/company?token=${API_Token}`;
   return await axios.get(endpoint).then(res => {
     return res.data.companyName;
   });
