@@ -2,11 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import ApolloClient, { InMemoryCache } from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
+import { ThemeProvider } from "@material-ui/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
+
+import theme from "./theme";
 import "./index.css";
 import Routes from "./Routes";
-// require("dotenv").config();
-// import registerServiceWorker from "./registerServiceWorker";
-// import App from "./App";
 
 const cache = new InMemoryCache();
 
@@ -18,7 +19,10 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <Routes />
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Routes />
+    </ThemeProvider>
   </ApolloProvider>,
   document.getElementById("root") as HTMLElement
 );

@@ -19,6 +19,10 @@ function getModalStyle() {
 }
 
 const useStyles = makeStyles(theme => ({
+  root: {
+    background: "#ff8E53",
+    color: "#fff"
+  },
   label: {
     textTransform: "capitalize"
   },
@@ -26,16 +30,16 @@ const useStyles = makeStyles(theme => ({
     position: "absolute",
     top: "8vh",
     left: "8vw",
-    width: "37vw",
-    height: "55vh",
+    width: "40vw",
+    height: "60vh",
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(4),
+    padding: theme.spacing(3),
     outline: "none"
   },
   table: {
     width: 400,
-    left: -20
+    left: -40
   }
 }));
 
@@ -64,6 +68,7 @@ const ModalKeyStats = props => {
       handleOpen();
     });
   };
+
   const classes = useStyles();
   // (handleOpen, getStats(props.symbol))
   return (
@@ -71,7 +76,9 @@ const ModalKeyStats = props => {
       <Button
         onClick={() => getStats(props.symbol)}
         align="right"
-        classes={{ label: classes.label }}
+        classes={{ root: classes.root, label: classes.label }}
+        color="primary"
+        size="small"
       >
         Details
       </Button>
