@@ -19,6 +19,9 @@ function getModalStyle() {
 }
 
 const useStyles = makeStyles(theme => ({
+  label: {
+    textTransform: "capitalize"
+  },
   paper: {
     position: "absolute",
     top: "8vh",
@@ -65,7 +68,11 @@ const ModalKeyStats = props => {
   // (handleOpen, getStats(props.symbol))
   return (
     <div>
-      <Button onClick={() => getStats(props.symbol)} align="right">
+      <Button
+        onClick={() => getStats(props.symbol)}
+        align="right"
+        classes={{ label: classes.label }}
+      >
         Details
       </Button>
       <Modal

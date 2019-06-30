@@ -24,7 +24,7 @@ const theme = createMuiTheme({
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: "100%"
+    textTransform: "capitalize"
   },
   paper: {
     marginTop: theme.spacing(2),
@@ -93,6 +93,7 @@ const QuoteListTable = props => {
                         value={item.symbol}
                         type="button"
                         className="chart-btn"
+                        classes={{ root: classes.root }}
                       >
                         Chart
                       </Button>
