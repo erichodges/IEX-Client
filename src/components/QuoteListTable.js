@@ -53,9 +53,9 @@ const QuoteListTable = props => {
               <TableCell align="right">Change</TableCell>
               <TableCell align="right">%&nbsp;Change</TableCell>
               <TableCell align="right">Name</TableCell>
-              <TableCell align="right">Detials</TableCell>
-              <TableCell align="right">Chart</TableCell>
-              <TableCell align="right">Delete</TableCell>
+              <TableCell align="center">Detials</TableCell>
+              <TableCell align="center">Chart</TableCell>
+              <TableCell align="center">Delete</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

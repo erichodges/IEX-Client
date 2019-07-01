@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import Typography from "@material-ui/core/Typography";
 
 class ChartTicker extends Component {
   constructor() {
@@ -70,9 +71,11 @@ class ChartTicker extends Component {
           &nbsp;
           <button type="submit" className="chartTickerSubmit">
             Add
-          </button>{" "}
+          </button>
           &nbsp;&nbsp;&nbsp;
-          <b>{this.props.ticker}</b>
+          <Typography variant="title" inline>
+            {this.props.ticker}
+          </Typography>
           &nbsp;&nbsp;&nbsp; {this.props.companyName}
           &nbsp;&nbsp; <b>{this.props.close.toFixed(2)}</b>
           &nbsp;&nbsp;&nbsp; <b>{this.props.change.toFixed(2)}%</b>

@@ -19,10 +19,7 @@ function getModalStyle() {
 }
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    background: "#ff8E53",
-    color: "#fff"
-  },
+  root: {},
   label: {
     textTransform: "capitalize"
   },
