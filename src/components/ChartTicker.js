@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
+import styles from "./styles/ticker.module.css";
 
 class ChartTicker extends Component {
   constructor() {
@@ -36,7 +37,7 @@ class ChartTicker extends Component {
         }}
         ref={input => (this.chartTickerForm = input)}
       >
-        <div className="form-group">
+        <div className="chartForm">
           <label className="inputLabel" htmlFor="newTickerInput">
             &nbsp;&nbsp;&nbsp;
           </label>
@@ -73,12 +74,18 @@ class ChartTicker extends Component {
             Add
           </button>
           &nbsp;&nbsp;&nbsp;
-          <Typography variant="title" inline>
+          <Typography
+            className={styles["MUILineBreak"]}
+            variant="h6"
+            inline="true"
+          >
             {this.props.ticker}
           </Typography>
-          &nbsp;&nbsp;&nbsp; {this.props.companyName}
-          &nbsp;&nbsp; <b>{this.props.close.toFixed(2)}</b>
-          &nbsp;&nbsp;&nbsp; <b>{this.props.change.toFixed(2)}%</b>
+          <Typography className={styles["CompanyDetails"]}>
+            &nbsp;&nbsp;&nbsp; {this.props.companyName}
+            &nbsp;&nbsp; <b>{this.props.close.toFixed(2)}</b>
+            &nbsp;&nbsp;&nbsp; <b>{this.props.change.toFixed(2)}%</b>
+          </Typography>
         </div>
       </form>
     );

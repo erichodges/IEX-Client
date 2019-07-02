@@ -4,6 +4,7 @@ import ApolloClient, { InMemoryCache } from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 import { ThemeProvider } from "@material-ui/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import "typeface-roboto";
 
 import theme from "./theme";
 import "./index.css";

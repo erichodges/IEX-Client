@@ -1,0 +1,17 @@
+.chartForm {
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.MUILineBreak {
+  color: #fff;
+  display: inline-block;
+  font-family: "Roboto";
+  white-space: nowrap;
+}
+
+.CompanyDetails {
+  white-space: nowrap;
+  display: inline-block;
+  color: #fff;
+}
