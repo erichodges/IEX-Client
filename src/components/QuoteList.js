@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import socket from "socket.io-client";
+import TextField from "@material-ui/core/TextField";
 
 import { getQuote, getKeyStats } from "./Utils";
 import SaveQuoteList from "../modules/user/SaveQuoteList";
@@ -160,7 +161,6 @@ class QuoteList extends Component {
   render() {
     console.log("from QuoteList", this.state.data);
     const { data, message, quoteListName } = this.state;
-
     return (
       <div>
         &nbsp;&nbsp;&nbsp; {quoteListName} &nbsp; &nbsp;
@@ -193,6 +193,13 @@ class QuoteList extends Component {
           ref={input => (this.tickerForm = input)}
         >
           <div className="form-group">
+            <TextField
+              label="Ticker"
+              margin="dense"
+              inputRef={node => (this.newTicker = node)}
+              type="text"
+              className="tickerInput"
+            />
             <label className="inputLabel" htmlFor="newTickerInput" />
             &nbsp;&nbsp;&nbsp;&nbsp;
             <input
