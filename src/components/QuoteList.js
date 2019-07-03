@@ -67,7 +67,7 @@ class QuoteList extends Component {
 
   getStockData(e) {
     e.preventDefault();
-    const ticker = this.newTicker.value.toUpperCase();
+    const ticker = this.input.value.toUpperCase();
     if (
       this.state.data.filter(item => {
         return item.symbol === ticker;
@@ -158,6 +158,18 @@ class QuoteList extends Component {
     });
   };
 
+  handleSubmit = e => {
+    e.preventDefault();
+    console.log("input value:", this.input.value);
+    this.getStockData(e);
+  };
+
+  // From form below ///////
+  // onSubmit={e => {
+  //   this.getStockData(e);
+  // }}
+  // ref={input => (this.tickerForm = input)}
+
   render() {
     console.log("from QuoteList", this.state.data);
     const { data, message, quoteListName } = this.state;
@@ -187,16 +199,14 @@ class QuoteList extends Component {
         />
         <form
           className="ticker-form"
-          onSubmit={e => {
-            this.getStockData(e);
-          }}
+          onSubmit={this.handleSubmit}
           ref={input => (this.tickerForm = input)}
         >
           <div className="form-group">
             <TextField
               label="Ticker"
               margin="dense"
-              inputRef={node => (this.newTicker = node)}
+              inputRef={input => (this.input = input)}
               type="text"
               className="tickerInput"
             />
