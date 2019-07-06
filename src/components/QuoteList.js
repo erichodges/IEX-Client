@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import socket from "socket.io-client";
-import TextField from "@material-ui/core/TextField";
+import Container from "@material-ui/core/Container";
+import Button from "@material-ui/core/Button";
+import DarkTextField from "./styleComponents/DarkTextField";
 
 import { getQuote, getKeyStats } from "./Utils";
 import SaveQuoteList from "../modules/user/SaveQuoteList";
@@ -164,17 +166,11 @@ class QuoteList extends Component {
     this.getStockData(e);
   };
 
-  // From form below ///////
-  // onSubmit={e => {
-  //   this.getStockData(e);
-  // }}
-  // ref={input => (this.tickerForm = input)}
-
   render() {
     console.log("from QuoteList", this.state.data);
     const { data, message, quoteListName } = this.state;
     return (
-      <div>
+      <Container maxWidth="md">
         &nbsp;&nbsp;&nbsp; {quoteListName} &nbsp; &nbsp;
         <SaveQuoteList
           item={this.props.item}
@@ -202,31 +198,42 @@ class QuoteList extends Component {
           onSubmit={this.handleSubmit}
           ref={input => (this.tickerForm = input)}
         >
-          <div className="form-group">
-            <TextField
+          <div
+            className="form-group"
+            style={{
+              display: "flex",
+              alignItems: "center"
+            }}
+          >
+            <DarkTextField
               label="Ticker"
               margin="dense"
               inputRef={input => (this.input = input)}
               type="text"
               className="tickerInput"
+              autoFocus={true}
+              size="small"
             />
             <label className="inputLabel" htmlFor="newTickerInput" />
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <input
-              ref={input => (this.newTicker = input)}
-              type="text"
-              placeholder="Enter Symbol"
-              className="tickerInput"
-              autoFocus
-            />
-            &nbsp;
-            <button type="submit" className="tickerSubmit">
+            &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+            <Button
+              color="primary"
+              variant="outlined"
+              type="submit"
+              className="tickerSubmit"
+              size="small"
+            >
               Add
-            </button>
-            &nbsp;&nbsp;&nbsp;
-            <button onClick={() => this.props.remove(this.props.item)}>
-              Close Quote List
-            </button>
+            </Button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <Button
+              color="primary"
+              variant="outlined"
+              size="small"
+              onClick={() => this.props.remove(this.props.item)}
+            >
+              Close
+            </Button>
           </div>
         </form>
         &nbsp;&nbsp;
@@ -237,7 +244,7 @@ class QuoteList extends Component {
           removeItem={this.removeItem}
           onTickerForChart={this.onTickerForChart}
         />
-      </div>
+      </Container>
     );
   }
 }

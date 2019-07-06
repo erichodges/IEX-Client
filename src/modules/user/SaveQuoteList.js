@@ -3,6 +3,9 @@ import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
 import { Mutation } from "react-apollo";
 
+import DarkTextField from "../../components/styleComponents/DarkTextField";
+import Button from "@material-ui/core/Button";
+
 const meQuery = gql`
   query MeQuery {
     me {
@@ -32,7 +35,7 @@ class SaveQuoteList extends Component {
   constructor(props) {
     super(props);
 
-    this.quoteListName = React.createRef();
+    // this.quoteListName = React.createRef();
 
     this.state = {
       quoteListName: "Quote List"
@@ -42,8 +45,14 @@ class SaveQuoteList extends Component {
     this.onKeyPressed = this.onKeyPressed.bind(this);
     this.onAddQuoteListId = this.onAddQuoteListId.bind(this);
   }
+  handleSubmit = e => {
+    e.preventDefault();
+    console.log("Save:", this.input.value);
+    this.onAddQuoteListName(e);
+  };
 
   onAddQuoteListName(e) {
+    console.log("onAddQuoteListName:", this.input.value);
     this.props.addQuoteListName(
       this.quoteListName.current.value,
       this.props.item.id
@@ -88,25 +97,29 @@ class SaveQuoteList extends Component {
             return (
               <div>
                 &nbsp;&nbsp;&nbsp;
-                <input
+                <DarkTextField
                   ref={this.quoteListName}
                   onKeyPress={this.onKeyPressed}
                   type="text"
-                  placeholder="Name the Quote List"
+                  placeholder="Name"
                   className="quoteListNameInput"
                 />
                 &nbsp;
-                <button
-                  onClick={e => {
-                    this.onAddQuoteListName(e);
-                  }}
+                <Button
+                  color="primary"
+                  variant="outlined"
+                  size="small"
+                  onClick={this.handleSubmit}
                 >
                   Add
-                </button>
+                </Button>
                 &nbsp;
                 <Mutation mutation={ADD_QUOTE_LIST}>
                   {mutate => (
-                    <button
+                    <Button
+                      color="primary"
+                      size="small"
+                      variant="outlined"
                       onClick={e => {
                         quoteListArray.map(async item => {
                           const tickers = item.tickers;
@@ -127,8 +140,8 @@ class SaveQuoteList extends Component {
                         });
                       }}
                     >
-                      Save Quote List
-                    </button>
+                      Save
+                    </Button>
                   )}
                 </Mutation>
               </div>

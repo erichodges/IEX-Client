@@ -7,7 +7,6 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import "typeface-roboto";
 
 import theme from "./theme";
-import "./index.css";
 import Routes from "./Routes";
 
 const cache = new InMemoryCache();
