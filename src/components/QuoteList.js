@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import socket from "socket.io-client";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
-import DarkTextField from "./styleComponents/DarkTextField";
+import Typography from "@material-ui/core/Typography";
 
+import DarkTextField from "./styleComponents/DarkTextField";
 import { getQuote, getKeyStats } from "./Utils";
 import SaveQuoteList from "../modules/user/SaveQuoteList";
 import LoadQuoteList from "../modules/user/LoadQuoteList";
@@ -22,7 +23,8 @@ class QuoteList extends Component {
       message: "",
       open: false,
       keyStats: {},
-      quoteListName: "Quote List"
+      quoteListName: "Quote List",
+      tickerInput: ""
     };
 
     this.onTickerForChart = this.onTickerForChart.bind(this);
@@ -164,6 +166,16 @@ class QuoteList extends Component {
     e.preventDefault();
     console.log("input value:", this.input.value);
     this.getStockData(e);
+    this.setState({
+      tickerInput: ""
+    });
+  };
+
+  onHandleChange = e => {
+    e.preventDefault();
+    this.setState({
+      tickerInput: e.target.value.toUpperCase()
+    });
   };
 
   render() {
@@ -171,7 +183,7 @@ class QuoteList extends Component {
     const { data, message, quoteListName } = this.state;
     return (
       <Container maxWidth="md">
-        &nbsp;&nbsp;&nbsp; {quoteListName} &nbsp; &nbsp;
+        <Typography variant="h6">{quoteListName}</Typography>
         <SaveQuoteList
           item={this.props.item}
           addQuoteListName={this.props.addQuoteListName}
@@ -206,13 +218,16 @@ class QuoteList extends Component {
             }}
           >
             <DarkTextField
-              label="Ticker"
+              onChange={this.onHandleChange}
+              variant="outlined"
+              placeholder="Ticker"
               margin="dense"
               inputRef={input => (this.input = input)}
               type="text"
               className="tickerInput"
               autoFocus={true}
               size="small"
+              value={this.state.tickerInput}
             />
             <label className="inputLabel" htmlFor="newTickerInput" />
             &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;

@@ -93,8 +93,9 @@ class SaveQuoteList extends Component {
           if (data.me.userName) {
             return (
               <div>
-                &nbsp;&nbsp;&nbsp;
                 <DarkTextField
+                  variant="outlined"
+                  margin="dense"
                   ref={this.quoteListName}
                   inputRef={input => (this.input = input)}
                   onKeyPress={this.onKeyPressed}

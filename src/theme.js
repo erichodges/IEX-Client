@@ -22,8 +22,25 @@ const theme = createMuiTheme({
     },
     button: {
       borderColor: "#90caf9"
-    },
-    overrides: {}
+    }
+  },
+  overrides: {
+    MuiOutlinedInput: {
+      root: {
+        "& $notchedOutline": {
+          borderColor: "#90caf9"
+        },
+        "&:hover:not($disabled):not($focused):not($error) $notchedOutline": {
+          borderColor: "#90caf9",
+          borderWidth: 2
+        },
+        "&$focused $notchedOutline": {
+          borderColor: "#90caf9"
+        },
+        placeholderColor: "#90caf9"
+      },
+      notchedOutline: {}
+    }
   }
 });
 
