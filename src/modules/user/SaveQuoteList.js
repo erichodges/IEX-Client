@@ -51,25 +51,22 @@ class SaveQuoteList extends Component {
     this.onAddQuoteListName(e);
   };
 
-  onAddQuoteListName(e) {
-    console.log("onAddQuoteListName:", this.input.value);
-    this.props.addQuoteListName(
-      this.quoteListName.current.value,
-      this.props.item.id
-    );
-
-    this.props.quoteListDisplayName(this.quoteListName.current.value);
-    this.setState({
-      quoteListName: this.quoteListName.current.value
-    });
-    // console.log(this.state.quoteListName);
-    this.quoteListName.current.value = "";
-  }
-
   onKeyPressed(e) {
     if (e.key === "Enter") {
       this.onAddQuoteListName(e);
     }
+  }
+
+  onAddQuoteListName(e) {
+    console.log("onAddQuoteListName:", this.input.value);
+    this.props.addQuoteListName(this.input.value, this.props.item.id);
+
+    this.props.quoteListDisplayName(this.input.value);
+    this.setState({
+      quoteListName: this.input.value
+    });
+    // console.log(this.state.quoteListName);
+    this.input.value = "";
   }
 
   onAddQuoteListId(responseWithQuoteList, itemId, name) {
@@ -99,6 +96,7 @@ class SaveQuoteList extends Component {
                 &nbsp;&nbsp;&nbsp;
                 <DarkTextField
                   ref={this.quoteListName}
+                  inputRef={input => (this.input = input)}
                   onKeyPress={this.onKeyPressed}
                   type="text"
                   placeholder="Name"
