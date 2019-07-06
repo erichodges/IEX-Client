@@ -28,10 +28,11 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Delete = styled(DeleteIcon)({
-  fill: "blue !important",
-  background: "#fff !important",
+  fill: "#eceff1 !important",
+  background: "#37474f !important",
   cursor: "pointer",
-  padding: "none !important"
+  padding: "none !important",
+  align: "right"
 });
 
 // const handleExtraZeros = num => {

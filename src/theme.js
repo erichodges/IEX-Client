@@ -36,8 +36,7 @@ const theme = createMuiTheme({
         },
         "&$focused $notchedOutline": {
           borderColor: "#90caf9"
-        },
-        placeholderColor: "#90caf9"
+        }
       },
       notchedOutline: {}
     }
@@ -45,5 +44,3 @@ const theme = createMuiTheme({
 });
 
 export default theme;
-
-//  class="MuiInputBase-input MuiInput-input MuiInputBase-inputMarginDense MuiInput-inputMarginDense"
