@@ -1,8 +1,11 @@
 import React from "react";
 import shortid from "shortid";
+import Button from "@material-ui/core/Button";
+
 import ChartLayout from "./ChartLayout";
 import Header from "./Header";
 import QuoteList from "./QuoteList";
+import { Container } from "@material-ui/core";
 
 class Main extends React.Component {
   constructor(props) {
@@ -124,11 +127,26 @@ class Main extends React.Component {
   }
 }
 
+const QuoteListChildrenStyle = {
+  paddingTop: "1rem"
+};
+
 const QuoteListContainer = props => (
   <div>
-    &nbsp;&nbsp;<button onClick={props.addChild}>Add Live Quote List</button>
-    <br />
-    &nbsp;&nbsp;<div id="children-pane">{props.children}</div>
+    <Container maxWidth="md">
+      <Button
+        onClick={props.addChild}
+        color="primary"
+        variant="outlined"
+        size="small"
+      >
+        Add Quote List
+      </Button>
+      <br />
+      <div id="children-pane" style={QuoteListChildrenStyle}>
+        {props.children}
+      </div>
+    </Container>
   </div>
 );
 

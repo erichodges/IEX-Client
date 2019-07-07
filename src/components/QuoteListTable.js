@@ -1,7 +1,6 @@
 import React from "react";
 import { makeStyles, styled } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import Container from "@material-ui/core/Container";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
 import TableRow from "@material-ui/core/TableRow";
@@ -44,7 +43,7 @@ const QuoteListTable = props => {
   const classes = useStyles();
 
   return (
-    <Container maxWidth="md">
+    <div>
       <Paper className={classes.paper}>
         <Table className={classes.table} size="small">
           <TableHead>
@@ -103,7 +102,7 @@ const QuoteListTable = props => {
           </TableBody>
         </Table>
       </Paper>
-    </Container>
+    </div>
   );
 };
 

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import socket from "socket.io-client";
-import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
@@ -182,7 +181,7 @@ class QuoteList extends Component {
     console.log("from QuoteList", this.state.data);
     const { data, message, quoteListName } = this.state;
     return (
-      <Container maxWidth="md">
+      <div>
         <Typography variant="h6">{quoteListName}</Typography>
         <SaveQuoteList
           item={this.props.item}
@@ -259,7 +258,7 @@ class QuoteList extends Component {
           removeItem={this.removeItem}
           onTickerForChart={this.onTickerForChart}
         />
-      </Container>
+      </div>
     );
   }
 }
