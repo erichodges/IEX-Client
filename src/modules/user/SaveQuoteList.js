@@ -92,7 +92,12 @@ class SaveQuoteList extends Component {
           }
           if (data.me.userName) {
             return (
-              <div>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center"
+                }}
+              >
                 <DarkTextField
                   variant="outlined"
                   margin="dense"

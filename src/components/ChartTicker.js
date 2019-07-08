@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
+import DarkTextField from "./styleComponents/DarkTextField";
+import Button from "@material-ui/core/Button";
 import styles from "./styles/ticker.module.css";
 
 class ChartTicker extends Component {
@@ -12,12 +14,12 @@ class ChartTicker extends Component {
       chartTimeFrame: ""
     };
   }
-  onHandleChange(event) {
+  onHandleChange = event => {
     this.setState({
       chartTicker: event.target.value.toUpperCase(),
       displayTicker: event.target.value.toUpperCase()
     });
-  }
+  };
   onHandleChangeTimeFrame(event) {
     this.setState({
       chartTimeFrame: event.target.value.toLowerCase()
@@ -37,19 +39,28 @@ class ChartTicker extends Component {
         }}
         ref={input => (this.chartTickerForm = input)}
       >
-        <div className="chartForm">
+        <div
+          className="chartForm"
+          style={{
+            display: "flex",
+            alignItems: "center"
+          }}
+        >
           <label className="inputLabel" htmlFor="newTickerInput">
             &nbsp;&nbsp;&nbsp;
           </label>
           &nbsp;
-          <input
-            ref={input => (this.chartTicker = input)}
-            type="text"
+          <DarkTextField
+            inputRef={input => (this.input = input)}
+            onChange={this.onHandleChange}
             value={this.state.chartTicker}
-            onChange={event => this.onHandleChange(event)}
-            placeholder="Enter Symbol for Chart"
+            variant="outlined"
+            margin="dense"
+            placeholder={"Enter Symbol"}
             className="chartTickerInput"
-            autoFocus
+            type="text"
+            size="small"
+            autoFocus={true}
           />
           &nbsp;
           <select
@@ -70,9 +81,15 @@ class ChartTicker extends Component {
             <option value="5y">5 year</option>
           </select>
           &nbsp;
-          <button type="submit" className="chartTickerSubmit">
+          <Button
+            color="primary"
+            variant="outlined"
+            type="submit"
+            size="small"
+            className="chartTickerSubmit"
+          >
             Add
-          </button>
+          </Button>
           &nbsp;&nbsp;&nbsp;
           <Typography
             className={styles["MUILineBreak"]}

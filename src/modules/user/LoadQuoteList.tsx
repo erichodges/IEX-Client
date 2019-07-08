@@ -93,7 +93,7 @@ class LoadQuoteList extends Component<any, State> {
                   </select>
                   &nbsp;
                   <button type="submit" value="submit">
-                    Load Quote List{" "}
+                    Load Quote List
                   </button>
                 </form>
               </div>

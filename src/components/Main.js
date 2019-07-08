@@ -128,7 +128,7 @@ class Main extends React.Component {
 }
 
 const QuoteListChildrenStyle = {
-  paddingTop: "1rem"
+  marginTop: "1rem"
 };
 
 const QuoteListContainer = props => (
