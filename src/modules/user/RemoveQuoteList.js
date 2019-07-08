@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
 import { Mutation } from "react-apollo";
+import Button from "@material-ui/core/Button";
 // import { MeQuery } from "../../schemaTypes";
 
 const meQuery = gql`
@@ -50,7 +51,10 @@ class RemoveQuoteList extends Component {
                 <Mutation mutation={REMOVE_QUOTE_LIST}>
                   {mutate => (
                     // @ts-ignore
-                    <button
+                    <Button
+                      color="primary"
+                      size="small"
+                      variant="outlined"
                       // @ts-ignore
                       onClick={e => {
                         // @ts-ignore
@@ -72,8 +76,8 @@ class RemoveQuoteList extends Component {
                         });
                       }}
                     >
-                      Delete Quote List
-                    </button>
+                      Delete
+                    </Button>
                   )}
                 </Mutation>
               </div>

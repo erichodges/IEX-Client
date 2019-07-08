@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
 import { Mutation } from "react-apollo";
+import Button from "@material-ui/core/Button";
 import {
   MeQuery,
   updateQuoteList_updateQuoteList,
@@ -63,7 +64,10 @@ class UpdateQuoteList extends Component {
                 >
                   {mutate => (
                     // @ts-ignore
-                    <button
+                    <Button
+                      color="primary"
+                      size="small"
+                      variant="outlined"
                       // @ts-ignore
                       onClick={e => {
                         // @ts-ignore
@@ -81,8 +85,8 @@ class UpdateQuoteList extends Component {
                         });
                       }}
                     >
-                      Update Quote List
-                    </button>
+                      Update
+                    </Button>
                   )}
                 </Mutation>
               </div>

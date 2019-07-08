@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
+import Button from "@material-ui/core/Button";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
 // import { Mutation } from "react-apollo";
 // @ts-ignore
 import { MeQuery } from "../../schemaTypes";
@@ -36,13 +39,13 @@ class LoadQuoteList extends Component<any, State> {
     selectedQuoteList: {}
   };
 
-  handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     // @ts-ignore
-    this.setState({ quoteListName: e.target.value });
+    this.setState({ quoteListName: event.target.value });
   };
 
-  handleSubmit = (e: React.FormEvent<HTMLFormElement>, quoteLists: any) => {
-    e.preventDefault();
+  handleSubmit = (event: React.FormEvent<HTMLFormElement>, quoteLists: any) => {
+    event.preventDefault();
     // @ts-ignore
     const list = quoteLists.find(
       // @ts-ignore
@@ -80,21 +83,27 @@ class LoadQuoteList extends Component<any, State> {
                   }}
                 >
                   &nbsp;&nbsp;&nbsp;
-                  <select
+                  <Select
+                    // @ts-ignore
                     value={this.state.quoteListName}
                     onChange={this.handleChange}
                   >
-                    <option>Select a Quote List</option>
+                    <MenuItem>Select a Quote List</MenuItem>
                     // @ts-ignore
                     {data!.me!.quoteList.map(item => {
-                      // @ts-ignore
-                      return <option key={item.name}>{item.name}</option>;
+                      return <MenuItem key={item.name}>{item.name}</MenuItem>;
                     })}
-                  </select>
+                  </Select>
                   &nbsp;
-                  <button type="submit" value="submit">
-                    Load Quote List
-                  </button>
+                  <Button
+                    color="primary"
+                    size="small"
+                    variant="outlined"
+                    type="submit"
+                    value="submit"
+                  >
+                    Load
+                  </Button>
                 </form>
               </div>
             );
