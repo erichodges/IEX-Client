@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
 import Button from "@material-ui/core/Button";
+import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
+import Input from "@material-ui/core/Input";
 // import { Mutation } from "react-apollo";
 // @ts-ignore
-import { MeQuery } from "../../schemaTypes";
+// import { MeQuery } from "../../schemaTypes";
 
 const meQuery = gql`
   query MeQuery {
@@ -23,13 +25,18 @@ const meQuery = gql`
   }
 `;
 
-interface State {
-  value: string;
-  loading: boolean;
-  quoteLists: [string];
-}
+const style = {
+  MuiInputBase: {
+    root: {
+      underline: {
+        borderBottom: "2px solid #90caf9"
+      },
+      color: "#90caf9"
+    }
+  }
+};
 
-class LoadQuoteList extends Component<any, State> {
+class LoadQuoteList extends Component {
   // @ts-ignore
   state = {
     quoteListName: "Select a Quote List",
@@ -39,12 +46,12 @@ class LoadQuoteList extends Component<any, State> {
     selectedQuoteList: {}
   };
 
-  handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  handleChange = event => {
     // @ts-ignore
     this.setState({ quoteListName: event.target.value });
   };
 
-  handleSubmit = (event: React.FormEvent<HTMLFormElement>, quoteLists: any) => {
+  handleSubmit = (event, quoteLists) => {
     event.preventDefault();
     // @ts-ignore
     const list = quoteLists.find(
@@ -61,39 +68,55 @@ class LoadQuoteList extends Component<any, State> {
   render() {
     // const quoteListArray = this.props.quoteListArray;
     // @ts-ignore
-    // console.log(this.state.selectedQuoteList.id);
+    console.log(this.state.quoteListName);
     return (
       // @ts-ignore
-      <Query<MeQuery> query={meQuery}>
+      <Query query={meQuery}>
         {({ data, loading }) => {
           if (loading) {
             return <div>Loading...</div>;
           }
 
-          if (!data! || !data!.me!) {
+          if (!data || !data.me) {
             return null;
           }
-          if (data!.me!.quoteList) {
+          if (data.me.quoteList) {
             return (
               <div>
                 <form
                   onSubmit={e => {
-                    this.handleSubmit(e, data!.me!.quoteList);
+                    this.handleSubmit(e, data.me.quoteList);
                     // this.addQuoteListId();
                   }}
                 >
                   &nbsp;&nbsp;&nbsp;
-                  <Select
-                    // @ts-ignore
-                    value={this.state.quoteListName}
-                    onChange={this.handleChange}
-                  >
-                    <MenuItem>Select a Quote List</MenuItem>
-                    // @ts-ignore
-                    {data!.me!.quoteList.map(item => {
-                      return <MenuItem key={item.name}>{item.name}</MenuItem>;
-                    })}
-                  </Select>
+                  <FormControl>
+                    <Select
+                      style={style}
+                      value={this.state.quoteListName}
+                      onChange={this.handleChange}
+                      variant="outlined"
+                      displayEmpty={true}
+                      input={<Input id="QuoteListPlaceholder" />}
+                      renderValue={
+                        this.state.quoteListName > 0
+                          ? undefined
+                          : () => <em>Select a Quote List</em>
+                      }
+                    >
+                      <MenuItem value="" disabled>
+                        <em>Select a Quote List</em>
+                      </MenuItem>
+
+                      {data.me.quoteList.map(item => {
+                        return (
+                          <MenuItem value={item.name} key={item.name}>
+                            {item.name}
+                          </MenuItem>
+                        );
+                      })}
+                    </Select>
+                  </FormControl>
                   &nbsp;
                   <Button
                     color="primary"

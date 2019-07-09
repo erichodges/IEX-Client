@@ -39,6 +39,28 @@ const theme = createMuiTheme({
         }
       },
       notchedOutline: {}
+    },
+    MuiSelect: {
+      root: {
+        "&$underline": {
+          borderBottom: "#90caf9"
+        },
+        "&:hover:not($disabled):not($focused):not($error) $notchedOutline": {
+          borderColor: "#90caf9",
+          borderWidth: 2
+        },
+        "&$focused $notchedOutline": {
+          borderColor: "#90caf9"
+        }
+      },
+      icon: {
+        fill: "#90caf9"
+      }
+    },
+    underline: {
+      "&:before": {
+        borderBottom: "1px solid #90caf9"
+      }
     }
   }
 });
