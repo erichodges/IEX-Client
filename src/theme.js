@@ -44,6 +44,9 @@ const theme = createMuiTheme({
       icon: {
         fill: "#90caf9"
       }
+    },
+    SelectInput: {
+      minWidth: "200px"
     }
   }
 });

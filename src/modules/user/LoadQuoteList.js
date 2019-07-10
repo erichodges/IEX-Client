@@ -6,9 +6,6 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import Input from "@material-ui/core/Input";
-// import { Mutation } from "react-apollo";
-// @ts-ignore
-// import { MeQuery } from "../../schemaTypes";
 
 const meQuery = gql`
   query MeQuery {
@@ -25,16 +22,17 @@ const meQuery = gql`
   }
 `;
 
-const style = {
-  color: "#90caf9",
+const QuoteListStyle = {
+  color: "#eceff1",
   borderBottom: "1px solid #90caf9",
-  "&:hover": {
+  "&:hover:not($disabled):not($focused):not($error) $underline": {
     borderBottom: "2px solid #90caf9"
-  }
+  },
+  width: "196px",
+  marginTop: "1rem"
 };
 
 class LoadQuoteList extends Component {
-  // @ts-ignore
   state = {
     quoteListName: "Select a Quote List",
     loading: true,
@@ -44,15 +42,14 @@ class LoadQuoteList extends Component {
   };
 
   handleChange = event => {
-    // @ts-ignore
     this.setState({ quoteListName: event.target.value });
+    console.log("handleChange", event.target.value);
   };
 
   handleSubmit = (event, quoteLists) => {
     event.preventDefault();
-    // @ts-ignore
+
     const list = quoteLists.find(
-      // @ts-ignore
       quoteList => quoteList.name === this.state.quoteListName
     );
     if (list) {
@@ -64,10 +61,8 @@ class LoadQuoteList extends Component {
 
   render() {
     // const quoteListArray = this.props.quoteListArray;
-    // @ts-ignore
-    console.log(this.state.quoteListName);
+    // console.log("this.state.QuoteLists", this.state.QuoteLists);
     return (
-      // @ts-ignore
       <Query query={meQuery}>
         {({ data, loading }) => {
           if (loading) {
@@ -86,19 +81,16 @@ class LoadQuoteList extends Component {
                     // this.addQuoteListId();
                   }}
                 >
-                  &nbsp;&nbsp;&nbsp;
                   <FormControl>
                     <Select
-                      style={style}
+                      style={QuoteListStyle}
                       value={this.state.quoteListName}
                       onChange={this.handleChange}
-                      variant="outlined"
                       displayEmpty={true}
-                      input={<Input id="QuoteListPlaceholder" />}
                       renderValue={
                         this.state.quoteListName > 0
                           ? undefined
-                          : () => <em>Select a Quote List</em>
+                          : () => <em>{this.state.quoteListName}</em>
                       }
                     >
                       <MenuItem value="" disabled>
@@ -114,7 +106,7 @@ class LoadQuoteList extends Component {
                       })}
                     </Select>
                   </FormControl>
-                  &nbsp;
+
                   <Button
                     color="primary"
                     size="small"
