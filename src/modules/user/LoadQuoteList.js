@@ -26,13 +26,10 @@ const meQuery = gql`
 `;
 
 const style = {
-  MuiInputBase: {
-    root: {
-      underline: {
-        borderBottom: "2px solid #90caf9"
-      },
-      color: "#90caf9"
-    }
+  color: "#90caf9",
+  borderBottom: "1px solid #90caf9",
+  "&:hover": {
+    borderBottom: "2px solid #90caf9"
   }
 };
 
