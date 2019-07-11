@@ -71,6 +71,9 @@ class LoadQuoteList extends Component {
       this.props.loadQuoteList(list.tickers, list.name);
       console.log(list);
       this.props.addQuoteListId(list.id, this.props.item.id, list.name);
+      this.setState({
+        quoteListName: "Select a Quote List"
+      });
     }
   };
 
@@ -100,7 +103,7 @@ class LoadQuoteList extends Component {
                   <FormControl className={classes.formControl}>
                     <Select
                       value={this.state.quoteListName}
-                      onChange={this.handleChange("handleChange Call")}
+                      onChange={this.handleChange("quoteListName")}
                       displayEmpty={true}
                       input={
                         <Input
@@ -115,7 +118,7 @@ class LoadQuoteList extends Component {
                       renderValue={
                         this.state.quoteListName > 0
                           ? undefined
-                          : () => <em>{this.state.quoteListName}</em>
+                          : () => <span>{this.state.quoteListName}</span>
                       }
                     >
                       <MenuItem value="" disabled>
