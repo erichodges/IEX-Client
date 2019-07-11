@@ -6,6 +6,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import Input from "@material-ui/core/Input";
+import { withStyles } from "@material-ui/core/styles";
 
 const meQuery = gql`
   query MeQuery {
@@ -22,14 +23,27 @@ const meQuery = gql`
   }
 `;
 
-const QuoteListStyle = {
-  color: "#eceff1",
-  borderBottom: "1px solid #90caf9",
-  "&:hover:not($disabled):not($focused):not($error) $underline": {
-    borderBottom: "2px solid #90caf9"
+const styles = {
+  formControl: {
+    minWidth: 196
   },
-  width: "196px",
-  marginTop: "1rem"
+  focused: {},
+  disabled: {},
+  error: {},
+  underlineInput: {
+    "&:before": {
+      // normal
+      borderBottom: "1px solid #90caf9"
+    },
+    // focused
+    "&:after": {
+      borderBottom: "2px solid #90caf9"
+    },
+    // hover
+    "&:hover:not($disabled):not($focused):not($error):before": {
+      borderBottom: "2px solid #90caf9"
+    }
+  }
 };
 
 class LoadQuoteList extends Component {
@@ -41,10 +55,11 @@ class LoadQuoteList extends Component {
     selectedQuoteList: {}
   };
 
-  handleChange = event => {
-    this.setState({ quoteListName: event.target.value });
+  handleChange = name => event => {
+    this.setState({ [name]: event.target.value });
     console.log("handleChange", event.target.value);
   };
+  //this.setState({ quoteListName: event.target.value });
 
   handleSubmit = (event, quoteLists) => {
     event.preventDefault();
@@ -60,8 +75,8 @@ class LoadQuoteList extends Component {
   };
 
   render() {
-    // const quoteListArray = this.props.quoteListArray;
-    // console.log("this.state.QuoteLists", this.state.QuoteLists);
+    console.log("this.state.QuoteLists", this.state.QuoteLists);
+    const { classes } = this.props;
     return (
       <Query query={meQuery}>
         {({ data, loading }) => {
@@ -78,15 +93,25 @@ class LoadQuoteList extends Component {
                 <form
                   onSubmit={e => {
                     this.handleSubmit(e, data.me.quoteList);
+                    console.log("handle submit", data.me.quoteList);
                     // this.addQuoteListId();
                   }}
                 >
-                  <FormControl>
+                  <FormControl className={classes.formControl}>
                     <Select
-                      style={QuoteListStyle}
                       value={this.state.quoteListName}
-                      onChange={this.handleChange}
+                      onChange={this.handleChange("handleChange Call")}
                       displayEmpty={true}
+                      input={
+                        <Input
+                          classes={{
+                            focused: classes.focused,
+                            disabled: classes.disabled,
+                            error: classes.error,
+                            underline: classes.underlineInput
+                          }}
+                        />
+                      }
                       renderValue={
                         this.state.quoteListName > 0
                           ? undefined
@@ -126,4 +151,7 @@ class LoadQuoteList extends Component {
     );
   }
 }
-export default LoadQuoteList;
+
+const StyledLoadQuoteList = withStyles(styles)(LoadQuoteList);
+
+export default StyledLoadQuoteList;

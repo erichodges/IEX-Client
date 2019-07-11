@@ -6,7 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import DarkTextField from "./styleComponents/DarkTextField";
 import { getQuote, getKeyStats } from "./Utils";
 import SaveQuoteList from "../modules/user/SaveQuoteList";
-import LoadQuoteList from "../modules/user/LoadQuoteList";
+import StyledLoadQuoteList from "../modules/user/LoadQuoteList";
 import UpdateQuoteList from "../modules/user/UpdateQuoteList";
 import RemoveQuoteList from "../modules/user/RemoveQuoteList";
 import QuoteListTable from "./QuoteListTable";
@@ -190,7 +190,7 @@ class QuoteList extends Component {
           quoteListArray={this.props.quoteListArray}
           addQuoteListId={this.props.addQuoteListId}
         />
-        <LoadQuoteList
+        <StyledLoadQuoteList
           item={this.props.item}
           loadQuoteList={this.loadQuoteList}
           addQuoteListId={this.props.addQuoteListId}
