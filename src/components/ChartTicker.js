@@ -3,7 +3,37 @@ import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
 import DarkTextField from "./styleComponents/DarkTextField";
 import Button from "@material-ui/core/Button";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import Input from "@material-ui/core/Input";
+import { withStyles } from "@material-ui/core/styles";
+
 import styles from "./styles/ticker.module.css";
+import ChartTickerSelect from "./ChartTickerSelect";
+
+const myStyles = {
+  formControl: {
+    minWidth: 140
+  },
+  focused: {},
+  disabled: {},
+  error: {},
+  underlineInput: {
+    "&:before": {
+      // normal
+      borderBottom: "1px solid #90caf9"
+    },
+    // focused
+    "&:after": {
+      borderBottom: "2px solid #90caf9"
+    },
+    // hover
+    "&:hover:not($disabled):not($focused):not($error):before": {
+      borderBottom: "2px solid #90caf9"
+    }
+  }
+};
 
 class ChartTicker extends Component {
   constructor() {
@@ -11,7 +41,7 @@ class ChartTicker extends Component {
     this.state = {
       chartTicker: "",
       displayTicker: "",
-      chartTimeFrame: ""
+      chartTimeFrame: "Duration"
     };
   }
   onHandleChange = event => {
@@ -26,6 +56,8 @@ class ChartTicker extends Component {
     });
   }
   render() {
+    const { classes } = this.props;
+
     return (
       <form
         className="ChartTicker-form"
@@ -63,6 +95,37 @@ class ChartTicker extends Component {
             autoFocus={true}
           />
           &nbsp;
+          <FormControl className={classes.formControl}>
+            <Select
+              value={this.chartTimeFrame}
+              onChange={event => this.onHandleChangeTimeFrame(event)}
+              displayEmpty={true}
+              input={
+                <Input
+                  classes={{
+                    focused: classes.focused,
+                    disabled: classes.disabled,
+                    error: classes.error,
+                    underline: classes.underlineInput
+                  }}
+                />
+              }
+              renderValue={
+                this.state.chartTimeFrame > 0
+                  ? undefined
+                  : () => <span>{this.state.chartTimeFrame}</span>
+              }
+            >
+              <MenuItem value="" disabled>
+                Duration
+              </MenuItem>
+              <MenuItem value={"ytd"}>YTD</MenuItem>
+              <MenuItem value="1m">One Month</MenuItem>
+              <MenuItem value="3m">Three Month</MenuItem>
+              <MenuItem value="6m">Six Month</MenuItem>
+              <MenuItem value="1y">One Year</MenuItem>
+            </Select>
+          </FormControl>
           <select
             ref={input => (this.chartTimeFrame = input)}
             type="text"
@@ -113,4 +176,6 @@ ChartTicker.propTypes = {
   chartTicker: PropTypes.string
 };
 
-export default ChartTicker;
+const StyledChartTicker = withStyles(myStyles)(ChartTicker);
+
+export default StyledChartTicker;

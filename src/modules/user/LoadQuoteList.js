@@ -96,8 +96,7 @@ class LoadQuoteList extends Component {
                 <form
                   onSubmit={e => {
                     this.handleSubmit(e, data.me.quoteList);
-                    console.log("handle submit", data.me.quoteList);
-                    // this.addQuoteListId();
+                    console.log("handle submit", e);
                   }}
                 >
                   <FormControl className={classes.formControl}>
@@ -122,7 +121,7 @@ class LoadQuoteList extends Component {
                       }
                     >
                       <MenuItem value="" disabled>
-                        <em>Select a Quote List</em>
+                        Select a Quote List
                       </MenuItem>
 
                       {data.me.quoteList.map(item => {
