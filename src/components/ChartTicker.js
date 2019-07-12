@@ -13,7 +13,9 @@ import styles from "./styles/ticker.module.css";
 
 const myStyles = {
   formControl: {
-    minWidth: 140
+    minWidth: 140,
+    marginRight: "1rem",
+    marginLeft: "1rem"
   },
   focused: {},
   disabled: {},
@@ -152,7 +154,6 @@ class ChartTicker extends Component {
               </MenuItem>
             </Select>
           </FormControl>
-          &nbsp;
           <Button
             color="primary"
             variant="outlined"
