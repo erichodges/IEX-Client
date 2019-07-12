@@ -99,7 +99,8 @@ class ChartTicker extends Component {
           &nbsp;
           <FormControl className={classes.formControl}>
             <Select
-              value={this.chartTimeFrame}
+              value={this.state.chartTimeFrame}
+              name={this.state.name}
               onChange={event => this.onHandleChangeTimeFrame(event)}
               displayEmpty={true}
               input={
@@ -112,11 +113,24 @@ class ChartTicker extends Component {
                   }}
                 />
               }
-              renderValue={
-                this.state.chartTimeFrame > 0
-                  ? undefined
-                  : () => <span>{this.state.name}</span>
-              }
+              renderValue={() => {
+                switch (this.state.chartTimeFrame) {
+                  case "Duration":
+                    return "Duration";
+                  case "ytd":
+                    return "Year to Date";
+                  case "1m":
+                    return "One Month";
+                  case "3m":
+                    return "Three Month";
+                  case "6m":
+                    return "Six Month";
+                  case "1y":
+                    return "One Year";
+                  default:
+                    return "Duration";
+                }
+              }}
             >
               <MenuItem value="" name="Duration" disabled>
                 Duration
@@ -138,23 +152,6 @@ class ChartTicker extends Component {
               </MenuItem>
             </Select>
           </FormControl>
-          <select
-            ref={input => (this.chartTimeFrame = input)}
-            type="text"
-            value={this.state.chartTimeFrame}
-            onChange={event => this.onHandleChangeTimeFrame(event)}
-            placeholder="1m, 3m, 6m, 1y"
-            className="chartTimeFrameInput"
-          >
-            <option value="">Duration</option>
-            <option value="ytd">YTD</option>
-            <option value="1m">1 month</option>
-            <option value="3m">3 month</option>
-            <option value="6m">6 month</option>
-            <option value="1y">1 year</option>
-            <option value="2y">2 year</option>
-            <option value="5y">5 year</option>
-          </select>
           &nbsp;
           <Button
             color="primary"
@@ -163,7 +160,7 @@ class ChartTicker extends Component {
             size="small"
             className="chartTickerSubmit"
           >
-            Add
+            Chart
           </Button>
           &nbsp;&nbsp;&nbsp;
           <Typography
