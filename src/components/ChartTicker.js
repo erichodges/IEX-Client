@@ -10,7 +10,6 @@ import Input from "@material-ui/core/Input";
 import { withStyles } from "@material-ui/core/styles";
 
 import styles from "./styles/ticker.module.css";
-import ChartTickerSelect from "./ChartTickerSelect";
 
 const myStyles = {
   formControl: {
@@ -41,7 +40,8 @@ class ChartTicker extends Component {
     this.state = {
       chartTicker: "",
       displayTicker: "",
-      chartTimeFrame: "Duration"
+      chartTimeFrame: "",
+      name: ""
     };
   }
   onHandleChange = event => {
@@ -50,11 +50,13 @@ class ChartTicker extends Component {
       displayTicker: event.target.value.toUpperCase()
     });
   };
-  onHandleChangeTimeFrame(event) {
+  onHandleChangeTimeFrame = event => {
     this.setState({
-      chartTimeFrame: event.target.value.toLowerCase()
+      chartTimeFrame: event.target.value.toLowerCase(),
+      name: event.target.name
     });
-  }
+    console.log("onHandleChangeTimeFrame", event.target.name);
+  };
   render() {
     const { classes } = this.props;
 
@@ -113,17 +115,27 @@ class ChartTicker extends Component {
               renderValue={
                 this.state.chartTimeFrame > 0
                   ? undefined
-                  : () => <span>{this.state.chartTimeFrame}</span>
+                  : () => <span>{this.state.name}</span>
               }
             >
-              <MenuItem value="" disabled>
+              <MenuItem value="" name="Duration" disabled>
                 Duration
               </MenuItem>
-              <MenuItem value={"ytd"}>YTD</MenuItem>
-              <MenuItem value="1m">One Month</MenuItem>
-              <MenuItem value="3m">Three Month</MenuItem>
-              <MenuItem value="6m">Six Month</MenuItem>
-              <MenuItem value="1y">One Year</MenuItem>
+              <MenuItem value="ytd" name="YTD">
+                YTD
+              </MenuItem>
+              <MenuItem value="1m" name="One Month">
+                One Month
+              </MenuItem>
+              <MenuItem value="3m" name="Three Month">
+                Three Month
+              </MenuItem>
+              <MenuItem value="6m" name="Six Month">
+                Six Month
+              </MenuItem>
+              <MenuItem value="1y" name="One Year">
+                One Year
+              </MenuItem>
             </Select>
           </FormControl>
           <select
