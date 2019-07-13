@@ -11,7 +11,10 @@ import UpdateQuoteList from "../modules/user/UpdateQuoteList";
 import RemoveQuoteList from "../modules/user/RemoveQuoteList";
 import QuoteListTable from "./QuoteListTable";
 
+import styles from "./styles/QuoteList.module.css";
+
 const url = "https://ws-api.iextrading.com/1.0/last";
+
 class QuoteList extends Component {
   constructor(props) {
     super(props);
@@ -183,73 +186,73 @@ class QuoteList extends Component {
     return (
       <div>
         <Typography variant="h6">{quoteListName}</Typography>
-        <SaveQuoteList
-          item={this.props.item}
-          addQuoteListName={this.props.addQuoteListName}
-          quoteListDisplayName={this.onSetQuoteListName}
-          quoteListArray={this.props.quoteListArray}
-          addQuoteListId={this.props.addQuoteListId}
-        />
-        <StyledLoadQuoteList
-          item={this.props.item}
-          loadQuoteList={this.loadQuoteList}
-          addQuoteListId={this.props.addQuoteListId}
-        />
-        <UpdateQuoteList
-          item={this.props.item}
-          quoteListArray={this.props.quoteListArray}
-        />
-        <RemoveQuoteList
-          item={this.props.item}
-          quoteListArray={this.props.quoteListArray}
-          deleteTickers={() => this.deleteAll(data)}
-        />
-        <form
-          className="ticker-form"
-          onSubmit={this.handleSubmit}
-          ref={input => (this.tickerForm = input)}
-        >
-          <div
-            className="form-group"
-            style={{
-              display: "flex",
-              alignItems: "center"
-            }}
+        <div className={styles.wrapper}>
+          <SaveQuoteList
+            item={this.props.item}
+            addQuoteListName={this.props.addQuoteListName}
+            quoteListDisplayName={this.onSetQuoteListName}
+            quoteListArray={this.props.quoteListArray}
+            addQuoteListId={this.props.addQuoteListId}
+          />
+          <StyledLoadQuoteList
+            item={this.props.item}
+            loadQuoteList={this.loadQuoteList}
+            addQuoteListId={this.props.addQuoteListId}
+          />
+          <UpdateQuoteList
+            item={this.props.item}
+            quoteListArray={this.props.quoteListArray}
+          />
+          <RemoveQuoteList
+            item={this.props.item}
+            quoteListArray={this.props.quoteListArray}
+            deleteTickers={() => this.deleteAll(data)}
+          />
+          <form
+            className="ticker-form"
+            onSubmit={this.handleSubmit}
+            ref={input => (this.tickerForm = input)}
           >
-            <DarkTextField
-              onChange={this.onHandleChange}
-              variant="outlined"
-              placeholder="Ticker"
-              margin="dense"
-              inputRef={input => (this.input = input)}
-              type="text"
-              className="tickerInput"
-              autoFocus={true}
-              size="small"
-              value={this.state.tickerInput}
-            />
-            <label className="inputLabel" htmlFor="newTickerInput" />
-            &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-            <Button
-              color="primary"
-              variant="outlined"
-              type="submit"
-              className="tickerSubmit"
-              size="small"
+            <div
+              className="form-group"
+              style={{
+                display: "flex",
+                alignItems: "center"
+              }}
             >
-              Add
-            </Button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <Button
-              color="primary"
-              variant="outlined"
-              size="small"
-              onClick={() => this.props.remove(this.props.item)}
-            >
-              Close
-            </Button>
-          </div>
-        </form>
+              <DarkTextField
+                onChange={this.onHandleChange}
+                variant="outlined"
+                placeholder="Ticker"
+                margin="dense"
+                inputRef={input => (this.input = input)}
+                type="text"
+                className="tickerInput"
+                autoFocus={true}
+                size="small"
+                value={this.state.tickerInput}
+              />
+              <label className="inputLabel" htmlFor="newTickerInput" />
+              <Button
+                color="primary"
+                variant="outlined"
+                type="submit"
+                className="tickerSubmit"
+                size="small"
+              >
+                Add
+              </Button>
+              <Button
+                color="primary"
+                variant="outlined"
+                size="small"
+                onClick={() => this.props.remove(this.props.item)}
+              >
+                Close
+              </Button>
+            </div>
+          </form>
+        </div>
         &nbsp;&nbsp;
         {message !== "" && <p className="message-text"> {message}</p>}
         &nbsp;&nbsp;&nbsp;

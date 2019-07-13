@@ -3,6 +3,8 @@ import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
 import { Mutation } from "react-apollo";
 import Button from "@material-ui/core/Button";
+import styles from "components/styles/QuoteList.module.css";
+
 import {
   MeQuery,
   updateQuoteList_updateQuoteList,
@@ -54,8 +56,7 @@ class UpdateQuoteList extends Component {
           }
           if (data!.me!.userName) {
             return (
-              <div>
-                &nbsp;&nbsp;&nbsp;
+              <div className={styles.selectQuoteList}>
                 <Mutation<
                   updateQuoteList_updateQuoteList,
                   updateQuoteListVariables

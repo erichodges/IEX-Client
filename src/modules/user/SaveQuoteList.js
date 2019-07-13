@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
 import { Mutation } from "react-apollo";
+import Button from "@material-ui/core/Button";
 
 import DarkTextField from "../../components/styleComponents/DarkTextField";
-import Button from "@material-ui/core/Button";
+// import styles from "./styles/QuoteList.module.css";
 
 const meQuery = gql`
   query MeQuery {

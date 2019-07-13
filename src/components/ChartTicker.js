@@ -9,7 +9,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Input from "@material-ui/core/Input";
 import { withStyles } from "@material-ui/core/styles";
 
-import styles from "./styles/ticker.module.css";
+import styles from "./styles/ChartTicker.module.css";
 
 const myStyles = {
   formControl: {

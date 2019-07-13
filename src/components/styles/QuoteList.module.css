@@ -1,0 +1,19 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1rem;
+  grid-template-areas:
+    "a b"
+    "c d";
+}
+
+.nameQuoteList {
+  grid-area: a;
+}
+.selectQuoteList {
+  grid-area: b;
+}
+
+.tickerEntryQuoteList {
+  grid-area: c;
+}

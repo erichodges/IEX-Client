@@ -8,6 +8,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Input from "@material-ui/core/Input";
 import { withStyles } from "@material-ui/core/styles";
 
+import styles from "components/styles/QuoteList.module.css";
+
 const meQuery = gql`
   query MeQuery {
     me {
@@ -23,7 +25,7 @@ const meQuery = gql`
   }
 `;
 
-const styles = {
+const LoadQuoteListStyles = {
   formControl: {
     minWidth: 196
   },
@@ -92,7 +94,7 @@ class LoadQuoteList extends Component {
           }
           if (data.me.quoteList) {
             return (
-              <div>
+              <div className={styles.selectQuoteList}>
                 <form
                   onSubmit={e => {
                     this.handleSubmit(e, data.me.quoteList);
@@ -154,6 +156,6 @@ class LoadQuoteList extends Component {
   }
 }
 
-const StyledLoadQuoteList = withStyles(styles)(LoadQuoteList);
+const StyledLoadQuoteList = withStyles(LoadQuoteListStyles)(LoadQuoteList);
 
 export default StyledLoadQuoteList;

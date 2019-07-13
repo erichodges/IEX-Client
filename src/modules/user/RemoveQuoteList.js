@@ -3,7 +3,8 @@ import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
 import { Mutation } from "react-apollo";
 import Button from "@material-ui/core/Button";
-// import { MeQuery } from "../../schemaTypes";
+
+import styles from "components/styles/QuoteList.module.css";
 
 const meQuery = gql`
   query MeQuery {
@@ -46,8 +47,7 @@ class RemoveQuoteList extends Component {
           }
           if (data.me.userName) {
             return (
-              <div>
-                &nbsp;&nbsp;&nbsp;
+              <div className={styles.selectQuoteList}>
                 <Mutation mutation={REMOVE_QUOTE_LIST}>
                   {mutate => (
                     // @ts-ignore
