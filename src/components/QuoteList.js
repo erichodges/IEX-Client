@@ -230,14 +230,14 @@ class QuoteList extends Component {
                 <DarkTextField
                   onChange={this.onHandleChange}
                   variant="outlined"
-                  placeholder="Ticker"
+                  placeholder="Symbol"
                   margin="dense"
                   inputRef={input => (this.input = input)}
                   type="text"
                   autoFocus={true}
                   size="small"
                   value={this.state.tickerInput}
-                  style={{ minWidth: 60 }}
+                  style={{ width: 100 }}
                 />
                 <label className="inputLabel" htmlFor="newTickerInput" />
                 <Button

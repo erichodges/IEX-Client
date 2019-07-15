@@ -126,6 +126,7 @@ class CandleStickChartWithMA extends React.Component {
             orient="left"
             ticks={5}
             tickFormat={format(".2s")}
+            tickStroke="#f5f5f5"
           />
           <MouseCoordinateX
             at="bottom"
@@ -154,8 +155,14 @@ class CandleStickChartWithMA extends React.Component {
           ]}
           padding={{ top: 10, bottom: 20 }}
         >
-          <XAxis axisAt="bottom" orient="bottom" />
-          <YAxis axisAt="right" orient="right" ticks={5} />
+          <XAxis axisAt="bottom" orient="bottom" tickStroke="#f5f5f5" />
+          <YAxis
+            axisAt="right"
+            orient="right"
+            ticks={5}
+            stroke="#f5f5f5"
+            tickStroke="#f5f5f5"
+          />
           <MouseCoordinateY
             at="right"
             orient="right"
@@ -180,10 +187,14 @@ class CandleStickChartWithMA extends React.Component {
             fill={ema21.stroke()}
           />
           {/*/ textFill and labelFill control the colors!! */}
-          <OHLCTooltip origin={[-40, 0]} textFill="#fff" labelFill="#fff" />
+          <OHLCTooltip
+            origin={[-40, 0]}
+            textFill="#f5f5f5"
+            labelFill="#f5f5f5"
+          />
           <MovingAverageTooltip
-            textFill="#fff"
-            labelFill="#fff"
+            textFill="#f5f5f5"
+            labelFill="#f5f5f5"
             onClick={e => console.log(e)}
             origin={[-38, 15]}
             options={[
@@ -219,7 +230,7 @@ class CandleStickChartWithMA extends React.Component {
           />
         </Chart>
 
-        <CrossHairCursor />
+        <CrossHairCursor stroke="#f5f5f5" />
       </ChartCanvas>
     );
   }
