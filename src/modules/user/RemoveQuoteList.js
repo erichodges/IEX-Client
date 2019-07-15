@@ -47,10 +47,11 @@ class RemoveQuoteList extends Component {
           }
           if (data.me.userName) {
             return (
-              <div className={styles.selectQuoteList}>
+              <div className={styles.delete}>
                 <Mutation mutation={REMOVE_QUOTE_LIST}>
                   {mutate => (
                     // @ts-ignore
+
                     <Button
                       color="primary"
                       size="small"

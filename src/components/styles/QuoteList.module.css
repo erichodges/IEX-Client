@@ -1,19 +1,37 @@
 .wrapper {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 1rem;
+  grid-template-columns: repeat(8, 1fr);
   grid-template-areas:
-    "a b"
-    "c d";
+    "a a a a b c d ."
+    "f f f g h i j k";
 }
 
-.nameQuoteList {
+.name {
+}
+.select {
+  grid-area: b;
+  display: flex;
+  align-content: flex-end;
+}
+.save {
   grid-area: a;
 }
-.selectQuoteList {
-  grid-area: b;
+.loadWrapper {
+  display: flex;
+  align-items: end;
+}
+.load {
+  grid-area: c;
+}
+.update {
+  grid-area: c;
+}
+.delete {
+  grid-area: d;
 }
 
-.tickerEntryQuoteList {
-  grid-area: c;
+.formGroup {
+  grid-column-start: 1;
+  grid-area: f;
+  order: 1;
 }

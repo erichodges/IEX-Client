@@ -56,7 +56,7 @@ class UpdateQuoteList extends Component {
           }
           if (data!.me!.userName) {
             return (
-              <div className={styles.selectQuoteList}>
+              <div className={styles.update}>
                 <Mutation<
                   updateQuoteList_updateQuoteList,
                   updateQuoteListVariables

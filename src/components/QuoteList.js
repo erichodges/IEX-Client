@@ -11,7 +11,7 @@ import UpdateQuoteList from "../modules/user/UpdateQuoteList";
 import RemoveQuoteList from "../modules/user/RemoveQuoteList";
 import QuoteListTable from "./QuoteListTable";
 
-import styles from "./styles/QuoteList.module.css";
+import styles from "components/styles/QuoteList.module.css";
 
 const url = "https://ws-api.iextrading.com/1.0/last";
 
@@ -208,50 +208,51 @@ class QuoteList extends Component {
             quoteListArray={this.props.quoteListArray}
             deleteTickers={() => this.deleteAll(data)}
           />
-          <form
-            className="ticker-form"
-            onSubmit={this.handleSubmit}
-            ref={input => (this.tickerForm = input)}
-          >
-            <div
-              className="form-group"
-              style={{
-                display: "flex",
-                alignItems: "center"
-              }}
+          <div className={styles.formGroup}>
+            <form
+              className="ticker-form"
+              onSubmit={this.handleSubmit}
+              ref={input => (this.tickerForm = input)}
             >
-              <DarkTextField
-                onChange={this.onHandleChange}
-                variant="outlined"
-                placeholder="Ticker"
-                margin="dense"
-                inputRef={input => (this.input = input)}
-                type="text"
-                className="tickerInput"
-                autoFocus={true}
-                size="small"
-                value={this.state.tickerInput}
-              />
-              <label className="inputLabel" htmlFor="newTickerInput" />
-              <Button
-                color="primary"
-                variant="outlined"
-                type="submit"
-                className="tickerSubmit"
-                size="small"
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center"
+                }}
               >
-                Add
-              </Button>
-              <Button
-                color="primary"
-                variant="outlined"
-                size="small"
-                onClick={() => this.props.remove(this.props.item)}
-              >
-                Close
-              </Button>
-            </div>
-          </form>
+                <DarkTextField
+                  onChange={this.onHandleChange}
+                  variant="outlined"
+                  placeholder="Ticker"
+                  margin="dense"
+                  inputRef={input => (this.input = input)}
+                  type="text"
+                  autoFocus={true}
+                  size="small"
+                  value={this.state.tickerInput}
+                  style={{ minWidth: 60 }}
+                />
+                <label className="inputLabel" htmlFor="newTickerInput" />
+                <Button
+                  color="primary"
+                  variant="outlined"
+                  type="submit"
+                  className="tickerSubmit"
+                  size="small"
+                >
+                  Add
+                </Button>
+                <Button
+                  color="primary"
+                  variant="outlined"
+                  size="small"
+                  onClick={() => this.props.remove(this.props.item)}
+                >
+                  Close
+                </Button>
+              </div>
+            </form>
+          </div>
         </div>
         &nbsp;&nbsp;
         {message !== "" && <p className="message-text"> {message}</p>}

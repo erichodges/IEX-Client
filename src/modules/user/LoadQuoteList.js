@@ -94,8 +94,9 @@ class LoadQuoteList extends Component {
           }
           if (data.me.quoteList) {
             return (
-              <div className={styles.selectQuoteList}>
+              <div className={styles.loadWrapper}>
                 <form
+                  className={styles.select}
                   onSubmit={e => {
                     this.handleSubmit(e, data.me.quoteList);
                     console.log("handle submit", e);
@@ -135,7 +136,6 @@ class LoadQuoteList extends Component {
                       })}
                     </Select>
                   </FormControl>
-
                   <Button
                     color="primary"
                     size="small"

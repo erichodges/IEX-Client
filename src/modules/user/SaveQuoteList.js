@@ -5,7 +5,7 @@ import { Mutation } from "react-apollo";
 import Button from "@material-ui/core/Button";
 
 import DarkTextField from "../../components/styleComponents/DarkTextField";
-// import styles from "./styles/QuoteList.module.css";
+import styles from "components/styles/QuoteList.module.css";
 
 const meQuery = gql`
   query MeQuery {
@@ -94,6 +94,7 @@ class SaveQuoteList extends Component {
           if (data.me.userName) {
             return (
               <div
+                className={styles.save}
                 style={{
                   display: "flex",
                   alignItems: "center"
