@@ -66,6 +66,7 @@ class UpdateQuoteList extends Component {
                   {mutate => (
                     // @ts-ignore
                     <Button
+                      className={styles.UpdateButton}
                       color="primary"
                       size="small"
                       variant="outlined"

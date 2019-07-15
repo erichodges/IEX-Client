@@ -185,7 +185,14 @@ class QuoteList extends Component {
     const { data, message, quoteListName } = this.state;
     return (
       <div>
-        <Typography variant="h6">{quoteListName}</Typography>
+        <div
+          style={{
+            display: "flex",
+            alignContent: "space-between !important"
+          }}
+        >
+          <Typography variant="h6">{quoteListName}</Typography>
+        </div>
         <div className={styles.wrapper}>
           <SaveQuoteList
             item={this.props.item}
@@ -234,21 +241,22 @@ class QuoteList extends Component {
                 />
                 <label className="inputLabel" htmlFor="newTickerInput" />
                 <Button
+                  className={styles.addButtonTickerQL}
                   color="primary"
                   variant="outlined"
                   type="submit"
-                  className="tickerSubmit"
                   size="small"
                 >
                   Add
                 </Button>
                 <Button
+                  className={styles.closeButtonQL}
                   color="primary"
                   variant="outlined"
                   size="small"
                   onClick={() => this.props.remove(this.props.item)}
                 >
-                  Close
+                  Close List
                 </Button>
               </div>
             </form>

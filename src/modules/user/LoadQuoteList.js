@@ -27,7 +27,9 @@ const meQuery = gql`
 
 const LoadQuoteListStyles = {
   formControl: {
-    minWidth: 196
+    minWidth: 196,
+    width: 196,
+    display: "flex"
   },
   focused: {},
   disabled: {},
@@ -96,55 +98,59 @@ class LoadQuoteList extends Component {
             return (
               <div className={styles.loadWrapper}>
                 <form
-                  className={styles.select}
                   onSubmit={e => {
                     this.handleSubmit(e, data.me.quoteList);
                     console.log("handle submit", e);
                   }}
                 >
                   <FormControl className={classes.formControl}>
-                    <Select
-                      value={this.state.quoteListName}
-                      onChange={this.handleChange("quoteListName")}
-                      displayEmpty={true}
-                      input={
-                        <Input
-                          classes={{
-                            focused: classes.focused,
-                            disabled: classes.disabled,
-                            error: classes.error,
-                            underline: classes.underlineInput
-                          }}
-                        />
-                      }
-                      renderValue={
-                        this.state.quoteListName > 0
-                          ? undefined
-                          : () => <span>{this.state.quoteListName}</span>
-                      }
-                    >
-                      <MenuItem value="" disabled>
-                        Select a Quote List
-                      </MenuItem>
+                    <div className={styles.select}>
+                      <Select
+                        value={this.state.quoteListName}
+                        onChange={this.handleChange("quoteListName")}
+                        displayEmpty={true}
+                        input={
+                          <Input
+                            className={styles.inputQuoteList}
+                            classes={{
+                              focused: classes.focused,
+                              disabled: classes.disabled,
+                              error: classes.error,
+                              underline: classes.underlineInput
+                            }}
+                          />
+                        }
+                        renderValue={
+                          this.state.quoteListName > 0
+                            ? undefined
+                            : () => <span>{this.state.quoteListName}</span>
+                        }
+                      >
+                        <MenuItem value="" disabled>
+                          Select a Quote List
+                        </MenuItem>
 
-                      {data.me.quoteList.map(item => {
-                        return (
-                          <MenuItem value={item.name} key={item.name}>
-                            {item.name}
-                          </MenuItem>
-                        );
-                      })}
-                    </Select>
+                        {data.me.quoteList.map(item => {
+                          return (
+                            <MenuItem value={item.name} key={item.name}>
+                              {item.name}
+                            </MenuItem>
+                          );
+                        })}
+                      </Select>
+
+                      <Button
+                        className={styles.loadButton}
+                        color="primary"
+                        size="small"
+                        variant="outlined"
+                        type="submit"
+                        value="submit"
+                      >
+                        Load
+                      </Button>
+                    </div>
                   </FormControl>
-                  <Button
-                    color="primary"
-                    size="small"
-                    variant="outlined"
-                    type="submit"
-                    value="submit"
-                  >
-                    Load
-                  </Button>
                 </form>
               </div>
             );

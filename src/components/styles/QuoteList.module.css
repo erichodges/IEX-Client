@@ -1,37 +1,61 @@
 .wrapper {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(8, auto);
   grid-template-areas:
-    "a a a a b c d ."
+    "a a a a b c d e"
     "f f f g h i j k";
 }
 
+.closeButtonQL {
+  margin-left: 10px !important;
+  grid-area: k !important;
+}
 .name {
+}
+.addButtonSaveQL {
+  margin-left: 8px !important;
+}
+.saveButton {
+  margin-left: 7px !important;
 }
 .select {
   grid-area: b;
   display: flex;
-  align-content: flex-end;
+  margin-top: 9px;
+}
+.inputQuoteList {
+  min-width: 196px;
 }
 .save {
   grid-area: a;
 }
 .loadWrapper {
-  display: flex;
-  align-items: end;
 }
 .load {
   grid-area: c;
 }
-.update {
-  grid-area: c;
+.loadButton {
+  margin-left: 10px !important;
 }
-.delete {
+.update {
   grid-area: d;
 }
-
+.UpdateButton {
+  margin-top: 9px !important;
+  margin-left: 43px !important;
+}
+.delete {
+  grid-area: e;
+}
+.deleteButton {
+  margin-top: 9px !important;
+  margin-left: -11px !important;
+}
 .formGroup {
   grid-column-start: 1;
   grid-area: f;
   order: 1;
+}
+.addButtonTickerQL {
+  margin-left: 11px !important;
 }

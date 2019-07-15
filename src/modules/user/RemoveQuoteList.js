@@ -53,6 +53,7 @@ class RemoveQuoteList extends Component {
                     // @ts-ignore
 
                     <Button
+                      className={styles.deleteButton}
                       color="primary"
                       size="small"
                       variant="outlined"

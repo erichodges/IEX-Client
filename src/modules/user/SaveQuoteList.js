@@ -112,6 +112,7 @@ class SaveQuoteList extends Component {
                 />
                 &nbsp;
                 <Button
+                  className={styles.addButtonSaveQL}
                   color="primary"
                   variant="outlined"
                   size="small"
@@ -123,6 +124,7 @@ class SaveQuoteList extends Component {
                 <Mutation mutation={ADD_QUOTE_LIST}>
                   {mutate => (
                     <Button
+                      className={styles.saveButton}
                       color="primary"
                       size="small"
                       variant="outlined"
