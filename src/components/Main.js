@@ -135,6 +135,7 @@ const QuoteListContainer = props => (
   <div>
     <Container maxWidth="md">
       <Button
+        style={{ marginTop: "1rem" }}
         onClick={props.addChild}
         color="primary"
         variant="outlined"

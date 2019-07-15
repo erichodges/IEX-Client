@@ -92,11 +92,12 @@ class ChartTicker extends Component {
             value={this.state.chartTicker}
             variant="outlined"
             margin="dense"
-            placeholder={"Enter Symbol"}
+            placeholder={"Symbol"}
             className="chartTickerInput"
             type="text"
             size="small"
             autoFocus={true}
+            style={{ width: 100 }}
           />
           &nbsp;
           <FormControl className={classes.formControl}>
