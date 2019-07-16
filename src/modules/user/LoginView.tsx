@@ -124,7 +124,7 @@ class LoginView extends PureComponent<RouteComponentProps<{}>> {
                     <div>
                       <br />
                       <Typography>
-                        Need to &nbsp;
+                        Need to&nbsp;
                         <Link to="/register" style={userItemsStyle}>
                           Register?
                         </Link>
