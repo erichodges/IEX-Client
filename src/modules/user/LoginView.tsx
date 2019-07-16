@@ -7,6 +7,7 @@ import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 
 import styles from "../../components/styles/LoginView.module.css";
 import DarkTextField from "../../components/styleComponents/DarkTextField";
@@ -33,7 +34,9 @@ const meQuery = gql`
 `;
 
 const userItemsStyle = {
-  marginRight: "2rem"
+  marginRight: "2rem",
+  color: "#90caf9",
+  textDecoration: "none"
 };
 
 class LoginView extends PureComponent<RouteComponentProps<{}>> {
@@ -102,7 +105,11 @@ class LoginView extends PureComponent<RouteComponentProps<{}>> {
                       />
                     </div>
                     <div className={styles.contentWrapper}>
+                      <br />
                       <Button
+                        color="primary"
+                        variant="outlined"
+                        size="small"
                         onClick={async () => {
                           const response = await mutate({
                             variables: this.state
@@ -116,15 +123,22 @@ class LoginView extends PureComponent<RouteComponentProps<{}>> {
                     </div>
                     <div>
                       <br />
+                      <Typography>
+                        Need to &nbsp;
+                        <Link to="/register" style={userItemsStyle}>
+                          Register?
+                        </Link>
+                      </Typography>
                       <br />
-                      &nbsp;&nbsp;&nbsp;<Link to="/">Main Page</Link>
-                      <br />
-                      <br />
-                      &nbsp;&nbsp;&nbsp;If you don't have a login, please &nbsp;
-                      &nbsp;&nbsp;&nbsp;
-                      <Link to="/register" style={userItemsStyle}>
-                        Register
-                      </Link>
+                      <Button
+                        component={Link}
+                        to="/"
+                        color="primary"
+                        variant="outlined"
+                        size="small"
+                      >
+                        Cancel
+                      </Button>
                     </div>
                   </CardContent>
                 </Card>
