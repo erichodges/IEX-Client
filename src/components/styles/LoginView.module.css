@@ -1,0 +1,15 @@
+.wrapper {
+  display: grid;
+  align-content: center !important;
+  align-items: center !important;
+  justify-content: center !important;
+  grid-template-columns: 80% !important;
+}
+.contentWrapper {
+  display: grid;
+  align-items: center !important;
+}
+.card {
+  display: grid;
+  width: 250px !important;
+}
