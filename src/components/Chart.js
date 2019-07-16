@@ -33,33 +33,13 @@ import { last } from "react-stockcharts/lib/utils";
 // want to have sma 5, 50, 200 and ema 13, 21
 class CandleStickChartWithMA extends React.Component {
   render() {
-    const ema13 = ema()
-      .options({
-        windowSize: 13, // optional will default to 10
-        sourcePath: "close" // optional will default to close as the source
-      })
-      .skipUndefined(true) // defaults to true
-      .merge((d, c) => {
-        d.ema13 = c;
-      }) // Required, if not provided, log a error
-      .accessor(d => d.ema13) // Required, if not provided, log an error during calculation
-      .stroke("blue"); // Optional. This sets the moving avg color!!
-
-    const sma5 = sma()
-      .options({ windowSize: 5 })
-      .merge((d, c) => {
-        d.sma5 = c;
-      })
-      .accessor(d => d.sma5)
-      .stroke("green");
-
     const sma50 = sma()
       .options({ windowSize: 50 })
       .merge((d, c) => {
         d.sma50 = c;
       })
       .accessor(d => d.sma50)
-      .stroke("black");
+      .stroke("#3F51B5");
 
     const ema21 = ema()
       .options({ windowSize: 21 })
@@ -67,7 +47,7 @@ class CandleStickChartWithMA extends React.Component {
         d.ema21 = c;
       })
       .accessor(d => d.ema21)
-      .stroke("red");
+      .stroke("#f5f5f5");
     const { type, data: initialData, width, ratio } = this.props;
 
     const candlesAppearance = {
@@ -85,7 +65,7 @@ class CandleStickChartWithMA extends React.Component {
       opacity: 1
     };
 
-    const calculatedData = ema13(sma5(ema21(sma50(initialData))));
+    const calculatedData = ema21(sma50(initialData));
     const xScaleProvider = discontinuousTimeScaleProvider.inputDateAccessor(
       d => d.date
     );
@@ -146,13 +126,7 @@ class CandleStickChartWithMA extends React.Component {
         </Chart>
         <Chart
           id={1}
-          yExtents={[
-            d => [d.high, d.low],
-            sma5.accessor(),
-            sma50.accessor(),
-            ema13.accessor(),
-            ema21.accessor()
-          ]}
+          yExtents={[d => [d.high, d.low], sma50.accessor(), ema21.accessor()]}
           padding={{ top: 10, bottom: 20 }}
         >
           <XAxis axisAt="bottom" orient="bottom" tickStroke="#f5f5f5" />
@@ -169,19 +143,16 @@ class CandleStickChartWithMA extends React.Component {
             displayFormat={format(".2f")}
           />
           <CandlestickSeries {...candlesAppearance} clip={false} />
-          <LineSeries yAccessor={sma5.accessor()} stroke={sma5.stroke()} />
+
           <LineSeries yAccessor={sma50.accessor()} stroke={sma50.stroke()} />
-          <LineSeries yAccessor={ema13.accessor()} stroke={ema13.stroke()} />
+
           <LineSeries yAccessor={ema21.accessor()} stroke={ema21.stroke()} />
-          <CurrentCoordinate yAccessor={sma5.accessor()} fill={sma5.stroke()} />
+
           <CurrentCoordinate
             yAccessor={sma50.accessor()}
             fill={sma50.stroke()}
           />
-          <CurrentCoordinate
-            yAccessor={ema13.accessor()}
-            fill={ema13.stroke()}
-          />
+
           <CurrentCoordinate
             yAccessor={ema21.accessor()}
             fill={ema21.stroke()}
@@ -199,24 +170,10 @@ class CandleStickChartWithMA extends React.Component {
             origin={[-38, 15]}
             options={[
               {
-                yAccessor: sma5.accessor(),
-                type: "SMA",
-                stroke: sma5.stroke(),
-                windowSize: sma5.options().windowSize,
-                echo: "some echo here"
-              },
-              {
                 yAccessor: sma50.accessor(),
                 type: "SMA",
                 stroke: sma50.stroke(),
                 windowSize: sma50.options().windowSize,
-                echo: "some echo here"
-              },
-              {
-                yAccessor: ema13.accessor(),
-                type: "EMA",
-                stroke: ema13.stroke(),
-                windowSize: ema13.options().windowSize,
                 echo: "some echo here"
               },
               {
