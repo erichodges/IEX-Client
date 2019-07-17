@@ -1,6 +1,16 @@
 import React, { PureComponent } from "react";
+import { Link } from "react-router-dom";
 import { Mutation } from "react-apollo";
 import { gql } from "apollo-boost";
+import Button from "@material-ui/core/Button";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import Grid from "@material-ui/core/Grid";
+// import Typography from "@material-ui/core/Typography";
+
+import styles from "../../components/styles/LoginView.module.css";
+import DarkTextField from "../../components/styleComponents/DarkTextField";
+
 import { RegisterMutationVariables, RegisterMutation } from "../../schemaTypes";
 import { RouteComponentProps } from "react-router-dom";
 
@@ -35,38 +45,75 @@ class RegisterView extends PureComponent<RouteComponentProps<{}>> {
       >
         {mutate => (
           <div>
-            <input
-              type="text"
-              name="userName"
-              placeholder="Username"
-              value={userName}
-              onChange={this.handleChange}
-            />
-            <input
-              type="text"
-              name="email"
-              placeholder="email"
-              value={email}
-              onChange={this.handleChange}
-            />
-            <input
-              type="password"
-              name="password"
-              placeholder="password"
-              value={password}
-              onChange={this.handleChange}
-            />
-            <button
-              onClick={async () => {
-                const response = await mutate({
-                  variables: this.state
-                });
-                console.log(response);
-                this.props.history.push("/login");
-              }}
+            <Grid
+              container
+              spacing={0}
+              direction="column"
+              alignItems="center"
+              justify="center"
+              style={{ minHeight: "100vh" }}
             >
-              Register
-            </button>
+              <Card className={styles.card}>
+                <CardContent>
+                  <div className={styles.contentWrapper}>
+                    <DarkTextField
+                      variant="outlined"
+                      margin="dense"
+                      type="text"
+                      name="userName"
+                      placeholder="Username"
+                      value={userName}
+                      onChange={this.handleChange}
+                    />
+                    <DarkTextField
+                      variant="outlined"
+                      margin="dense"
+                      type="text"
+                      name="email"
+                      placeholder="email"
+                      value={email}
+                      onChange={this.handleChange}
+                    />
+                    <DarkTextField
+                      variant="outlined"
+                      margin="dense"
+                      type="password"
+                      name="password"
+                      placeholder="password"
+                      value={password}
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                  <div className={styles.contentWrapper}>
+                    <br />
+                    <Button
+                      onClick={async () => {
+                        const response = await mutate({
+                          variables: this.state
+                        });
+                        console.log(response);
+                        this.props.history.push("/login");
+                      }}
+                      color="primary"
+                      variant="outlined"
+                      size="small"
+                    >
+                      Register
+                    </Button>
+                  </div>
+                  <br />
+                  <Button
+                    component={Link}
+                    to="/"
+                    color="primary"
+                    variant="outlined"
+                    size="small"
+                  >
+                    Cancel
+                  </Button>
+                </CardContent>
+              </Card>
+            </Grid>
           </div>
         )}
       </Mutation>

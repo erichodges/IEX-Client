@@ -129,7 +129,7 @@ class CandleStickChartWithMA extends React.Component {
           yExtents={[d => [d.high, d.low], sma50.accessor(), ema21.accessor()]}
           padding={{ top: 10, bottom: 20 }}
         >
-          <XAxis axisAt="bottom" orient="bottom" tickStroke="#f5f5f5" />
+          <XAxis axisAt="bottom" orient="bottom" stroke="#f5f5f5" />
           <YAxis
             axisAt="right"
             orient="right"
