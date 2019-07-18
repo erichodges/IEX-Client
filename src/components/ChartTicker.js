@@ -174,8 +174,8 @@ class ChartTicker extends Component {
           </Typography>
           <Typography className={styles["CompanyDetails"]}>
             &nbsp;&nbsp;&nbsp; {this.props.companyName}
-            &nbsp;&nbsp; <b>{this.props.close.toFixed(2)}</b>
-            &nbsp;&nbsp;&nbsp; <b>{this.props.change.toFixed(2)}%</b>
+            {/* &nbsp;&nbsp; <b>{this.props.close.toFixed(2)}</b> */}
+            {/*  &nbsp;&nbsp;&nbsp; <b>{this.props.change.toFixed(2)}%</b> */}
           </Typography>
         </div>
       </form>
