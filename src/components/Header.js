@@ -1,5 +1,7 @@
+import Typography from "@material-ui/core/Typography";
 import React, { Component } from "react";
 import LoginHeader from "../modules/user/LoginHeader";
+
 
 const ulStyle = {
   listStyle: "none",
@@ -19,7 +21,7 @@ class Header extends Component {
       <div>
         <ul style={ulStyle}>
           <li style={logoStyle}>
-            <h3>Quick Chart</h3>
+            <Typography variant="h6">Quick Chart</Typography>
           </li>
           <LoginHeader />
         </ul>

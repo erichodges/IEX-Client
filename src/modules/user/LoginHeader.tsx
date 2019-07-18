@@ -1,8 +1,10 @@
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import { gql } from "apollo-boost";
 import React, { Component } from "react";
 import { Query } from "react-apollo";
-import { gql } from "apollo-boost";
-import { MeQuery } from "../../schemaTypes";
 import { Link } from "react-router-dom";
+import { MeQuery } from "../../schemaTypes";
 
 const meQuery = gql`
   query MeQuery {
@@ -15,7 +17,16 @@ const meQuery = gql`
 `;
 
 const userItemsStyle = {
-  marginRight: "2rem"
+  marginRight: "2rem",
+  display: "flex",
+  alignItems: "center"
+};
+
+const logoutButton = {
+  marginLeft: "1rem"
+};
+const loginButton = {
+  marginRight: "1rem"
 };
 
 class LoginHeader extends Component {
@@ -30,17 +41,33 @@ class LoginHeader extends Component {
             if (data.me) {
               return (
                 <div style={userItemsStyle}>
-                  {data.me!.userName}
-                  &nbsp;&nbsp;&nbsp;<Link to="/logout">Logout</Link>
+                  <Typography variant="h6">{data.me!.userName}</Typography>
+                  <Button
+                    variant="outlined"
+                    color="primary"
+                    size="small"
+                    component={Link}
+                    to="/logout"
+                    style={logoutButton}
+                  >
+                    Logout
+                  </Button>
                 </div>
               );
             } else {
               return (
                 <div>
                   <li>
-                    <Link to="/login" style={userItemsStyle}>
+                    <Button
+                      variant="outlined"
+                      color="primary"
+                      size="small"
+                      component={Link}
+                      to="/login"
+                      style={loginButton}
+                    >
                       Login
-                    </Link>
+                    </Button>
                   </li>
                 </div>
               );

@@ -27,7 +27,7 @@ class CandleStickChartWithMA extends React.Component {
         d.sma50 = c;
       })
       .accessor(d => d.sma50)
-      .stroke("#3F51B5");
+      .stroke("#1976d2");
 
     const ema21 = ema()
       .options({ windowSize: 21 })
