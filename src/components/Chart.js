@@ -1,34 +1,22 @@
-import React from "react";
-import PropTypes from "prop-types";
 import { format } from "d3-format";
 import { timeFormat } from "d3-time-format";
-
-import { ChartCanvas, Chart } from "react-stockcharts";
-import {
-  BarSeries,
-  CandlestickSeries,
-  LineSeries
-} from "react-stockcharts/lib/series";
-
+import PropTypes from "prop-types";
+import React from "react";
+import { Chart, ChartCanvas } from "react-stockcharts";
 import { XAxis, YAxis } from "react-stockcharts/lib/axes";
-
-import {
-  CrossHairCursor,
-  CurrentCoordinate,
-  MouseCoordinateX,
-  MouseCoordinateY
-} from "react-stockcharts/lib/coordinates";
-
-import { discontinuousTimeScaleProvider } from "react-stockcharts/lib/scale";
-
-import {
-  OHLCTooltip,
-  MovingAverageTooltip
-} from "react-stockcharts/lib/tooltip";
-
-import { ema, sma } from "react-stockcharts/lib/indicator";
+import { CrossHairCursor, CurrentCoordinate, MouseCoordinateX, MouseCoordinateY } from "react-stockcharts/lib/coordinates";
 import { fitWidth } from "react-stockcharts/lib/helper";
+import { ema, sma } from "react-stockcharts/lib/indicator";
+import { discontinuousTimeScaleProvider } from "react-stockcharts/lib/scale";
+import { BarSeries, CandlestickSeries, LineSeries } from "react-stockcharts/lib/series";
+import { MovingAverageTooltip, OHLCTooltip } from "react-stockcharts/lib/tooltip";
 import { last } from "react-stockcharts/lib/utils";
+
+
+
+
+
+
 
 // want to have sma 5, 50, 200 and ema 13, 21
 class CandleStickChartWithMA extends React.Component {
@@ -134,6 +122,7 @@ class CandleStickChartWithMA extends React.Component {
             orient="bottom"
             tickStroke="#f5f5f5"
             stroke="#f5f5f5"
+            fontFamily="Roboto"
           />
           <YAxis
             axisAt="right"
@@ -141,11 +130,13 @@ class CandleStickChartWithMA extends React.Component {
             ticks={5}
             stroke="#f5f5f5"
             tickStroke="#f5f5f5"
+            fontFamily="Roboto"
           />
           <MouseCoordinateY
             at="right"
             orient="right"
             displayFormat={format(".2f")}
+            fontFamily="Roboto"
           />
           <CandlestickSeries {...candlesAppearance} clip={false} />
 
@@ -167,8 +158,11 @@ class CandleStickChartWithMA extends React.Component {
             origin={[-40, 0]}
             textFill="#f5f5f5"
             labelFill="#f5f5f5"
+            fontFamily="Roboto"
+            fontSize={12}
           />
           <MovingAverageTooltip
+            fontFamily="Roboto"
             textFill="#f5f5f5"
             labelFill="#f5f5f5"
             onClick={e => console.log(e)}
