@@ -1,10 +1,10 @@
+import { timeParse } from "d3-time-format";
 import React, { Component } from "react";
+import socket from "socket.io-client";
 import Chart from "./Chart";
 import ChartTicker from "./ChartTicker";
-import { getData, getCompanyName, getQuote } from "./Utils";
-import socket from "socket.io-client";
+import { getCompanyName, getData, getQuote } from "./Utils";
 
-import { timeParse } from "d3-time-format";
 const parseDate = timeParse("%Q");
 class ChartLayout extends Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class ChartLayout extends Component {
       volume: 0,
       change: 0
     };
-    const url = "https://ws-api.iextrading.com/1.0/tops";
+    const url = "https://ws-api.iextrading.com/1.0/last";
     this.socket = socket(url, { reconnection: true });
     this.handleChartSubmit = this.handleChartSubmit.bind(this);
 
@@ -30,8 +30,8 @@ class ChartLayout extends Component {
     });
 
     this.socket.on("message", message => {
-      // const msg = JSON.parse(message);
-      // console.log(msg.symbol);
+      const msg = JSON.parse(message);
+      console.log("ChartLayout", msg);
       const insertDate = parseDate(this.state.date);
 
       let newData = {
@@ -39,10 +39,10 @@ class ChartLayout extends Component {
         open: this.state.open,
         high: this.state.high,
         low: this.state.low,
-        close: this.state.close, // msg.lastSalePrice,
+        close: msg.price, //msg.lastSalePrice | msg.price | this.state.close
         volume: this.state.volume
       };
-      // console.log(newData);
+      console.log("CL", newData);
       this.setState(state => {
         return {
           data: [...state.data, newData]

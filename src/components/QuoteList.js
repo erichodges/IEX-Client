@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import socket from "socket.io-client";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-
-import DarkTextField from "./styleComponents/DarkTextField";
-import { getQuote, getKeyStats } from "./Utils";
-import SaveQuoteList from "../modules/user/SaveQuoteList";
-import StyledLoadQuoteList from "../modules/user/LoadQuoteList";
-import UpdateQuoteList from "../modules/user/UpdateQuoteList";
-import RemoveQuoteList from "../modules/user/RemoveQuoteList";
-import QuoteListTable from "./QuoteListTable";
-
 import styles from "components/styles/QuoteList.module.css";
+import React, { Component } from "react";
+import socket from "socket.io-client";
+import StyledLoadQuoteList from "../modules/user/LoadQuoteList";
+import RemoveQuoteList from "../modules/user/RemoveQuoteList";
+import SaveQuoteList from "../modules/user/SaveQuoteList";
+import UpdateQuoteList from "../modules/user/UpdateQuoteList";
+import QuoteListTable from "./QuoteListTable";
+import DarkTextField from "./styleComponents/DarkTextField";
+import { getKeyStats, getQuote } from "./Utils";
+
+
 
 const url = "https://ws-api.iextrading.com/1.0/last";
 
@@ -44,6 +44,7 @@ class QuoteList extends Component {
     });
     this.socket.on("message", message => {
       const msg = JSON.parse(message);
+      console.log("QL", msg);
       this.setState(state => {
         return {
           data: state.data.map(item => {
