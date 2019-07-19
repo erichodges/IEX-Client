@@ -26,7 +26,7 @@ const logoutButton = {
   marginLeft: "1rem"
 };
 const loginButton = {
-  marginRight: "1rem"
+  marginRight: "1.5rem"
 };
 
 class LoginHeader extends Component {
