@@ -128,8 +128,9 @@ class ChartLayout extends Component {
           volume: values[2].latestVolume,
           change: values[2].changePercent,
           oldTicker: ticker
-        });
-        this.socket.emit("subscribe", ticker);
+        }).then(() => {
+          this.socket.emit("subscribe", ticker);
+        }).catch(e => console.log("Server Error:" + e.message));        
       });
     }
   }
