@@ -1,10 +1,11 @@
 import React, { PureComponent } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import LoginView from "./modules/user/LoginView";
-import RegisterView from "./modules/user/RegisterView";
-import MeView from "./modules/user/MeView";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Error from "./components/Error";
 import Main from "./components/Main";
+import LoginView from "./modules/user/LoginView";
 import { Logout } from "./modules/user/LogoutIndex";
+import MeView from "./modules/user/MeView";
+import RegisterView from "./modules/user/RegisterView";
 export default class Routes extends PureComponent {
   render() {
     return (
@@ -15,6 +16,7 @@ export default class Routes extends PureComponent {
           <Route path="/logout" component={Logout} />
           <Route path="/register" component={RegisterView} />
           <Route path="/me" component={MeView} />
+          <Route path="/error" component={Error} />
         </Switch>
       </BrowserRouter>
     );
