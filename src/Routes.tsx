@@ -17,6 +17,7 @@ export default class Routes extends PureComponent {
           <Route path="/register" component={RegisterView} />
           <Route path="/me" component={MeView} />
           <Route path="/error" component={Error} />
+          <Route path="*" component={Error} />
         </Switch>
       </BrowserRouter>
     );

@@ -1,11 +1,19 @@
+import Container from "@material-ui/core/Container";
+import Typography from "@material-ui/core/Typography";
 import React from "react";
-import { NavLink } from "react-router-dom";
+import Header from "./Header";
 
 const Error = () => {
   return (
     <div>
-      <h3>404 Error Page</h3>
-      <NavLink to="/">Main Page</NavLink>
+      <Header />
+      <Container maxWidth="lg">
+        <br/>
+        <br/>
+        <Typography variant="h6">
+        The requested page does not exist.
+        </Typography>
+      </Container>
     </div>
   );
 };
