@@ -116,6 +116,7 @@ class ChartLayout extends Component {
         getCompanyName(ticker),
         getQuote(ticker)
       ]).then(values => {
+        console.log("charLayout Values:", ticker, time);
         this.socket.emit("unsubscribe", this.state.oldTicker);
         this.setState({
           data: values[0],
