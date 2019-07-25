@@ -1,6 +1,6 @@
-import React from "react";
-import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import React from "react";
 
 const styles = {
   underline: {
@@ -12,6 +12,11 @@ const styles = {
     },
     "&::after": {
       borderBottom: "2px solid #90caf9"
+    }
+  },
+  input: {
+    "&:-webkit-autofill": {
+      WebkitBoxShadow: "0 0 0 1000px black inset"
     }
   }
 };
