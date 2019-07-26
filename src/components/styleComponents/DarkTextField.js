@@ -1,5 +1,6 @@
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
+import classNames from "classnames";
 import React from "react";
 
 const styles = {
@@ -14,17 +15,18 @@ const styles = {
       borderBottom: "2px solid #90caf9"
     }
   },
-  MuiInput: {
+  input: {
     "&:-webkit-autofill": {
       WebkitBoxShadow: "0 0 0 1000px black inset"
     }
   }
+
 };
 
 const DarkTextField = withStyles(styles)(props => {
   const { classes, ...other } = props;
 
-  return <TextField InputProps={{ className: classes.underline }} {...other} />;
+  return <TextField InputProps={ classNames("classes.underline", "classes.input") } {...other} />;
 });
 
 export default DarkTextField;
