@@ -1,6 +1,5 @@
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import classNames from "classnames";
 import React from "react";
 
 const styles = {
@@ -17,17 +16,29 @@ const styles = {
   },
   input: {
     "&:-webkit-autofill": {
-      WebkitBoxShadow: "0 0 0 1000px black inset"
+      WebkitBoxShadow: "0 0 0 1000px #37474f inset",
+      WebkitTextFillColor: "#f5f5f5",
+      caretColor: "#f5f5f5",
+      size: 16
     }
   }
 
 };
 
-const DarkTextField = ({classes}) => {
-  return <TextField inputProps={classNames( "classes.underline", "classes.input")} />
-} 
+const DarkTextField = withStyles(styles)(props => {
+  const { classes, ...other } = props;
+  return <TextField InputProps={ {classes: classes} } {...other} />;
+});
 
-export default withStyles(styles)(DarkTextField);
+export default DarkTextField;
+
+
+//#2 Version
+// const DarkTextField = ({classes}) => {
+//   return <TextField inputProps={classNames( "classes.underline", "classes.input")} />
+// } 
+
+// export default withStyles(styles)(DarkTextField);
 
 
 // OLD VERSION
