@@ -36,6 +36,9 @@ const theme = createMuiTheme({
         },
         "&$focused $notchedOutline": {
           borderColor: "#90caf9"
+        },
+        "&:-webkit-autofill": {
+          WebkitBoxShadow: "0 0 0 1000px black inset"
         }
       },
       notchedOutline: {}

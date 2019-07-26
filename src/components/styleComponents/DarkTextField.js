@@ -14,7 +14,7 @@ const styles = {
       borderBottom: "2px solid #90caf9"
     }
   },
-  input: {
+  MuiInput: {
     "&:-webkit-autofill": {
       WebkitBoxShadow: "0 0 0 1000px black inset"
     }
