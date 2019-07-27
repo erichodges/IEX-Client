@@ -3,7 +3,12 @@ import TextField from "@material-ui/core/TextField";
 import React from "react";
 
 const styles = {
-  underline: {
+  input: {
+    "&:-webkit-autofill": {
+      WebkitBoxShadow: "0 0 0 1000px #37474f inset",
+      WebkitTextFillColor: "#f5f5f5",
+      caretColor: "#f5f5f5"
+    },
     "&::before": {
       borderBottom: "1px solid #90caf9"
     },
@@ -13,16 +18,7 @@ const styles = {
     "&::after": {
       borderBottom: "2px solid #90caf9"
     }
-  },
-  input: {
-    "&:-webkit-autofill": {
-      WebkitBoxShadow: "0 0 0 1000px #37474f inset",
-      WebkitTextFillColor: "#f5f5f5",
-      caretColor: "#f5f5f5",
-      size: 16
-    }
   }
-
 };
 
 const DarkTextField = withStyles(styles)(props => {
