@@ -31,21 +31,3 @@ const DarkTextField = withStyles(styles)(props => {
 });
 
 export default DarkTextField;
-
-
-//#2 Version
-// const DarkTextField = ({classes}) => {
-//   return <TextField inputProps={classNames( "classes.underline", "classes.input")} />
-// } 
-
-// export default withStyles(styles)(DarkTextField);
-
-
-// OLD VERSION
-// const DarkTextField = withStyles(styles)(props => {
-//   const { classes, ...other } = props;
-
-//   return <TextField inputProps={ classNames("classes.underline", "classes.input") } {...other} />;
-// });
-
-// export default DarkTextField;
