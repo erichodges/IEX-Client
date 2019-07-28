@@ -1,14 +1,13 @@
-import React, { Component } from "react";
-import { Query } from "react-apollo";
-import { gql } from "apollo-boost";
-import { Mutation } from "react-apollo";
 import Button from "@material-ui/core/Button";
+import { gql } from "apollo-boost";
 import styles from "components/styles/QuoteList.module.css";
-
+import { withSnackbar } from "notistack";
+import React, { Component } from "react";
+import { Mutation, Query } from "react-apollo";
 import {
   MeQuery,
-  updateQuoteList_updateQuoteList,
-  updateQuoteListVariables
+  updateQuoteListVariables,
+  updateQuoteList_updateQuoteList
 } from "../../schemaTypes";
 
 const meQuery = gql`
@@ -37,6 +36,18 @@ const UPDATE_QUOTE_LIST = gql`
 `;
 
 class UpdateQuoteList extends Component {
+  constructor(props: any) {
+    super(props);
+    // @ts-ignore
+    this.onUpdateQuoteList = this.onUpdateQuoteList.bind(this);
+  }
+
+  // @ts-ignore
+  onUpdateQuoteList(variant) {
+    // @ts-ignore
+    this.props.enqueueSnackbar("Quote List Updated", { variant });
+  }
+
   render() {
     // @ts-ignore
     const quoteListArray = this.props.quoteListArray;
@@ -77,11 +88,14 @@ class UpdateQuoteList extends Component {
                           const tickers = item.tickers;
                           const name = item.name;
                           const id = item.quoteListId;
+                          const variant = "success";
 
                           if (item.id === quoteListId) {
                             const response = await mutate({
                               variables: { id, name, tickers }
                             });
+                            // @ts-ignore
+                            this.onUpdateQuoteList(variant);
                             console.log(response, data!.me!);
                           }
                         });
@@ -100,4 +114,5 @@ class UpdateQuoteList extends Component {
     );
   }
 }
-export default UpdateQuoteList;
+// @ts-ignore
+export default withSnackbar(UpdateQuoteList);

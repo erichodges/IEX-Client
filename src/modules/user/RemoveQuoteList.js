@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { Query } from "react-apollo";
-import { gql } from "apollo-boost";
-import { Mutation } from "react-apollo";
 import Button from "@material-ui/core/Button";
-
+import { gql } from "apollo-boost";
 import styles from "components/styles/QuoteList.module.css";
+import { withSnackbar } from "notistack";
+import React, { Component } from "react";
+import { Mutation, Query } from "react-apollo";
+
 
 const meQuery = gql`
   query MeQuery {
@@ -28,6 +28,11 @@ const REMOVE_QUOTE_LIST = gql`
 `;
 
 class RemoveQuoteList extends Component {
+
+  onDeleteQuoteList = (variant) => {
+    this.props.enqueueSnackbar("Quote List Deleted", { variant });
+  }
+
   render() {
     // @ts-ignore
     const quoteListArray = this.props.quoteListArray;
@@ -62,6 +67,7 @@ class RemoveQuoteList extends Component {
                         // @ts-ignore
                         quoteListArray.map(async item => {
                           const id = item.quoteListId;
+                          const variant = "success";
 
                           if (item.id === quoteListId) {
                             const response = await mutate({
@@ -73,6 +79,7 @@ class RemoveQuoteList extends Component {
                               ]
                             });
                             this.props.deleteTickers();
+                            this.onDeleteQuoteList(variant);
                             console.log(response, data.me);
                           }
                         });
@@ -91,4 +98,4 @@ class RemoveQuoteList extends Component {
     );
   }
 }
-export default RemoveQuoteList;
+export default withSnackbar(RemoveQuoteList);
