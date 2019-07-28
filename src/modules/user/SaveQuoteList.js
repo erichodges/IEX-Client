@@ -71,11 +71,11 @@ class SaveQuoteList extends Component {
     this.input.value = "";
   }
 
-  onAddQuoteListId(responseWithQuoteList, itemId, name) {
+  onAddQuoteListId(responseWithQuoteList, itemId, name, variant) {
     const quoteListId = responseWithQuoteList.data.addQuoteList.id;
     
         this.props.addQuoteListId(quoteListId, itemId, name);
-        this.props.enqueueSnackbar("Quote List Saved");
+        this.props.enqueueSnackbar("Quote List Saved", {variant});
   }
 
   render() {
@@ -144,7 +144,8 @@ class SaveQuoteList extends Component {
                                 }
                               ]
                             });
-                            this.onAddQuoteListId(response, item.id, name);
+                            const variant = "success"
+                            this.onAddQuoteListId(response, item.id, name, variant );
                             console.log("From: SaveQuoteList", response);
                           }
                         });
