@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import { Query } from "react-apollo";
-import { gql } from "apollo-boost";
-import { Mutation } from "react-apollo";
 import Button from "@material-ui/core/Button";
-
-import DarkTextField from "../../components/styleComponents/DarkTextField";
+import { gql } from "apollo-boost";
 import styles from "components/styles/QuoteList.module.css";
+import React, { Component } from "react";
+import { Mutation, Query } from "react-apollo";
+import DarkTextField from "../../components/styleComponents/DarkTextField";
+
+
 
 const meQuery = gql`
   query MeQuery {
@@ -72,8 +72,8 @@ class SaveQuoteList extends Component {
 
   onAddQuoteListId(responseWithQuoteList, itemId, name) {
     const quoteListId = responseWithQuoteList.data.addQuoteList.id;
-
-    this.props.addQuoteListId(quoteListId, itemId, name);
+    
+        this.props.addQuoteListId(quoteListId, itemId, name);
   }
 
   render() {

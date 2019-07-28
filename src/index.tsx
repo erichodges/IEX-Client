@@ -1,13 +1,13 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import ApolloClient, { InMemoryCache } from "apollo-boost";
-import { ApolloProvider } from "react-apollo";
-import { ThemeProvider } from "@material-ui/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import { ThemeProvider } from "@material-ui/styles";
+import ApolloClient, { InMemoryCache } from "apollo-boost";
+import { SnackbarProvider } from "notistack";
+import React from "react";
+import { ApolloProvider } from "react-apollo";
+import ReactDOM from "react-dom";
 import "typeface-roboto";
-
-import theme from "./theme";
 import Routes from "./Routes";
+import theme from "./theme";
 
 const cache = new InMemoryCache();
 
@@ -20,8 +20,10 @@ const client = new ApolloClient({
 ReactDOM.render(
   <ApolloProvider client={client}>
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Routes />
+      <SnackbarProvider maxSnack={3}>
+        <CssBaseline />
+        <Routes />
+      </SnackbarProvider>
     </ThemeProvider>
   </ApolloProvider>,
   document.getElementById("root") as HTMLElement
