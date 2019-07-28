@@ -1,6 +1,7 @@
 import Button from "@material-ui/core/Button";
 import { gql } from "apollo-boost";
 import styles from "components/styles/QuoteList.module.css";
+import { withSnackbar } from "notistack";
 import React, { Component } from "react";
 import { Mutation, Query } from "react-apollo";
 import DarkTextField from "../../components/styleComponents/DarkTextField";
@@ -74,6 +75,7 @@ class SaveQuoteList extends Component {
     const quoteListId = responseWithQuoteList.data.addQuoteList.id;
     
         this.props.addQuoteListId(quoteListId, itemId, name);
+        this.props.enqueueSnackbar("Quote List Saved");
   }
 
   render() {
@@ -161,4 +163,4 @@ class SaveQuoteList extends Component {
     );
   }
 }
-export default SaveQuoteList;
+export default withSnackbar(SaveQuoteList);
