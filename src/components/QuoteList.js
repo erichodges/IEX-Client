@@ -14,7 +14,6 @@ import { getKeyStats, getQuote } from "./Utils";
 
 
 const url = "https://ws-api.iextrading.com/1.0/last";
-let QuoteLists = [];
 
 class QuoteList extends Component {
   constructor(props) {
@@ -184,11 +183,11 @@ class QuoteList extends Component {
   };
 
   onQuoteListsFromServer = (quoteLists) => {
-     QuoteLists = quoteLists;    
+      
   }
 
   render() {
-    console.log("From QuoteList", QuoteLists);
+    console.log("From QuoteList");
     const { data, message, quoteListName } = this.state;
     return (
       <div>
