@@ -60,15 +60,23 @@ class SaveQuoteList extends Component {
   }
 
   onAddQuoteListName(e) {
-    console.log("onAddQuoteListName:", this.input.value);
-    this.props.addQuoteListName(this.input.value, this.props.item.id);
-
-    this.props.quoteListDisplayName(this.input.value);
-    this.setState({
-      quoteListName: this.input.value
-    });
-    // console.log(this.state.quoteListName);
-    this.input.value = "";
+    console.log("onAddQuoteListName", this.props.quoteLists);
+    const variant = "error"
+    if (
+      this.props.quoteLists.filter(item => {
+        return item.symbol === this.input.value;
+      }).length > 0
+    ) {
+      this.props.enqueueSnackbar("Please choose a different name", {variant});
+    } else {
+      this.props.addQuoteListName(this.input.value, this.props.item.id);
+      this.props.quoteListDisplayName(this.input.value);
+      this.setState({
+        quoteListName: this.input.value
+      });
+      // console.log(this.state.quoteListName);
+      this.input.value = "";
+    }
   }
 
   onAddQuoteListId(responseWithQuoteList, itemId, name, variant) {
@@ -76,6 +84,10 @@ class SaveQuoteList extends Component {
     
         this.props.addQuoteListId(quoteListId, itemId, name);
         this.props.enqueueSnackbar("Quote List Saved", {variant});
+  }
+
+  onSaveError(variant) {
+    this.props.enqueueSnackbar("Save Error", {variant});
   }
 
   render() {
@@ -134,6 +146,8 @@ class SaveQuoteList extends Component {
                         quoteListArray.map(async item => {
                           const tickers = item.tickers;
                           const name = item.name;
+                          const variant1 = "success"
+                          const variant2 = "error"
 
                           if (item.id === quoteListId) {
                             const response = await mutate({
@@ -143,10 +157,11 @@ class SaveQuoteList extends Component {
                                   query: meQuery
                                 }
                               ]
-                            });
-                            const variant = "success"
-                            this.onAddQuoteListId(response, item.id, name, variant );
+                            });  
+                            this.onAddQuoteListId(response, item.id, name, variant1 );
                             console.log("From: SaveQuoteList", response);
+                          } else {
+                            this.onSaveError(variant2);
                           }
                         });
                       }}

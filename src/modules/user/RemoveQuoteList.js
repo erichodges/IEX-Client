@@ -33,6 +33,10 @@ class RemoveQuoteList extends Component {
     this.props.enqueueSnackbar("Quote List Deleted", { variant });
   }
 
+  deleteError = (variant) => {
+    this.props.enqueueSnackbar("Delete Error", { variant });
+  }
+
   render() {
     // @ts-ignore
     const quoteListArray = this.props.quoteListArray;
@@ -67,7 +71,8 @@ class RemoveQuoteList extends Component {
                         // @ts-ignore
                         quoteListArray.map(async item => {
                           const id = item.quoteListId;
-                          const variant = "success";
+                          const variant1 = "success";
+                          const variant2 = "error";
 
                           if (item.id === quoteListId) {
                             const response = await mutate({
@@ -79,8 +84,10 @@ class RemoveQuoteList extends Component {
                               ]
                             });
                             this.props.deleteTickers();
-                            this.onDeleteQuoteList(variant);
+                            this.onDeleteQuoteList(variant1);
                             console.log(response, data.me);
+                          } else {
+                            this.deleteError(variant2);
                           }
                         });
                       }}

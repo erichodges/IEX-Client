@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import { Query } from "react-apollo";
-import { gql } from "apollo-boost";
 import Button from "@material-ui/core/Button";
 import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
 import Input from "@material-ui/core/Input";
+import MenuItem from "@material-ui/core/MenuItem";
+import Select from "@material-ui/core/Select";
 import { withStyles } from "@material-ui/core/styles";
-
+import { gql } from "apollo-boost";
 import styles from "components/styles/QuoteList.module.css";
+import React, { Component } from "react";
+import { Query } from "react-apollo";
+
 
 const meQuery = gql`
   query MeQuery {
@@ -81,6 +81,10 @@ class LoadQuoteList extends Component {
     }
   };
 
+  onServerRes = (quoteListsFromServer) => {
+    this.props.quoteListsFromServer(quoteListsFromServer);
+  }
+
   render() {
     console.log("this.state.QuoteLists", this.state.QuoteLists);
     const { classes } = this.props;
@@ -95,6 +99,7 @@ class LoadQuoteList extends Component {
             return null;
           }
           if (data.me.quoteList) {
+            this.onServerRes(data.me.quoteList);
             return (
               <div className={styles.loadWrapper}>
                 <form

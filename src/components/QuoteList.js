@@ -14,6 +14,7 @@ import { getKeyStats, getQuote } from "./Utils";
 
 
 const url = "https://ws-api.iextrading.com/1.0/last";
+let QuoteLists = [];
 
 class QuoteList extends Component {
   constructor(props) {
@@ -26,7 +27,8 @@ class QuoteList extends Component {
       open: false,
       keyStats: {},
       quoteListName: "Quote List",
-      tickerInput: ""
+      tickerInput: "",
+      quoteListsFromServer: []
     };
 
     this.onTickerForChart = this.onTickerForChart.bind(this);
@@ -181,8 +183,12 @@ class QuoteList extends Component {
     });
   };
 
+  onQuoteListsFromServer = (quoteLists) => {
+     QuoteLists = quoteLists;    
+  }
+
   render() {
-    console.log("from QuoteList", this.state.data);
+    console.log("From QuoteList", QuoteLists);
     const { data, message, quoteListName } = this.state;
     return (
       <div>
@@ -203,6 +209,7 @@ class QuoteList extends Component {
             addQuoteListId={this.props.addQuoteListId}
           />
           <StyledLoadQuoteList
+            quoteListsFromServer={this.onQuoteListsFromServer}
             item={this.props.item}
             loadQuoteList={this.loadQuoteList}
             addQuoteListId={this.props.addQuoteListId}
