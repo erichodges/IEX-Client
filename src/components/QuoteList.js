@@ -97,9 +97,7 @@ class QuoteList extends Component {
           this.socket.emit("subscribe", ticker);
         });
       } catch (error) {
-        this.setState({
-          message: "error.message"
-        });
+        console.log(error.message);
       }
     }
     this.tickerForm.reset();
@@ -183,7 +181,7 @@ class QuoteList extends Component {
   };
 
   onQuoteListsFromServer = (quoteLists) => {
-      
+    
   }
 
   render() {

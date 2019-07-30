@@ -131,7 +131,7 @@ class ChartLayout extends Component {
           oldTicker: ticker
         }).then(() => {
           this.socket.emit("subscribe", ticker);
-        }).catch(e => console.log("Server Error:" + e.message));        
+        }).catch(e => console.log("Server Error: " + e.message));        
       });
     }
   }
