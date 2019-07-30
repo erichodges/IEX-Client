@@ -55,7 +55,6 @@ class LoadQuoteList extends Component {
     quoteListName: "Select a Quote List",
     loading: true,
     selectedTickerList: [],
-    QuoteLists: [],
     selectedQuoteList: {}
   };
 
@@ -73,7 +72,7 @@ class LoadQuoteList extends Component {
     );
     if (list) {
       this.props.loadQuoteList(list.tickers, list.name);
-      console.log(list);
+      // console.log(list);
       this.props.addQuoteListId(list.id, this.props.item.id, list.name);
       this.setState({
         quoteListName: "Select a Quote List"
@@ -86,7 +85,7 @@ class LoadQuoteList extends Component {
   }
 
   render() {
-    console.log("this.state.QuoteLists", this.state.QuoteLists);
+    console.log("LoadQuoteList: ");
     const { classes } = this.props;
     return (
       <Query query={meQuery}>

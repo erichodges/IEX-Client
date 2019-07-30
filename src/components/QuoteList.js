@@ -181,7 +181,7 @@ class QuoteList extends Component {
   };
 
   onQuoteListsFromServer = (quoteLists) => {
-    
+
   }
 
   render() {
