@@ -46,37 +46,48 @@ class SaveQuoteList extends Component {
     this.onAddQuoteListName = this.onAddQuoteListName.bind(this);
     this.onKeyPressed = this.onKeyPressed.bind(this);
     this.onAddQuoteListId = this.onAddQuoteListId.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleSubmit = e => {
+  
+  handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Save:", this.input.value);
     this.onAddQuoteListName(e);
   };
 
   onKeyPressed(e) {
     if (e.key === "Enter") {
-      this.onAddQuoteListName(e);
+      this.onAddQuoteListName();
     }
   }
 
   onAddQuoteListName(e) {
-    console.log("onAddQuoteListName", this.props.quoteLists);
-    const variant = "error"
-    if (
-      this.props.quoteLists.filter(item => {
-        return item.symbol === this.input.value;
-      }).length > 0
-    ) {
-      this.props.enqueueSnackbar("Please choose a different name", {variant});
-    } else {
-      this.props.addQuoteListName(this.input.value, this.props.item.id);
-      this.props.quoteListDisplayName(this.input.value);
-      this.setState({
-        quoteListName: this.input.value
-      });
-      // console.log(this.state.quoteListName);
-      this.input.value = "";
-    }
+
+    <Query query={meQuery}>
+      {({ loading, error, data }) => {
+        if (loading) return null;
+        if (error) return `Error! ${error}`;
+
+        if (data.me.quoteList) {
+          const variant = "error"
+          if (
+            data.me.quoteList.filter(item => {
+              return item.name === data.me.quoteList.name;
+            }).length > 0
+          ) {
+            this.props.enqueueSnackbar("Please choose a different name", {variant});
+          } else {
+            this.props.addQuoteListName(this.input.value, this.props.item.id);
+            this.props.quoteListDisplayName(this.input.value);
+            this.setState({
+              quoteListName: this.input.value
+            });
+            // console.log(this.state.quoteListName);
+            this.input.value = "";
+          }
+        }
+
+      }}
+    </Query>    
   }
 
   onAddQuoteListId(responseWithQuoteList, itemId, name, variant) {
@@ -130,7 +141,7 @@ class SaveQuoteList extends Component {
                   color="primary"
                   variant="outlined"
                   size="small"
-                  onClick={this.handleSubmit}
+                  onClick={e => this.handleSubmit}
                 >
                   Add
                 </Button>
