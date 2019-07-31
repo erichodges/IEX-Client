@@ -3,7 +3,7 @@ import { gql } from "apollo-boost";
 import styles from "components/styles/QuoteList.module.css";
 import { withSnackbar } from "notistack";
 import React, { Component } from "react";
-import { Mutation, Query } from "react-apollo";
+import { Mutation, Query, withApollo } from "react-apollo";
 import DarkTextField from "../../components/styleComponents/DarkTextField";
 
 
@@ -33,7 +33,7 @@ const ADD_QUOTE_LIST = gql`
   }
 `;
 
-class SaveQuoteList extends Component {
+class SaveQuoteList extends Component({client}) {
   constructor(props) {
     super(props);
 
@@ -190,4 +190,4 @@ class SaveQuoteList extends Component {
     );
   }
 }
-export default withSnackbar(SaveQuoteList);
+export default withApollo(withSnackbar(SaveQuoteList));
