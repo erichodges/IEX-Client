@@ -33,7 +33,7 @@ const ADD_QUOTE_LIST = gql`
   }
 `;
 
-class SaveQuoteList extends Component({client}) {
+class SaveQuoteList extends Component {
   constructor(props) {
     super(props);
 
@@ -60,34 +60,29 @@ class SaveQuoteList extends Component({client}) {
     }
   }
 
-  onAddQuoteListName(e) {
-
-    <Query query={meQuery}>
-      {({ loading, error, data }) => {
-        if (loading) return null;
-        if (error) return `Error! ${error}`;
-
-        if (data.me.quoteList) {
-          const variant = "error"
-          if (
-            data.me.quoteList.filter(item => {
-              return item.name === data.me.quoteList.name;
-            }).length > 0
-          ) {
-            this.props.enqueueSnackbar("Please choose a different name", {variant});
-          } else {
-            this.props.addQuoteListName(this.input.value, this.props.item.id);
-            this.props.quoteListDisplayName(this.input.value);
-            this.setState({
-              quoteListName: this.input.value
-            });
-            // console.log(this.state.quoteListName);
-            this.input.value = "";
-          }
-        }
-
-      }}
-    </Query>    
+  async onAddQuoteListName(e) {
+    const data = await this.props.client.query({
+      query: meQuery
+    })
+    
+    if (data.me.quoteList) {
+      const variant = "error"
+      if (
+        data.me.quoteList.filter(item => {
+          return item.name === data.me.quoteList.name;
+        }).length > 0
+      ) {
+        this.props.enqueueSnackbar("Please choose a different name", {variant});
+      } else {
+        this.props.addQuoteListName(this.input.value, this.props.item.id);
+        this.props.quoteListDisplayName(this.input.value);
+        this.setState({
+          quoteListName: this.input.value
+        });
+        // console.log(this.state.quoteListName);
+        this.input.value = "";
+      }
+    }   
   }
 
   onAddQuoteListId(responseWithQuoteList, itemId, name, variant) {
