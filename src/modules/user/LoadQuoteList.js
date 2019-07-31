@@ -80,10 +80,7 @@ class LoadQuoteList extends Component {
     }
   };
 
-  onServerRes = (quoteListsFromServer) => {
-    this.props.quoteListsFromServer(quoteListsFromServer);
-  }
-
+  
   render() {
     console.log("LoadQuoteList: ");
     const { classes } = this.props;
@@ -98,7 +95,6 @@ class LoadQuoteList extends Component {
             return null;
           }
           if (data.me.quoteList) {
-            this.onServerRes(data.me.quoteList);
             return (
               <div className={styles.loadWrapper}>
                 <form

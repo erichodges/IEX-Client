@@ -180,10 +180,6 @@ class QuoteList extends Component {
     });
   };
 
-  onQuoteListsFromServer = (quoteLists) => {
-
-  }
-
   render() {
     console.log("From QuoteList");
     const { data, message, quoteListName } = this.state;
@@ -206,7 +202,6 @@ class QuoteList extends Component {
             addQuoteListId={this.props.addQuoteListId}
           />
           <StyledLoadQuoteList
-            quoteListsFromServer={this.onQuoteListsFromServer}
             item={this.props.item}
             loadQuoteList={this.loadQuoteList}
             addQuoteListId={this.props.addQuoteListId}
