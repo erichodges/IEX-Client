@@ -98,7 +98,7 @@ class SaveQuoteList extends Component {
     // const { quoteListName } = this.state;
     const quoteListArray = this.props.quoteListArray;
     const quoteListId = this.props.item.id;
-    // console.log(quoteListArray);
+    console.log("Save: ", this.state.quoteListName);
     return (
       <Query query={meQuery}>
         {({ data, loading }) => {
@@ -110,7 +110,7 @@ class SaveQuoteList extends Component {
             return null;
           }
           if (data.me.userName) {
-            const buttonDisabled = !!data.me.quoteList.find(item => {item.name === this.state.quoteListName});
+            const buttonDisabled = !!data.me.quoteList.find(item => item.name === this.state.quoteListName);
             return (
               <div
                 className={styles.save}
