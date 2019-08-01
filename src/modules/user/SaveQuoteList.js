@@ -98,7 +98,7 @@ class SaveQuoteList extends Component {
     // const { quoteListName } = this.state;
     const quoteListArray = this.props.quoteListArray;
     const quoteListId = this.props.item.id;
-    const buttonDisabled = !!data.me.quoteLIst.find(item => {item.name === this.state.quoteListName});
+    const buttonDisabled = !!data.me.quoteList.find(item => {item.name === this.state.quoteListName});
     // console.log(quoteListArray);
     return (
       <Query query={meQuery}>
