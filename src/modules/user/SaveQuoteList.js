@@ -40,7 +40,7 @@ class SaveQuoteList extends Component {
     // this.quoteListName = React.createRef();
 
     this.state = {
-      quoteListName: "Quote List"
+      quoteListName: ""
     };
 
     this.onAddQuoteListName = this.onAddQuoteListName.bind(this);
@@ -61,19 +61,19 @@ class SaveQuoteList extends Component {
   }
 
   async onAddQuoteListName(e) {
-    const data = await this.props.client.query({
-      query: meQuery
-    })
-    
-    if (data.me.quoteList) {
-      const variant = "error"
-      if (
-        data.me.quoteList.filter(item => {
-          return item.name === data.me.quoteList.name;
-        }).length > 0
-      ) {
-        this.props.enqueueSnackbar("Please choose a different name", {variant});
-      } else {
+    // const data = await this.props.client.query({
+    //   query: meQuery
+    // })
+    // console.log(data);
+    // if (data) {
+    //   const variant = "error"
+    //   if (
+    //     data.me.quoteList.filter(item => {
+    //       return item.name === data.me.quoteList.name;
+    //     }).length > 0
+    //   ) {
+        // this.props.enqueueSnackbar("Please choose a different name", {variant});
+      
         this.props.addQuoteListName(this.input.value, this.props.item.id);
         this.props.quoteListDisplayName(this.input.value);
         this.setState({
@@ -81,8 +81,6 @@ class SaveQuoteList extends Component {
         });
         // console.log(this.state.quoteListName);
         this.input.value = "";
-      }
-    }   
   }
 
   onAddQuoteListId(responseWithQuoteList, itemId, name, variant) {
@@ -100,6 +98,7 @@ class SaveQuoteList extends Component {
     // const { quoteListName } = this.state;
     const quoteListArray = this.props.quoteListArray;
     const quoteListId = this.props.item.id;
+    const buttonDisabled = !!data.me.quoteLIst.find(item => {item.name === this.state.quoteListName});
     // console.log(quoteListArray);
     return (
       <Query query={meQuery}>
@@ -124,12 +123,23 @@ class SaveQuoteList extends Component {
                   variant="outlined"
                   margin="dense"
                   ref={this.quoteListName}
-                  inputRef={input => (this.input = input)}
-                  onKeyPress={this.onKeyPressed}
+                  onChange={(e) => this.setState({ quoteListName: e.target.value})}
+                  value={this.state.quoteListName}
                   type="text"
                   placeholder="Name"
                   className="quoteListNameInput"
                 />
+                &nbsp;
+                <Button
+                  className={styles.addButtonSaveQL}
+                  color="primary"
+                  variant="outlined"
+                  size="small"
+                  onClick={this.handleSubmit}
+                  disabled={buttonDisabled}
+                >
+                  Add
+                </Button>
                 &nbsp;
                 <Button
                   className={styles.addButtonSaveQL}
