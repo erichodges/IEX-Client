@@ -33,6 +33,7 @@ const ADD_QUOTE_LIST = gql`
   }
 `;
 
+
 class SaveQuoteList extends Component {
   constructor(props) {
     super(props);
@@ -61,19 +62,6 @@ class SaveQuoteList extends Component {
   }
 
   async onAddQuoteListName(e) {
-    // const data = await this.props.client.query({
-    //   query: meQuery
-    // })
-    // console.log(data);
-    // if (data) {
-    //   const variant = "error"
-    //   if (
-    //     data.me.quoteList.filter(item => {
-    //       return item.name === data.me.quoteList.name;
-    //     }).length > 0
-    //   ) {
-        // this.props.enqueueSnackbar("Please choose a different name", {variant});
-      
         this.props.addQuoteListName(this.input.value, this.props.item.id);
         this.props.quoteListDisplayName(this.input.value);
         this.setState({
@@ -98,7 +86,7 @@ class SaveQuoteList extends Component {
     // const { quoteListName } = this.state;
     const quoteListArray = this.props.quoteListArray;
     const quoteListId = this.props.item.id;
-    console.log("Save: ", this.state.quoteListName);
+    
     return (
       <Query query={meQuery}>
         {({ data, loading }) => {
@@ -110,7 +98,7 @@ class SaveQuoteList extends Component {
             return null;
           }
           if (data.me.userName) {
-            const buttonDisabled = !!data.me.quoteList.find(item => item.name === this.state.quoteListName);
+            const buttonDisabled = data.me.quoteList.some(item => item.name === this.state.quoteListName);
             return (
               <div
                 className={styles.save}
@@ -123,6 +111,7 @@ class SaveQuoteList extends Component {
                   variant="outlined"
                   margin="dense"
                   ref={this.quoteListName}
+                  inputRef={input => (this.input = input)}
                   onChange={(e) => this.setState({ quoteListName: e.target.value})}
                   value={this.state.quoteListName}
                   type="text"
@@ -148,6 +137,7 @@ class SaveQuoteList extends Component {
                       color="primary"
                       size="small"
                       variant="outlined"
+                      disabled={buttonDisabled}
                       onClick={e => {
                         quoteListArray.map(async item => {
                           const tickers = item.tickers;
