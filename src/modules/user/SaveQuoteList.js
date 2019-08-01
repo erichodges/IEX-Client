@@ -98,7 +98,6 @@ class SaveQuoteList extends Component {
     // const { quoteListName } = this.state;
     const quoteListArray = this.props.quoteListArray;
     const quoteListId = this.props.item.id;
-    const buttonDisabled = !!data.me.quoteList.find(item => {item.name === this.state.quoteListName});
     // console.log(quoteListArray);
     return (
       <Query query={meQuery}>
@@ -111,6 +110,7 @@ class SaveQuoteList extends Component {
             return null;
           }
           if (data.me.userName) {
+            const buttonDisabled = !!data.me.quoteList.find(item => {item.name === this.state.quoteListName});
             return (
               <div
                 className={styles.save}
@@ -137,16 +137,6 @@ class SaveQuoteList extends Component {
                   size="small"
                   onClick={this.handleSubmit}
                   disabled={buttonDisabled}
-                >
-                  Add
-                </Button>
-                &nbsp;
-                <Button
-                  className={styles.addButtonSaveQL}
-                  color="primary"
-                  variant="outlined"
-                  size="small"
-                  onClick={e => this.handleSubmit}
                 >
                   Add
                 </Button>
