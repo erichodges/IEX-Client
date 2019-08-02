@@ -178,9 +178,7 @@ class SaveQuoteList extends Component {
                             });  
                             this.onAddQuoteListId(response, item.id, name, variant1 );
                             console.log("From: SaveQuoteList", response);
-                          } else {
-                            this.onSaveError(variant2);
-                          }
+                          } 
                         });
                       }}
                     >

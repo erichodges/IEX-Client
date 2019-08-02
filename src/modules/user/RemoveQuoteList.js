@@ -86,9 +86,7 @@ class RemoveQuoteList extends Component {
                             this.props.deleteTickers();
                             this.onDeleteQuoteList(variant1);
                             console.log(response, data.me);
-                          } else {
-                            this.deleteError(variant2);
-                          }
+                          } 
                         });
                       }}
                     >
