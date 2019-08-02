@@ -93,6 +93,10 @@ class SaveQuoteList extends Component {
     this.props.enqueueSnackbar("Save Error", {variant});
   }
 
+  onDisabledButton() {
+    console.log("disabledButton Func")
+  }
+
   render() {
     // const { quoteListName } = this.state;
     const quoteListArray = this.props.quoteListArray;
@@ -111,6 +115,7 @@ class SaveQuoteList extends Component {
           }
           if (data.me.userName) {
             const buttonDisabled = data.me.quoteList.some(item => item.name === this.state.quoteListName);
+            
             return (
               <div
                 className={styles.save}
