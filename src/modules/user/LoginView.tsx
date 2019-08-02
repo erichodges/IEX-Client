@@ -80,6 +80,7 @@ class LoginView extends PureComponent<RouteComponentProps<{}>> {
                   <CardContent>
                     <div className={styles.contentWrapper}>
                       <DarkTextField
+                        autoFocus={true}
                         variant="outlined"
                         type="text"
                         margin="dense"

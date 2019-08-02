@@ -1,18 +1,15 @@
-import React, { PureComponent } from "react";
-import { Link } from "react-router-dom";
-import { Mutation } from "react-apollo";
-import { gql } from "apollo-boost";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Grid from "@material-ui/core/Grid";
-// import Typography from "@material-ui/core/Typography";
-
-import styles from "../../components/styles/LoginView.module.css";
+import { gql } from "apollo-boost";
+import React, { PureComponent } from "react";
+import { Mutation } from "react-apollo";
+import { Link, RouteComponentProps } from "react-router-dom";
 import DarkTextField from "../../components/styleComponents/DarkTextField";
-
-import { RegisterMutationVariables, RegisterMutation } from "../../schemaTypes";
-import { RouteComponentProps } from "react-router-dom";
+// import Typography from "@material-ui/core/Typography";
+import styles from "../../components/styles/LoginView.module.css";
+import { RegisterMutation, RegisterMutationVariables } from "../../schemaTypes";
 
 const registerMutation = gql`
   mutation RegisterMutation(
@@ -57,6 +54,7 @@ class RegisterView extends PureComponent<RouteComponentProps<{}>> {
                 <CardContent>
                   <div className={styles.contentWrapper}>
                     <DarkTextField
+                      autoFocus={true}
                       variant="outlined"
                       margin="dense"
                       type="text"
