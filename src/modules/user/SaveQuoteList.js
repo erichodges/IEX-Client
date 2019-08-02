@@ -93,8 +93,8 @@ class SaveQuoteList extends Component {
     this.props.enqueueSnackbar("Save Error", {variant});
   }
 
-  onDisabledButton() {
-    console.log("disabledButton Func")
+  onDisabledButton(variant) {
+    this.props.enqueueSnackbar("Names must be unique", {variant});
   }
 
   render() {
@@ -114,8 +114,11 @@ class SaveQuoteList extends Component {
             return null;
           }
           if (data.me.userName) {
+            const variant = "error";
             const buttonDisabled = data.me.quoteList.some(item => item.name === this.state.quoteListName);
-            
+            if (buttonDisabled) {
+              this.onDisabledButton(variant)
+            }
             return (
               <div
                 className={styles.save}
@@ -131,7 +134,7 @@ class SaveQuoteList extends Component {
                   onChange={(e) => this.setState({ quoteListName: e.target.value})}
                   value={this.state.quoteListName}
                   type="text"
-                  placeholder="Name (must be unique)"
+                  placeholder="Name"
                   className="quoteListNameInput"
                   onKeyPress={this.onKeyPressed.bind(this)}
                 />
