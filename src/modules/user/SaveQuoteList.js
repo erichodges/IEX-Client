@@ -67,17 +67,16 @@ class SaveQuoteList extends Component {
 
   onKeyPressed(e) {
     if (e.key === "Enter") {
-      this.onAddQuoteListName();
+      this.onAddQuoteListName(e);
     }
   }
 
-  async onAddQuoteListName(e) {
+  onAddQuoteListName(e) {
         this.props.addQuoteListName(this.input.value, this.props.item.id);
         this.props.quoteListDisplayName(this.input.value);
         this.setState({
           quoteListName: this.input.value
         });
-        // console.log(this.state.quoteListName);
         this.input.value = "";
   }
 
@@ -126,7 +125,7 @@ class SaveQuoteList extends Component {
                   onChange={(e) => this.setState({ quoteListName: e.target.value})}
                   value={this.state.quoteListName}
                   type="text"
-                  placeholder="Name"
+                  placeholder="Name (must be unique)"
                   className="quoteListNameInput"
                 />
                 &nbsp;
