@@ -1,4 +1,5 @@
 import Button from "@material-ui/core/Button";
+import { withStyles } from "@material-ui/core/styles";
 import { gql } from "apollo-boost";
 import styles from "components/styles/QuoteList.module.css";
 import { withSnackbar } from "notistack";
@@ -33,6 +34,11 @@ const ADD_QUOTE_LIST = gql`
   }
 `;
 
+const saveQuoteListStyles = theme => ({
+  disabledButton: {
+    borderColor: "#fff"
+  }
+});
 
 class SaveQuoteList extends Component {
   constructor(props) {
@@ -86,7 +92,8 @@ class SaveQuoteList extends Component {
     // const { quoteListName } = this.state;
     const quoteListArray = this.props.quoteListArray;
     const quoteListId = this.props.item.id;
-    
+    const { classes } = this.props;
+
     return (
       <Query query={meQuery}>
         {({ data, loading }) => {
@@ -120,7 +127,7 @@ class SaveQuoteList extends Component {
                 />
                 &nbsp;
                 <Button
-                  className={styles.addButtonSaveQL}
+                  className={classes.disabledButton}
                   color="primary"
                   variant="outlined"
                   size="small"
@@ -175,4 +182,10 @@ class SaveQuoteList extends Component {
     );
   }
 }
-export default withApollo(withSnackbar(SaveQuoteList));
+const StyledSaveQuoteList = withStyles(saveQuoteListStyles)(withApollo(withSnackbar(SaveQuoteList)))
+
+export default StyledSaveQuoteList;
+
+
+// Old export:
+// export default withApollo(withSnackbar(SaveQuoteList));
