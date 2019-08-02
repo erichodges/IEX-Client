@@ -35,9 +35,13 @@ const ADD_QUOTE_LIST = gql`
 `;
 
 const saveQuoteListStyles = theme => ({
-  disabledButton: {
-    borderColor: "#fff"
+  button: {
+    "&:disabled": {
+      borderColor: "#62757f",
+      color: "#62757f"
+    }
   }
+
 });
 
 class SaveQuoteList extends Component {
@@ -127,12 +131,13 @@ class SaveQuoteList extends Component {
                 />
                 &nbsp;
                 <Button
-                  className={classes.disabledButton}
+                  className={styles.addButtonSaveQL}
                   color="primary"
                   variant="outlined"
                   size="small"
                   onClick={this.handleSubmit}
                   disabled={buttonDisabled}
+                  classes={{ disabled: classes.button}}
                 >
                   Add
                 </Button>
@@ -145,6 +150,7 @@ class SaveQuoteList extends Component {
                       size="small"
                       variant="outlined"
                       disabled={buttonDisabled}
+                      classes={{ disabled: classes.button}}
                       onClick={e => {
                         quoteListArray.map(async item => {
                           const tickers = item.tickers;
