@@ -77,7 +77,9 @@ class SaveQuoteList extends Component {
         this.setState({
           quoteListName: this.input.value
         });
-        this.input.value = "";
+        this.setState({
+          quoteListName: ""
+        })
   }
 
   onAddQuoteListId(responseWithQuoteList, itemId, name, variant) {
@@ -120,13 +122,13 @@ class SaveQuoteList extends Component {
                 <DarkTextField
                   variant="outlined"
                   margin="dense"
-                  ref={this.quoteListName}
                   inputRef={input => (this.input = input)}
                   onChange={(e) => this.setState({ quoteListName: e.target.value})}
                   value={this.state.quoteListName}
                   type="text"
                   placeholder="Name (must be unique)"
                   className="quoteListNameInput"
+                  onKeyPress={this.onKeyPressed.bind(this)}
                 />
                 &nbsp;
                 <Button
