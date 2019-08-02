@@ -191,7 +191,3 @@ class SaveQuoteList extends Component {
 const StyledSaveQuoteList = withStyles(saveQuoteListStyles)(withApollo(withSnackbar(SaveQuoteList)))
 
 export default StyledSaveQuoteList;
-
-
-// Old export:
-// export default withApollo(withSnackbar(SaveQuoteList));
