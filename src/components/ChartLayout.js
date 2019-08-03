@@ -53,10 +53,6 @@ class ChartLayout extends Component {
     });
   }
   componentDidMount() {
-    // getData("SPY", "1y").then(data => {
-    //   this.setState({ data });
-    // });
-    //
     Promise.all([
       getData("SPY", "1y"),
       getCompanyName("SPY"),

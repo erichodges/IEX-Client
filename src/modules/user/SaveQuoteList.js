@@ -77,9 +77,7 @@ class SaveQuoteList extends Component {
         this.setState({
           quoteListName: this.input.value
         });
-        this.setState({
-          quoteListName: ""
-        })
+        this.setState({ quoteListName: "" })
   }
 
   onAddQuoteListId(responseWithQuoteList, itemId, name, variant) {

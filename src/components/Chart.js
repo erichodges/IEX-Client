@@ -13,11 +13,6 @@ import { MovingAverageTooltip, OHLCTooltip } from "react-stockcharts/lib/tooltip
 import { last } from "react-stockcharts/lib/utils";
 
 
-
-
-
-
-
 // want to have sma 5, 50, 200 and ema 13, 21
 class CandleStickChartWithMA extends React.Component {
   render() {
