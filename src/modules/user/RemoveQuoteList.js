@@ -72,7 +72,6 @@ class RemoveQuoteList extends Component {
                         quoteListArray.map(async item => {
                           const id = item.quoteListId;
                           const variant1 = "success";
-                          const variant2 = "error";
 
                           if (item.id === quoteListId) {
                             const response = await mutate({

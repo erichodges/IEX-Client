@@ -31,7 +31,7 @@ class ChartLayout extends Component {
 
     this.socket.on("message", message => {
       const msg = JSON.parse(message);
-      console.log("ChartLayout", msg);
+      // console.log("ChartLayout", msg);
       const insertDate = parseDate(this.state.date);
 
       let newData = {
@@ -42,7 +42,7 @@ class ChartLayout extends Component {
         close: msg.price, //msg.lastSalePrice | msg.price | this.state.close
         volume: this.state.volume
       };
-      console.log("CL", newData);
+      // console.log("CL", newData);
       this.setState(state => {
         return {
           data: [...state.data, newData]
@@ -112,7 +112,7 @@ class ChartLayout extends Component {
         getCompanyName(ticker),
         getQuote(ticker)
       ]).then(values => {
-        console.log("charLayout Values:", ticker, time);
+        // console.log("charLayout Values:", ticker, time);
         this.socket.emit("unsubscribe", this.state.oldTicker);
         this.setState({
           data: values[0],
@@ -133,7 +133,7 @@ class ChartLayout extends Component {
   }
 
   render() {
-    console.log(process.env.REACT_APP_IEX_API);
+    // console.log(process.env.REACT_APP_IEX_API);
     return (
       <div>
         <ChartTicker

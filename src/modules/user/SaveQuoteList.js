@@ -163,7 +163,6 @@ class SaveQuoteList extends Component {
                           const tickers = item.tickers;
                           const name = item.name;
                           const variant1 = "success"
-                          const variant2 = "error"
 
                           if (item.id === quoteListId) {
                             const response = await mutate({

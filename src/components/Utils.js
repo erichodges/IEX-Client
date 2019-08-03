@@ -21,7 +21,7 @@ export async function getData(ticker, time) {
 export async function getQuote(ticker) {
     const endpoint = `https://sandbox.iexapis.com/stable/stock/${ticker}/quote?token=${API_Token}`;
     return await axios.get(endpoint).then(res => {
-      console.log("getQuote:", res.data);
+      // console.log("getQuote:", res.data);
       return res.data;
     }).catch(e => console.log("Utils: getQuote" + e.message)); 
 }
@@ -29,7 +29,7 @@ export async function getQuote(ticker) {
 export async function getCompanyName(ticker) {
   const endpoint = `https://sandbox.iexapis.com/stable/stock/${ticker}/company?token=${API_Token}`;
   return await axios.get(endpoint).then(res => {
-    console.log("getCompanyName:", res.data);
+    // console.log("getCompanyName:", res.data);
     return res.data.companyName;
   }).catch(e => console.log("Utils: getCompanyName" + e.message)); 
 }

@@ -1,11 +1,11 @@
+import { Container } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
 import React from "react";
 import shortid from "shortid";
-import Button from "@material-ui/core/Button";
-
 import ChartLayout from "./ChartLayout";
 import Header from "./Header";
 import QuoteList from "./QuoteList";
-import { Container } from "@material-ui/core";
+
 
 class Main extends React.Component {
   constructor(props) {
@@ -97,11 +97,11 @@ class Main extends React.Component {
         return prevItem;
       })
     }));
-    console.log("from onAddQuoteListIdToItem:", savedQuoteListId, itemId, name);
+    // console.log("from onAddQuoteListIdToItem:", savedQuoteListId, itemId, name);
   };
 
   render() {
-    console.log(this.state.items, "from Main.js");
+    // console.log(this.state.items, "from Main.js");
     const { items } = this.state;
     return (
       <div>
