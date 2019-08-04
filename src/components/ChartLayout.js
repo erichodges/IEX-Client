@@ -30,7 +30,7 @@ class ChartLayout extends Component {
     });
 
     this.socket.on("message", message => {
-      const msg = JSON.parse(message);
+      // const msg = JSON.parse(message);  // live price
       // console.log("ChartLayout", msg);
       const insertDate = parseDate(this.state.date);
 
@@ -39,7 +39,7 @@ class ChartLayout extends Component {
         open: this.state.open,
         high: this.state.high,
         low: this.state.low,
-        close: msg.price, //msg.lastSalePrice | msg.price | this.state.close
+        close: this.state.close, //msg.lastSalePrice | msg.price | this.state.close
         volume: this.state.volume
       };
       // console.log("CL", newData);
