@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import socket from "socket.io-client";
 import Chart from "./Chart";
 import ChartTicker from "./ChartTicker";
+import ErrorBoundary from "./ErrorBoundary";
 import { getCompanyName, getData, getQuote } from "./Utils";
 
 const parseDate = timeParse("%Q");
@@ -52,6 +53,7 @@ class ChartLayout extends Component {
       // console.log(this.state.data); // shows newData in Data
     });
   }
+
   componentDidMount() {
     Promise.all([
       getData("SPY", "1y"),
@@ -74,11 +76,13 @@ class ChartLayout extends Component {
       // console.log(this.state.data.close);
     });
   }
+
   handleChartSubmit(e, ticker, time) {
     e.preventDefault();
     if (time === "") {
       time = "1y";
     }
+
     Promise.all([
       getData(ticker, time),
       getCompanyName(ticker),
@@ -146,7 +150,9 @@ class ChartLayout extends Component {
         {this.state.data.length === 0 ? (
           <div>Loading...</div>
         ) : (
-          <Chart data={this.state.data} />
+          <ErrorBoundary>
+            <Chart data={this.state.data} />
+          </ErrorBoundary>
         )}
       </div>
     );
