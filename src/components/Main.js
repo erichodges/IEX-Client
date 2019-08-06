@@ -106,22 +106,22 @@ class Main extends React.Component {
     return (
       <div>
         <Header />
-        <ChartLayout symbol={this.state.tickerFromQuote} />
-        <QuoteListContainer addChild={this.onAddChild}>
-          {this.state.items.map(item => (
-            <QuoteList
-              key={item.id}
-              item={item}
-              remove={this.onRemoveChild}
-              setTickerForChart={this.onSendQuoteTicker}
-              tickerToList={this.onAddTickerToItem}
-              addQuoteListName={this.onAddQuoteListNameToItem}
-              quoteListArray={items}
-              addQuoteListId={this.onAddQuoteListIdToItem}
-              removeTicker={this.onRemoveTickerFromQuoteList}
-            />
-          ))}
-        </QuoteListContainer>
+          <ChartLayout symbol={this.state.tickerFromQuote} />
+          <QuoteListContainer addChild={this.onAddChild}>
+            {this.state.items.map(item => (
+              <QuoteList
+                key={item.id}
+                item={item}
+                remove={this.onRemoveChild}
+                setTickerForChart={this.onSendQuoteTicker}
+                tickerToList={this.onAddTickerToItem}
+                addQuoteListName={this.onAddQuoteListNameToItem}
+                quoteListArray={items}
+                addQuoteListId={this.onAddQuoteListIdToItem}
+                removeTicker={this.onRemoveTickerFromQuoteList}
+              />
+            ))}
+          </QuoteListContainer>
       </div>
     );
   }

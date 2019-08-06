@@ -133,8 +133,9 @@ class CandleStickChartWithMA extends React.Component {
             displayFormat={format(".2f")}
             fontFamily="Roboto"
           />
-          <CandlestickSeries {...candlesAppearance} clip={false} />
-
+          
+            <CandlestickSeries {...candlesAppearance} clip={false} />
+          
           <LineSeries yAccessor={sma50.accessor()} stroke={sma50.stroke()} />
 
           <LineSeries yAccessor={ema21.accessor()} stroke={ema21.stroke()} />
@@ -197,6 +198,7 @@ CandleStickChartWithMA.propTypes = {
 CandleStickChartWithMA.defaultProps = {
   type: "hybrid"
 };
+
 CandleStickChartWithMA = fitWidth(CandleStickChartWithMA);
 
 export default CandleStickChartWithMA;

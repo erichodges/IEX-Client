@@ -152,7 +152,7 @@ class ChartLayout extends Component {
         ) : (
           <ErrorBoundary>
             <Chart data={this.state.data} />
-          </ErrorBoundary>
+          </ErrorBoundary>          
         )}
       </div>
     );
