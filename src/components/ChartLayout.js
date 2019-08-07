@@ -1,12 +1,12 @@
 import { timeParse } from "d3-time-format";
 import React, { Component } from "react";
-import socket from "socket.io-client";
 import Chart from "./Chart";
 import ChartTicker from "./ChartTicker";
 import ErrorBoundary from "./ErrorBoundary";
 import { getCompanyName, getData, getQuote } from "./Utils";
 
 const parseDate = timeParse("%Q");
+
 class ChartLayout extends Component {
   constructor(props) {
     super(props);
@@ -22,36 +22,38 @@ class ChartLayout extends Component {
       volume: 0,
       change: 0
     };
-    const url = "https://ws-api.iextrading.com/1.0/last";
-    this.socket = socket(url, { reconnection: true });
-    this.handleChartSubmit = this.handleChartSubmit.bind(this);
+    // const url = "https://ws-api.iextrading.com/1.0/last";
+    // this.socket = socket(url, { reconnection: true });
+    // this.handleChartSubmit = this.handleChartSubmit.bind(this);
 
-    this.socket.on("connect", () => {
-      this.socket.emit("subscribe", "SPY");
-    });
+    // this.socket.on("connect", () => {
+    //   this.socket.emit("subscribe", "SPY");
+    // });
 
-    this.socket.on("message", message => {
-      // const msg = JSON.parse(message);  // live price
-      // console.log("ChartLayout", msg);
-      const insertDate = parseDate(this.state.date);
+    // this.socket.on("message", message => {
+    //   // const msg = JSON.parse(message);  // live price
+    //   // console.log("ChartLayout", msg);
+    //   const insertDate = parseDate(this.state.date);
 
-      let newData = {
-        date: insertDate,
-        open: this.state.open,
-        high: this.state.high,
-        low: this.state.low,
-        close: this.state.close, //msg.lastSalePrice | msg.price | this.state.close
-        volume: this.state.volume
-      };
-      // console.log("CL", newData);
-      this.setState(state => {
-        return {
-          data: [...state.data, newData]
-        };
-      });
-      this.state.data.pop();
-      // console.log(this.state.data); // shows newData in Data
-    });
+    //   let newData = {
+    //     date: insertDate,
+    //     open: this.state.open,
+    //     high: this.state.high,
+    //     low: this.state.low,
+    //     close: this.state.close, //msg.lastSalePrice | msg.price | this.state.close
+    //     volume: this.state.volume
+    //   };
+    //   console.log("newData", newData);
+    //   this.setState(state => {
+    //     return {
+    //       data: [...state.data, newData]
+    //     };
+    //   });
+    //   this.state.data.pop();
+    //   // console.log(this.state.data); // shows newData in Data
+    // });
+
+     
   }
 
   componentDidMount() {
@@ -60,11 +62,12 @@ class ChartLayout extends Component {
       getCompanyName("SPY"),
       getQuote("SPY")
     ]).then(values => {
-      this.socket.emit("unsubscribe", this.state.oldTicker);
+      // this.socket.emit("unsubscribe", this.state.oldTicker);
+      const insertDate = parseDate(values[2].latestUpdate);
       this.setState({
         data: values[0],
         companyName: values[1],
-        date: values[2].latestUpdate,
+        date: insertDate,
         open: values[2].open,
         high: values[2].high,
         low: values[2].low,
@@ -75,6 +78,7 @@ class ChartLayout extends Component {
       });
       // console.log(this.state.data.close);
     });
+
   }
 
   handleChartSubmit(e, ticker, time) {
@@ -88,11 +92,13 @@ class ChartLayout extends Component {
       getCompanyName(ticker),
       getQuote(ticker)
     ]).then(values => {
-      this.socket.emit("unsubscribe", this.state.oldTicker);
+      // this.socket.emit("unsubscribe", this.state.oldTicker);
+      const insertDate = parseDate(values[2].latestUpdate);
+
       this.setState({
         data: values[0],
         companyName: values[1],
-        date: values[2].latestUpdate,
+        date: insertDate,
         open: values[2].open,
         high: values[2].high,
         low: values[2].low,
@@ -101,7 +107,7 @@ class ChartLayout extends Component {
         change: values[2].changePercent,
         oldTicker: ticker
       });
-      this.socket.emit("subscribe", ticker);
+      // this.socket.emit("subscribe", ticker);
       // console.log(this.state);
     });
   }
@@ -117,11 +123,12 @@ class ChartLayout extends Component {
         getQuote(ticker)
       ]).then(values => {
         // console.log("charLayout Values:", ticker, time);
-        this.socket.emit("unsubscribe", this.state.oldTicker);
+        // this.socket.emit("unsubscribe", this.state.oldTicker);
+        const insertDate = parseDate(values[2].latestUpdate);
         this.setState({
           data: values[0],
           companyName: values[1],
-          date: values[2].latestUpdate,
+          date: insertDate,
           open: values[2].open,
           high: values[2].high,
           low: values[2].low,
@@ -130,7 +137,7 @@ class ChartLayout extends Component {
           change: values[2].changePercent,
           oldTicker: ticker
         }).then(() => {
-          this.socket.emit("subscribe", ticker);
+          // this.socket.emit("subscribe", ticker);
         }).catch(e => console.log("Server Error: " + e.message));        
       });
     }
