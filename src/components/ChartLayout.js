@@ -22,6 +22,9 @@ class ChartLayout extends Component {
       volume: 0,
       change: 0
     };
+
+    this.handleChartSubmit = this.handleChartSubmit.bind(this);
+
     // const url = "https://ws-api.iextrading.com/1.0/last";
     // this.socket = socket(url, { reconnection: true });
     // this.handleChartSubmit = this.handleChartSubmit.bind(this);
@@ -136,9 +139,7 @@ class ChartLayout extends Component {
           volume: values[2].latestVolume,
           change: values[2].changePercent,
           oldTicker: ticker
-        }).then(() => {
-          // this.socket.emit("subscribe", ticker);
-        }).catch(e => console.log("Server Error: " + e.message));        
+        });      
       });
     }
   }
