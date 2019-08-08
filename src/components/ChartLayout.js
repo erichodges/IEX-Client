@@ -113,7 +113,10 @@ class ChartLayout extends Component {
       // this.socket.emit("subscribe", ticker);
       // console.log(this.state);
     });
+    this.addCurrentDayToChart();
   }
+
+
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.symbol !== prevProps.symbol) {
@@ -144,7 +147,26 @@ class ChartLayout extends Component {
     }
   }
 
+  addCurrentDayToChart() {
+    let newData = {
+       date: this.state.date,
+       open: this.state.open,
+       high: this.state.high,
+       low: this.state.low,
+       close: this.state.close, //msg.lastSalePrice | msg.price | this.state.close
+       volume: this.state.volume
+     };
+     console.log("newData", newData);
+     this.setState(state => {
+       return {
+         data: [...state.data, newData]
+       };
+     });
+     this.state.data.pop(); 
+ }
+
   render() {
+    console.log("CL Render", this.state.open, this.state.high)
     // console.log(process.env.REACT_APP_IEX_API);
     return (
       <div>
