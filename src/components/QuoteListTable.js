@@ -9,6 +9,7 @@ import TableRow from "@material-ui/core/TableRow";
 import DeleteIcon from "@material-ui/icons/Delete";
 import React from "react";
 import ModalKeyStats from "./ModalKeyStats";
+import styles from "./styles/Table.module.css";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -65,7 +66,7 @@ const QuoteListTable = props => {
                   <TableCell align="left">{item.symbol}</TableCell>
                   <TableCell align="right">{item.latestPrice}</TableCell>
                   <TableCell align="right">{item.change}</TableCell>
-                  <TableCell align="right">
+                  <TableCell align="right" className={item.changePercent < 0 ? styles["redBackground"] : styles["greenBackground"]}>
                     {item.changePercent.toFixed(2)} %{" "}
                   </TableCell>
                   <TableCell align="right">{item.companyName}</TableCell>
