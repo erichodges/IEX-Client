@@ -173,15 +173,25 @@ class ChartTicker extends Component {
             {this.props.ticker}
           </Typography>
           <Typography className={styles["CompanyDetails"]}>
-            &nbsp;&nbsp;&nbsp;{this.props.companyName}
-            {/* &nbsp;&nbsp; <b>{this.props.close.toFixed(2)}</b> */}
-            {/*  &nbsp;&nbsp;&nbsp; <b>{this.props.change.toFixed(2)}%</b> */}
+            &nbsp;&nbsp;&nbsp;{this.props.companyName} &nbsp;&nbsp;
           </Typography>
+          <Typography>
+            <b>{this.props.close === null ? "***" : this.props.close.toFixed(2)}</b>
+          </Typography>
+          <div >
+          <Typography>
+            &nbsp;&nbsp;&nbsp;
+            <b className={this.props.change < 0 ? styles["redBackground"] : styles["greenBackground"]}>
+            {this.props.change === null ? "***" : this.props.change.toFixed(2)}%</b>
+          </Typography>
+          </div>
         </div>
       </form>
     );
   }
 }
+
+// {this.props.close < 0 ? styles["redBackground"] : styles["greenBackground"]}
 
 ChartTicker.propTypes = {
   chartTicker: PropTypes.string

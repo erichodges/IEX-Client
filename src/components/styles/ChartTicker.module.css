@@ -4,7 +4,7 @@
 }
 
 .MUILineBreak {
-  color: #fff;
+  color: #eceff1;
   display: inline-block;
   font-family: "Roboto";
   white-space: nowrap;
@@ -13,7 +13,17 @@
 .CompanyDetails {
   white-space: nowrap;
   display: inline-block;
-  color: #fff;
+  color: #eceff1;
+}
+
+.redBackground {
+  background-color: #b71c1c !important;
+  padding: 5px;
+}
+
+.greenBackground {
+  background-color: #1b5e20 !important;
+  padding: 5px;
 }
 
 .chartTickerInput {
