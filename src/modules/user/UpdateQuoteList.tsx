@@ -45,7 +45,10 @@ class UpdateQuoteList extends Component {
   // @ts-ignore
   onUpdateQuoteList(variant) {
     // @ts-ignore
-    this.props.enqueueSnackbar("Quote List Updated", { variant });
+    this.props.enqueueSnackbar("Quote List Updated", {
+      variant,
+      autoHideDuration: 3000
+    });
   }
 
   render() {

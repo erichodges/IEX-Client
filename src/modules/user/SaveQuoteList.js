@@ -84,15 +84,15 @@ class SaveQuoteList extends Component {
     const quoteListId = responseWithQuoteList.data.addQuoteList.id;
     
         this.props.addQuoteListId(quoteListId, itemId, name);
-        this.props.enqueueSnackbar("Quote List Saved", {variant});
+        this.props.enqueueSnackbar("Quote List Saved", {variant, autoHideDuration: 3000});
   }
 
   onSaveError(variant) {
-    this.props.enqueueSnackbar("Save Error", {variant});
+    this.props.enqueueSnackbar("Save Error", {variant, autoHideDuration: 3000});
   }
 
   onDisabledButton(variant) {
-    this.props.enqueueSnackbar("Names must be unique", {variant});
+    this.props.enqueueSnackbar("Names must be unique", {variant, autoHideDuration: 3000});
   }
 
   render() {

@@ -30,11 +30,11 @@ const REMOVE_QUOTE_LIST = gql`
 class RemoveQuoteList extends Component {
 
   onDeleteQuoteList = (variant) => {
-    this.props.enqueueSnackbar("Quote List Deleted", { variant });
+    this.props.enqueueSnackbar("Quote List Deleted", { variant, autoHideDuration: 3000 });
   }
 
   deleteError = (variant) => {
-    this.props.enqueueSnackbar("Delete Error", { variant });
+    this.props.enqueueSnackbar("Delete Error", { variant, autoHideDuration: 3000 });
   }
 
   render() {

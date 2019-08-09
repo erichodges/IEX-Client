@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Delete = styled(DeleteIcon)({
-  fill: "#eceff1 !important",
+  fill: "#bdbdbd !important",
   background: "#37474f !important",
   cursor: "pointer",
   padding: "none !important",
