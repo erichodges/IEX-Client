@@ -9,10 +9,13 @@
 .contentWrapper {
   display: grid;
   align-items: center !important;
-
 }
 
 .card {
   display: grid;
   width: 250px !important;
+}
+
+.input {
+  font-family: Roboto !important;
 }

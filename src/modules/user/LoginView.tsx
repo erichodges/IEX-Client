@@ -89,6 +89,7 @@ class LoginView extends PureComponent<RouteComponentProps<{}>> {
                         required={true}
                         value={email}
                         onChange={this.handleChange}
+                        className={styles.input}
                       />
                     </div>
                     <div className={styles.contentWrapper}>
