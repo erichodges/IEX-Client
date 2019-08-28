@@ -16,7 +16,6 @@ const client = new ApolloClient({
   credentials: "include",
   cache
 });
-// http://localhost:4000/graphql
 
 ReactDOM.render(
   <ApolloProvider client={client}>
