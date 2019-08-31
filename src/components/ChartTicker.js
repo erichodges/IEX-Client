@@ -57,7 +57,7 @@ class ChartTicker extends Component {
       chartTimeFrame: event.target.value.toLowerCase(),
       name: event.target.name
     });
-    console.log("onHandleChangeTimeFrame", event.target.name);
+    // console.log("onHandleChangeTimeFrame", event.target.name);
   };
   render() {
     const { classes } = this.props;
