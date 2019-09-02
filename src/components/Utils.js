@@ -3,8 +3,8 @@ import { timeParse } from "d3-time-format";
 
 export const parseDate = timeParse("%Y-%m-%d");
 
-const API_Token = process.env.REACT_APP_IEX_API;
-const API_version = "sandbox";  // "cloud" or "sandbox"
+const API_Token = process.env.REACT_APP_IEX_API_KEY;
+const API_version = process.env.REACT_APP_IEX_API_VERSION  // "cloud" or "sandbox"
 
 
 export async function getData(ticker, time) {
