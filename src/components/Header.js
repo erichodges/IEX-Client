@@ -28,7 +28,7 @@ class Header extends Component {
         <ul style={ulStyle}>
           <li style={logoStyle}>
             <Link to="/" style={linkStyle}>
-            <Typography variant="h6">Quick Chart</Typography>
+            <Typography variant="h6">mktzen</Typography>
             </Link>
           </li>
           <LoginHeader />

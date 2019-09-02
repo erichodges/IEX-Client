@@ -28,5 +28,5 @@ ReactDOM.render(
   </ApolloProvider>,
   document.getElementById("root") as HTMLElement
 );
-console.log(process.env.REACT_APP_IEX_API);
+// console.log(process.env.REACT_APP_IEX_API);
 // registerServiceWorker();
