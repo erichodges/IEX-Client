@@ -7,6 +7,10 @@ import { getCompanyName, getData, getQuote } from "./Utils";
 
 const parseDate = timeParse("%Q");
 
+const chartPlaceholder = {
+  height: 560
+}
+
 class ChartLayout extends Component {
   constructor(props) {
     super(props);
@@ -165,6 +169,7 @@ class ChartLayout extends Component {
      this.state.data.pop(); 
  }
 
+
   render() {
     console.log("CL Render", this.state.open, this.state.high)
     // console.log(process.env.REACT_APP_IEX_API);
@@ -178,7 +183,7 @@ class ChartLayout extends Component {
           change={this.state.change}
         />
         {this.state.data.length === 0 ? (
-          <div>Loading...</div>
+          <div style={chartPlaceholder}>Loading...</div>
         ) : (
           <ErrorBoundary>
             <Chart data={this.state.data} />
